@@ -367,6 +367,14 @@ a.store:hover {
 	padding: 20px;
 }
 
+.text-info {
+	color: white;
+	font-size: 1em;
+}
+.text-info strong {
+	font-size: 3em;
+}
+
 
 /* Latest Work
 ---------------------------------*/
