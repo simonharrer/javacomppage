@@ -90,6 +90,15 @@ body {
 	color:#888888;
 	margin:0;
 }
+h1{
+	font-size:38px;
+	color:#222222;
+	font-family:'Dosis';
+	font-weight:700;
+	margin:35px 0 25px 0;
+	text-align:center;
+	text-transform:uppercase;
+}
 h2{
 	font-size:38px;
 	color:#222222;
