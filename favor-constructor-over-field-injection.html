@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/line-highlight/prism-line-highlight.min.css">
-
 </head>
 <body>
 
@@ -32,21 +31,21 @@
 
 <div class="container">
     <h1>Favor Constructor over Field Injection</h1>
-    <div class="row">
+    <div class="row row-eq-height">
         <div class="col-sm">
             <div class="shadow-lg p-3 mb-5 bg-white rounded">
-<pre class="language-java" data-line="4"><code>@Component
+<pre class="language-java" data-line="4" style="background: #efd2d2;"><code>@Component
 class SpaceSuit {
 
     @Autowired private OxygenMonitor oxygenMonitor;
 }</code></pre>
 
-                <p>Have a look at the code above. We have a SpaceSuit component with a single dependency, the
+                <p class="text-justify">Have a look at the code above. We have a SpaceSuit component with a single dependency, the
                     OxygenMonitor.
                     Upon start, Spring will create one instance of that class for us, providing it an instance of the
                     OxygenMonitor, and inject the SpaceSuit instance where appropriate in other components.</p>
 
-                <p>
+                <p class="text-justify">
                     The field where Spring should inject the OxygenMonitor dependency is marked with @Autowired and is
                     private. Because private really means private in Java, Spring needs to change the accessibility of
                     that
@@ -54,7 +53,7 @@ class SpaceSuit {
                     consequently preventing your app to start up in that case. Changing the field visibility to default
                     would solve this, but would allow write access to that field, which might be even worse.</p>
 
-                <p>A field that is not marked final can be reassigned to another value anytime. So after Spring has
+                <p class="text-justify">A field that is not marked final can be reassigned to another value anytime. So after Spring has
                     injected
                     the OxygenMonitor, a method within the SpaceSuit class might as well change that field, which is
                     probably something you would not want either. Setting the field to final prevents reassigning the
@@ -80,12 +79,12 @@ class SpaceSuit {
     }
 }</code></pre>
 
-                <p>The code is clearer now. The field is set through the constructor upon instance creation. And because
+                <p class="text-justify">The code is clearer now. The field is set through the constructor upon instance creation. And because
                     we
                     marked the field final it won't be able to change afterward anymore. We also get a bonus: the
                     @Autowired
                     annotation is optional for the constructor and can be left out.</p>
-                <p>With field injection, you don't feel the cost of adding another dependency. It's just another line
+                <p class="text-justify">With field injection, you don't feel the cost of adding another dependency. It's just another line
                     added
                     to the source code. It's different with constructor injection because you need to add the dependency
                     to
@@ -94,7 +93,7 @@ class SpaceSuit {
                     parameters in methods to a minimum, and this intuition will kick in for constructors, too, helping
                     you
                     to spot classes with too many dependencies more quickly.</p>
-                <p>There is, however, an exception to this rule. JUnit requires a no-args constructor for every test
+                <p class="text-justify">There is, however, an exception to this rule. JUnit requires a no-args constructor for every test
                     class.
                     So we can't use constructor injection in tests and have to fall back to field injection.</p>
                 <ul>
