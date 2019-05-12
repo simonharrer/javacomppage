@@ -59,6 +59,10 @@ body {
 	background-color: #f7f6fb;
 }
 
+a {
+	color: #1a1a1a;
+}
+
 .k-nav {
 	position: fixed;
 	top: 0;
