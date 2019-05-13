@@ -460,6 +460,10 @@ b, strong {
 		justify-content: space-between;
 		padding: 0 10%;
 	}
+	
+	.k-nav-git img {
+		margin-bottom: 0;
+	}
 
 	.k-page {
 		width: 80%;
