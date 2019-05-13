@@ -142,12 +142,6 @@ b, strong {
 	font-weight: 700;
 }
 
-p img {
-	vertical-align: middle;
-	height: calc(1em + 2vw);
-	margin-right: 0.25em;
-}
-
 .k-nav-main:link, .k-nav-main:visited {
 	color: #428bca;
 	font-size: calc(0.5em + 2vw);
@@ -158,6 +152,11 @@ p img {
 
 .k-nav-main:hover, .k-nav-main:active, .k-nav-main:focus {
 	color: #304ffe;
+}
+
+.k-nav-git img {
+	vertical-align: middle;
+	height: calc(1em + 1.5vw);
 }
 
 .k-nav a:focus {
