@@ -70,7 +70,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	min-height: 8vmax;
+	height: 10vmax;
 	background-color: #fbfbfd;
 	justify-content: center;
 	align-items: center;
@@ -91,12 +91,12 @@ body {
 .k-hero, .k-subhero {
 	display: flex;
 	width: 100%;
-	background-color: #000c1f;
+	background-color: #05081a;
 }
 
 .k-hero {
 	min-height: 38vh;
-	padding-top: 9vmax;
+	padding-top: 10vmax;
 }
 
 .k-subhero {
@@ -109,14 +109,14 @@ body {
 	display: flex;
 	flex-flow: column wrap;
 	width: 100%;
-	background-color: #000c1f;
+	background-color: #05081a;
 	justify-content: space-around;
 	align-items: center;
 	padding: 2vmax 0;
 }
 
 h1, h2 {
-	color: #000c1f;
+	color: #05081a;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 800;
 	line-height: 1.25;
@@ -137,7 +137,7 @@ h1 {
 
 h2 {
 	font-size: calc(1em + 1vw);
-	border-bottom: 0.5vmax solid #000c1f;
+	border-bottom: 0.5vmax solid #05081a;
 	padding-bottom: 1vmax;
 	margin-top: 6vmax;
 }
@@ -149,7 +149,7 @@ p {
 }
 
 b, strong, p a {
-	color: #000c1f;
+	color: #05081a;
 	font-weight: 700;
 }
 
@@ -161,7 +161,7 @@ p a:link, p a:visited {
 
 p a:hover, p a:active, p a:focus {
 	color: #304ffe;
-	border-bottom-color: #000c1f;
+	border-bottom-color: #05081a;
 }
 
 .k-nav-main:link, .k-nav-main:visited {
@@ -194,21 +194,22 @@ p a:hover, p a:active, p a:focus {
 .k-hero-button {
 	display: flex;
 	align-items: center;
-	min-height: calc(2em + 2vmin);
+	min-height: calc(1em + 2vmin);
+	font-size: calc(0.75em + 0.5vw);
 	color: #ffffff;
 	font-variant: small-caps;
 	text-transform: lowercase;
-	letter-spacing: 0.2vmin;
+	letter-spacing: 0.2vmax;
 	word-spacing: 0.2vmin;
 	border-radius: 6vmin;
-	box-shadow: 0 0 0 0.5vmin #000c1f, 0 0 0 1vmin #304ffe;
+	box-shadow: 0 0 0 0.5vmin #05081a, 0 0 0 1vmin #304ffe;
 	background-color: #304ffe;
 	padding: 1vmin 4vmin 1vmin 2vmin;
 	transition: color 0.3s ease-in-out, background-color 0.5s, letter-spacing 0.4s;
 }
 
 .k-hero-button img {
-	width: 2em;
+	width: calc(1em + 1vmin);
 	height: auto;
 	margin-right: 2vmin;
 }
@@ -245,22 +246,21 @@ p a:hover, p a:active, p a:focus {
 	margin-bottom: 0.25em;
 }
 
-.k-jbc {
-	color: #000000;
-	font-style: italic;
-}
-
 .k-callout {
 	max-width: 90%;
-	font-size: calc(0.5em + 1.5vw);
-	font-style: italic;
+	font-size: calc(0.5em + 1.75vw);
 	text-align: center;
 	line-height: 1.5;
-	background-color: #eaedff;
+	background-color: #ffffff;
 	border-radius: 0.125em;
-	box-shadow: 0 0 0 0.5vmin #f7f6fb, 0 0 0 1vmin #eaedff;
+	box-shadow: 0 0 0 0.5vmin #f7f6fb, 0 0 0 1vmin #304ffe;
 	padding: 2vmax;
 	margin: 0 auto 3vmax;
+}
+
+.k-jbc, .k-callout {
+	color: #000000;
+	font-style: italic;
 }
 
 ::-moz-selection {
@@ -274,7 +274,7 @@ p a:hover, p a:active, p a:focus {
 }
 
 .k-box-description {
-	color: #000c1f;
+	color: #05081a;
 	font-size: calc(0.5em + 0.75vw);
 	text-align: center;
 }
@@ -301,6 +301,13 @@ p a:hover, p a:active, p a:focus {
 	font-size: calc(0.5em + 0.75vw);
 	line-height: 0.75;
 	text-align: center;
+}
+
+.k-box-link {
+	font-size: calc(0.5em + 0.25vw);
+	font-variant: small-caps;
+	text-transform: lowercase;
+	letter-spacing: 0.1vmax;
 }
 
 .k-heatmap {
@@ -434,7 +441,7 @@ p a:hover, p a:active, p a:focus {
 	grid-row: 2 / span 1;
 }
 
-.k-box-3 p.k-caption {
+.k-box-3 .k-box-link {
 	-ms-grid-row: 3;
 	-ms-grid-row-span: 1;
 	grid-row: 3 / span 1;
@@ -569,7 +576,7 @@ p a:hover, p a:active, p a:focus {
 	}
 
 	.k-nav {
-		min-height: 6vmax;
+		height: 8vmax;
 		flex-direction: row;
 		justify-content: space-between;
 		padding-left: 10%;
@@ -581,7 +588,7 @@ p a:hover, p a:active, p a:focus {
 	}
 
 	.k-hero {
-		padding-top: 7vmax;
+		padding-top: 8vmax;
 	}
 
 	h1 {
@@ -607,8 +614,13 @@ p a:hover, p a:active, p a:focus {
 	}
 
 	.k-hero-button {
+		min-height: calc(2em + 2vmin);
 		border-radius: 4vmin;
-		box-shadow: 0 0 0 0.5vmin #000c1f, 0 0 0 0.75vmin #304ffe;
+		box-shadow: 0 0 0 0.5vmin #05081a, 0 0 0 0.75vmin #304ffe;
+	}
+
+	.k-hero-button img {
+		width: calc(1em + 2vmin);
 	}
 
 	.k-footer-link:link, .k-footer-link:active, .k-footer-link:visited {
@@ -617,7 +629,7 @@ p a:hover, p a:active, p a:focus {
 
 	.k-callout {
 		font-size: calc(0.75em + 0.5vw);
-		box-shadow: 0 0 0 0.5vmin #f7f6fb, 0 0 0 0.75vmin #eaedff;
+		box-shadow: 0 0 0 0.5vmin #f7f6fb, 0 0 0 0.75vmin #304ffe;
 	}
 
 	.k-caption {
@@ -633,17 +645,25 @@ p a:hover, p a:active, p a:focus {
 	}
 }
 
+@media only screen and  (orientation: landscape) {
+	.k-box-3 {
+		-ms-grid-rows: 1fr 0.25fr 2vmin;
+		grid-template-rows: 1fr 0.25fr 2vmin;
+	}
+}
+
 @media only screen and (max-height: 520px) and (orientation: landscape), only screen and (max-width: 400px) {
 	.k-hero-button {
+		min-height: calc(1em + 1vmax);
 		border-radius: 6vmin;
-		box-shadow: 0 0 0 1vmin #000c1f, 0 0 0 1.75vmin #304ffe;
+		box-shadow: 0 0 0 1vmin #05081a, 0 0 0 1.75vmin #304ffe;
 		margin-bottom: 3vmax;
 	}
 }
 
 @media only screen and (min-width: 1200px) {
 	.k-nav {
-		min-height: 4vmax;
+		height: 5vmax;
 		padding-left: 15%;
 		padding-right: 15%;
 	}
@@ -678,6 +698,10 @@ p a:hover, p a:active, p a:focus {
 	
 	.k-caption {
 		font-size: calc(0.25em + 1vw);
+	}
+
+	.k-box-link {
+		font-size: calc(0.5em + 0.5vw);
 	}
 }
 
