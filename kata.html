@@ -9,16 +9,18 @@
 	</head>
 	<body>
 		<nav class="k-nav">
-			<a class="k-nav-main" href="index.html" title="Java by Comparison main site">Java by Comparison</a><a class="k-nav-git" href="https://github.com/javabycomparison/kata" title="Get the kata code"><img src="kata-assets/k-github.svg" alt="The GitHub logo"></a>
+			<a class="k-nav-main" href="index.html" title="Java by Comparison main site">Java by Comparison</a><a class="k-nav-git" href="https://github.com/javabycomparison/kata" target="_blank" title="Get the kata code"><img src="kata-assets/k-github.svg" alt="The GitHub logo"></a>
 		</nav>
-		<div class="k-splash"></div>
+		<div class="k-hero">
+			<h1>The Java by Comparison Kata</h1>
+		</div>
+		<div class="k-subhero">
+			<a class="k-hero-button" href="https://github.com/javabycomparison/kata" target="_blank" title="Get the kata code"><img src="kata-assets/k-github-n.svg" alt="The GitHub logo">Get the code</a>
+		</div>
 		<div class="k-page">
-			<div class="k-hero">
-				<h1>The Java by Comparison Kata</h1>
-			</div>
 				<p>Code katas are a perfect way to learn clean coding. Ours is designed as a <b>two-hour team exercise and workshop.</b> The objective is to use the <span class="k-jbc">Java by Comparison</span> method to clean up our fictitious, specially-uglified legacy code.</p>
-				<p class="k-main-callout">Our goal is to help you train one of the most useful skills to have in any professional programming environment: <strong>Making the most use of a very small time box to effectively improve problematic code.</strong></p>
-			<h2>What can I learn?</h2>				
+				<p class="k-callout">Our goal is to help you train one of the most useful skills to have in any professional programming environment: <strong>Making the most use of a very small time box to effectively improve problematic code.</strong></p>
+			<h2>What can I learn?</h2>
 				<p><strong>Perfect your coding reflexes. </strong>Having to make sense of messy legacy code before adding new features frequently requires a significant amount of time. So does double-checking whether your own new code is well written and maintainable.
 				<p class="k-callout">Our kata's comparison method will help you memorize the most common coding problems and enable you to correct them on the fly.</p>
 				<p><strong>Learn to focus on quick gains. </strong>Getting approval for long hours to optimize legacy code that's already working "fine" can be a tough ask. Refactoring always saves a lot of effort down the line, but you'll rarely have an ideal amount of time available to get it all done.
@@ -28,20 +30,22 @@
 			<h2>Rules</h2>
 				<p>Participants <b>work in pairs.</b> Each pair is equipped with a copy of <span class="k-jbc">Java by Comparison</span> and a handy checklist.</p>
 				<p>Only the <b>comparisons from the book</b> may be used to change the code. Pairs must document which comparisons they use.</p>
+				<p>There is a <b>120-minute time limit.</b></p>
 				<p class="k-callout">The extreme time limit makes it impossible to optimize all of the code. The point of the exercise is to <strong>prioritize</strong> the refactorings that yield the best results in the shortest time.</p>
 			<div class="k-grid">
 				<div class="k-box k-box-3">
 					<img src="kata-assets/k-pair-box.svg" alt="A team of two participants">
 					<p><span class="k-numbers">1</span><span class="k-caption"> pair</span></p>
 				</div>
-				<a class="k-box k-box-3" href="index.html" title="Java by Comparison main site">
-					  <img src="kata-assets/k-book-box.png" alt="The Java by Comparison book">
-					   <p><span class="k-numbers">1</span><span class="k-caption"> book</span></p>
-				</a>
-				<a class="k-box k-box-3" href="https://github.com/javabycomparison/kata/raw/master/java-by-comparison-kata.pdf" title="Download the checklist">
-						<img src="kata-assets/k-list-box.png" alt="The Java by Comparison Kata checklist">
-						<p><span class="k-numbers">1</span><span class="k-caption"> list</span></p>
-				</a>
+				<div class="k-box k-box-3">
+					<img src="kata-assets/k-book-box.png" alt="The Java by Comparison book">
+					<p><span class="k-numbers">1</span><span class="k-caption"> book</span></p>
+				</div>
+				<div class="k-box k-box-3">
+					<img src="kata-assets/k-list-box.png" alt="The Java by Comparison Kata checklist">
+					<p><span class="k-numbers">1</span><span class="k-caption"> list</span></p>
+					<p class="k-caption"><a href="https://github.com/javabycomparison/kata/raw/master/java-by-comparison-kata.pdf" title="Download the checklist">Download</a></p>
+				</div>
 			</div>
 			<div class="k-grid">
 				<div class="k-box k-box-2">
@@ -65,7 +69,7 @@
 					<p><span class="k-numbers k-color-tests">84%</span><span class="k-caption"> line coverage</span></p>
 				</div>
 			</div>
-			<h2>The kata at the BMW coding dojo (March 25th, 2019)</h2>
+			<h2>The kata at the BMW Group Careers coding dojo (March 25th, 2019)</h2>
 				<p>At our first workshop, eight pairs and one group of three solved the kata.</p>
 			<div class="k-grid">
 				<div class="k-box k-box-closer k-box-9">
@@ -81,18 +85,21 @@
 					<p><span class="k-numbers">19</span><span class="k-caption"> participants</span></p>
 				</div>
 			</div>
+				<p>Slightly more than half of all available examples were chosen at least once...</p>
 			<div class="k-grid">
 				<div class="k-box k-box-1">
 					<img src="kata-assets/k-comparisons.svg" alt="39 of 70 comparisons">
 					<p><span class="k-numbers"><span class="k-color-comparisons">39</span> / 70</span><span class="k-caption"> comparisons used</span></p>
 				</div>
 			</div>
+				<p>...but we're most interested in evaluating which types of refactorings were preferred across all teams.</p>
 			<div class="k-grid">
 				<div class="k-box k-box-1">
-					<p class="k-box-description"><b>Favorite chapters </b>(total comparisons used across all teams)<b>: </b></p>
+					<p class="k-box-description"><b>Favorite chapters: </b><br><span class="k-color-comparisons">(total comparisons used across all teams)</span></p>
 					<p><b>Name Things Right <span class="k-numbers-inline k-color-comparisons">(33)</span> &middot; Start Cleaning Up <span class="k-numbers-inline k-color-comparisons">(26)</span></b></p>
 				</div>
 			</div>
+				<p>Getting rid of abbreviations and negations turned out to be a clear favorite. The list of priorities shows that all teams wisely focused on quickly implementable improvements towards increased code readability.</p>
 			<div class="k-grid">
 				<div class="k-box k-box-closer k-box-heatmap">
 					<p class="k-box-description"><b>Most used comparisons: </b></p>
@@ -106,13 +113,12 @@
 					<p class="k-heatmap k-color-comparisons-3rd">Use Domain Terminology <span class="k-numbers-inline">(x6)</span></p>
 				</div>
 			</div>
-				<p class="k-callout">All teams wisely focused on quickly implementable improvements towards increased code readability.</p>
-				<p>Getting rid of abbreviations and negations turned out to be a clear favorite, with good reason: Clearing up confusingly named and hard-to-read elements first is very good practice, as it doesn't take too much time to implement while immediately resulting in much cleaner code, ready for further improvement. <strong>Well done!</strong></p>
-			<p>We had a lot of fun seeing the kata in action at BMW! If you think your organization could also benefit from our compact clean coding workshop, <a href="mailto:kata@by-comparison.com"><b>please drop us a line</b></a>.</p>
+				<p>Clearing up confusingly named and hard-to-read elements first is very good practice, as it doesn't take too much time to implement while immediately resulting in much cleaner code, ready for further improvement. <strong>Well done!</strong></p>
+				<p class="k-callout">We had a lot of fun seeing the kata in action at BMW! If you think your organization might also benefit from our compact clean coding workshop, <a href="mailto:kata@by-comparison.com" title="Email">please drop us a line.</a></p>
 		</div>
 		<footer class="k-footer">
-			<a class="k-footer-link" href="legalnotice.html" title="Legal Notice / Impressum">Legal Notice / Impressum</a>
-			<a class="k-footer-link" href="privacy.html" title="Privacy / Datenschutzerklärung">Privacy / Datenschutzerklärung</a>
+			<a class="k-footer-link" href="/legalnotice.html" title="Legal Notice / Impressum">Legal Notice / Impressum</a>
+			<a class="k-footer-link" href="/privacy.html" title="Privacy / Datenschutzerklärung">Privacy / Datenschutzerklärung</a>
 		</footer>
 	</body>
 </html>
