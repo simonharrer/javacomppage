@@ -1,688 +1,843 @@
 <!doctype html>
-<html lang="en"> 
+<html lang="en">
 
 <head>
 
-	<meta charset="utf-8">
-	<meta name="description" content="Become a better Java developer in 70 examples ✓ Code like a Professional ✓ Get the book 'Java by Comparison' ✓ Based on over 6 years of teaching experience">
-	<meta name="keywords" content="Java,Book,Learn,Improve,Clean Code">
-	<meta name="author" content="co-authored by Simon Harrer, Jörg Lenhard, and Linus Dietz">
-	<meta name="msvalidate.01" content="77B6CD17E134BEED7607700CA43F99EB" />
-	<meta name="viewport" content="width=device-width, maximum-scale=1">
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Become a better Java developer in 70 examples ✓ Code like a Professional ✓ Get the book 'Java by Comparison' ✓ Based on over 6 years of teaching experience">
+  <meta name="keywords" content="Java,Book,Learn,Improve,Clean Code">
+  <meta name="author" content="co-authored by Simon Harrer, Jörg Lenhard, and Linus Dietz">
+  <meta name="msvalidate.01" content="77B6CD17E134BEED7607700CA43F99EB"/>
+  <meta name="viewport" content="width=device-width, maximum-scale=1">
 
 
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:site" content="@simonharrer">
-	<meta name="twitter:creator" content="@simonharrer">
-	<meta name="twitter:title" content="Java by Comparison">
-	<meta name="twitter:description" content="Become a better Java developer in 70 examples ✓ Code like a Professional ✓ Get the book 'Java by Comparison' ✓ Based on over 6 years of teaching experience">
-	<meta name="twitter:image" content="https://java.by-comparison.com/img/cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@simonharrer">
+  <meta name="twitter:creator" content="@simonharrer">
+  <meta name="twitter:title" content="Java by Comparison">
+  <meta name="twitter:description"
+        content="Become a better Java developer in 70 examples ✓ Code like a Professional ✓ Get the book 'Java by Comparison' ✓ Based on over 6 years of teaching experience">
+  <meta name="twitter:image" content="https://java.by-comparison.com/img/cover.jpg">
 
 
-	<title>Java by Comparison Book: Become a Better Java Developer in 70 Examples</title>
-	<link rel="icon" href="favicon.ico" type="image/icon">
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-	<link href="css/style.css" rel="stylesheet" type="text/css">
-	<link href="css/linecons.css" rel="stylesheet" type="text/css">
-	<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-	<link href="css/responsive.css" rel="stylesheet" type="text/css">
-	<link href="css/animate.css" rel="stylesheet" type="text/css">
+  <title>Java by Comparison Book: Become a Better Java Developer in 70 Examples</title>
+  <link rel="icon" href="favicon.ico" type="image/icon">
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/linecons.css" rel="stylesheet" type="text/css">
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="css/responsive.css" rel="stylesheet" type="text/css">
+  <link href="css/animate.css" rel="stylesheet" type="text/css">
 
-	<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 
-	<script>
-		$(document).ready(function(e) {
-			$('.res-nav_click').click(function() {
-				$('ul.toggle').slideToggle(600)
-			});
+  <script>
+    $(document).ready(function (e) {
+      $('.res-nav_click').click(function () {
+        $('ul.toggle').slideToggle(600)
+      });
 
-			$(document).ready(function() {
-				$(window).bind('scroll', function() {
-					if ($(window).scrollTop() > 0) {
-						$('#header_outer').addClass('fixed');
-					} else {
-						$('#header_outer').removeClass('fixed');
-					}
-				});
+      $(document).ready(function () {
+        $(window).bind('scroll', function () {
+          if ($(window).scrollTop() > 0) {
+            $('#header_outer').addClass('fixed');
+          } else {
+            $('#header_outer').removeClass('fixed');
+          }
+        });
 
-			});
+      });
 
+    });
 
-		});
-
-		function resizeText() {
-			var preferredWidth = 767;
-			var displayWidth = window.innerWidth;
-			var percentage = displayWidth / preferredWidth;
-			var fontsizetitle = 25;
-			var newFontSizeTitle = Math.floor(fontsizetitle * percentage);
-			$(".divclass").css("font-size", newFontSizeTitle)
-		}
-	</script>
+    function resizeText() {
+      var preferredWidth = 767;
+      var displayWidth = window.innerWidth;
+      var percentage = displayWidth / preferredWidth;
+      var fontsizetitle = 25;
+      var newFontSizeTitle = Math.floor(fontsizetitle * percentage);
+      $(".divclass").css("font-size", newFontSizeTitle)
+    }
+  </script>
 </head>
 
 <body>
 
-	<!--Header_section-->
-	<header id="header_outer">
-		<div class="container">
-			<div class="header_section">
-				<div class="logo"><a href="#top_content" title="Java by Comparison Book">Java by Comparison</a></div>
-				<nav class="nav" id="nav">
-					<ul class="toggle">
-						<li><a href="#service" title="What you can learn when reading the book">Benefits</a></li>
-						<li><a href="#work_outer" title="The Table of Contents of the Book">Content</a></li>
-						<li><a href="#client_outer" title="Reviews by Happy Readers">Readers</a></li>
-						<li><a href="#team" title="About the three authors">Authors</a></li>
-						<li><a href="#press" title="Reviews and Interviews in the Press (Magazines or Blogs)">Press</a></li>
-						<li><a href="#talks" title="Talks in meetups, conference, etc.">Talks</a></li>
-						<li><a href="/kata" title="Kata">Kata</a></li>
-						<li><a href="/game" title="Kata">Game</a></li>
-					</ul>
-					<ul class="">
-						<li><a href="#service" title="What you can learn when reading the book">Benefits</a></li>
-						<li><a href="#work_outer" title="The Table of Contents of the Book">Content</a></li>
-						<li><a href="#client_outer" title="Reviews by Happy Readers">Readers</a></li>
-						<li><a href="#team" title="About the three authors">Authors</a></li>
-						<li><a href="#press" title="Reviews and Interviews in the Press (Magazines or Blogs)">Press</a></li>
-						<li><a href="#talks" title="Talks in meetups, conference, etc.">Talks</a></li>
-						<li><a href="https://pragprog.com/book/javacomp/java-by-comparison" target="_blank" class="learn_more2" title="Book Homepage of the Publisher">Get the e-book!</a></li>
-						<li><a href="https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/" target="_blank"><img src="img/buy3.gif" alt="Buy on Amazon Logo"/></a></li>
-						<li><a href="/kata" title="Kata">Kata</a></li>
-						<li><a href="/game" title="Kata">Game</a></li>
-					</ul>
-				</nav>
-				<a class="res-nav_click animated wobble " href="javascript:void(0)"><i class="fa-bars"></i></a> </div>
-		</div>
-	</header>
-	<!--Header_section-->
+<!--Header_section-->
+<header id="header_outer">
+  <div class="container">
+    <div class="header_section">
+      <div class="logo"><a href="#top_content" title="Java by Comparison Book">Java by
+        Comparison</a></div>
+      <nav class="nav" id="nav">
+        <ul class="toggle">
+          <li><a href="#service" title="What you can learn when reading the book">Benefits</a></li>
+          <li><a href="#work_outer" title="The Table of Contents of the Book">Content</a></li>
+          <li><a href="#client_outer" title="Reviews by Happy Readers">Readers</a></li>
+          <li><a href="#team" title="About the three authors">Authors</a></li>
+          <li><a href="#press" title="Reviews and Interviews in the Press (Magazines or Blogs)">Press</a>
+          </li>
+          <li><a href="#talks" title="Talks in meetups, conference, etc.">Talks</a></li>
+          <li><a href="/kata" title="Kata">Kata</a></li>
+          <li><a href="/game" title="Kata">Game</a></li>
+        </ul>
+        <ul class="">
+          <li><a href="#service" title="What you can learn when reading the book">Benefits</a></li>
+          <li><a href="#work_outer" title="The Table of Contents of the Book">Content</a></li>
+          <li><a href="#client_outer" title="Reviews by Happy Readers">Readers</a></li>
+          <li><a href="#team" title="About the three authors">Authors</a></li>
+          <li><a href="#press" title="Reviews and Interviews in the Press (Magazines or Blogs)">Press</a>
+          </li>
+          <li><a href="#talks" title="Talks in meetups, conference, etc.">Talks</a></li>
+          <li><a href="https://pragprog.com/book/javacomp/java-by-comparison" target="_blank"
+                 class="learn_more2" title="Book Homepage of the Publisher">Get the e-book!</a></li>
+          <li><a
+              href="https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/"
+              target="_blank"><img src="img/buy3.gif" alt="Buy on Amazon Logo"/></a></li>
+          <li><a href="/kata" title="Kata">Kata</a></li>
+          <li><a href="/game" title="Kata">Game</a></li>
+        </ul>
+      </nav>
+      <a class="res-nav_click animated wobble " href="javascript:void(0)"><i
+          class="fa-bars"></i></a></div>
+  </div>
+</header>
+<!--Header_section-->
 
-	<!--Top_content-->
-	<section id="top_content" class="top_cont_outer">
-		<div class="top_cont_inner">
-			<div class="container">
-				<div class="top_content">
-					<div class="row">
-						<div class="col-lg-5 col-sm-7">
-							<div class="top_left_cont  animated">
-								<h1>Become a Better Java Developer</h1>
-								<p> Improve your coding skills by comparing your code to that of expert programmers, so you can write code that’s clean, concise, and to the point: code that others will read with pleasure and reuse.</p>
-								<p> Get hands-on advice to level up your coding style through small and understandable examples that compare flawed code to an improved solution. Discover handy tips and tricks, as well as common bugs an experienced Java programmer needs to know.</p>
-								<p>Make your way from a Java novice to a decent developer.</p>
-								<a href="#service" class="learn_more2">Learn more</a> 
-							</div>
-						</div>
-						<div class="col-lg-7 col-sm-5"> </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--Top_content-->
+<!--Top_content-->
+<section id="top_content" class="top_cont_outer">
+  <div class="top_cont_inner">
+    <div class="container">
+      <div class="top_content">
+        <div class="row">
+          <div class="col-lg-5 col-sm-7">
+            <div class="top_left_cont  animated">
+              <h1>Become a Better Java Developer</h1>
+              <p> Improve your coding skills by comparing your code to that of expert programmers,
+                so you can write code that’s clean, concise, and to the point: code that others will
+                read with pleasure and reuse.</p>
+              <p> Get hands-on advice to level up your coding style through small and understandable
+                examples that compare flawed code to an improved solution. Discover handy tips and
+                tricks, as well as common bugs an experienced Java programmer needs to know.</p>
+              <p>Make your way from a Java novice to a decent developer.</p>
+              <a href="#service" class="learn_more2">Learn more</a>
+            </div>
+          </div>
+          <div class="col-lg-7 col-sm-5"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Top_content-->
 
-	<!--Service-->
-	<section id="service">
-		<div class="container">
-			<h2>Become a Better Java Developer in 70 Examples</h2>
-			<div class="service_area">
-				<div class="row">
-					<div class="col-lg-4">
-						<div class="service_block">
-							<div class="service_icon icon2 animated  zoomIn"> <span><i class="fa-comments"></i></span> </div>
-							<h3 class="animated">A Mentor for you</h3>
-							<p class="animated">This book is a useful companion for anyone learning to write clean Java code. The authors introduce you to the fundamentals of becoming a software developer, by comparing pieces of problematic code with an improved version, to help you to develop a sense for clean code. This unique before-and-after approach teaches you to create clean Java code.</p>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="service_block">
-							<div class="service_icon animated   zoomIn"> <span><i class="fa-flash"></i></span> </div>
-							<h3 class="animated  ">Code Cleanly</h3>
-							<p class="animated  ">Learn to keep your booleans in check, dodge formatting bugs, get rid of magic numbers, and use the right style of iteration. Write informative comments when needed, but avoid them when they are not. Improve the understandability of your code for others by following conventions and naming your objects accurately. Make your programs more robust with intelligent exception handling and learn to assert that everything works as expected using JUnit5 as your testing framework. Impress your peers with an elegant functional programming style and clear-cut object-oriented class design.</p>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="service_block">
-							<div class="service_icon icon3 animated  zoomIn"> <span><i class="fa-shield"></i></span> </div>
-							<h3 class="animated">Become a Developer</h3>
-							<p class="animated">Writing excellent code isn’t just about implementing the functionality. It’s about the small important details that make your code more readable, maintainable, flexible, robust, and faster. Java by Comparison teaches you to spot these details and trains you to become a better programmer.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--Service-->
+<!--Service-->
+<section id="service">
+  <div class="container">
+    <h2>Become a Better Java Developer in 70 Examples</h2>
+    <div class="service_area">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="service_block">
+            <div class="service_icon icon2 animated  zoomIn"><span><i
+                class="fa-comments"></i></span></div>
+            <h3 class="animated">A Mentor for you</h3>
+            <p class="animated">This book is a useful companion for anyone learning to write clean
+              Java code. The authors introduce you to the fundamentals of becoming a software
+              developer, by comparing pieces of problematic code with an improved version, to help
+              you to develop a sense for clean code. This unique before-and-after approach teaches
+              you to create clean Java code.</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="service_block">
+            <div class="service_icon animated   zoomIn"><span><i class="fa-flash"></i></span></div>
+            <h3 class="animated  ">Code Cleanly</h3>
+            <p class="animated  ">Learn to keep your booleans in check, dodge formatting bugs, get
+              rid of magic numbers, and use the right style of iteration. Write informative comments
+              when needed, but avoid them when they are not. Improve the understandability of your
+              code for others by following conventions and naming your objects accurately. Make your
+              programs more robust with intelligent exception handling and learn to assert that
+              everything works as expected using JUnit5 as your testing framework. Impress your
+              peers with an elegant functional programming style and clear-cut object-oriented class
+              design.</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="service_block">
+            <div class="service_icon icon3 animated  zoomIn"><span><i class="fa-shield"></i></span>
+            </div>
+            <h3 class="animated">Become a Developer</h3>
+            <p class="animated">Writing excellent code isn’t just about implementing the
+              functionality. It’s about the small important details that make your code more
+              readable, maintainable, flexible, robust, and faster. Java by Comparison teaches you
+              to spot these details and trains you to become a better programmer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Service-->
 
-	<div class="c-logo-part">
-		<!--c-logo-part-start-->
-		<div class="container">
-			<ul class="animated  bounce ">
-				<li class="text-info">
-					<strong>70</strong> Examples
-				</li>
-				<li class="text-info">
-					<strong>210</strong> Pages
-				</li>
-				<li class="text-info">
-					<strong>15</strong> Reviewers
-				</li>
-				<li class="text-info">
-					<strong>uncountable</strong> Cups of Coffee
-				</li>
-			</ul>
-		</div>
-	</div>
-	<!--c-logo-part-end-->
+<div class="c-logo-part">
+  <!--c-logo-part-start-->
+  <div class="container">
+    <ul class="animated  bounce ">
+      <li class="text-info">
+        <strong>70</strong> Examples
+      </li>
+      <li class="text-info">
+        <strong>210</strong> Pages
+      </li>
+      <li class="text-info">
+        <strong>15</strong> Reviewers
+      </li>
+      <li class="text-info">
+        <strong>uncountable</strong> Cups of Coffee
+      </li>
+    </ul>
+  </div>
+</div>
+<!--c-logo-part-end-->
 
-	<section id="work_outer">
-		<!--main-section-start-->
-		<div class="top_cont_latest">
-			<div class="container">
-				<h2>What's in the book...</h2>
-				<div class="work_section">
-					<div class="row">
-						<div class="col-lg-7 col-sm-5  ">
-							<div class="service-list">
-								<div class="service-list-col1"> <i class="icon-puzzle-piece"></i> </div>
-								<div class="service-list-col2">
-									<h3><a href="http://media.pragprog.com/titles/javacomp/preface.pdf" title="Book Preface"><i class="fa-download"></i> Welcome! (free sample)</a></h3>
-									<p>Welcome to Java by Comparison! Get ready for code quality.</p>
-								</div>
-							</div>
-							<div class="service-list">
-								<div class="service-list-col1"> <i class="icon-puzzle-piece"></i> </div>
-								<div class="service-list-col2">
-									<h3>Start Cleaning Up</h3>
-									<p>Learn the basics of code understandability and start cleaning your code.</p>
-									<p><a href="http://media.pragprog.com/titles/javacomp/boolean.pdf" title="Book Excerpt: Return Boolean Expressions Directly"><i class="fa-download"></i> Return Boolean Expressions Directly (free sample)</a></p>
-								</div>
-							</div>
-							<div class="service-list">
-								<div class="service-list-col1"> <i class="icon-puzzle-piece"></i> </div>
-								<div class="service-list-col2">
-									<h3>Level Up Your Code Style</h3>
-									<p>Get the quality of your Java code to the next stage.</p>
-								</div>
-							</div>
-							<div class="service-list">
-								<div class="service-list-col1"> <i class="icon-puzzle-piece"></i> </div>
-								<div class="service-list-col2">
-									<h3>Use Comments Wisely</h3>
-									<p>Write meaningful comments when they're needed and avoid them when not.</p>
-									<p><a href="http://media.pragprog.com/titles/javacomp/examples.pdf" title="Book Excerpt: Document Using Examples"><i class="fa-download"></i> Document Using Examples (free sample)</a></p>
-								</div>
-							</div>
-							<div class="service-list">
-								<div class="service-list-col1"> <i class="icon-puzzle-piece"></i> </div>
-								<div class="service-list-col2">
-									<h3>Name Things Right</h3>
-									<p>Find concise names for your code structures that comply to the conventions.</p>
-								</div>
-							</div>
-							<div class="service-list">
-								<div class="service-list-col1"> <i class="icon-puzzle-piece"></i> </div>
-								<div class="service-list-col2">
-									<h3>Prepare for Things Going Wrong</h3>
-									<p>Make your program robust with clean exception handling</p>
-								</div>
-							</div>
-							<div class="service-list">
-								<div class="service-list-col1"> <i class="icon-puzzle-piece"></i> </div>
-								<div class="service-list-col2">
-									<h3>Assert Things Going Right</h3>
-									<p>Use JUnit5 to test your code.</p>
-								</div>
-							</div>
-							<div class="service-list">
-								<div class="service-list-col1"> <i class="icon-puzzle-piece"></i> </div>
-								<div class="service-list-col2">
-									<h3>Design Your Objects</h3>
-									<p>Apply object-oriented design principles to make your program flexible and maintainable.</p>
-									<p><a href="http://media.pragprog.com/titles/javacomp/split.pdf" title="Book Excerpt: Split Method with Boolean Parameters"><i class="fa-download"></i> Split Method with Boolean Parameters (free sample)</a></p>
-								</div>
-							</div>
-							<div class="service-list">
-								<div class="service-list-col1"> <i class="icon-puzzle-piece"></i> </div>
-								<div class="service-list-col2">
-									<h3>Let Your Data Flow</h3>
-									<p>Leverage the power of lambda expressions and functional programming in Java.</p>
-								</div>
-							</div>
-							<div class="service-list">
-								<div class="service-list-col1"> <i class="icon-puzzle-piece"></i> </div>
-								<div class="service-list-col2">
-									<h3>Prepare for the Real World</h3>
-									<p>Use static analyis, build automation and concurrency to release your program into the wild.</p>
-								</div>
-							</div>
-							<div class="work_bottom"> <span>Curious? Interested?</span> <a href="https://pragprog.com/book/javacomp/java-by-comparison" class="contact_btn">Get it now!</a> </div>
-						</div>
-						<div class=" col-lg-5 col-sm-7  ">
-							<div class="cover_container ">
-								<img src="img/cover.jpg" alt="cover of the book java by comparison"/>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--main-section-end-->
+<section id="work_outer">
+  <!--main-section-start-->
+  <div class="top_cont_latest">
+    <div class="container">
+      <h2>What's in the book...</h2>
+      <div class="work_section">
+        <div class="row">
+          <div class="col-lg-7 col-sm-5  ">
+            <div class="service-list">
+              <div class="service-list-col1"><i class="icon-puzzle-piece"></i></div>
+              <div class="service-list-col2">
+                <h3><a href="http://media.pragprog.com/titles/javacomp/preface.pdf"
+                       title="Book Preface"><i class="fa-download"></i> Welcome! (free sample)</a>
+                </h3>
+                <p>Welcome to Java by Comparison! Get ready for code quality.</p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-list-col1"><i class="icon-puzzle-piece"></i></div>
+              <div class="service-list-col2">
+                <h3>Start Cleaning Up</h3>
+                <p>Learn the basics of code understandability and start cleaning your code.</p>
+                <p><a href="http://media.pragprog.com/titles/javacomp/boolean.pdf"
+                      title="Book Excerpt: Return Boolean Expressions Directly"><i
+                    class="fa-download"></i> Return Boolean Expressions Directly (free sample)</a>
+                </p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-list-col1"><i class="icon-puzzle-piece"></i></div>
+              <div class="service-list-col2">
+                <h3>Level Up Your Code Style</h3>
+                <p>Get the quality of your Java code to the next stage.</p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-list-col1"><i class="icon-puzzle-piece"></i></div>
+              <div class="service-list-col2">
+                <h3>Use Comments Wisely</h3>
+                <p>Write meaningful comments when they're needed and avoid them when not.</p>
+                <p><a href="http://media.pragprog.com/titles/javacomp/examples.pdf"
+                      title="Book Excerpt: Document Using Examples"><i class="fa-download"></i>
+                  Document Using Examples (free sample)</a></p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-list-col1"><i class="icon-puzzle-piece"></i></div>
+              <div class="service-list-col2">
+                <h3>Name Things Right</h3>
+                <p>Find concise names for your code structures that comply to the conventions.</p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-list-col1"><i class="icon-puzzle-piece"></i></div>
+              <div class="service-list-col2">
+                <h3>Prepare for Things Going Wrong</h3>
+                <p>Make your program robust with clean exception handling</p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-list-col1"><i class="icon-puzzle-piece"></i></div>
+              <div class="service-list-col2">
+                <h3>Assert Things Going Right</h3>
+                <p>Use JUnit5 to test your code.</p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-list-col1"><i class="icon-puzzle-piece"></i></div>
+              <div class="service-list-col2">
+                <h3>Design Your Objects</h3>
+                <p>Apply object-oriented design principles to make your program flexible and
+                  maintainable.</p>
+                <p><a href="http://media.pragprog.com/titles/javacomp/split.pdf"
+                      title="Book Excerpt: Split Method with Boolean Parameters"><i
+                    class="fa-download"></i> Split Method with Boolean Parameters (free sample)</a>
+                </p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-list-col1"><i class="icon-puzzle-piece"></i></div>
+              <div class="service-list-col2">
+                <h3>Let Your Data Flow</h3>
+                <p>Leverage the power of lambda expressions and functional programming in Java.</p>
+              </div>
+            </div>
+            <div class="service-list">
+              <div class="service-list-col1"><i class="icon-puzzle-piece"></i></div>
+              <div class="service-list-col2">
+                <h3>Prepare for the Real World</h3>
+                <p>Use static analyis, build automation and concurrency to release your program into
+                  the wild.</p>
+              </div>
+            </div>
+            <div class="work_bottom"><span>Curious? Interested?</span> <a
+                href="https://pragprog.com/book/javacomp/java-by-comparison" class="contact_btn">Get
+              it now!</a></div>
+          </div>
+          <div class=" col-lg-5 col-sm-7  ">
+            <div class="cover_container ">
+              <img src="img/cover.jpg" alt="cover of the book java by comparison"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--main-section-end-->
 
-	<section class="main-section" id="client_outer">
-		<!--main-section client-part-start-->
-		<h2>What Happy Readers Say</h2>
-		<div class="client_area ">
+<section class="main-section" id="client_outer">
+  <!--main-section client-part-start-->
+  <h2>What Happy Readers Say</h2>
+  <div class="client_area ">
 
-			<div class="client_section animated   ">
-				<div class="client_profile ">
-					<div class="client_profile_pic"><img src="img/client-pic4.jpg" alt="Profile of Achim Weimert" title="Profile of Achim Weimert"></div>
-					<h3>Achim Weimert</h3>
-					<span>CTO</span> </div>
-				<div class="quote_section ">
-					<div class="quote_arrow2"></div>
-					<p><b><img src="img/quote_sign_left.png" alt="quote sign left"></b> I wish <strong>Java by Comparison</strong> had been there when I was getting started with programming, It's like a mentor, looking over your shoulder, and patiently helping you get your programming skills up to the next level.
-						<small><img src="img/quote_sign_right.png" alt="quote sign right"></small>						</p>
-				</div>
-				<div class="clear"></div>
-			</div>
+    <div class="client_section animated   ">
+      <div class="client_profile ">
+        <div class="client_profile_pic"><img src="img/client-pic4.jpg"
+                                             alt="Profile of Achim Weimert"
+                                             title="Profile of Achim Weimert"></div>
+        <h3>Achim Weimert</h3>
+        <span>CTO</span></div>
+      <div class="quote_section ">
+        <div class="quote_arrow2"></div>
+        <p><b><img src="img/quote_sign_left.png" alt="quote sign left"></b> I wish <strong>Java by
+          Comparison</strong> had been there when I was getting started with programming, It's like
+          a mentor, looking over your shoulder, and patiently helping you get your programming
+          skills up to the next level.
+          <small><img src="img/quote_sign_right.png" alt="quote sign right"></small></p>
+      </div>
+      <div class="clear"></div>
+    </div>
 
-			<div class="client_section animated   ">
-				<div class="client_profile flt">
-					<div class="client_profile_pic"><img src="img/client-pic2.jpg" alt="Profile of Dr. Guido Wirtz" title="Profile of Dr. Guido Wirtz"></div>
-					<h3>Dr. Guido Wirtz</h3>
-					<span>Professor for Computer Science</span> </div>
-				<div class="quote_section flt">
-					<div class="quote_arrow2"></div>
-					<p><b><img src="img/quote_sign_left.png" alt="quote sign left"></b> This is the book I’ve been waiting for since starting with intermediate Java programming courses. Without  dwelling for too long on the basics, <strong>Java by Comparison</strong> leads you step by step to new insights on good coding practice. Instructive examples compare the do’s and dont’s and make it easy for beginners to get the key points. Here, the book shines and shows it’s based on long-term classroom experience. Luckily, the book can be read as a textbook but is also useful as a reference. I’m looking forward to using it in my classrooms. Are you sure your style is perfect? Get it!
-						<small><img src="img/quote_sign_right.png" alt="quote sign right"></small>						</p>
-				</div>
-				<div class="clear"></div>
-			</div>
+    <div class="client_section animated   ">
+      <div class="client_profile flt">
+        <div class="client_profile_pic"><img src="img/client-pic2.jpg"
+                                             alt="Profile of Dr. Guido Wirtz"
+                                             title="Profile of Dr. Guido Wirtz"></div>
+        <h3>Dr. Guido Wirtz</h3>
+        <span>Professor for Computer Science</span></div>
+      <div class="quote_section flt">
+        <div class="quote_arrow2"></div>
+        <p><b><img src="img/quote_sign_left.png" alt="quote sign left"></b> This is the book I’ve
+          been waiting for since starting with intermediate Java programming courses. Without
+          dwelling for too long on the basics, <strong>Java by Comparison</strong> leads you step by
+          step to new insights on good coding practice. Instructive examples compare the do’s and
+          dont’s and make it easy for beginners to get the key points. Here, the book shines and
+          shows it’s based on long-term classroom experience. Luckily, the book can be read as a
+          textbook but is also useful as a reference. I’m looking forward to using it in my
+          classrooms. Are you sure your style is perfect? Get it!
+          <small><img src="img/quote_sign_right.png" alt="quote sign right"></small></p>
+      </div>
+      <div class="clear"></div>
+    </div>
 
-			<div class="client_section animated   ">
-				<div class="client_profile">
-					<div class="client_profile_pic"><img src="img/client-pic3.jpg" alt="Profile of Ashish Bhatia" title="Profile of Ashish Bhatia"></div>
-					<h3>Ashish Bhatia</h3>
-					<span>Software Engineer</span> </div>
-				<div class="quote_section">
-					<div class="quote_arrow2"></div>
-					<p><b><img src="img/quote_sign_left.png" alt="quote sign left"></b> <strong>Java by Comparison</strong> is a well-crafted quick read with good, succinct examples updated with the latest Java 8 styling. Highly recommended for Java developers a few years into their career.
-						<small><img src="img/quote_sign_right.png" alt="quote sign right"></small>						</p>
-				</div>
-				<div class="clear"></div>
-			</div>
+    <div class="client_section animated   ">
+      <div class="client_profile">
+        <div class="client_profile_pic"><img src="img/client-pic3.jpg"
+                                             alt="Profile of Ashish Bhatia"
+                                             title="Profile of Ashish Bhatia"></div>
+        <h3>Ashish Bhatia</h3>
+        <span>Software Engineer</span></div>
+      <div class="quote_section">
+        <div class="quote_arrow2"></div>
+        <p><b><img src="img/quote_sign_left.png" alt="quote sign left"></b> <strong>Java by
+          Comparison</strong> is a well-crafted quick read with good, succinct examples updated with
+          the latest Java 8 styling. Highly recommended for Java developers a few years into their
+          career.
+          <small><img src="img/quote_sign_right.png" alt="quote sign right"></small></p>
+      </div>
+      <div class="clear"></div>
+    </div>
 
-			<div class="client_section animated   ">
-				<div class="client_profile flt">
-					<div class="client_profile_pic"><img src="img/client-pic1.jpg" alt="Profile of Stefan Tilkov" title="Profile of Stefan Tilkov"></div>
-					<h3>Stefan Tilkov</h3>
-					<span>CEO</span> </div>
-				<div class="quote_section flt">
-					<div class="quote_arrow"></div>
-					<p><b><img src="img/quote_sign_left.png" alt="quote sign left"></b>
-						With any language, once you’ve mastered its syntax, the next step is to learn how to use it idiomatically. Whether you’re a beginner who has just started with Java or a seasoned Java developer who started out using one of its many earlier versions, I consider <strong>Java by Comparison</strong> a great step to become proficient in using Java well.
-						<small><img src="img/quote_sign_right.png" alt="quote sign right"></small>						</p>
-				</div>
-				<div class="clear"></div>
-			</div>
+    <div class="client_section animated   ">
+      <div class="client_profile flt">
+        <div class="client_profile_pic"><img src="img/client-pic1.jpg"
+                                             alt="Profile of Stefan Tilkov"
+                                             title="Profile of Stefan Tilkov"></div>
+        <h3>Stefan Tilkov</h3>
+        <span>CEO</span></div>
+      <div class="quote_section flt">
+        <div class="quote_arrow"></div>
+        <p><b><img src="img/quote_sign_left.png" alt="quote sign left"></b>
+          With any language, once you’ve mastered its syntax, the next step is to learn how to use
+          it idiomatically. Whether you’re a beginner who has just started with Java or a seasoned
+          Java developer who started out using one of its many earlier versions, I consider <strong>Java
+            by Comparison</strong> a great step to become proficient in using Java well.
+          <small><img src="img/quote_sign_right.png" alt="quote sign right"></small></p>
+      </div>
+      <div class="clear"></div>
+    </div>
 
-			<div class="client_section animated   ">
-				<div class="client_profile">
-					<div class="client_profile_pic"><img src="img/client-pic5.jpg" alt="Profile of Johannes Schwalb" title="Profile of Johannes Schwalb"></div>
-					<h3>Johannes Schwalb</h3>
-					<span>Java Architect</span> </div>
-				<div class="quote_section">
-					<div class="quote_arrow2"></div>
-					<p><b><img src="img/quote_sign_left.png" alt="quote sign left"></b> <strong>Java by Comparison</strong> is a wonderful read for all those who want to level up their Java skills. It contains the essence of Effective Java and Clean Code, updated with JUnit 5 and Java 8.
-						<small><img src="img/quote_sign_right.png" alt="quote sign right"></small>						</p>
-				</div>
-				<div class="clear"></div>
-			</div>
+    <div class="client_section animated   ">
+      <div class="client_profile">
+        <div class="client_profile_pic"><img src="img/client-pic5.jpg"
+                                             alt="Profile of Johannes Schwalb"
+                                             title="Profile of Johannes Schwalb"></div>
+        <h3>Johannes Schwalb</h3>
+        <span>Java Architect</span></div>
+      <div class="quote_section">
+        <div class="quote_arrow2"></div>
+        <p><b><img src="img/quote_sign_left.png" alt="quote sign left"></b> <strong>Java by
+          Comparison</strong> is a wonderful read for all those who want to level up their Java
+          skills. It contains the essence of Effective Java and Clean Code, updated with JUnit 5 and
+          Java 8.
+          <small><img src="img/quote_sign_right.png" alt="quote sign right"></small></p>
+      </div>
+      <div class="clear"></div>
+    </div>
 
-		</div>
-	</section>
-	<!--main-section client-part-end-->
+  </div>
+</section>
+<!--main-section client-part-end-->
 
-	<div class="c-logo-part">
-		<!--c-logo-part-start-->
-		<div class="container">
-			<ul class="animated  bounce ">
-				<li>
-					<a href="https://pragprog.com/book/javacomp/java-by-comparison" class="store">
-						<img src="img/pragprog.svg" height="42" alt="Pragmatic Bookshelf (pragprog.com) Logo"/>
-					</a>
-				</li>
-				<li>
-					<a href="https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/" class="store">
-						<img src="img/amazon-com.svg" height="40" alt="Amazon.com Logo"/>
-					</a>
-				</li>
-				<li>
-					<a href="https://www.amazon.co.uk/Java-Comparison-Become-Craftsman-Examples/dp/1680502875" class="store">
-						<img src="img/amazon-co-uk.svg" height="42" alt="Amazon.co.uk Logo"/>
-					</a>
-				</li>
-				<li>
-					<a href="https://www.amazon.de/Java-Comparison-Simon-Harrer/dp/1680502875" class="store">
-						<img src="img/amazon-de.svg" height="42" alt="Amazon.de Logo"/>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<!--c-logo-part-end-->
+<div class="c-logo-part">
+  <!--c-logo-part-start-->
+  <div class="container">
+    <ul class="animated  bounce ">
+      <li>
+        <a href="https://pragprog.com/book/javacomp/java-by-comparison" class="store">
+          <img src="img/pragprog.svg" height="42" alt="Pragmatic Bookshelf (pragprog.com) Logo"/>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/"
+           class="store">
+          <img src="img/amazon-com.svg" height="40" alt="Amazon.com Logo"/>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.amazon.co.uk/Java-Comparison-Become-Craftsman-Examples/dp/1680502875"
+           class="store">
+          <img src="img/amazon-co-uk.svg" height="42" alt="Amazon.co.uk Logo"/>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.amazon.de/Java-Comparison-Simon-Harrer/dp/1680502875" class="store">
+          <img src="img/amazon-de.svg" height="42" alt="Amazon.de Logo"/>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--c-logo-part-end-->
 
-	<section class="main-section team" id="team">
-		<!--main-section team-start-->
-		<div class="container">
-			<h2>About the three Authors</h2>
-			<p style="text-align: center; font-size: 1.5em; padding-bottom: 1em;">Take a closer look into our amazing team. We won’t bite.</p>
-			<div class="team-leader-block clearfix">
-				<div class="team-leader-box">
-					<div class="team-leader  ">
-						<div class="team-leader-shadow"><a href="javascript:void(0)"></a></div>
-						<img src="img/simon.jpg" alt="Profile Image of Dr. Simon Harrer" title="Dr. Simon Harrer, Senior Consultant">
-						<ul>
-							<li><a href="https://twitter.com/simonharrer" target="_blank" class="fa-twitter" title="Twitter Profile of Simon Harrer"></a></li>
-							<li><a href="https://www.linkedin.com/in/simonharrer/" target="_blank" class="fa-linkedin" title="LinkedIn Profile of Simon Harrer"></a></li>
-							<li><a href="https://www.github.com/simonharrer/" target="_blank" class="fa-github" title="GitHub Profile of Simon Harrer"></a></li>
-							<li><a href="mailto:simon.harrer@gmail.com" class="fa-envelope-square" title="Email Address of Simon Harrer"></a></li>
-						</ul>
-					</div>
-					<h3 class=" ">Dr. Simon Harrer</h3>
-					<span class=" ">Senior Consultant</span>
-					<p class=" ">Simon is a consultant, developer, and teacher who's always looking out for new technologies, frameworks, and ideas. His friends call him a clean code evangelist, but in a good way.					</p>
-				</div>
-				<div class="team-leader-box">
-					<div class="team-leader   ">
-						<div class="team-leader-shadow"><a href="javascript:void(0)"></a></div>
-						<img src="img/joerg.jpg" alt="Profile Image of Dr. Jörg Lenhard" title="Dr. Jörg Lenhard, Developer">
-						<ul>
-							<li><a href="https://joerglenhard.wordpress.com/" target="_blank" class="fa-wordpress" title="Blog of Jörg Lenhard"></a></li>
-							<li><a href="https://www.linkedin.com/in/joerglenhard/" target="_blank" class="fa-linkedin" title="LinkedIn Profile of Jörg Lenhard"></a></li>
-							<li><a href="https://www.github.com/lenhard/" target="_blank" class="fa-github" title="GitHub Profile of Jörg Lenhard"></a></li>
-							<li><a href="mailto:joerg@lenhard.info" class="fa-envelope-square" title="Email Address of Jörg Lenhard"></a></li>
-						</ul>
-					</div>
-					<h3 class=" ">Dr. Jörg Lenhard</h3>
-					<span class=" ">Developer</span>
-					<p class=" ">Jörg is a developer, teacher, and researcher. He has been teaching programming in Java for almost a decade and enjoys contributing to open source software.
-					</p>
-				</div>
-				<div class="team-leader-box">
-					<div class="team-leader  ">
-						<div class="team-leader-shadow"><a href="javascript:void(0)"></a></div>
-						<img src="img/linus.jpg" alt="Profile Image of Linus Dietz" title="Linus Dietz, Researcher">
-						<ul>
-							<li><a href="http://lynyus.org/" target="_blank" class="fa-home" title="Blog of Linus Dietz"></a></li>
-							<li><a href="https://twitter.com/lynyus" target="_blank" class="fa-twitter" title="Twitter Profile of Linus Dietz"></a></li>
-							<li><a href="https://www.linkedin.com/in/linus-dietz-767604148/" target="_blank" class="fa-linkedin" title="LinkedIn Profile of Linus Dietz"></a></li>
-							<li><a href="https://www.github.com/LinusDietz/" target="_blank" class="fa-github" title="GitHub Profile of Linus Dietz"></a></li>
-							<li><a href="mailto:linus@lynyus.de" class="fa-envelope-square" title="Email Address of Linus Dietz"></a></li>
-						</ul>
-					</div>
-					<h3 class=" ">Linus Dietz</h3>
-					<span class=" ">Researcher</span>
-					<p class=" ">Linus is researcher at the Technical University of Munich. His passion lies in developing elegant algorithms and advancing open source software.</p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--main-section team-end-->
+<section class="main-section team" id="team">
+  <!--main-section team-start-->
+  <div class="container">
+    <h2>About the three Authors</h2>
+    <p style="text-align: center; font-size: 1.5em; padding-bottom: 1em;">Take a closer look into
+      our amazing team. We won’t bite.</p>
+    <div class="team-leader-block clearfix">
+      <div class="team-leader-box">
+        <div class="team-leader  ">
+          <div class="team-leader-shadow"><a href="javascript:void(0)"></a></div>
+          <img src="img/simon.jpg" alt="Profile Image of Dr. Simon Harrer"
+               title="Dr. Simon Harrer, Senior Consultant">
+          <ul>
+            <li><a href="https://twitter.com/simonharrer" target="_blank" class="fa-twitter"
+                   title="Twitter Profile of Simon Harrer"></a></li>
+            <li><a href="https://www.linkedin.com/in/simonharrer/" target="_blank"
+                   class="fa-linkedin" title="LinkedIn Profile of Simon Harrer"></a></li>
+            <li><a href="https://www.github.com/simonharrer/" target="_blank" class="fa-github"
+                   title="GitHub Profile of Simon Harrer"></a></li>
+            <li><a href="mailto:simon.harrer@gmail.com" class="fa-envelope-square"
+                   title="Email Address of Simon Harrer"></a></li>
+          </ul>
+        </div>
+        <h3 class=" ">Dr. Simon Harrer</h3>
+        <span class=" ">Senior Consultant</span>
+        <p class=" ">Simon is a consultant, developer, and teacher who's always looking out for new
+          technologies, frameworks, and ideas. His friends call him a clean code evangelist, but in
+          a good way. </p>
+      </div>
+      <div class="team-leader-box">
+        <div class="team-leader   ">
+          <div class="team-leader-shadow"><a href="javascript:void(0)"></a></div>
+          <img src="img/joerg.jpg" alt="Profile Image of Dr. Jörg Lenhard"
+               title="Dr. Jörg Lenhard, Developer">
+          <ul>
+            <li><a href="https://joerglenhard.wordpress.com/" target="_blank" class="fa-wordpress"
+                   title="Blog of Jörg Lenhard"></a></li>
+            <li><a href="https://www.linkedin.com/in/joerglenhard/" target="_blank"
+                   class="fa-linkedin" title="LinkedIn Profile of Jörg Lenhard"></a></li>
+            <li><a href="https://www.github.com/lenhard/" target="_blank" class="fa-github"
+                   title="GitHub Profile of Jörg Lenhard"></a></li>
+            <li><a href="mailto:joerg@lenhard.info" class="fa-envelope-square"
+                   title="Email Address of Jörg Lenhard"></a></li>
+          </ul>
+        </div>
+        <h3 class=" ">Dr. Jörg Lenhard</h3>
+        <span class=" ">Developer</span>
+        <p class=" ">Jörg is a developer, teacher, and researcher. He has been teaching programming
+          in Java for almost a decade and enjoys contributing to open source software.
+        </p>
+      </div>
+      <div class="team-leader-box">
+        <div class="team-leader  ">
+          <div class="team-leader-shadow"><a href="javascript:void(0)"></a></div>
+          <img src="img/linus.jpg" alt="Profile Image of Linus Dietz"
+               title="Linus Dietz, Researcher">
+          <ul>
+            <li><a href="http://lynyus.org/" target="_blank" class="fa-home"
+                   title="Blog of Linus Dietz"></a></li>
+            <li><a href="https://twitter.com/lynyus" target="_blank" class="fa-twitter"
+                   title="Twitter Profile of Linus Dietz"></a></li>
+            <li><a href="https://www.linkedin.com/in/linus-dietz-767604148/" target="_blank"
+                   class="fa-linkedin" title="LinkedIn Profile of Linus Dietz"></a></li>
+            <li><a href="https://www.github.com/LinusDietz/" target="_blank" class="fa-github"
+                   title="GitHub Profile of Linus Dietz"></a></li>
+            <li><a href="mailto:linus@lynyus.de" class="fa-envelope-square"
+                   title="Email Address of Linus Dietz"></a></li>
+          </ul>
+        </div>
+        <h3 class=" ">Linus Dietz</h3>
+        <span class=" ">Researcher</span>
+        <p class=" ">Linus is researcher at the Technical University of Munich. His passion lies in
+          developing elegant algorithms and advancing open source software.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!--main-section team-end-->
 
-	<section class="main-section press" id="press">
-		<!--main-section team-start-->
-		<div class="container">
-			<h2>Our Book in the Media (Selection)</h2>
-			<ul style="text-align: center; font-size: 1.5em;">
-				<li>English</li>
-				<li>
-					<a href="http://www.javamagazine.mozaicreader.com/MayJune2018#&pageSet=9&page=0">Review by Andrew Binstock in the Java magazine</a>
-				</li>
-				<li>
-					<a href="https://twitter.com/unclebobmartin/status/993463227957874688">Short review by Robert C. Martin on Twitter</a>
-				</li>
-				<li>
-					<a href="http://frankraiser.de/wordpress/book-review-java-by-comparison/">Thorough review by Frank Raiser on his personal blog</a>
-				</li>
-				<li>
-					<a href="https://www.thoughts-on-java.org/books-java-summer-2018/">Recommended Summer Reading by Thorben Janssen on his personal blog</a>
-				</li>
-				<li>
-					<a href="https://www.ahus1.de/post/book-java-by-comparison">Review by Alexander Schwartz on his personal blog</a>
-				</li>
-				<li>
-					<a href="https://rieckpil.de/review-java-by-comparison/">Review by Philip Riecks on his personal blog</a>
-				</li>
-				<li>
-					<a href="https://quinngil.com/2018/07/22/book-review-java-by-comparison/">Review by Quinn Gil on his personal blog</a>
-				</li>
-				<li>
-					<a href="https://coderanch.com/wiki/697883/books/Java-Comparison-Java-Craftsman-Examples">Review by Vijitha Kumara on Coderanch.com</a>
-				</li>
-				<li>
-					<a href="https://www.i-programmer.info/bookreviews/23-java/11961-java-by-comparison.html">Review by Alex Armstrong on i-programmer.info</a>
-				</li>
-				<li>
-					<a href="http://developeronfire.com/podcast/episode-378-simon-harrer-writing-priorities">Interview by David Rael on the Developer On Fire podcast</a>
-				</li>
-				<li>
-					<a href="https://dzone.com/articles/book-review-java-by-comparison">Review by Dustin Marx on DZone</a> and published on his own <a href="http://marxsoftware.blogspot.com/2018/10/book-review-java-by-comparison.html">blog</a>.
-				</li>
-				<li>
-					<a href="https://stevenschwenke.de/bookReviewJavaByComparison">Review by Steven Schwenke on his own blog</a>.
-				</li>
-				<li>
-					<a href="https://www.infoq.com/news/2018/11/book-review-java-comparison">Review by Jeanne Boyarsky on infoQ</a>
-				</li>
-				<li>
-					<a href="https://michael.hoennig.de/2018/12/01/book-review-java-by-comparision-become-a-java-craftsman-in-70-examples/">Review by Michael Hönnig on his own blog</a>
-				</li>
-				<li>
-					<a href="http://blinkmonitor.com/2018/12/java-by-comparison/">Review by Rick Leir on blinkmonitor.com</a>
-				</li>
-				<li>
-					<a href="https://garywoodfine.com/book-review-java-by-comparison/">Review by Gary Woodfine on his blog</a>
-				</li>
-				<li>
-					<a href="https://schneide.blog/2019/01/14/book-review-java-by-comparison/">Review by Daniel Lindner on his blog</a>
-				</li>
-				<li>
-					<a href="http://www.techbookreport.com/tbr0393.html">Review by Pan Pantziarka on TechBookReport</a>
-				</li>
-				<li>
-					<a href="https://reflectoring.io/review-java-by-comparison/">Review by Tom Hombergs on reflectoring.io</a>
-				</li>
-				<li>
-					<a href="https://www.romaniancoder.com/java-by-comparison-book-review/">Review by Dan Geabunea on his own blog</a>
-				</li>
-				<li>
-					<a href="https://www.youtube.com/watch?v=HP7aOG59LoQ">Dylan Isreal interviews Simon Harrer on coding360 on youtube</a>
-				</li>
-				<li>
-					<a href="https://sylvainleroy.com/2019/02/09/book-review-java-by-comparison-how-to-improve-your-coding-skills-and-produce-quality-code/">Review by Sylvain Leroy on his own blog</a>
-				</li>
-				<li>
-					<a href="http://podcast.devjourney.info/190346/937266-41-simon-harrer-on-strong-opinions-loosely-held">Timothée Bourguignon interviews Simon Harrer on the Software Developer's Journey Podcast</a>
-				</li>
-				<li>
-					<a href="https://www.omnijava.com/2019/02/13/book-report-java-by-comparison/">Review by Ken Fogel on his own blog</a> and <a href="https://dzone.com/articles/book-report-java-by-comparison">on DZone</a>
-				</li>
-				<li>
-					<a href="http://sudheerjonna.com/blog/2019/03/07/my-review-on-java-by-comparison/">Review by Sudheer Jonna on his own blog</a>
-				</li>
-				<li>
-					<a href="https://alexradzin.blogspot.com/2019/03/java-by-comparison-book-review_17.html">Review by Alexander Radzin on his own blog</a>
-				</li>
-				<li>
-					<a href="http://www.adam-bien.com/roller/abien/entry/optimizing_for_humans_not_machines">Interview by Adam Bien on his podcast airhacks.fm</a>
-				</li>
-				<li>
-					<a href="https://www.vojtechruzicka.com/java-by-comparison-book-review/">Review by Vojtech Ruzicka on his own blog</a>
-				</li>
-				<li>
-					<a href="http://cleancode.blog/2019/05/09/java-by-comparison-will-help-you-became-a-professional-book-review/">Review by Mateusz Palichleb on his personal blog</a>
-				</li>
-				<li>
-					<a href="https://www.youtube.com/watch?v=EGgKCcb8zoA">Interview by David Tanzer</a>
-				</li>
+<section class="main-section press" id="press">
+  <!--main-section team-start-->
+  <div class="container">
+    <h2>Our Book in the Media (Selection)</h2>
+    <ul style="text-align: center; font-size: 1.5em;">
+      <li>English</li>
+      <li>
+        <a href="http://www.javamagazine.mozaicreader.com/MayJune2018#&pageSet=9&page=0">Review by
+          Andrew Binstock in the Java magazine</a>
+      </li>
+      <li>
+        <a href="https://twitter.com/unclebobmartin/status/993463227957874688">Short review by
+          Robert C. Martin on Twitter</a>
+      </li>
+      <li>
+        <a href="http://frankraiser.de/wordpress/book-review-java-by-comparison/">Thorough review by
+          Frank Raiser on his personal blog</a>
+      </li>
+      <li>
+        <a href="https://www.thoughts-on-java.org/books-java-summer-2018/">Recommended Summer
+          Reading by Thorben Janssen on his personal blog</a>
+      </li>
+      <li>
+        <a href="https://www.ahus1.de/post/book-java-by-comparison">Review by Alexander Schwartz on
+          his personal blog</a>
+      </li>
+      <li>
+        <a href="https://rieckpil.de/review-java-by-comparison/">Review by Philip Riecks on his
+          personal blog</a>
+      </li>
+      <li>
+        <a href="https://quinngil.com/2018/07/22/book-review-java-by-comparison/">Review by Quinn
+          Gil on his personal blog</a>
+      </li>
+      <li>
+        <a href="https://coderanch.com/wiki/697883/books/Java-Comparison-Java-Craftsman-Examples">Review
+          by Vijitha Kumara on Coderanch.com</a>
+      </li>
+      <li>
+        <a href="https://www.i-programmer.info/bookreviews/23-java/11961-java-by-comparison.html">Review
+          by Alex Armstrong on i-programmer.info</a>
+      </li>
+      <li>
+        <a href="http://developeronfire.com/podcast/episode-378-simon-harrer-writing-priorities">Interview
+          by David Rael on the Developer On Fire podcast</a>
+      </li>
+      <li>
+        <a href="https://dzone.com/articles/book-review-java-by-comparison">Review by Dustin Marx on
+          DZone</a> and published on his own <a
+          href="http://marxsoftware.blogspot.com/2018/10/book-review-java-by-comparison.html">blog</a>.
+      </li>
+      <li>
+        <a href="https://stevenschwenke.de/bookReviewJavaByComparison">Review by Steven Schwenke on
+          his own blog</a>.
+      </li>
+      <li>
+        <a href="https://www.infoq.com/news/2018/11/book-review-java-comparison">Review by Jeanne
+          Boyarsky on infoQ</a>
+      </li>
+      <li>
+        <a href="https://michael.hoennig.de/2018/12/01/book-review-java-by-comparision-become-a-java-craftsman-in-70-examples/">Review
+          by Michael Hönnig on his own blog</a>
+      </li>
+      <li>
+        <a href="http://blinkmonitor.com/2018/12/java-by-comparison/">Review by Rick Leir on
+          blinkmonitor.com</a>
+      </li>
+      <li>
+        <a href="https://garywoodfine.com/book-review-java-by-comparison/">Review by Gary Woodfine
+          on his blog</a>
+      </li>
+      <li>
+        <a href="https://schneide.blog/2019/01/14/book-review-java-by-comparison/">Review by Daniel
+          Lindner on his blog</a>
+      </li>
+      <li>
+        <a href="http://www.techbookreport.com/tbr0393.html">Review by Pan Pantziarka on
+          TechBookReport</a>
+      </li>
+      <li>
+        <a href="https://reflectoring.io/review-java-by-comparison/">Review by Tom Hombergs on
+          reflectoring.io</a>
+      </li>
+      <li>
+        <a href="https://www.romaniancoder.com/java-by-comparison-book-review/">Review by Dan
+          Geabunea on his own blog</a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/watch?v=HP7aOG59LoQ">Dylan Isreal interviews Simon Harrer
+          on coding360 on youtube</a>
+      </li>
+      <li>
+        <a href="https://sylvainleroy.com/2019/02/09/book-review-java-by-comparison-how-to-improve-your-coding-skills-and-produce-quality-code/">Review
+          by Sylvain Leroy on his own blog</a>
+      </li>
+      <li>
+        <a href="http://podcast.devjourney.info/190346/937266-41-simon-harrer-on-strong-opinions-loosely-held">Timothée
+          Bourguignon interviews Simon Harrer on the Software Developer's Journey Podcast</a>
+      </li>
+      <li>
+        <a href="https://www.omnijava.com/2019/02/13/book-report-java-by-comparison/">Review by Ken
+          Fogel on his own blog</a> and <a
+          href="https://dzone.com/articles/book-report-java-by-comparison">on DZone</a>
+      </li>
+      <li>
+        <a href="http://sudheerjonna.com/blog/2019/03/07/my-review-on-java-by-comparison/">Review by
+          Sudheer Jonna on his own blog</a>
+      </li>
+      <li>
+        <a href="https://alexradzin.blogspot.com/2019/03/java-by-comparison-book-review_17.html">Review
+          by Alexander Radzin on his own blog</a>
+      </li>
+      <li>
+        <a href="http://www.adam-bien.com/roller/abien/entry/optimizing_for_humans_not_machines">Interview
+          by Adam Bien on his podcast airhacks.fm</a>
+      </li>
+      <li>
+        <a href="https://www.vojtechruzicka.com/java-by-comparison-book-review/">Review by Vojtech
+          Ruzicka on his own blog</a>
+      </li>
+      <li>
+        <a href="http://cleancode.blog/2019/05/09/java-by-comparison-will-help-you-became-a-professional-book-review/">Review
+          by Mateusz Palichleb on his personal blog</a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/watch?v=EGgKCcb8zoA">Interview by David Tanzer</a>
+      </li>
 
-				<li style="margin-top: 1em;">German</li>
-				<li>
-					<a href="https://www.feki.de/news/buch-review-java-comparison">Review by Felix Betzl on www.feki.de</a>
-				</li>
-				<li>
-					<a href="https://www.heise.de/developer/artikel/Java-by-Comparison-4093313.html">Review by Michael Müller on Heise Developer</a>
-				</li>
-				<li>
-					<a href="https://www.innoq.com/en/podcast/049-java-by-comparison/">Michael Vitz interviews Simon Harrer on the INNOQ Podcast</a>
-				</li>
-				<li>
-					<a href="http://www.hameister.org/publications_JavaByComparison.html">Review by Jörn Hameister on his personal blog</a>
-				</li>
-				<li>
-					<a href="https://www.facebook.com/notes/otto-friedrich-universit%C3%A4t-bamberg/menschen-wie-bamberger-informatiker-das-erlernen-einer-programmiersprache-revolu/1730092540372568/">Interview of Simon Harrer and Linus Dietz on Uni Bamberg Facebook Account</a>
-				</li>
-				<li>
-					<a href="https://fachinformatiker-anwendungsentwicklung.net/buchclub-java-by-comparison-anwendungsentwickler-podcast-130/">Review by Stefan Macke as a blogpost and podcast</a>!
-				</li>
-				<li>
-					<a href="https://java-pro.de/">Review in the JAVAPRO 3/2018 magazine</a>
-				</li>
-				<li>
-					<a href="https://innovative-trends.de/2019/02/19/java-by-comparison-verstaendlichen-und-wartbaren-java-code-erstellen/">Review by Prof. Dr. Oliver Höß on his site innovative-trends.de</a>
-				</li>
-				<li>
-					<a href="https://graberj.wordpress.com/2019/05/03/buch-rezension-zu-java-by-comparison/">Review by Johnny Graber on his personal blog</a>
-				</li>
-				<li>
-					<a href="https://autoweird.fm/2019/06/16/folge-64-literarisches-trio-autoweird-fm-by-comparison-feat-simon-harrer/">Autoweird.fm Podcast Interview</a>
-				</li>
+      <li style="margin-top: 1em;">German</li>
+      <li>
+        <a href="https://www.feki.de/news/buch-review-java-comparison">Review by Felix Betzl on
+          www.feki.de</a>
+      </li>
+      <li>
+        <a href="https://www.heise.de/developer/artikel/Java-by-Comparison-4093313.html">Review by
+          Michael Müller on Heise Developer</a>
+      </li>
+      <li>
+        <a href="https://www.innoq.com/en/podcast/049-java-by-comparison/">Michael Vitz interviews
+          Simon Harrer on the INNOQ Podcast</a>
+      </li>
+      <li>
+        <a href="http://www.hameister.org/publications_JavaByComparison.html">Review by Jörn
+          Hameister on his personal blog</a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/notes/otto-friedrich-universit%C3%A4t-bamberg/menschen-wie-bamberger-informatiker-das-erlernen-einer-programmiersprache-revolu/1730092540372568/">Interview
+          of Simon Harrer and Linus Dietz on Uni Bamberg Facebook Account</a>
+      </li>
+      <li>
+        <a href="https://fachinformatiker-anwendungsentwicklung.net/buchclub-java-by-comparison-anwendungsentwickler-podcast-130/">Review
+          by Stefan Macke as a blogpost and podcast</a>!
+      </li>
+      <li>
+        <a href="https://java-pro.de/">Review in the JAVAPRO 3/2018 magazine</a>
+      </li>
+      <li>
+        <a href="https://innovative-trends.de/2019/02/19/java-by-comparison-verstaendlichen-und-wartbaren-java-code-erstellen/">Review
+          by Prof. Dr. Oliver Höß on his site innovative-trends.de</a>
+      </li>
+      <li>
+        <a href="https://graberj.wordpress.com/2019/05/03/buch-rezension-zu-java-by-comparison/">Review
+          by Johnny Graber on his personal blog</a>
+      </li>
+      <li>
+        <a href="https://autoweird.fm/2019/06/16/folge-64-literarisches-trio-autoweird-fm-by-comparison-feat-simon-harrer/">Autoweird.fm
+          Podcast Interview</a>
+      </li>
 
-				<li style="margin-top: 1em;">French</li>
-				<li>
-					<a href="https://eric.siber.fr/2019/04/17/revue-livre-interview-java-comparison-pragmatic-programmers/">Review by Eric Siber on his personal blog, including an interview</a>
-				</li>
-				<li style="margin-top: 1em;">Turkish</li>
-				<li>
-					<a href="https://medium.com/bili%C5%9Fim-hareketi/java-by-comparison-kar%C5%9F%C4%B1la%C5%9Ft%C4%B1rmal%C4%B1-java-1-b3065abacf07">Review by İbrahim Kürce on medium.com Part 1</a>
-				</li>
-				<li>
-					<a href="https://medium.com/bili%C5%9Fim-hareketi/java-by-comparison-kar%C5%9F%C4%B1la%C5%9Ft%C4%B1rmal%C4%B1-java-2-dc7f4b9aeaa6">Review by İbrahim Kürce on medium.com Part 2</a>
-				</li>
-				<li>
-					<a href="https://de.slideshare.net/ibrahimkurce/java-by-comparison-124618211">Presentation about Java by Comparison by İbrahim Kürce on slideshare.net</a>
-				</li>
+      <li style="margin-top: 1em;">French</li>
+      <li>
+        <a href="https://eric.siber.fr/2019/04/17/revue-livre-interview-java-comparison-pragmatic-programmers/">Review
+          by Eric Siber on his personal blog, including an interview</a>
+      </li>
+      <li style="margin-top: 1em;">Turkish</li>
+      <li>
+        <a href="https://medium.com/bili%C5%9Fim-hareketi/java-by-comparison-kar%C5%9F%C4%B1la%C5%9Ft%C4%B1rmal%C4%B1-java-1-b3065abacf07">Review
+          by İbrahim Kürce on medium.com Part 1</a>
+      </li>
+      <li>
+        <a href="https://medium.com/bili%C5%9Fim-hareketi/java-by-comparison-kar%C5%9F%C4%B1la%C5%9Ft%C4%B1rmal%C4%B1-java-2-dc7f4b9aeaa6">Review
+          by İbrahim Kürce on medium.com Part 2</a>
+      </li>
+      <li>
+        <a href="https://de.slideshare.net/ibrahimkurce/java-by-comparison-124618211">Presentation
+          about Java by Comparison by İbrahim Kürce on slideshare.net</a>
+      </li>
 
-                <li style="margin-top: 1em;">Japanese</li>
-                <li>
-                    <a href="https://www.infoq.com/jp/news/2019/01/book-review-java-comparison">Review by Jeanne Boyarsky on infoQ, translated by H. Yoshida</a>
-                </li>
-			</ul>
-			<h2>Our book in University libraries</h2>
-			<ul style="text-align: center; font-size: 1.5em;">
-				<li>Germany</li>
-				<li>
-					HTW Berlin, HU Berlin, TH Hamburg, TH Köln, TH Nürnberg, TU Darmstadt, TU München, Uni Bamberg, Uni Bayreuth, Uni Dresden, Uni Erlangen, Uni Hamburg, Uni Passau, Uni Stuttgart, Uni Weimar, Uni Würzburg
-				</li>
-			</ul>
-			<h2>Book Awards (Selection)</h2>
-			<ul style="text-align: center; font-size: 1.5em;">
-				<li>
-					<a href="https://bookauthority.org/award/Java-By-Comparison/1680502875/best-java-books">Best Java books of all time by BookAuthority
-						<img src="https://award.bookauthority.org/best-java-books.png?b=1680502875&c=1&v=6&w=300" alt="Award Best Java books of all time by BookAuthority" title="Award Best Java books of all time by BookAuthority">
-					</a>
-				</li>
-				<li>
-					<a href="https://bookauthority.org/award/Java-By-Comparison/1680502875/beginner-java-books">Best Java books for beginners by BookAuthority
-						<img src="https://award.bookauthority.org/beginner-java-books.png?b=1680502875&c=1&v=6&w=300" alt="Award Best Java books for beginners by BookAuthority" title="Award Best Java books for beginners by BookAuthority">
-					</a>
-				</li>
-			</ul>
-		</div>
-	</section>
+      <li style="margin-top: 1em;">Japanese</li>
+      <li>
+        <a href="https://www.infoq.com/jp/news/2019/01/book-review-java-comparison">Review by Jeanne
+          Boyarsky on infoQ, translated by H. Yoshida</a>
+      </li>
+    </ul>
+    <h2>Our book in University libraries</h2>
+    <ul style="text-align: center; font-size: 1.5em;">
+      <li>Germany</li>
+      <li>
+        HTW Berlin, HU Berlin, TH Hamburg, TH Köln, TH Nürnberg, TU Darmstadt, TU München, Uni
+        Bamberg, Uni Bayreuth, Uni Dresden, Uni Erlangen, Uni Hamburg, Uni Passau, Uni Stuttgart,
+        Uni Weimar, Uni Würzburg
+      </li>
+    </ul>
+    <h2>Book Awards (Selection)</h2>
+    <ul style="text-align: center; font-size: 1.5em;">
+      <li>
+        <a href="https://bookauthority.org/award/Java-By-Comparison/1680502875/best-java-books">Best
+          Java books of all time by BookAuthority
+          <img src="https://award.bookauthority.org/best-java-books.png?b=1680502875&c=1&v=6&w=300"
+               alt="Award Best Java books of all time by BookAuthority"
+               title="Award Best Java books of all time by BookAuthority">
+        </a>
+      </li>
+      <li>
+        <a href="https://bookauthority.org/award/Java-By-Comparison/1680502875/beginner-java-books">Best
+          Java books for beginners by BookAuthority
+          <img
+              src="https://award.bookauthority.org/beginner-java-books.png?b=1680502875&c=1&v=6&w=300"
+              alt="Award Best Java books for beginners by BookAuthority"
+              title="Award Best Java books for beginners by BookAuthority">
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
 
-	<section class="main-section press" id="talks">
-		<div class="container">
-			<h2>Talks About the Book</h2>
-			<ul style="text-align: center; font-size: 1.5em;">
-				<li>
-					<a href="https://www.innoq.com/en/talks/2018/05/java-by-comparison-hackerkegeln-2018/">2018-05-15 at Hackerkegeln in Nürnberg, Germany</a>
-				</li>
-				<li>2019-03-25 Coding Dojo BMW</li>
-				<li>
-					<a href="https://www.meetup.com/de-DE/Softwerkskammer-Ruhrgebiet/events/258643893/">2019-04-02 at Softwerkskammer Ruhrgebiet</a> <a href="https://www.youtube.com/watch?v=NlJOEpsxY2Q">Video (German)</a>
-				</li>
-				<li>
-					<a href="https://www.meetup.com/de-DE/Softwerkskammer-Dusseldorf/events/258667971">2019-04-03 at Softwerkskammer Düsseldorf</a>
-				</li>
-				<li><a href="https://www.meetup.com/de-DE/Softwerkskammer-Leipzig/events/258246616/">2019-06-04 at Softwerkskammer Leipzig</a></li>
-				<li style="margin-top: 1em;">Planned</li>
-				<li>2019-10-09 at Leightweight Java User Group München</li>
-				<li>2019-10-10 at Softwerkskammer Nürnberg</li>
-				<li>2019-10-23 at Softwerkskammer Köln</li>
-				<li>2019-10-29 at JUG Mainz</li>
-			</ul>
-		</div>
-	</section>
+<section class="main-section press" id="talks">
+  <div class="container">
+    <h2>Talks About the Book</h2>
+    <ul style="text-align: center; font-size: 1.5em;">
+      <li>
+        <a href="https://www.innoq.com/en/talks/2018/05/java-by-comparison-hackerkegeln-2018/">2018-05-15
+          at Hackerkegeln in Nürnberg, Germany</a>
+      </li>
+      <li>2019-03-25 Coding Dojo BMW in München, Germany</li>
+      <li>
+        <a href="https://www.meetup.com/de-DE/Softwerkskammer-Ruhrgebiet/events/258643893/">2019-04-02
+          at Softwerkskammer Ruhrgebiet, Germany</a> <a href="https://www.youtube.com/watch?v=NlJOEpsxY2Q">Video
+        (German)</a>
+      </li>
+      <li>
+        <a href="https://www.meetup.com/de-DE/Softwerkskammer-Dusseldorf/events/258667971">2019-04-03
+          at Softwerkskammer Düsseldorf, Germany</a>
+      </li>
+      <li><a href="https://www.meetup.com/de-DE/Softwerkskammer-Leipzig/events/258246616/">2019-06-04
+        at Softwerkskammer Leipzig, Germany</a></li>
+      <li>2019-07-08
+        at Universität Bamberg WIAI.community, Germany</li>
+      <li style="margin-top: 1em;">Planned</li>
+      <li>2019-10-09 at Leightweight Java User Group München, Germany</li>
+      <li>2019-10-10 at Softwerkskammer Nürnberg, Germany</li>
+      <li>2019-10-23 at Softwerkskammer Köln, Germany</li>
+      <li>2019-10-29 at JUG Mainz, Germany</li>
+    </ul>
+  </div>
+</section>
 
-	<footer class="footer_section" id="contact">
-		<div class="container">
-			<div class="footer_bottom">
-				<p>
-					<a href="legalnotice.html">Legal Notice / Impressum</a>
-				</p>
-				<p>
-					<a href="privacy.html">Privacy / Datenschutzerklärung</a>
-				</p>
-			</div>
-			<div class="footer_bottom">
-				<span>© Butterfly Theme</span>
-				<div class="credits">
-					<!--
-            All the links in the footer should remain intact.
-            You can delete the links only if you purchased the pro version.
-            Licensing information: https://bootstrapmade.com/license/
-            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Butterfly
-          -->
-					<a href="https://bootstrapmade.com/">Free Bootstrap Templates</a> by BootstrapMade
-				</div>
-			</div>
-		</div>
-	</footer>
-	<script>
-		$(document).ready(function(e) {
-			$('#header_outer').scrollToFixed();
-			$('.res-nav_click').click(function() {
-				$('.main-nav').slideToggle();
-				return false
+<footer class="footer_section" id="contact">
+  <div class="container">
+    <div class="footer_bottom">
+      <p>
+        <a href="legalnotice.html">Legal Notice / Impressum</a>
+      </p>
+      <p>
+        <a href="privacy.html">Privacy / Datenschutzerklärung</a>
+      </p>
+    </div>
+    <div class="footer_bottom">
+      <span>© Butterfly Theme</span>
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Butterfly
+        -->
+        <a href="https://bootstrapmade.com/">Free Bootstrap Templates</a> by BootstrapMade
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+  $(document).ready(function (e) {
+    $('#header_outer').scrollToFixed();
+    $('.res-nav_click').click(function () {
+      $('.main-nav').slideToggle();
+      return false
 
-			});
+    });
 
-		});
-	</script>
-	<script>
-		$(window).load(function() {
+  });
+</script>
+<script>
+  $(window).load(function () {
 
-			$('a').bind('click', function(event) {
-				var $anchor = $(this);
+    $('a').bind('click', function (event) {
+      var $anchor = $(this);
 
-				$('html, body').stop().animate({
-					scrollTop: $($anchor.attr('href')).offset().top - 91
-				}, 1500, 'easeInOutExpo');
-				/*
-				if you don't want to use the easing effects:
-				$('html, body').stop().animate({
-					scrollTop: $($anchor.attr('href')).offset().top
-				}, 1000);
-				*/
-				event.preventDefault();
-			});
-		})
-	</script>
+      $('html, body').stop().animate({
+        scrollTop: $($anchor.attr('href')).offset().top - 91
+      }, 1500, 'easeInOutExpo');
+      /*
+      if you don't want to use the easing effects:
+      $('html, body').stop().animate({
+        scrollTop: $($anchor.attr('href')).offset().top
+      }, 1000);
+      */
+      event.preventDefault();
+    });
+  })
+</script>
 
-	<script data-mode="hash" async defer src="https://cdn.simpleanalytics.io/hello.js"></script>
-	<noscript><img src="https://api.simpleanalytics.io/hello.gif" alt=""></noscript>
+<script data-mode="hash" async defer src="https://cdn.simpleanalytics.io/hello.js"></script>
+<noscript><img src="https://api.simpleanalytics.io/hello.gif" alt=""></noscript>
 </body>
 </html>
