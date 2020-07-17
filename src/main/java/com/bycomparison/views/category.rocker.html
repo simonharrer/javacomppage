@@ -1,0 +1,18 @@
+@import java.util.List
+@import com.bycomparison.Comparison
+@import com.bycomparison.Category
+
+@args (Category category)
+
+@com.bycomparison.views.layout.template(category.title(), category.name()) -> {
+
+<h1>@category.name() by Comparison <span>(@category.numberOfComparisons())</span></h1>
+
+<div class="row">
+    <ul>
+        @for(comparison : category.comparisons()) {
+        <li>@comparison.name()</li>
+        }
+    </ul>
+</div>
+}
