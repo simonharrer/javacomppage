@@ -1,25 +1,36 @@
 package com.bycomparison;
 
 import com.fizzed.rocker.RockerModel;
-import com.github.difflib.DiffUtils;
-import com.github.difflib.UnifiedDiffUtils;
-import com.github.difflib.algorithm.DiffException;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Main {
 
   public static final String DIR = "site/";
 
-  public static void main(String[] args) throws IOException, DiffException {
+  public static void main(String[] args) throws Exception {
     Files.createDirectories(Path.of(DIR));
-    final var list = Comparisons.getComparisons();
-    list.forEach(Main::renderToFile);
-    list.stream().collect(Collectors.groupingBy(Comparison::category))
-        .forEach((category, comparisons) -> renderToFile(new Category(category, comparisons)));
+
+    var comparisons = getPublishedComparisons();
+    var categories = categories(comparisons);
+
+    comparisons.forEach(Main::renderToFile);
+    categories.forEach(Main::renderToFile);
+  }
+
+  private static List<Category> categories(List<Comparison> publishedComparisons) {
+    return publishedComparisons.stream().collect(Collectors.groupingBy(Comparison::category))
+        .entrySet().stream().map(e -> new Category(e.getKey(), e.getValue()))
+        .collect(Collectors.toList());
+  }
+
+  private static List<Comparison> getPublishedComparisons() {
+    return Comparisons.getComparisons().stream().filter(Comparison::published)
+        .collect(Collectors.toList());
   }
 
   private static void renderToFile(Comparison comparison) {

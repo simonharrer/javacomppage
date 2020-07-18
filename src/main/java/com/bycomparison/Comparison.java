@@ -6,7 +6,7 @@ import java.util.Locale;
 public record Comparison(String name, String category, List<String>tags, String beforeCode,
                          String beforeCodeHighlight, String beforeText,
                          String afterCode, String afterCodeHighlight, String afterText,
-                         String language, String sources) {
+                         String language, String sources, boolean published) {
 
   public String filename() {
     return name.replaceAll(" ", "-").toLowerCase(Locale.ENGLISH) + ".html";

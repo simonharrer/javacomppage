@@ -14,15 +14,15 @@ public class Comparisons {
     return List
         .of(new Comparison("Replace Small Test Files with Text Blocks", "Java",
                 List.of("Java 15"),
-                "", "", "", "", "", "", "java", ""),
+                "", "", "", "", "", "", "java", "", true),
             new Comparison("Safe the Planet", "Spring Boot",
                 List.of("Spring"),
                 "spring.main.banner-mode=console", "1", "", "spring.main.banner-mode=off", "1", "",
-                "properties", ""),
+                "properties", "", true),
             new Comparison("Document for Concurrency", "Java Concurrency",
                 List.of("Java", "Concurrency"),
-                parseBeforeCodePart("c2"), "", "",  parseAfterCodePart("c2"), "1,4", "",
-                "java", ""),
+                parseBeforeCodePart("c2"), "", "", parseAfterCodePart("c2"), "1,4", "",
+                "java", "", true),
             new Comparison("Favor Constructor over Field Injection", "Spring Boot",
                 List.of("Spring"),
                 parseBeforeCodePart("c1"), "4",
@@ -65,7 +65,7 @@ public class Comparisons {
                                 
                 - TODO thymeleaf and MVC
                 - TODO web vs. webflux
-                """), "java", ""));
+                """), "java", "", true));
   }
 
   private static String parseBeforeCodePart(String id) {
