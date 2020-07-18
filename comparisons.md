@@ -21,3 +21,5 @@
 - Know the Gotchas: Avoid Locale Issues
 
 - Java 9/10/11: Sets/Lists/Maps; Money API
+
+- Replace Sleeps with active waits in tests
