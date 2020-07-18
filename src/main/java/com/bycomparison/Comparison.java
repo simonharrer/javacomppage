@@ -9,7 +9,11 @@ public record Comparison(String name, String category, List<String>tags, String 
                          String language, String sources, boolean published) {
 
   public String filename() {
-    return name.replaceAll(" ", "-").toLowerCase(Locale.ENGLISH) + ".html";
+    return uniqueName() + ".html";
+  }
+
+  private String uniqueName() {
+    return name.replaceAll(" ", "-").toLowerCase(Locale.ENGLISH);
   }
 
   public String title() {
@@ -21,6 +25,6 @@ public record Comparison(String name, String category, List<String>tags, String 
   }
 
   public String link() {
-    return "/" + name.replaceAll(" ", "-").toLowerCase(Locale.ENGLISH);
+    return "/" + uniqueName();
   }
 }
