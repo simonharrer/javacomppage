@@ -14,14 +14,14 @@
 <div class="row row-eq-height">
     <div class="col-sm">
         <div class="shadow-lg p-3 mb-5 bg-white rounded">
-<pre class="language-java" data-line="@comparison.beforeCodeHighlight()" style="background: #efd2d2;"><code>@comparison.beforeCode()</code></pre>
+<pre class="language-@comparison.language()" data-line="@comparison.beforeCodeHighlight()" style="background: #efd2d2;"><code>@comparison.beforeCode()</code></pre>
 
             @raw(comparison.beforeText())
         </div>
     </div>
     <div class="col-sm">
         <div class="shadow-lg p-3 mb-5 bg-white rounded">
-<pre class="language-java" data-line="@comparison.afterCodeHighlight()" style="background: #d2efd2;"><code>@comparison.afterCode()</code></pre>
+<pre class="language-@comparison.language()" data-line="@comparison.afterCodeHighlight()" style="background: #d2efd2;"><code>@comparison.afterCode()</code></pre>
 
             @raw(comparison.afterText())
 
@@ -31,17 +31,11 @@
 </div>
 
 <div class="row">
+  @if (!comparison.sources().isEmpty()) {
     <div class="col-sm">
         <h3>Sources</h3>
-        <p>I did learn the pattern from my colleague Jochen Christ in our current project. where we are working as a
-            remote mob, and because of this, such patterns quickly spread among our team. I just wrote them down in
-            the comparison style.</p>
-
-        <h3>Comparison Format</h3>
-        <p>We first used the comparison format in the book Java by Comparison to contrast code before and after a
-            refactoring step, making the code cleaner and more readable. Most of the comparison in our book also
-            apply to Spring Boot projects as most Spring Boot projects do use Java. However, there are Spring
-            specifics like dependency injection.</p>
+        @comparison.sources()
     </div>
+  }
 </div>
 }

@@ -29,6 +29,9 @@
                 <li class="nav-item @if (category.equals("Java")) {active}">
                     <a class="nav-link" href="https://java.by-comparison.com/java">Java</a>
                 </li>
+                <li class="nav-item @if (category.equals("Java Concurrency")) {active}">
+                    <a class="nav-link" href="https://java.by-comparison.com/java-concurrency">Java Concurrency</a>
+                </li>
                 <li class="nav-item @if (category.equals("Spring Boot")) {active}">
                     <a class="nav-link" href="https://java.by-comparison.com/spring-boot">Spring Boot</a>
                 </li>
@@ -37,7 +40,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container mt-3">
     @content
 </div>
 
