@@ -1,5 +1,4 @@
 .DS_STORE
 *.iml
-site/
 target/
 .idea/
