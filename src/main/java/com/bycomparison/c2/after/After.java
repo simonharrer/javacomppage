@@ -7,17 +7,14 @@ public class After {
 @interface GuardedBy {String value();}
 
 // AFTER:start
-@ThreadSafe
-class ChocolateBars {
+/** thread safe */
+class Counter {
 
-  @GuardedBy("this")
-  private int amount;
+  /** guarded by 'this' */
+  private int count;
 
-  synchronized void eat() {
-    if (amount < 1) {
-      throw new RuntimeException("NOOOO!");
-    }
-    amount--;
+  synchronized void increment() {
+    count++;
   }
 }
 // AFTER:end

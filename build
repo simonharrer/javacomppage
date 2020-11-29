@@ -1,1 +1,1 @@
-./mvnw clean package exec:java
+./mvnw clean package exec:java --quiet --no-transfer-progress

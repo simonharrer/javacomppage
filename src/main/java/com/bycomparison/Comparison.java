@@ -21,7 +21,7 @@ public record Comparison(String name, String category, List<String>tags, String 
   }
 
   public String diff() {
-    return Diff.of(this);
+    return Diff.withoutPreabmle(this);
   }
 
   public String link() {

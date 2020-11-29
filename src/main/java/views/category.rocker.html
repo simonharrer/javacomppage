@@ -4,7 +4,7 @@
 
 @args (Category category, List<Category> categories)
 
-@com.bycomparison.views.layout.template(category.title(), category.name(), categories) -> {
+@views.layout.template(category.title(), category.name(), categories) -> {
 
 <h1>
   <a href="@category.link()">@category.name() by Comparison

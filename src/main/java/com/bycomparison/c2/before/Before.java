@@ -5,15 +5,12 @@ public class Before {
 }
 
 // BEFORE:start
-class ChocolateBars {
+class Counter {
 
-  private int amount;
+  private int count;
 
-  synchronized void eat() {
-    if (amount < 1) {
-      throw new RuntimeException("NOOOO!");
-    }
-    amount--;
+  synchronized void increment() {
+    count++;
   }
 }
 // BEFORE:end

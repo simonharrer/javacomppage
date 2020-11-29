@@ -4,7 +4,7 @@
 
 @args (Comparison comparison, List<Category> categories)
 
-@com.bycomparison.views.layout.template(comparison.title(), comparison.category(), categories) -> {
+@views.layout.template(comparison.title(), comparison.category(), categories) -> {
 
 <h1>@comparison.name()
     <span>
@@ -31,9 +31,10 @@
           </div>
         } else {
         <div class="shadow-lg p-3 mb-5 bg-white rounded" style="background-color: #efd2d2 !important">
-<pre class="language-@comparison.language()" data-line="@comparison.beforeCodeHighlight()" style="background: #efd2d2;"><code>@comparison.beforeCode()</code></pre>
 
-            @raw(comparison.beforeText())
+          @views.codehighlight.template(comparison.language(), comparison.beforeCode(), comparison.beforeCodeHighlight(), "#efd2d2")
+
+          @raw(comparison.beforeText())
         </div>
          }
     </div>
@@ -53,11 +54,15 @@
       </div>
       } else {
         <div class="shadow-lg p-3 mb-5 bg-white rounded" style="background-color: #d2efd2 !important">
-<pre class="language-@comparison.language()" data-line="@comparison.afterCodeHighlight()" style="background: #d2efd2;"><code>@comparison.afterCode()</code></pre>
+
+            @if(false) {
+                @views.codehighlight.template("diff-java", comparison.diff(),"", "#d2efd2")
+            } else {
+                @views.codehighlight.template(comparison.language(), comparison.afterCode(),comparison.afterCodeHighlight(), "#d2efd2")
+            }
 
             @raw(comparison.afterText())
 
-            <pre class="language-diff" style="background: #d2efd2;"><code>@comparison.diff()</code></pre>
         </div>
       }
     </div>

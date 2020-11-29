@@ -21,4 +21,18 @@ public class Diff {
         .generateUnifiedDiff("BEFORE", "AFTER", comparison.beforeCode().lines().collect(
             Collectors.toList()), patch, 100).stream().collect(Collectors.joining("\n"));
   }
+
+  public static String withoutPreabmle(Comparison comparison) {
+    Patch<String> patch;
+    try {
+      patch = DiffUtils.diff(comparison.beforeCode().lines().collect(Collectors.toList()),
+          comparison.afterCode().lines().collect(
+              Collectors.toList()));
+    } catch (DiffException e) {
+      throw new RuntimeException(e);
+    }
+    return UnifiedDiffUtils
+        .generateUnifiedDiff("BEFORE", "AFTER", comparison.beforeCode().lines().collect(
+            Collectors.toList()), patch, 100).stream().skip(3).collect(Collectors.joining("\n"));
+  }
 }

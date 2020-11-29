@@ -1,0 +1,8 @@
+@args (String language, String code, String highlightLines, String color)
+
+<pre
+    class="language-@language"
+    @if(!highlightLines.isEmpty()) {
+    data-line="@highlightLines"
+    }
+    style="background:@color"><code>@code</code></pre>

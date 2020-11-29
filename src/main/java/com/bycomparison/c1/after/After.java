@@ -13,10 +13,9 @@ interface OxygenMonitor {}
 // AFTER:start
 @Component
 class SpaceSuit {
+  private final OxygenMonitor oxygenMonitor;
 
-    private final OxygenMonitor oxygenMonitor;
-
-    public SpaceSuit(OxygenMonitor oxygenMonitor) {
+  public SpaceSuit(OxygenMonitor oxygenMonitor) {
         this.oxygenMonitor = oxygenMonitor;
     }
 }
