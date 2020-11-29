@@ -2,17 +2,32 @@
 @import com.bycomparison.Comparison
 @import com.bycomparison.Category
 
-@args (Category category)
+@args (Category category, List<Category> categories)
 
-@com.bycomparison.views.layout.template(category.title(), category.name()) -> {
+@com.bycomparison.views.layout.template(category.title(), category.name(), categories) -> {
 
-<h1>@category.name() by Comparison <span>(@category.numberOfComparisons())</span></h1>
+<h1>
+  <a href="@category.link()">@category.name() by Comparison
+    <span>(@category.numberOfComparisons())</span></a>
+</h1>
 
 <div class="row">
-    <ul>
-        @for(comparison : category.comparisons()) {
-        <li><a href="@comparison.link()">@comparison.name()</a></li>
+  <ul>
+    @for(comparison : category.comparisons()) {
+    <li>
+      <a href="@comparison.link()">
+        @comparison.name()
+
+        @for(tag : comparison.tags()) {
+        <span class="badge badge-info">@tag</span>
         }
-    </ul>
+
+        @if(comparison.book()) {
+        <span class="badge badge-info">BOOK</span>
+        }
+      </a>
+    </li>
+    }
+  </ul>
 </div>
 }

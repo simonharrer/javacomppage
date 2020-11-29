@@ -17,4 +17,8 @@ public record Category(String name, List<Comparison>comparisons) {
     return comparisons.size();
   }
 
+  public String link() {
+    return filename();
+  }
+
 }

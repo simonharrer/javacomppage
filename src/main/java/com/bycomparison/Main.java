@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -18,8 +19,13 @@ public class Main {
     var comparisons = getPublishedComparisons();
     var categories = categories(comparisons);
 
-    comparisons.forEach(Main::renderToFile);
-    categories.forEach(Main::renderToFile);
+    comparisons.forEach(comparison -> renderToFile(comparison, categories));
+    categories.forEach(category -> renderToFile(category, categories));
+    renderIndex(categories);
+  }
+
+  private static void renderIndex(List<Category> categories) {
+    renderToFile("index.html", com.bycomparison.views.index.template(categories));
   }
 
   private static List<Category> categories(List<Comparison> publishedComparisons) {
@@ -29,17 +35,21 @@ public class Main {
   }
 
   private static List<Comparison> getPublishedComparisons() {
-    return Comparisons.getComparisons().stream().filter(Comparison::published)
+    return Stream
+        .concat(Comparisons.getComparisons().stream(), Comparisons.getBookComparisons().stream())
+        .filter(Comparison::published)
         .collect(Collectors.toList());
   }
 
-  private static void renderToFile(Comparison comparison) {
+  private static void renderToFile(Comparison comparison, List<Category> categories) {
 
-    renderToFile(comparison.filename(), com.bycomparison.views.comparison.template(comparison));
+    renderToFile(comparison.filename(),
+        com.bycomparison.views.comparison.template(comparison, categories));
   }
 
-  private static void renderToFile(Category category) {
-    renderToFile(category.filename(), com.bycomparison.views.category.template(category));
+  private static void renderToFile(Category category, List<Category> categories) {
+    renderToFile(category.filename(),
+        com.bycomparison.views.category.template(category, categories));
   }
 
   private static void renderToFile(String filename, RockerModel template) {

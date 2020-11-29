@@ -6,7 +6,7 @@ import java.util.Locale;
 public record Comparison(String name, String category, List<String>tags, String beforeCode,
                          String beforeCodeHighlight, String beforeText,
                          String afterCode, String afterCodeHighlight, String afterText,
-                         String language, String sources, boolean published) {
+                         String language, String sources, boolean published, boolean book, String sample) {
 
   public String filename() {
     return uniqueName() + ".html";
@@ -25,6 +25,6 @@ public record Comparison(String name, String category, List<String>tags, String 
   }
 
   public String link() {
-    return "/" + uniqueName();
+    return uniqueName() + ".html";
   }
 }
