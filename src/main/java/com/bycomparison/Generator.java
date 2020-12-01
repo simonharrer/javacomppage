@@ -1,10 +1,12 @@
 package com.bycomparison;
 
 import com.fizzed.rocker.RockerModel;
+import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,11 +15,24 @@ public class Generator {
 
   public static final String DIR = "site/";
 
+  static void deleteWebsite() throws IOException {
+    var dir = Path.of(DIR);
+    Files.createDirectories(dir);
+
+    Files.walk(dir)
+        .sorted(Comparator.reverseOrder())
+        .map(Path::toFile)
+        .forEach(File::delete);
+  }
+
   static void generateWebsite() throws IOException {
     Files.createDirectories(Path.of(DIR));
 
     var comparisons = getPublishedComparisons();
     var categories = categories(comparisons);
+
+    System.out.println("Comparisons: " + comparisons.size());
+    System.out.println("Categories: " + categories.size());
 
     comparisons.forEach(comparison -> renderToFile(comparison, categories));
     categories.forEach(category -> renderToFile(category, categories));
@@ -36,7 +51,8 @@ public class Generator {
 
   private static List<Comparison> getPublishedComparisons() {
     return Stream
-        .concat(Comparisons.getComparisons().stream(), Comparisons.getBookComparisons().stream())
+        .concat(Comparisons.getComparisons().stream(),
+            BookComparisons.getBookComparisons().stream())
         .filter(Comparison::published)
         .collect(Collectors.toList());
   }

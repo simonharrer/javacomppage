@@ -8,6 +8,7 @@ public class Main {
   public static void main(String[] args) throws Exception {
     var start = Instant.now();
 
+    Generator.deleteWebsite();
     Generator.generateWebsite();
 
     var end = Instant.now();

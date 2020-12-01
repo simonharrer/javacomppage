@@ -10,39 +10,6 @@ import java.util.List;
 
 public class Comparisons {
 
-  public static List<Comparison> getBookComparisons() {
-    List<Comparison> result = new ArrayList<>();
-    var chapter1 = "Start Cleaning Up";
-    result.add(bookComparison("Avoid Unnecessary Comparisons", chapter1, 3, ""));
-    result.add(bookComparison("Avoid Negations", chapter1, 5, ""));
-    result.add(bookComparison("Return Boolean Expressions Directly", chapter1, 7, "http://media.pragprog.com/titles/javacomp/boolean.pdf"));
-    result.add(bookComparison("Simplify Boolean Expressions", chapter1, 9, ""));
-    result.add(bookComparison("Avoid NullPointerException in Conditional", chapter1, 11, ""));
-    result.add(bookComparison("Avoid Switch Fallthrough", chapter1, 13, ""));
-    result.add(bookComparison("Always Use Braces", chapter1, 15, ""));
-    result.add(bookComparison("Ensure Code Symmetry", chapter1, 17, ""));
-
-    var chapter2 = "Level Up Your Code Style";
-    result.add(bookComparison("Replace Magic Numbers with Constants", chapter2, 20, ""));
-    result.add(bookComparison("Favor Enums Over Integer Constants", chapter2, 22, ""));
-    result.add(bookComparison("Favor For-Each Over For Loops", chapter2, 24, ""));
-    result.add(bookComparison("Avoid Collection Modification During Iteration", chapter2, 26, ""));
-    result
-        .add(bookComparison("Avoid Compute-Intense Operations During Iteration", chapter2, 28, ""));
-    result.add(bookComparison("Group with New Lines", chapter2, 30, ""));
-    result.add(bookComparison("Favor Format Over Concatenation", chapter2, 32, ""));
-    result.add(bookComparison("Favor Java API Over DIY", chapter2, 34, ""));
-    return result;
-  }
-
-  private static Comparison bookComparison(String name, String chapter, int page,
-      String sampleChapterDownloadLink) {
-    return new Comparison(name, "Java",
-        List.of(chapter),
-        "", "", "" + page, "", "", "" + (page + 1), "java", "book", true, true,
-        sampleChapterDownloadLink);
-  }
-
   public static List<Comparison> getComparisons() {
     return List
         .of(new Comparison("Replace Small Test Files with Text Blocks", "Java",

@@ -13,7 +13,7 @@ public record Comparison(String name, String category, List<String>tags, String 
   }
 
   private String uniqueName() {
-    return name.replaceAll(" ", "-").toLowerCase(Locale.ENGLISH);
+    return name.replaceAll(" ", "-").replaceAll("/", "-").toLowerCase(Locale.ENGLISH);
   }
 
   public String title() {
