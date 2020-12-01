@@ -48,7 +48,7 @@ public class Comparisons {
         .of(new Comparison("Replace Small Test Files with Text Blocks", "Java",
                 List.of("Java 15"),
                 "", "", "", "", "", "", "java", "", true, false, ""),
-            new Comparison("Safe the Planet", "Spring Boot",
+            new Comparison("Save the Planet", "Spring Boot",
                 List.of("Spring"),
                 "spring.main.banner-mode=console", "1", "", "spring.main.banner-mode=off", "1", "",
                 "properties", "", true, false, ""),
