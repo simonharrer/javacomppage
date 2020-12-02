@@ -36,7 +36,14 @@ public class Generator {
 
     comparisons.forEach(comparison -> renderToFile(comparison, categories));
     categories.forEach(category -> renderToFile(category, categories));
+    renderMethod(categories);
     renderIndex(categories);
+  }
+
+  private static void renderMethod(List<Category> categories) {
+    renderToFile("method.html", views.method.template(categories,
+        new Comparison("Actionable Name", "method", List.of("example-tag"), "// bad code\nint x = 3;", "1", "Why the code above is hard to read", "// better code\nint remainingChocolateBars = 3;", "1", "Why the code on the green / right-hand side is cleaner and more maintainable",
+            "java", "", true, false, "")));
   }
 
   private static void renderIndex(List<Category> categories) {

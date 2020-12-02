@@ -1,0 +1,39 @@
+@import com.bycomparison.Comparison
+@import com.bycomparison.Category
+@import java.util.List
+
+@args (List<Category> categories, Comparison comparison)
+
+@views.layout.template("The 'by Comparison' Method", "method", categories) -> {
+
+  <h1>@comparison.name()
+    <span>
+        @for(tag : comparison.tags()) {
+        <span class="badge badge-info">@tag</span>
+        }
+    </span>
+  </h1>
+  <div class="row row-eq-height">
+    <div class="col-sm">
+      <div class="shadow-lg p-3 mb-5 bg-white rounded" style="background-color: #efd2d2 !important">
+
+        @views.codehighlight.template(comparison.language(), comparison.beforeCode(), comparison.beforeCodeHighlight(), "#efd2d2")
+
+        @raw(comparison.beforeText())
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="shadow-lg p-3 mb-5 bg-white rounded" style="background-color: #d2efd2 !important">
+
+        @if(false) {
+        @views.codehighlight.template("diff-java", comparison.diff(),"", "#d2efd2")
+        } else {
+        @views.codehighlight.template(comparison.language(), comparison.afterCode(),comparison.afterCodeHighlight(), "#d2efd2")
+        }
+
+        @raw(comparison.afterText())
+
+      </div>
+    </div>
+  </div>
+}

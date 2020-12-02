@@ -12,7 +12,7 @@ public class Comparisons {
 
   public static List<Comparison> getComparisons() {
     return List
-        .of(new Comparison("Replace Small Test Files with Text Blocks", "Java",
+        .of(new Comparison("Replace Small Test Files with Text Blocks", "Modern Java",
                 List.of("Java 15"),
                 "", "", "", "", "", "", "java", "", true, false, ""),
             new Comparison("Save the Planet", "Spring Boot",
