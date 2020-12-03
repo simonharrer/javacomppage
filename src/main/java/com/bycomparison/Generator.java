@@ -42,7 +42,7 @@ public class Generator {
 
   private static void renderMethod(List<Category> categories) {
     renderToFile("method.html", views.method.template(categories,
-        new Comparison("Actionable Name", "method", List.of("example-tag"),
+        new Comparison("Actionable Name", "", "method", List.of("example-tag"),
             "// bad code\nint x = 3;", "1", "Why the code above is hard to read",
             "// better code\nint remainingChocolateBars = 3;", "1",
             "Why the code on the green / right-hand side is cleaner and more maintainable",
@@ -55,7 +55,7 @@ public class Generator {
 
   private static List<Category> categories(List<Comparison> publishedComparisons) {
     return publishedComparisons.stream().collect(Collectors.groupingBy(Comparison::category))
-        .entrySet().stream().map(e -> new Category(e.getKey(), e.getValue()))
+        .entrySet().stream().map(e -> new Category(e.getKey(), "", e.getValue()))
         .collect(Collectors.toList());
   }
 

@@ -13,8 +13,8 @@ public class ComparisonsJavaConcurrency {
   public static List<Comparison> getComparisons() {
     return List
         .of(
-            new Comparison("Document for Concurrency", "Java Concurrency",
-                List.of("Java", "Concurrency"),
+            new Comparison("Document for Concurrency", "Documentation", "Java Concurrency",
+                List.of(),
                 parseBeforeCodePart("c2"), "", "", parseAfterCodePart("c2"), "1,4", "",
                 "java", "", true, false, ""));
   }

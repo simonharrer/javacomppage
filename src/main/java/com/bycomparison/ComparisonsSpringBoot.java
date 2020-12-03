@@ -13,11 +13,11 @@ public class ComparisonsSpringBoot {
   public static List<Comparison> getComparisons() {
     return List
         .of(
-            new Comparison("Save the Planet", "Spring Boot",
+            new Comparison("Save the Planet", "Configuration", "Spring Boot",
                 List.of("Spring"),
                 "spring.main.banner-mode=console", "1", "", "spring.main.banner-mode=off", "1", "",
                 "properties", "", true, false, ""),
-            new Comparison("Favor Constructor over Field Injection", "Spring Boot",
+            new Comparison("Favor Constructor over Field Injection", "General", "Spring Boot",
                 List.of("Spring"),
                 parseBeforeCodePart("c1"), "4",
                 Markdown.toHtml("""

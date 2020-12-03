@@ -3,7 +3,7 @@ package com.bycomparison;
 import java.util.List;
 import java.util.Locale;
 
-public record Comparison(String name, String category, List<String>tags, String beforeCode,
+public record Comparison(String name, String group, String category, List<String>tags, String beforeCode,
                          String beforeCodeHighlight, String beforeText,
                          String afterCode, String afterCodeHighlight, String afterText,
                          String language, String sources, boolean published, boolean book, String sample) {
