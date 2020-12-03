@@ -3,9 +3,9 @@ package com.bycomparison;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookComparisons {
+public class ComparisonsJava {
 
-  public static List<Comparison> getBookComparisons() {
+  public static List<Comparison> getComparisons() {
     List<Comparison> result = new ArrayList<>();
     var chapter1 = "Start Cleaning Up";
     result.add(bookComparison("Avoid Unnecessary Comparisons", chapter1, 3, ""));

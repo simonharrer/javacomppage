@@ -8,21 +8,15 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Comparisons {
+public class ComparisonsSpringBoot {
 
   public static List<Comparison> getComparisons() {
     return List
-        .of(new Comparison("Replace Small Test Files with Text Blocks", "Modern Java",
-                List.of("Java 15"),
-                "", "", "", "", "", "", "java", "", true, false, ""),
+        .of(
             new Comparison("Save the Planet", "Spring Boot",
                 List.of("Spring"),
                 "spring.main.banner-mode=console", "1", "", "spring.main.banner-mode=off", "1", "",
                 "properties", "", true, false, ""),
-            new Comparison("Document for Concurrency", "Java Concurrency",
-                List.of("Java", "Concurrency"),
-                parseBeforeCodePart("c2"), "", "", parseAfterCodePart("c2"), "1,4", "",
-                "java", "", true, false, ""),
             new Comparison("Favor Constructor over Field Injection", "Spring Boot",
                 List.of("Spring"),
                 parseBeforeCodePart("c1"), "4",
