@@ -1,6 +1,5 @@
 package com.bycomparison;
 
-import com.fizzed.rocker.RockerModel;
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -10,6 +9,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import com.fizzed.rocker.RockerModel;
 
 public class Generator {
 
@@ -65,9 +66,13 @@ public class Generator {
   }
 
   private static void renderToFile(Comparison comparison, List<Category> categories) {
-
+    try {
+      comparison.generatePreviewCard();
+    } catch (IOException ioException) {
+      ioException.printStackTrace();
+    }
     renderToFile(comparison.filename(),
-        views.comparison.template(comparison, categories));
+            views.comparison.template(comparison, categories));
   }
 
   private static void renderToFile(Category category, List<Category> categories) {

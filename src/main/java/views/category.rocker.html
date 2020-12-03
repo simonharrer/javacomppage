@@ -4,7 +4,7 @@
 
 @args (Category category, List<Category> categories)
 
-@views.layout.template(category.title(), category.name(), categories) -> {
+  @views.layoutcard.template(category.title(), category.name(), categories, category.previewCard()) -> {
 
 <h1>
   <a href="@category.link()">@category.name() by Comparison
