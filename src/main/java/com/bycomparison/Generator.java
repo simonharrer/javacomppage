@@ -6,13 +6,17 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.fizzed.rocker.RockerModel;
 
 public class Generator {
+
+  Map<Comparison,String> generatedCodeCards = new HashMap<>();
 
   public static final String DIR = "site/";
 
@@ -22,6 +26,7 @@ public class Generator {
 
     Files.walk(dir)
         .sorted(Comparator.reverseOrder())
+        .filter(path -> path.endsWith(".html"))
         .map(Path::toFile)
         .forEach(File::delete);
   }

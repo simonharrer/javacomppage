@@ -1,10 +1,12 @@
 package com.bycomparison;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,11 +30,11 @@ public record Comparison(String name, String category, List<String> tags, String
     }
 
     public String previewCard() {
-        if (Files.notExists(Path.of(DIR, uniqueName() + ".png"))) {
+        if (Files.notExists(Path.of(DIR, uniqueName() + beforeCode.hashCode() + ".png"))) {
             return "https://java.by-comparison.com/img/cover.jpg";
         }
 
-        return DIR + uniqueName() + ".png";
+        return DIR + uniqueName() + beforeCode.hashCode() + ".png";
     }
 
     public String diff() {
@@ -45,7 +47,11 @@ public record Comparison(String name, String category, List<String> tags, String
 
     public void generatePreviewCard() throws IOException {
         if (!beforeCode.isBlank()) {
-            final String carbonScript = "echo  \"" + beforeCode + "\" | carbon-now -l " + DIR + " -t " + uniqueName();
+
+            if(Files.exists(Path.of(DIR, uniqueName() + beforeCode.hashCode() + ".png"))){
+                return;
+            }
+            final String carbonScript = "echo  \"" + beforeCode + "\" | carbon-now -l " + DIR + " -t " + uniqueName() + beforeCode.hashCode();
             final Path carbonFile = Path.of(uniqueName() + ".sh");
             Files.write(carbonFile, carbonScript.getBytes());
             StringBuilder log = new StringBuilder("Error log for " + uniqueName() + System.lineSeparator());
@@ -64,7 +70,17 @@ public record Comparison(String name, String category, List<String> tags, String
                     System.err.println(log.toString());
                 }
                 p.destroy();
+
+                // Delete potential outdated code PNGs
+                Files.walk(Path.of(DIR))
+                     .sorted(Comparator.reverseOrder())
+                     .filter(path-> path.toString().startsWith(DIR + uniqueName()))
+                     .filter(path-> !path.toString().endsWith(uniqueName() + beforeCode.hashCode() + ".png"))
+                     .map(Path::toFile)
+                     .forEach(File::delete);
             }
+
         }
+
     }
 }
