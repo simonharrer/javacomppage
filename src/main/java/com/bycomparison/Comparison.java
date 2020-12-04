@@ -12,7 +12,7 @@ import java.util.Locale;
 
 import static com.bycomparison.Generator.DIR;
 
-public record Comparison(String name, String category, List<String> tags, String beforeCode,
+public record Comparison(String name, String group, String category, List<String>tags, String beforeCode,
                          String beforeCodeHighlight, String beforeText,
                          String afterCode, String afterCodeHighlight, String afterText,
                          String language, String sources, boolean published, boolean book, String sample) {
@@ -26,7 +26,7 @@ public record Comparison(String name, String category, List<String> tags, String
     }
 
     public String title() {
-        return name + " | " + new Category(category, List.of(this)).title();
+        return name + " | " + new Category(category, "", List.of(this)).title(); //Fixme: What should the 2nd param be?!
     }
 
     public String previewCard() {
@@ -79,8 +79,6 @@ public record Comparison(String name, String category, List<String> tags, String
                      .map(Path::toFile)
                      .forEach(File::delete);
             }
-
         }
-
     }
 }

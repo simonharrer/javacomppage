@@ -6,26 +6,25 @@
 
   @views.layoutcard.template(category.title(), category.name(), categories, category.previewCard()) -> {
 
-<h1>
-  <a href="@category.link()">@category.name() by Comparison
-    <span>(@category.numberOfComparisons())</span></a>
-</h1>
+<h1>@category.name() by Comparison</h1>
 
 <div class="row">
   <ul>
-    @for(comparison : category.comparisons()) {
-    <li>
-      <a href="@comparison.link()">
-        @comparison.name()
+    @for(group : category.groups()) {
+    <li>@group
+      <ul>
+        @for(comparison : category.comparisonsForGroup(group)) {
+        <li>
+          <a href="@comparison.link()">
+            @comparison.name()
 
-        @for(tag : comparison.tags()) {
-        <span class="badge badge-info">@tag</span>
+            @for(tag : comparison.tags()) {
+            <span class="badge badge-info">@tag</span>
+            }
+          </a>
+        </li>
         }
-
-        @if(comparison.book()) {
-        <span class="badge badge-info">BOOK</span>
-        }
-      </a>
+      </ul>
     </li>
     }
   </ul>

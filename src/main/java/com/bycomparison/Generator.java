@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.fizzed.rocker.RockerModel;
 
@@ -48,7 +48,10 @@ public class Generator {
 
   private static void renderMethod(List<Category> categories) {
     renderToFile("method.html", views.method.template(categories,
-        new Comparison("Actionable Name", "method", List.of("example-tag"), "// bad code\nint x = 3;", "1", "Why the code above is hard to read", "// better code\nint remainingChocolateBars = 3;", "1", "Why the code on the green / right-hand side is cleaner and more maintainable",
+        new Comparison("Actionable Name", "", "method", List.of("example-tag"),
+            "// bad code\nint x = 3;", "1", "Why the code above is hard to read",
+            "// better code\nint remainingChocolateBars = 3;", "1",
+            "Why the code on the green / right-hand side is cleaner and more maintainable",
             "java", "", true, false, "")));
   }
 
@@ -58,14 +61,18 @@ public class Generator {
 
   private static List<Category> categories(List<Comparison> publishedComparisons) {
     return publishedComparisons.stream().collect(Collectors.groupingBy(Comparison::category))
-        .entrySet().stream().map(e -> new Category(e.getKey(), e.getValue()))
+        .entrySet().stream().map(e -> new Category(e.getKey(), "", e.getValue()))
         .collect(Collectors.toList());
   }
 
   private static List<Comparison> getPublishedComparisons() {
-    return Stream
-        .concat(Comparisons.getComparisons().stream(),
-            BookComparisons.getBookComparisons().stream())
+    List<Comparison> comparisons = new ArrayList<>();
+    comparisons.addAll(ComparisonsJava.getComparisons());
+    comparisons.addAll(ComparisonsModernJava.getComparisons());
+    comparisons.addAll(ComparisonsJavaConcurrency.getComparisons());
+    comparisons.addAll(ComparisonsSpringBoot.getComparisons());
+
+    return comparisons.stream()
         .filter(Comparison::published)
         .collect(Collectors.toList());
   }
