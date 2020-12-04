@@ -17,7 +17,7 @@ public record Comparison(String name, String group, String category, List<String
   }
 
   public String title() {
-    return name + " | " + new Category(category, List.of(this)).title();
+    return name + " | " + new Category(category, "", List.of(this)).title(); //Fixme: What should the 2nd param be?!
   }
 
   public String diff() {
