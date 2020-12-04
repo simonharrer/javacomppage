@@ -12,7 +12,7 @@ import java.util.Locale;
 
 import static com.bycomparison.Generator.DIR;
 
-public record Comparison(String name, String group, String category, List<String>tags, String beforeCode,
+public record Comparison(String name, String group, String category, List<String> tags, String beforeCode,
                          String beforeCodeHighlight, String beforeText,
                          String afterCode, String afterCodeHighlight, String afterText,
                          String language, String sources, boolean published, boolean book, String sample) {
@@ -46,39 +46,36 @@ public record Comparison(String name, String group, String category, List<String
     }
 
     public void generatePreviewCard() throws IOException {
-        if (!beforeCode.isBlank()) {
+        if (Files.exists(Path.of(DIR, uniqueName() + beforeCode.hashCode() + ".png"))) {
+            return;
+        }
+        final String carbonScript = "echo  \"" + beforeCode + "\" | carbon-now -l " + DIR + " -t " + uniqueName() + beforeCode.hashCode();
+        final Path carbonFile = Path.of(uniqueName() + ".sh");
+        Files.write(carbonFile, carbonScript.getBytes());
+        StringBuilder log = new StringBuilder("Error log for " + uniqueName() + System.lineSeparator());
+        Process p = Runtime.getRuntime().exec("sh " + carbonFile.toString());
 
-            if(Files.exists(Path.of(DIR, uniqueName() + beforeCode.hashCode() + ".png"))){
-                return;
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                log.append('\t').append(line).append(System.lineSeparator());
             }
-            final String carbonScript = "echo  \"" + beforeCode + "\" | carbon-now -l " + DIR + " -t " + uniqueName() + beforeCode.hashCode();
-            final Path carbonFile = Path.of(uniqueName() + ".sh");
-            Files.write(carbonFile, carbonScript.getBytes());
-            StringBuilder log = new StringBuilder("Error log for " + uniqueName() + System.lineSeparator());
-            Process p = Runtime.getRuntime().exec("sh " + carbonFile.toString());
-
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    log.append('\t').append(line).append(System.lineSeparator());
-                }
-                p.waitFor();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                if (p.exitValue() != 0) {
-                    System.err.println(log.toString());
-                }
-                p.destroy();
-
-                // Delete potential outdated code PNGs
-                Files.walk(Path.of(DIR))
-                     .sorted(Comparator.reverseOrder())
-                     .filter(path-> path.toString().startsWith(DIR + uniqueName()))
-                     .filter(path-> !path.toString().endsWith(uniqueName() + beforeCode.hashCode() + ".png"))
-                     .map(Path::toFile)
-                     .forEach(File::delete);
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            if (p.exitValue() != 0) {
+                System.err.println(log.toString());
             }
+            p.destroy();
+
+            // Delete potential outdated code PNGs
+            Files.walk(Path.of(DIR))
+                 .sorted(Comparator.reverseOrder())
+                 .filter(path -> path.toString().startsWith(DIR + uniqueName()))
+                 .filter(path -> !path.toString().endsWith(uniqueName() + beforeCode.hashCode() + ".png"))
+                 .map(Path::toFile)
+                 .forEach(File::delete);
         }
     }
 }
