@@ -33,7 +33,7 @@ public record Comparison(String name, String group, String category, List<String
       return "https://java.by-comparison.com/img/cover.jpg";
     }
 
-    return DIR + uniqueName() + beforeCode.hashCode() + ".png";
+    return "https://java.by-comparison.com/" + DIR + uniqueName() + beforeCode.hashCode() + ".png";
   }
 
   public String diff() {
