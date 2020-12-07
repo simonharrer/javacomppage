@@ -1,1 +1,2 @@
+yarn global add carbon-now-cli
 ./mvnw clean package exec:java --quiet --no-transfer-progress

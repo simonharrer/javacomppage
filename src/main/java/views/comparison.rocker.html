@@ -4,7 +4,7 @@
 
 @args (Comparison comparison, List<Category> categories)
 
-@views.layout.template(comparison.title(), comparison.category(), categories) -> {
+    @views.layoutcard.template(comparison.title(), comparison.category(), categories, comparison.previewCard()) -> {
 
 <h1>@comparison.name()
     <span>
