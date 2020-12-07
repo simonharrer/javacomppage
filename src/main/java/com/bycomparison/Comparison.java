@@ -42,10 +42,14 @@ public record Comparison(String name, String group, String category, List<String
   }
 
   public void generatePreviewCard(Path site) throws IOException {
-    Carbon.generatePreviewCard(site, beforeCode, uniqueName(), previewPngFilename());
+    Carbon.generatePreviewCard(site, beforeCode, uniqueName(), previewFilename(), previewPngFilename());
   }
 
   private String previewPngFilename() {
     return uniqueName() + beforeCode.hashCode() + ".png";
+  }
+
+  private String previewFilename() {
+    return uniqueName() + beforeCode.hashCode();
   }
 }
