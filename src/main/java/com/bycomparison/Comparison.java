@@ -29,6 +29,7 @@ public record Comparison(String name, String group, String category, List<String
   }
 
   public String previewCard() {
+    // TODO preview for java by comparison items
     return "https://java.by-comparison.com/site/" + previewPngFilename();
   }
 

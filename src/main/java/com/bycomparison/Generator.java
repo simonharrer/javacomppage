@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 
 public class Generator {
 
-  public static final String DIR = "site/";
-
   static void deleteWebsite(Path site) throws IOException {
     Files.createDirectories(site);
 
