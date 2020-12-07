@@ -9,7 +9,6 @@ public class After {
 @interface GuardedBy {String value();}
 
 // AFTER:start
-
 /** thread safe */
 class Counter {
 
