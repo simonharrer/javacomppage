@@ -15,7 +15,7 @@ public class ComparisonsJavaConcurrency {
             .of(
                     new Comparison("Document for Concurrency", "Documentation", "Java Concurrency",
                             List.of(),
-                            parseBeforeCodePart("c2"), "", "", parseAfterCodePart("c2"), "1,4", "",
+                            parseBeforeCodePart("javaconcurrency/documentforconcurrency"), "", "", parseAfterCodePart("javaconcurrency/documentforconcurrency"), "1,4", "",
                             "java", "", true, false, ""),
                     new Comparison("Guard your Waits", "Locking", "Java Concurrency",
                             List.of(),

@@ -1,4 +1,4 @@
-package com.bycomparison.c2.after;
+package com.bycomparison.javaconcurrency.documentforconcurrency.after;
 
 public class After {
 

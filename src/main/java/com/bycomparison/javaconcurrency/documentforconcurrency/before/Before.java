@@ -1,4 +1,4 @@
-package com.bycomparison.c2.before;
+package com.bycomparison.javaconcurrency.documentforconcurrency.before;
 
 public class Before {
 
