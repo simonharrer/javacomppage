@@ -26,6 +26,21 @@
             color: #9a6e3a;
             background: none;
         }
+
+        pre[data-line] {
+            padding-left: 1em !important;
+        }
+
+        .comparison-before,.comparison-before > pre {
+            background-color: #efd2d2 !important
+        }
+        .comparison-after,.comparison-after > pre {
+            background-color: #d2efd2 !important
+        }
+        .line-highlight[data-end]:after,.line-highlight[data-end]:before,.line-highlight:before,.line-highlight:after {
+            content: unset;
+        }
+
     </style>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -59,7 +74,7 @@
         </div>
     </nav>
 
-    <div class="container mt-3">
+    <div class="container-fluid mt-3">
         <h1>Favor Constructor over Field Injection
     <span>
         <span class="badge badge-info">Spring</span>
@@ -67,12 +82,12 @@
 </h1>
 <div class="row row-eq-height">
     <div class="col-sm">
-        <div class="shadow-lg p-3 mb-5 bg-white rounded" style="background-color: #efd2d2 !important">
+        <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
 
           <pre
     class="language-java"
     data-line="4"
-    style="background:#efd2d2"><code>@Component
+    ><code>@Component
 class SpaceSuit {
 
   @Autowired
@@ -80,7 +95,8 @@ class SpaceSuit {
 }</code></pre>
 
 
-          <p>Have a look at the code above.
+          <div class="p-3">
+            <p>Have a look at the code above.
 We have a SpaceSuit component with a single dependency, the <code>OxygenMonitor</code>.
 Upon start, Spring will create one instance of that class for us, providing it an instance of the OxygenMonitor, and inject the SpaceSuit instance where appropriate in other components.</p>
 <p>The field where Spring should inject the OxygenMonitor dependency is marked with @Autowired and is private.
@@ -97,15 +113,16 @@ Because it prevents Spring to inject the value in the field.</p>
 <li>Field could be hidden somewhere in the class (although this is bad practice)</li>
 </ul>
 
+          </div>
         </div>
     </div>
     <div class="col-sm">
-        <div class="shadow-lg p-3 mb-5 bg-white rounded" style="background-color: #d2efd2 !important">
+        <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
 
                 <pre
     class="language-java"
     data-line="4-8"
-    style="background:#d2efd2"><code>@Component
+    ><code>@Component
 class SpaceSuit {
   private final OxygenMonitor oxygenMonitor;
 
@@ -115,7 +132,8 @@ class SpaceSuit {
 }</code></pre>
 
 
-            <p>The code is clearer now.
+            <div class="p-3">
+              <p>The code is clearer now.
 The field is set through the constructor upon instance creation.
 And because we marked the field final it won't be able to change afterward anymore.
 We also get a bonus: the @Autowired annotation is optional for the constructor and can be left out.</p>
@@ -135,6 +153,7 @@ So we can't use constructor injection in tests and have to fall back to field in
 <li>TODO web vs. webflux</li>
 </ul>
 
+            </div>
 
         </div>
     </div>

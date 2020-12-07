@@ -30,11 +30,13 @@
             }
           </div>
         } else {
-        <div class="shadow-lg p-3 mb-5 bg-white rounded" style="background-color: #efd2d2 !important">
+        <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
 
           @views.codehighlight.template(comparison.language(), comparison.beforeCode(), comparison.beforeCodeHighlight(), "#efd2d2")
 
-          @raw(comparison.beforeText())
+          <div class="p-3">
+            @raw(comparison.beforeText())
+          </div>
         </div>
          }
     </div>
@@ -53,7 +55,7 @@
         }
       </div>
       } else {
-        <div class="shadow-lg p-3 mb-5 bg-white rounded" style="background-color: #d2efd2 !important">
+        <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
 
             @if(false) {
                 @views.codehighlight.template("diff-java", comparison.diff(),"", "#d2efd2")
@@ -61,7 +63,9 @@
                 @views.codehighlight.template(comparison.language(), comparison.afterCode(),comparison.afterCodeHighlight(), "#d2efd2")
             }
 
-            @raw(comparison.afterText())
+            <div class="p-3">
+              @raw(comparison.afterText())
+            </div>
 
         </div>
       }

@@ -12,6 +12,24 @@ public record Comparison(String name, String group, String category, List<String
                          String language, String sources, boolean published, boolean book,
                          String sample) {
 
+  public static Comparison javaComparison(String name, String group, List<String> tags,
+      String beforeText, String afterText, String beforeCodeHighlight, String afterCodeHighlight,
+      String category) {
+    var codeDirectory = normalize(category) + "/" + normalize(name);
+    return new Comparison(name, group, category,
+        tags,
+        Code.parseBeforeCodePart(codeDirectory), beforeCodeHighlight, Markdown.toHtml(beforeText),
+        Code.parseAfterCodePart(codeDirectory), afterCodeHighlight, Markdown.toHtml(afterText),
+        "java", "",
+        true, false, "");
+  }
+
+  private static String normalize(String name) {
+    return name
+        .replaceAll("[^A-Za-z]", "").toLowerCase(
+            Locale.ROOT);
+  }
+
   public String filename() {
     return uniqueName() + ".html";
   }

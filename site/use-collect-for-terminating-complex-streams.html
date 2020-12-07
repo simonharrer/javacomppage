@@ -26,6 +26,21 @@
             color: #9a6e3a;
             background: none;
         }
+
+        pre[data-line] {
+            padding-left: 1em !important;
+        }
+
+        .comparison-before,.comparison-before > pre {
+            background-color: #efd2d2 !important
+        }
+        .comparison-after,.comparison-after > pre {
+            background-color: #d2efd2 !important
+        }
+        .line-highlight[data-end]:after,.line-highlight[data-end]:before,.line-highlight:before,.line-highlight:after {
+            content: unset;
+        }
+
     </style>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -59,7 +74,7 @@
         </div>
     </nav>
 
-    <div class="container mt-3">
+    <div class="container-fluid mt-3">
         <h1>Use Collect for Terminating Complex Streams
     <span>
     </span>

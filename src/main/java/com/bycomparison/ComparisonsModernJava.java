@@ -1,20 +1,21 @@
 package com.bycomparison;
 
 import java.util.List;
-import java.util.Locale;
 
 public class ComparisonsModernJava {
 
   public static List<Comparison> getComparisons() {
     return List
         .of(modernJava("Inline Short Files in Tests", "Java 15",
-            List.of("Text Blocks", "Testing"), """
-                * JSONAssert
+            List.of("Text Blocks", "Testing", "JUnit 5", "JSONAssert"), """
+                * uses JSONAssert
+                * is a JUnit 5 unit test
+                * read file from classpath (part of `src/test/resources`)
                 * expect output not directly visible, one click away""", """
                 * expected output directly visible
                 * makes use of text block
-                * templating easy with `formatted`
-                """, "", ""),
+                * templating easy with `formatted` ???
+                """, "2", "4"),
             modernJava("Explain Unexpected Empty Optional", "Java 10",
                 List.of("Optional", "Error Handling"), """
                     * since Java 10 there's orElseThrows() without a parameter
@@ -27,20 +28,8 @@ public class ComparisonsModernJava {
 
   private static Comparison modernJava(String name, String group, List<String> tags,
       String beforeText, String afterText, String beforeCodeHighlight, String afterCodeHighlight) {
-    var category = "Modern Java";
-    var codeDirectory = normalize(category) + "/" + normalize(name);
-    return new Comparison(name, group, category,
-        tags,
-        Code.parseBeforeCodePart(codeDirectory), beforeCodeHighlight, Markdown.toHtml(beforeText),
-        Code.parseAfterCodePart(codeDirectory), afterCodeHighlight, Markdown.toHtml(afterText),
-        "java", "",
-        true, false, "");
-  }
-
-  private static String normalize(String name) {
-    return name
-        .replaceAll("[^A-Za-z]", "").toLowerCase(
-            Locale.ROOT);
+    return Comparison.javaComparison(name, group, tags, beforeText, afterText, beforeCodeHighlight,
+        afterCodeHighlight, "Modern Java");
   }
 
 }
