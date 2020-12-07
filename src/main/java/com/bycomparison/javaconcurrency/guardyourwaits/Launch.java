@@ -1,4 +1,4 @@
-package com.bycomparison.c4;
+package com.bycomparison.javaconcurrency.guardyourwaits;
 
 public class Launch {
     public static void standby() {

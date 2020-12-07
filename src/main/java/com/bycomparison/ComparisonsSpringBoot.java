@@ -1,11 +1,5 @@
 package com.bycomparison;
 
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ComparisonsSpringBoot {
@@ -19,7 +13,7 @@ public class ComparisonsSpringBoot {
                 "properties", "", true, false, ""),
             new Comparison("Favor Constructor over Field Injection", "General", "Spring Boot",
                 List.of("Spring"),
-                parseBeforeCodePart("c1"), "4",
+                Code.parseBeforeCodePart("c1"), "4",
                 Markdown.toHtml("""
                     Have a look at the code above. 
                     We have a SpaceSuit component with a single dependency, the `OxygenMonitor`.
@@ -38,7 +32,7 @@ public class ComparisonsSpringBoot {
                     - Not final, can be changed within any methods later on
                     - No knowledge when the injection happens
                     - Field could be hidden somewhere in the class (although this is bad practice)"""),
-                parseAfterCodePart("c1"), "4-8", Markdown.toHtml("""
+                Code.parseAfterCodePart("c1"), "4-8", Markdown.toHtml("""
                 The code is clearer now. 
                 The field is set through the constructor upon instance creation. 
                 And because we marked the field final it won't be able to change afterward anymore. 
@@ -60,40 +54,6 @@ public class ComparisonsSpringBoot {
                 - TODO thymeleaf and MVC
                 - TODO web vs. webflux
                 """), "java", "", true, false, ""));
-  }
-
-  private static String parseBeforeCodePart(String id) {
-    var filename = "src/main/java/com/bycomparison/" + id + "/before/Before.java";
-    return parseCodePart(filename, "// BEFORE");
-  }
-
-  private static String parseAfterCodePart(String id) {
-    var filename = "src/main/java/com/bycomparison/" + id + "/after/After.java";
-    return parseCodePart(filename, "// AFTER");
-  }
-
-  private static String parseCodePart(String filename, String delimiter) {
-    try {
-      var lines = Files.readAllLines(Path.of(filename), StandardCharsets.UTF_8);
-      var result = new ArrayList<String>();
-      boolean active = false;
-      for (var line : lines) {
-        if (line.startsWith(delimiter + ":end")) {
-          active = false;
-        }
-
-        if (active) {
-          result.add(line);
-        }
-
-        if (line.startsWith(delimiter + ":start")) {
-          active = true;
-        }
-      }
-      return String.join("\n", result);
-    } catch (IOException e) {
-      throw new UncheckedIOException(e);
-    }
   }
 
 }

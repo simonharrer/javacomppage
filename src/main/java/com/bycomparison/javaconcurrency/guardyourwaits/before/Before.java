@@ -1,6 +1,6 @@
-package com.bycomparison.c4.before;
+package com.bycomparison.javaconcurrency.guardyourwaits.before;
 
-import com.bycomparison.c4.Launch;
+import com.bycomparison.javaconcurrency.guardyourwaits.Launch;
 
 public class Before {
 

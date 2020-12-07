@@ -7,27 +7,36 @@ import java.util.stream.Collectors;
 
 public record Category(String name, String text, List<Comparison> comparisons) {
 
-    public String filename() {
-        return name.replaceAll(" ", "-").toLowerCase(Locale.ENGLISH) + ".html";
-    }
+  public String filename() {
+    return uniqueName() + ".html";
+  }
 
-    public String title() {
-        return name + " by Comparison";
-    }
+  public String uniqueName() {
+    return name.replaceAll(" ", "-").toLowerCase(Locale.ENGLISH);
+  }
 
-    public String previewCard() {
-        return "https://java.by-comparison.com/img/cover.jpg";
-    }
+  public String title() {
+    return name + " by Comparison";
+  }
 
-    public long numberOfComparisons() {
-        return comparisons.size();
-    }
+  public String previewCard() {
+    return "https://java.by-comparison.com/img/cover.jpg";
+  }
 
-    public String link() {
-        return filename();
-    }
+  public long numberOfComparisons() {
+    return comparisons.size();
+  }
+
+  public String link() {
+    return filename();
+  }
+
   public List<String> groups() {
     return comparisons.stream().map(Comparison::group).distinct().collect(Collectors.toList());
+  }
+
+  public String htmlText() {
+    return Markdown.toHtml(text);
   }
 
   public List<Comparison> comparisonsForGroup(String group) {

@@ -1,6 +1,6 @@
-package com.bycomparison.c4.after;
+package com.bycomparison.javaconcurrency.guardyourwaits.after;
 
-import com.bycomparison.c4.Launch;
+import com.bycomparison.javaconcurrency.guardyourwaits.Launch;
 
 public class After {
 
