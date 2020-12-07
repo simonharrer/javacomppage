@@ -1,14 +1,46 @@
 package com.bycomparison;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ComparisonsModernJava {
 
   public static List<Comparison> getComparisons() {
     return List
-        .of(new Comparison("Replace Small Test Files with Text Blocks", "Java 15", "Modern Java",
-            List.of("Text Blocks", "Testing"),
-            "", "", "", "", "", "", "java", "", true, false, ""));
+        .of(modernJava("Inline Short Files in Tests", "Java 15",
+            List.of("Text Blocks", "Testing"), """
+                * JSONAssert
+                * expect output not directly visible, one click away""", """
+                * expected output directly visible
+                * makes use of text block
+                * templating easy with `formatted`
+                """, "", ""),
+            modernJava("Explain Unexpected Empty Optional", "Java 10",
+                List.of("Optional", "Error Handling"), """
+                    * since Java 10 there's orElseThrows() without a parameter
+                    * according to docs preferred over get() (which basically does the same)
+                    * exception doesn't say which id wasn't found""", """
+                    * exception now says which id wasn't found
+                    * works with Optional out of the box (since Java 8)
+                    """, "6", "6-7"));
+  }
+
+  private static Comparison modernJava(String name, String group, List<String> tags,
+      String beforeText, String afterText, String beforeCodeHighlight, String afterCodeHighlight) {
+    var category = "Modern Java";
+    var codeDirectory = normalize(category) + "/" + normalize(name);
+    return new Comparison(name, group, category,
+        tags,
+        Code.parseBeforeCodePart(codeDirectory), beforeCodeHighlight, Markdown.toHtml(beforeText),
+        Code.parseAfterCodePart(codeDirectory), afterCodeHighlight, Markdown.toHtml(afterText),
+        "java", "",
+        true, false, "");
+  }
+
+  private static String normalize(String name) {
+    return name
+        .replaceAll("[^A-Za-z]", "").toLowerCase(
+            Locale.ROOT);
   }
 
 }
