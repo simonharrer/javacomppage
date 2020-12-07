@@ -77,7 +77,7 @@ public class Generator {
   private static void renderToFile(Comparison comparison, List<Category> categories, Path site) {
     if (!comparison.beforeCode().isBlank()) {
       try {
-        comparison.generatePreviewCard();
+        comparison.generatePreviewCard(site);
       } catch (IOException ioException) {
         ioException.printStackTrace();
       }

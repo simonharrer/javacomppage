@@ -1,9 +1,6 @@
 package com.bycomparison;
 
-import static com.bycomparison.Generator.DIR;
-
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
@@ -24,16 +21,15 @@ public record Comparison(String name, String group, String category, List<String
   }
 
   public String title() {
-    return name + " | " + new Category(category, "", List.of(this))
-        .title(); //Fixme: What should the 2nd param be?!
+    return name + " | " + categoryTitle(category);
+  }
+
+  private static String categoryTitle(String categoryName) {
+    return new Category(categoryName, "", List.of()).title();
   }
 
   public String previewCard() {
-    if (Files.notExists(Path.of(DIR, uniqueName() + beforeCode.hashCode() + ".png"))) {
-      return "https://java.by-comparison.com/img/cover.jpg";
-    }
-
-    return "https://java.by-comparison.com/" + DIR + uniqueName() + beforeCode.hashCode() + ".png";
+    return "https://java.by-comparison.com/site/" + previewPngFilename();
   }
 
   public String diff() {
@@ -44,7 +40,11 @@ public record Comparison(String name, String group, String category, List<String
     return uniqueName() + ".html";
   }
 
-  public void generatePreviewCard() throws IOException {
-    Carbon.generatePreviewCard(Path.of(DIR), beforeCode, uniqueName());
+  public void generatePreviewCard(Path site) throws IOException {
+    Carbon.generatePreviewCard(site, beforeCode, uniqueName(), previewPngFilename());
+  }
+
+  private String previewPngFilename() {
+    return uniqueName() + beforeCode.hashCode() + ".png";
   }
 }

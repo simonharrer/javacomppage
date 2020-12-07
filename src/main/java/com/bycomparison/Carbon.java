@@ -10,15 +10,13 @@ import java.util.Comparator;
 
 public class Carbon {
 
-  public static void generatePreviewCard(Path folder, String code, String name) throws IOException {
-    var codeHash = code.hashCode();
-    var pngFilename = name + codeHash + ".png";
+  public static void generatePreviewCard(Path folder, String code, String name, String pngFilename) throws IOException {
 
     if (Files.exists(folder.resolve(pngFilename))) {
       return;
     }
     final String carbonScript =
-        "echo  \"" + code + "\" | carbon-now -l " + folder + " -t " + name + codeHash;
+        "echo  \"" + code + "\" | carbon-now -l " + folder + " --target " + pngFilename;
     final Path carbonFile = Path.of(name + ".sh");
     Files.write(carbonFile, carbonScript.getBytes());
     StringBuilder log = new StringBuilder("Error log for " + name + System.lineSeparator());
