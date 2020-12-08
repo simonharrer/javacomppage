@@ -13,7 +13,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Synchronize Your Collections | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Synchronize Your Collections | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/synchronize-your-collections0.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/synchronize-your-collections-826246228.png">
     </head>
     <body>
 
@@ -77,6 +77,8 @@
     <div class="container-fluid mt-3">
         <h1>Synchronize Your Collections
     <span>
+        <span class="badge badge-info">Collections.synchronized</span>
+        <span class="badge badge-info">List</span>
     </span>
 </h1>
 <div class="row row-eq-height">
@@ -85,7 +87,22 @@
 
           <pre
     class="language-java"
-><code></code></pre>
+><code>class Crew {
+
+  private List&lt;String&gt; members;
+
+  private final Object lock = new Object();
+
+  Crew() {
+    members = new ArrayList&lt;&gt;();
+  }
+
+  void add(String name) {
+    synchronized (lock) {
+      members.add(name);
+    }
+  }
+}</code></pre>
 
 
           <div class="p-3">
@@ -98,7 +115,18 @@
 
                 <pre
     class="language-java"
-><code></code></pre>
+><code>class Crew {
+
+  private List&lt;String&gt; members;
+
+  Crew() {
+    members = Collections.synchronizedList(new ArrayList&lt;&gt;());
+  }
+
+  void add(String name) {
+    members.add(name);
+  }
+}</code></pre>
 
 
             <div class="p-3">

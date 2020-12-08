@@ -57,12 +57,29 @@ public class ComparisonsJavaConcurrency {
             javaConcurrency("Avoid Active Waiting", groupSharedValue,
                 List.of("LongAdder", "compare-and-set", "Striped64"),
                 """
-                    * AtomicLong is nonblocking (lock-free) but may result in lots of active waiting""", """
+                    * AtomicLong is nonblocking (lock-free) but may result in lots of active waiting""",
+                """
                     * LongAdder uses multiple atomatic longs (multiple stripes), one per thread. The sum of those stripes is the total. 
                     * Sum is not as exact as it is with the AtomicLong, but much higher performance if multiple threads increment simultaneously""",
                 "4,7,9,10,12", "4,7"),
-            Comparison.empty("Synchronize Your Collections", groupSharedList, "Java Concurrency"),
-            Comparison.empty("Use Thread-Safe Data Structure", groupSharedList, "Java Concurrency"),
+            javaConcurrency("Protect Your Collections", groupSharedList,
+                List.of("synchronized", "List"),
+                """
+                    """,
+                """
+                    """, "", ""),
+            javaConcurrency("Synchronize Your Collections", groupSharedList,
+                List.of("Collections.synchronized", "List"),
+                """
+                    """,
+                """
+                    """, "", ""),
+            javaConcurrency("Use Thread-Safe Collections", groupSharedList,
+                List.of("CopyOnWriteArrayList"),
+                """
+                    """,
+                """
+                    """, "", ""),
             javaConcurrency("Guard your Waits", "Locking",
                 List.of(),
                 """
