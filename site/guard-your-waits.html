@@ -100,9 +100,9 @@
 
           <div class="p-3">
             <ul>
-<li>Another Thread can modify <code>isReadyToLaunch</code></li>
-<li>Countdown is only initiated when isReadyToLaunch becomes true</li>
-<li>Inefficient, since boolean is constantly checked</li>
+<li><code>wait()</code> allows the Thread to suspend execution until it is woken up by a <code>notify()</code>.</li>
+<li><code>synchronized</code> is necessary to prevent putting this Thread to <code>sleep</code> multiple times.</li>
+<li><code>wait()</code> can be interrupted, but the value of <code>isReadyToLaunch</code> determines whether the <code>while</code> loop exits. Therefore, the <code>InterruptedException</code> can be ignored!</li>
 </ul>
 
           </div>
@@ -131,9 +131,9 @@
 
             <div class="p-3">
               <ul>
-<li><code>wait()</code> allows the Thread to suspend execution until it is woken up by a <code>notify()</code>.</li>
-<li><code>synchronized</code> is necessary to prevent putting this Thread to <code>sleep</code> multiple times.</li>
-<li><code>wait()</code> can be interrupted, but the value of <code>isReadyToLaunch</code> determines whether the <code>while</code> loop exits. Therefore, the <code>InterruptedException</code> can be ignored!</li>
+<li>Another Thread can modify <code>isReadyToLaunch</code></li>
+<li>Countdown is only initiated when isReadyToLaunch becomes true</li>
+<li>Inefficient, since boolean is constantly checked</li>
 </ul>
 
             </div>

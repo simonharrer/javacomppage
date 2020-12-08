@@ -9,7 +9,7 @@ public class Before {
 class Counter {
 
   /** guarded by 'this' */
-  private int count;
+  private long count;
 
   synchronized void increment() {
     count++;

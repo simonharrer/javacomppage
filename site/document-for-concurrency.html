@@ -13,7 +13,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Document for Concurrency | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Document for Concurrency | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/document-for-concurrency1644321114.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/document-for-concurrency1092806357.png">
     </head>
     <body>
 
@@ -77,6 +77,7 @@
     <div class="container-fluid mt-3">
         <h1>Document for Concurrency
     <span>
+        <span class="badge badge-info">synchronized</span>
     </span>
 </h1>
 <div class="row row-eq-height">
@@ -85,9 +86,10 @@
 
           <pre
     class="language-java"
-><code>class Counter {
+    data-line="1,4"
+    ><code>class Counter {
 
-  private int count;
+  private long count;
 
   synchronized void increment() {
     count++;
@@ -105,12 +107,11 @@
 
                 <pre
     class="language-java"
-    data-line="1,4"
-    ><code>/** thread safe */
+><code>/** thread safe */
 class Counter {
 
   /** guarded by &#39;this&#39; */
-  private int count;
+  private long count;
 
   synchronized void increment() {
     count++;

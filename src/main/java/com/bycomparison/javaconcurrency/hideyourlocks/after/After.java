@@ -13,7 +13,7 @@ public class After {
 class Counter {
 
   /** guarded by 'lock' */
-  private int count;
+  private long count;
 
   private final Object lock = new Object();
 

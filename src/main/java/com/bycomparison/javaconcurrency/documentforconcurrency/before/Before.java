@@ -7,7 +7,7 @@ public class Before {
 // BEFORE:start
 class Counter {
 
-  private int count;
+  private long count;
 
   synchronized void increment() {
     count++;
