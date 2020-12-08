@@ -23,6 +23,13 @@ public class ComparisonsModernJava {
                     * exception doesn't say which id wasn't found""", """
                     * exception now says which id wasn't found
                     * works with Optional out of the box (since Java 8)
+                    """, "6", "6-7"),
+            modernJava("Remove Unnecessary Interface", "Design",
+                List.of("Implementation", "Interface"), """
+                    * one interface and one implementation
+                    * either interface or implementation has bad name `ICalculator` or `CalculatorImpl` or `SimpleCalculator`
+                    """, """
+                    * no naming issue by inlining interface
                     """, "6", "6-7"));
   }
 
