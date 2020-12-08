@@ -101,7 +101,10 @@ class Counter {
 
 
           <div class="p-3">
-            
+            <ul>
+<li>AtomicLong is nonblocking (lock-free) but may result in lots of active waiting</li>
+</ul>
+
           </div>
         </div>
     </div>
@@ -123,7 +126,11 @@ class Counter {
 
 
             <div class="p-3">
-              
+              <ul>
+<li>LongAdder uses multiple atomatic longs (multiple stripes), one per thread. The sum of those stripes is the total.</li>
+<li>Sum is not as exact as it is with the AtomicLong, but much higher performance if multiple threads increment simultaneously</li>
+</ul>
+
             </div>
 
         </div>
