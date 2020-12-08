@@ -5,15 +5,22 @@ import java.util.List;
 public class ComparisonsJavaConcurrency {
 
   public static List<Comparison> getComparisons() {
+    var groupCounter = "Shared Variable";
     return List
         .of(
-            javaConcurrency("Document for Concurrency", "Counter",
+            javaConcurrency("Protect Your Shared Memory", groupCounter,
                 List.of("synchronized"),
                 """
                     """, """
                     """,
                 "1,4", ""),
-            javaConcurrency("Make Locks Explicit", "Counter",
+            javaConcurrency("Document for Concurrency", groupCounter,
+                List.of("synchronized"),
+                """
+                    """, """
+                    """,
+                "1,4", ""),
+            javaConcurrency("Make Locks Explicit", groupCounter,
                 List.of("synchronized"),
                 """
                     * synchronized in the method may be short, but readers who aren't that familier with synchronized may get the wrong impression
@@ -22,7 +29,7 @@ public class ComparisonsJavaConcurrency {
                     * just make it explicit
                     """,
                 "4,7,9,10,12", "4,7"),
-            javaConcurrency("Hide Your Locks", "Counter",
+            javaConcurrency("Hide Your Locks", groupCounter,
                 List.of("synchronized"),
                 """
                     * if `this` is the lock, everybody who has access to that object reference interfere
@@ -30,7 +37,7 @@ public class ComparisonsJavaConcurrency {
                     * with a private lock object, the monitor stays local
                     """,
                 "4,7,9,10,12", "4,7"),
-            javaConcurrency("Avoid Locks", "Counter",
+            javaConcurrency("Avoid Locks", groupCounter,
                 List.of("AtomicLong", "compare-and-set"),
                 """
                     * locks are bad
@@ -41,7 +48,7 @@ public class ComparisonsJavaConcurrency {
                     * requires instruction by the CPU to work
                     """,
                 "4,7,9,10,12", "4,7"),
-            javaConcurrency("Avoid Active Waiting", "Counter",
+            javaConcurrency("Avoid Active Waiting", groupCounter,
                 List.of("LongAdder", "compare-and-set", "Striped64"),
                 """
                     * AtomicLong is nonblocking (lock-free) but may result in lots of active waiting""", """
