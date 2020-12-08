@@ -87,7 +87,13 @@ public class ComparisonsJavaConcurrency {
                 """
                     """, "", ""),
             javaConcurrency("Favor Executor Over Thread", "Execution",
-                List.of("Executor", "ExecutorService", "shutdown"),
+                List.of("Executor", "ExecutorService"),
+                """
+                    """,
+                """
+                    """, "", ""),
+            javaConcurrency("Make Sure to Clean Up Your Executor", "Execution",
+                List.of("Executor", "ExecutorService", "finally"),
                 """
                     """,
                 """

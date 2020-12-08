@@ -79,7 +79,6 @@
     <span>
         <span class="badge badge-info">Executor</span>
         <span class="badge badge-info">ExecutorService</span>
-        <span class="badge badge-info">shutdown</span>
     </span>
 </h1>
 <div class="row row-eq-height">
@@ -112,13 +111,10 @@
 
   static void start(List&lt;Job&gt; jobs) {
     ExecutorService executorService = Executors.newFixedThreadPool(10);
-    try {
-      for (Job job : jobs) {
-        executorService.execute(job::doWork);
-      }
-    } finally {
-      executorService.shutdown();
+    for (Job job : jobs) {
+      executorService.execute(job::doWork);
     }
+    executorService.shutdown();
   }
 }</code></pre>
 

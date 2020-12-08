@@ -20,13 +20,10 @@ class Main {
 
   static void start(List<Job> jobs) {
     ExecutorService executorService = Executors.newFixedThreadPool(10);
-    try {
-      for (Job job : jobs) {
-        executorService.execute(job::doWork);
-      }
-    } finally {
-      executorService.shutdown();
+    for (Job job : jobs) {
+      executorService.execute(job::doWork);
     }
+    executorService.shutdown();
   }
 }
 // AFTER:end
