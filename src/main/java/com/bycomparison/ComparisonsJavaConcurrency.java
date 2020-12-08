@@ -80,6 +80,18 @@ public class ComparisonsJavaConcurrency {
                     """,
                 """
                     """, "", ""),
+            javaConcurrency("Separate Runnable From Thread", "Execution",
+                List.of("Thread", "Runnable"),
+                """
+                    """,
+                """
+                    """, "", ""),
+            javaConcurrency("Favor Executor Over Thread", "Execution",
+                List.of("Executor", "ExecutorService", "shutdown"),
+                """
+                    """,
+                """
+                    """, "", ""),
             javaConcurrency("Guard your Waits", "Locking",
                 List.of(),
                 """
