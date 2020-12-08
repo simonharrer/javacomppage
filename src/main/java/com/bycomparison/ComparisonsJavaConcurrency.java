@@ -80,6 +80,14 @@ public class ComparisonsJavaConcurrency {
                     """,
                 """
                     """, "", ""),
+            javaConcurrency("Synchronize Combination of Atomic Methods", groupSharedList,
+                List.of("CopyOnWriteArrayList", "atomicity"),
+                """
+                    * using atomic methods with a thread-safe data structure may still lead to wrong results
+                    """,
+                """
+                    * make that atomic which should be atomic
+                    """, "", ""),
             javaConcurrency("Separate Runnable From Thread", "Execution",
                 List.of("Thread", "Runnable"),
                 """
