@@ -4,6 +4,10 @@ import java.util.List;
 
 public class ComparisonsModernJava {
 
+  /*
+  https://github.com/simonharrer/javacomp/issues/3
+   */
+
   public static List<Comparison> getComparisons() {
     return List
         .of(modernJava("Inline Short Files in Tests", "Java 15",
@@ -31,7 +35,17 @@ public class ComparisonsModernJava {
                     """, """
                     * no naming issue by inlining interface
                     """, "6", "6-7"),
-            Comparison.empty("Keep Related Tests Together", "Modern Java"));
+            Comparison.empty("Keep Related Tests Together", "Modern Java"),
+            Comparison.empty("Use assertThat", "Modern Java"),
+            Comparison.empty("JavaDoc for Modules", "Modern Java"),
+            Comparison.empty("Irgendwas mit mocking", "Modern Java"),
+            Comparison.empty("Avoid OutOfMemoryErrors", "Know the Gotchas", "Modern Java"),
+            Comparison.empty("Avoid Stackoverflows", "Know the Gotchas", "Modern Java"),
+            Comparison.empty("Avoid Linebreaks Issues", "Know the Gotchas", "Modern Java"),
+            Comparison.empty("Avoid Encoding Issues", "Know the Gotchas", "Modern Java"),
+            Comparison.empty("Avoid Locale Issues", "Know the Gotchas", "Modern Java")
+        )
+        ;
   }
 
   private static Comparison modernJava(String name, String group, List<String> tags,

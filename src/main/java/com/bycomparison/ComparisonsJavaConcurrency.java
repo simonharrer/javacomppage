@@ -4,6 +4,11 @@ import java.util.List;
 
 public class ComparisonsJavaConcurrency {
 
+  /*
+  Free Your Locks (always use finally, for all the resources like locks, executors, semaphore, etc. etc. etc.)
+  Volatile
+   */
+
   public static List<Comparison> getComparisons() {
     var groupCounter = "Shared Variable";
     return List
