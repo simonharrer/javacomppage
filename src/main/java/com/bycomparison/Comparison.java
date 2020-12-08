@@ -25,7 +25,7 @@ public record Comparison(String name, String group, String category, List<String
   }
 
   public static Comparison empty(String name, String category) {
-    return new Comparison(name, "", category,
+    return new Comparison(name, "Group", category,
         List.of(),
         "", "", "",
         "", "", "",
