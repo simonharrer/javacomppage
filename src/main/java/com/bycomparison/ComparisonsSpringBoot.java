@@ -7,6 +7,18 @@ public class ComparisonsSpringBoot {
   public static List<Comparison> getComparisons() {
     return List
         .of(
+            /*
+            Comparison.empty("Favor Configuration over Code", "Spring Boot"),
+            Comparison.empty("Favor ConfigurationProperties over Value", "Spring Boot"),
+            Comparison.empty("Favor Properties over YAML", "Spring Boot"),
+            Comparison.empty("Group Properties by Line Breaks", "Spring Boot"),
+            */
+            Comparison.empty("Keep Your Application Clean", "Spring Boot"),
+            Comparison.empty("Keep the Context Loading Test", "Spring Boot"),
+            Comparison.empty("Favor POJO Tests over Spring Boot Tests", "Spring Boot"),
+            Comparison.empty("Favor Test Slices or Spring Boot Integration Tests", "Spring Boot"),
+            Comparison.empty("Appropriate Test Splice", "Spring Boot"),
+            Comparison.empty("Avoid Async Pitfalls", "Spring Boot"),
             new Comparison("Save the Planet", "Configuration", "Spring Boot",
                 List.of("Spring"),
                 "spring.main.banner-mode=console", "1", "", "spring.main.banner-mode=off", "1", "",

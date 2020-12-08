@@ -24,6 +24,15 @@ public record Comparison(String name, String group, String category, List<String
         true, false, "");
   }
 
+  public static Comparison empty(String name, String category) {
+    return new Comparison(name, "", category,
+        List.of(),
+        "", "", "",
+        "", "", "",
+        "java", "",
+        true, false, "");
+  }
+
   private static String normalize(String name) {
     return name
         .replaceAll("[^A-Za-z]", "").toLowerCase(
@@ -60,7 +69,8 @@ public record Comparison(String name, String group, String category, List<String
   }
 
   public void generatePreviewCard(Path site) throws IOException {
-    Carbon.generatePreviewCard(site, beforeCode, uniqueName(), previewFilename(), previewPngFilename());
+    Carbon.generatePreviewCard(site, beforeCode, uniqueName(), previewFilename(),
+        previewPngFilename());
   }
 
   private String previewPngFilename() {

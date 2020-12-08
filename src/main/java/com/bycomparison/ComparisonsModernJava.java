@@ -30,7 +30,8 @@ public class ComparisonsModernJava {
                     * either interface or implementation has bad name `ICalculator` or `CalculatorImpl` or `SimpleCalculator`
                     """, """
                     * no naming issue by inlining interface
-                    """, "6", "6-7"));
+                    """, "6", "6-7"),
+            Comparison.empty("Keep Related Tests Together", "Modern Java"));
   }
 
   private static Comparison modernJava(String name, String group, List<String> tags,
