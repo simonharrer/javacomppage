@@ -16,7 +16,9 @@ class Main {
 
   static void start(List<Job> jobs) {
     for (Job job : jobs) {
+      // START_HIGHLIGHT
       new Thread(job::doWork).start();
+      // END_HIGHLIGHT
     }
   }
 }

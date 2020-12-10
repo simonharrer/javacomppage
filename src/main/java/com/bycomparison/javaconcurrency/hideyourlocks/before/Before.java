@@ -13,10 +13,12 @@ class Counter {
   // END_HIGHLIGHT
   private long count;
 
-  // START_HIGHLIGHT
-  synchronized void increment() {
+  void increment() {
+    // START_HIGHLIGHT
+    synchronized (this) {
+      count++;
+    }
     // END_HIGHLIGHT
-    count++;
   }
 }
 // BEFORE:end

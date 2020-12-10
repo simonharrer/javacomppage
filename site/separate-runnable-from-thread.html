@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Separate Runnable From Thread | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Separate Runnable From Thread | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/separate-runnable-from-thread1959332091.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/separate-runnable-from-thread-1859693476.png">
     </head>
     <body>
 
@@ -92,7 +92,8 @@
 
           <pre
     class="language-java"
-><code>class Countdown extends Thread {
+    data-line="1,22,23"
+    ><code>class Countdown extends Thread {
 
   int start;
   boolean finished;
@@ -113,9 +114,8 @@
 
 class Main {
   public static void main(String[] args) throws InterruptedException {
-    var thread = new Countdown(10);
+    Thread thread = new Countdown(10);
     thread.start();
-    thread.join();
   }
 }</code></pre>
 
@@ -130,7 +130,8 @@ class Main {
 
                 <pre
     class="language-java"
-><code>class Countdown implements Runnable {
+    data-line="1,22,23"
+    ><code>class Countdown implements Runnable {
 
   int start;
   boolean finished;
@@ -140,6 +141,7 @@ class Main {
     this.finished = false;
   }
 
+  @Override
   public void run() {
     while (start &gt; 0) {
       start--;
@@ -150,7 +152,7 @@ class Main {
 
 class Main {
   public static void main(String[] args) {
-    var countdown = new Countdown(10);
+    Runnable countdown = new Countdown(10);
     new Thread(countdown).start();
   }
 }</code></pre>

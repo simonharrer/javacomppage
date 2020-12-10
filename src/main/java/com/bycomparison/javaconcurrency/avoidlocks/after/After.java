@@ -10,10 +10,14 @@ public class After {
 /** thread safe */
 class Counter {
 
-  private AtomicLong count;
+  // START_HIGHLIGHT
+  private AtomicLong count = new AtomicLong();
+  // END_HIGHLIGHT
 
   void increment() {
+    // START_HIGHLIGHT
     count.incrementAndGet();
+    // END_HIGHLIGHT
   }
 }
 // AFTER:end

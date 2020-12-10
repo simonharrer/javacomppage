@@ -93,7 +93,8 @@
 
           <pre
     class="language-java"
-><code>/** thread safe */
+    data-line="4,5,6,7,10,11,12"
+    ><code>/** thread safe */
 class Counter {
 
   /** guarded by &#39;lock&#39; */
@@ -123,10 +124,11 @@ class Counter {
 
                 <pre
     class="language-java"
-><code>/** thread safe */
+    data-line="4,7"
+    ><code>/** thread safe */
 class Counter {
 
-  private AtomicLong count;
+  private AtomicLong count = new AtomicLong();
 
   void increment() {
     count.incrementAndGet();

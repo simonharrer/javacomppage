@@ -19,11 +19,17 @@ interface Job {
 class Main {
 
   static void start(List<Job> jobs) {
+    // START_HIGHLIGHT
     ExecutorService executorService = Executors.newFixedThreadPool(10);
+    // END_HIGHLIGHT
     for (Job job : jobs) {
+      // START_HIGHLIGHT
       executorService.execute(job::doWork);
+      // END_HIGHLIGHT
     }
+    // START_HIGHLIGHT
     executorService.shutdown();
+    // START_HIGHLIGHT
   }
 }
 // AFTER:end

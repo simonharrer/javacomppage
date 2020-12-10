@@ -5,7 +5,9 @@ public class After {
 }
 
 // AFTER:start
+// START_HIGHLIGHT
 class Countdown implements Runnable {
+  // END_HIGHLIGHT
 
   int start;
   boolean finished;
@@ -15,6 +17,7 @@ class Countdown implements Runnable {
     this.finished = false;
   }
 
+  @Override
   public void run() {
     while (start > 0) {
       start--;
@@ -25,8 +28,10 @@ class Countdown implements Runnable {
 
 class Main {
   public static void main(String[] args) {
-    var countdown = new Countdown(10);
+    // START_HIGHLIGHT
+    Runnable countdown = new Countdown(10);
     new Thread(countdown).start();
+    // END_HIGHLIGHT
   }
 }
 // AFTER:end

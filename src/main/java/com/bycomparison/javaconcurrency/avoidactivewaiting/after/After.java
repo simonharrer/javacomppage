@@ -10,10 +10,14 @@ public class After {
 /** thread safe */
 class Counter {
 
-  private LongAdder count;
+  // START_HIGHLIGHT
+  private LongAdder count = new LongAdder();
+  // END_HIGHLIGHT
 
   void increment() {
+    // START_HIGHLIGHT
     count.increment();
+    // END_HIGHLIGHT
   }
 }
 // AFTER:end

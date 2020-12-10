@@ -5,7 +5,9 @@ public class Before {
 }
 
 // BEFORE:start
+// START_HIGHLIGHT
 class Countdown extends Thread {
+  // END_HIGHLIGHT
 
   int start;
   boolean finished;
@@ -26,9 +28,10 @@ class Countdown extends Thread {
 
 class Main {
   public static void main(String[] args) throws InterruptedException {
-    var thread = new Countdown(10);
+    // START_HIGHLIGHT
+    Thread thread = new Countdown(10);
     thread.start();
-    thread.join();
+    // END_HIGHLIGHT
   }
 }
 // BEFORE:end
