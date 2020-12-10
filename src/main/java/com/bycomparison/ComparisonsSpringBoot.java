@@ -13,12 +13,18 @@ public class ComparisonsSpringBoot {
             Comparison.empty("Favor Properties over YAML", "Spring Boot"),
             Comparison.empty("Group Properties by Line Breaks", "Spring Boot"),
             */
-            Comparison.empty("Keep Your Application Clean", "Spring Boot"),
+            springBoot("Keep Your Application Clean", "Application", List.of("Configuration"), """
+                * application is a magnet for aspects
+                * hard to activate only a few of those aspects in tests
+                """, """
+                * extract aspects in separate configurations
+                * enables test slices or disable specific things for tests more easily
+                """),
             Comparison.empty("Keep the Context Loading Test", "Spring Boot"),
             Comparison.empty("Favor POJO Tests over Spring Boot Tests", "Spring Boot"),
             Comparison.empty("Favor Test Slices or Spring Boot Integration Tests", "Spring Boot"),
             Comparison.empty("Appropriate Test Splice", "Spring Boot"),
-            Comparison.empty("Avoid Async Pitfalls", "Spring Boot"),
+            Comparison.empty("Avoid Async Pitfalls", "Async", "Spring Boot"),
             Comparison.propertiesComparison("Save the Planet", "Configuration",
                 List.of("Spring"),
                 """
@@ -36,8 +42,7 @@ public class ComparisonsSpringBoot {
                     # END_HIGHLIGHT
                     # AFTER:end""", """
                     """, "Spring Boot"),
-            Comparison.javaComparison("Favor Constructor over Field Injection", "General",
-                List.of("Spring"), """
+            springBoot("Favor Constructor over Field Injection", "General", List.of("Spring"), """
                     Have a look at the code above. 
                     We have a SpaceSuit component with a single dependency, the `OxygenMonitor`.
                     Upon start, Spring will create one instance of that class for us, providing it an instance of the OxygenMonitor, and inject the SpaceSuit instance where appropriate in other components.
@@ -76,7 +81,14 @@ public class ComparisonsSpringBoot {
                                     
                     - TODO thymeleaf and MVC
                     - TODO web vs. webflux
-                    """, "Spring Boot"));
+                    """));
+  }
+
+  private static Comparison springBoot(String name, String group, List<String> tags,
+      String beforeText, String afterText) {
+    return Comparison.javaComparison(name, group,
+        tags,
+        beforeText, afterText, "Spring Boot");
   }
 
 }

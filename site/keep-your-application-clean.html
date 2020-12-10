@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Keep Your Application Clean | Spring Boot by Comparison">
         <meta name="twitter:description" content="Keep Your Application Clean | Spring Boot by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/keep-your-application-clean0.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/keep-your-application-clean-3663262.png">
     </head>
     <body>
 
@@ -79,9 +79,7 @@
     <div class="container-fluid mt-3">
         <h1>Keep Your Application Clean
     <span>
-    </span>
-    <span style="float: right;">
-      <a class="btn btn-info" href="keep-the-context-loading-test.html">Keep the Context Loading Test →</a>
+        <span class="badge badge-info">Configuration</span>
     </span>
 </h1>
 <div class="row row-eq-height">
@@ -90,11 +88,23 @@
 
           <pre
     class="language-java"
-><code></code></pre>
+    data-line="2,4,5,6,7"
+    ><code>@SpringBootApplication
+@EnableScheduling
+class MarsMissionApplication {
+  @Bean
+  HttpClient httpClient() {
+    return HttpClient.newHttpClient();
+  }
+}</code></pre>
 
 
           <div class="p-3">
-            
+            <ul>
+<li>application is a magnet for aspects</li>
+<li>hard to activate only a few of those aspects in tests</li>
+</ul>
+
           </div>
         </div>
     </div>
@@ -103,11 +113,31 @@
 
                 <pre
     class="language-java"
-><code></code></pre>
+    data-line="5,6,7,8,9,10,11,13,14,15,16"
+    ><code>@SpringBootApplication
+class MarsMissionApplication {
+}
+
+@Configuration
+class HttpClientConfiguration {
+  @Bean
+  HttpClient httpClient() {
+    return HttpClient.newHttpClient();
+  }
+}
+
+@Configuration
+@EnableScheduling
+class SchedulingConfiguration {
+}</code></pre>
 
 
             <div class="p-3">
-              
+              <ul>
+<li>extract aspects in separate configurations</li>
+<li>enables test slices or disable specific things for tests more easily</li>
+</ul>
+
             </div>
 
         </div>
