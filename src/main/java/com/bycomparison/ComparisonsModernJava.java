@@ -19,7 +19,7 @@ public class ComparisonsModernJava {
                 * expected output directly visible
                 * makes use of text block
                 * templating easy with `formatted` ???
-                """, "2", "4"),
+                """),
             modernJava("Explain Unexpected Empty Optional", "Java 10",
                 List.of("Optional", "Error Handling"), """
                     * since Java 10 there's orElseThrows() without a parameter
@@ -27,14 +27,14 @@ public class ComparisonsModernJava {
                     * exception doesn't say which id wasn't found""", """
                     * exception now says which id wasn't found
                     * works with Optional out of the box (since Java 8)
-                    """, "6", "6-7"),
+                    """),
             modernJava("Remove Unnecessary Interface", "Design",
                 List.of("Implementation", "Interface"), """
                     * one interface and one implementation
                     * either interface or implementation has bad name `ICalculator` or `CalculatorImpl` or `SimpleCalculator`
                     """, """
                     * no naming issue by inlining interface
-                    """, "6", "6-7"),
+                    """),
             Comparison.empty("Keep Related Tests Together", "Modern Java"),
             Comparison.empty("Use assertThat", "Modern Java"),
             Comparison.empty("JavaDoc for Modules", "Modern Java"),
@@ -49,9 +49,9 @@ public class ComparisonsModernJava {
   }
 
   private static Comparison modernJava(String name, String group, List<String> tags,
-      String beforeText, String afterText, String beforeCodeHighlight, String afterCodeHighlight) {
-    return Comparison.javaComparison(name, group, tags, beforeText, afterText, beforeCodeHighlight,
-        afterCodeHighlight, "Modern Java");
+      String beforeText, String afterText) {
+    return Comparison.javaComparison(name, group, tags, beforeText, afterText,
+        "Modern Java");
   }
 
 }

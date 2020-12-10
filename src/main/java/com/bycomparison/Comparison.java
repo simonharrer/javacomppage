@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public record Comparison(String name, String group, String category, List<String> tags,
                          String beforeCode,
@@ -13,13 +14,19 @@ public record Comparison(String name, String group, String category, List<String
                          String sample) {
 
   public static Comparison javaComparison(String name, String group, List<String> tags,
-      String beforeText, String afterText, String beforeCodeHighlight, String afterCodeHighlight,
+      String beforeText, String afterText,
       String category) {
     var codeDirectory = normalize(category) + "/" + normalize(name);
     return new Comparison(name, group, category,
         tags,
-        Code.parseBeforeCodePart(codeDirectory), beforeCodeHighlight, Markdown.toHtml(beforeText),
-        Code.parseAfterCodePart(codeDirectory), afterCodeHighlight, Markdown.toHtml(afterText),
+        Code.parseBeforeCodePart(codeDirectory).code(),
+        Code.parseBeforeCodePart(codeDirectory).highlightedLines().stream().map(Object::toString)
+            .collect(
+                Collectors.joining(",")), Markdown.toHtml(beforeText),
+        Code.parseAfterCodePart(codeDirectory).code(),
+        Code.parseAfterCodePart(codeDirectory).highlightedLines().stream().map(Object::toString)
+            .collect(
+                Collectors.joining(",")), Markdown.toHtml(afterText),
         "java", "",
         true, false, "");
   }

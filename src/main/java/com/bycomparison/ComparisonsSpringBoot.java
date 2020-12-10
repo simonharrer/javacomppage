@@ -25,7 +25,7 @@ public class ComparisonsSpringBoot {
                 "properties", "", true, false, ""),
             new Comparison("Favor Constructor over Field Injection", "General", "Spring Boot",
                 List.of("Spring"),
-                Code.parseBeforeCodePart("c1"), "4",
+                Code.parseBeforeCodePart("c1").code(), "4",
                 Markdown.toHtml("""
                     Have a look at the code above. 
                     We have a SpaceSuit component with a single dependency, the `OxygenMonitor`.
@@ -44,7 +44,7 @@ public class ComparisonsSpringBoot {
                     - Not final, can be changed within any methods later on
                     - No knowledge when the injection happens
                     - Field could be hidden somewhere in the class (although this is bad practice)"""),
-                Code.parseAfterCodePart("c1"), "4-8", Markdown.toHtml("""
+                Code.parseAfterCodePart("c1").code(), "4-8", Markdown.toHtml("""
                 The code is clearer now. 
                 The field is set through the constructor upon instance creation. 
                 And because we marked the field final it won't be able to change afterward anymore. 
