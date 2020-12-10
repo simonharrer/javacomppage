@@ -1,8 +1,9 @@
 @import com.bycomparison.Comparison
 @import com.bycomparison.Category
+@import com.bycomparison.Dependencies
 @import java.util.List
 
-@args (Comparison comparison, List<Category> categories)
+@args (Comparison comparison, Dependencies dependencies, List<Category> categories)
 
     @views.layoutcard.template(comparison.title(), comparison.category(), categories, comparison.previewCard()) -> {
 
@@ -12,6 +13,16 @@
         <span class="badge badge-info">@tag</span>
         }
     </span>
+  @if(!dependencies.previous().isEmpty() || !dependencies.next().isEmpty()) {
+    <span style="float: right;">
+      @if(!dependencies.previous().isEmpty()) {
+      <a class="btn btn-info" href="@dependencies.previous()">← @dependencies.previousName()</a>
+      }
+      @if(!dependencies.next().isEmpty()) {
+      <a class="btn btn-info" href="@dependencies.next()">@dependencies.nextName() →</a>
+      }
+    </span>
+  }
 </h1>
 <div class="row row-eq-height">
     <div class="col-sm">

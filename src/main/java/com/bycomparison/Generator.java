@@ -32,7 +32,7 @@ public class Generator {
     System.out.println("Comparisons: " + comparisons.size());
     System.out.println("Categories: " + categories.size());
 
-    comparisons.forEach(comparison -> renderToFile(comparison, categories, site));
+    comparisons.forEach(comparison -> renderToFile(comparison, comparisons, categories, site));
     categories.forEach(category -> renderToFile(category, categories, site));
     renderMethod(categories, site);
     renderIndex(categories, site);
@@ -72,7 +72,41 @@ public class Generator {
         .collect(Collectors.toList());
   }
 
-  private static void renderToFile(Comparison comparison, List<Category> categories, Path site) {
+  private static void renderToFile(Comparison comparison,
+      List<Comparison> comparisons, List<Category> categories, Path site) {
+    generatePreviewCard(comparison, site);
+
+    var dependencies = getDependencies(comparison, comparisons);
+
+    renderToFile(comparison.filename(),
+        views.comparison.template(comparison, dependencies, categories), site);
+  }
+
+  private static Dependencies getDependencies(Comparison comparison, List<Comparison> comparisons) {
+    var next = "";
+    var nextName = "";
+    var previous = "";
+    var previousName = "";
+    var comparisonsInSameCategoryAndGroup = comparisons.stream()
+        .filter(c -> c.category().equals(comparison.category()))
+        .filter(c -> c.group().equals(comparison.group())).collect(Collectors.toList());
+    if (comparisonsInSameCategoryAndGroup.size() > 1) {
+      var index = comparisonsInSameCategoryAndGroup.indexOf(comparison);
+      if (index < comparisonsInSameCategoryAndGroup.size() - 1) {
+        var nextComparison = comparisonsInSameCategoryAndGroup.get(index + 1);
+        next = nextComparison.link();
+        nextName = nextComparison.name();
+      }
+      if (index > 0) {
+        var previousComparison = comparisonsInSameCategoryAndGroup.get(index - 1);
+        previous = previousComparison.link();
+        previousName = previousComparison.name();
+      }
+    }
+    return new Dependencies(next, nextName, previous, previousName);
+  }
+
+  private static void generatePreviewCard(Comparison comparison, Path site) {
     if (!comparison.beforeCode().isBlank()) {
       try {
         comparison.generatePreviewCard(site);
@@ -80,8 +114,6 @@ public class Generator {
         ioException.printStackTrace();
       }
     }
-    renderToFile(comparison.filename(),
-        views.comparison.template(comparison, categories), site);
   }
 
   private static void renderToFile(Category category, List<Category> categories, Path site) {
