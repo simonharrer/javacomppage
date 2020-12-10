@@ -21,7 +21,9 @@ class Main {
     for (Job job : jobs) {
       executorService.execute(job::doWork);
     }
+    // START_HIGHLIGHT
     executorService.shutdown();
+    // END_HIGHLIGHT
   }
 }
 // BEFORE:end

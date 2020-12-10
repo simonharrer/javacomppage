@@ -20,13 +20,17 @@ class Main {
 
   static void start(List<Job> jobs) {
     ExecutorService executorService = Executors.newFixedThreadPool(10);
+    // START_HIGHLIGHT
     try {
+      // END_HIGHLIGHT
       for (Job job : jobs) {
         executorService.execute(job::doWork);
       }
+      // START_HIGHLIGHT
     } finally {
       executorService.shutdown();
     }
+    // END_HIGHLIGHT
   }
 }
 // AFTER:end

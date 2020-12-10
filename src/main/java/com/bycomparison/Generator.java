@@ -40,9 +40,19 @@ public class Generator {
 
   private static void renderMethod(List<Category> categories, Path site) {
     renderToFile("method.html", views.method.template(categories,
-        new Comparison("Actionable Name", "", "method", List.of("example-tag"),
-            "// bad code\nint x = 3;", "1", "Why the code above is hard to read",
-            "// better code\nint remainingChocolateBars = 3;", "1",
+        new Comparison("Actionable Name Starting With a Strong Verb", "", "method", List.of("example-tag"),
+            """
+                // bad code
+                int x = 3;
+                // problematic lines are highlighted
+                // imports and accessibility modifier left out
+                """, "2", "Why the code above is hard to read",
+            """
+                // better code
+                // it's not good or clean code, just cleaner or better code
+                int remainingChocolateBars = 3;
+                // better lines are highlighted
+                """, "2",
             "Why the code on the green / right-hand side is cleaner and more maintainable",
             "java", "", true, false, "")), site);
   }

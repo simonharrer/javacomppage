@@ -21,7 +21,9 @@ class CandyService {
   private SupplyRepository supplyRepository;
 
   void updateBarcode(String id, String newBarcode) {
+    // START_HIGHLIGHT
     var supply = supplyRepository.findById(id).orElseThrow();
+    // END_HIGHLIGHT
     supply.setBarcode(newBarcode);
     supplyRepository.save(supply);
   }

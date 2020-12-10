@@ -18,8 +18,10 @@ class Crew {
   }
 
   void remove(String name) {
+    // START_HIGHLIGHT
     var index = members.indexOf(name);
     members.remove(index);
+    // END_HIGHLIGHT
   }
 }
 // BEFORE:end

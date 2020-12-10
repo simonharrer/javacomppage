@@ -1,6 +1,7 @@
 package com.bycomparison.javaconcurrency.usethreadsafecollections.before;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Before {
@@ -12,16 +13,14 @@ class Crew {
 
   private List<String> members;
 
-  private final Object lock = new Object();
-
   Crew() {
-    members = new ArrayList<>();
+    // START_HIGHLIGHT
+    members = Collections.synchronizedList(new ArrayList<>());
+    // END_HIGHLIGHT
   }
 
   void add(String name) {
-    synchronized (lock) {
-      members.add(name);
-    }
+    members.add(name);
   }
 }
 // BEFORE:end

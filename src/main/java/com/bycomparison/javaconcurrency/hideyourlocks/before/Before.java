@@ -8,10 +8,14 @@ public class Before {
 /** thread safe */
 class Counter {
 
+  // START_HIGHLIGHT
   /** guarded by 'this' */
+  // END_HIGHLIGHT
   private long count;
 
+  // START_HIGHLIGHT
   synchronized void increment() {
+    // END_HIGHLIGHT
     count++;
   }
 }

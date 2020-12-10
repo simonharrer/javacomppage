@@ -15,7 +15,9 @@ class Crew {
   private List<String> members;
 
   Crew() {
+    // START_HIGHLIGHT
     members = new CopyOnWriteArrayList<>();
+    // END_HIGHLIGHT
   }
 
   void add(String name) {

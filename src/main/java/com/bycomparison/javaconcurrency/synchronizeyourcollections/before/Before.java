@@ -20,9 +20,11 @@ class Crew {
   }
 
   void add(String name) {
+    // START_HIGHLIGHT
     synchronized (lock) {
       members.add(name);
     }
+    // END_HIGHLIGHT
   }
 }
 // BEFORE:end

@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Remove Unnecessary Interface | Modern Java by Comparison">
         <meta name="twitter:description" content="Remove Unnecessary Interface | Modern Java by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/remove-unnecessary-interface-1288667400.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/remove-unnecessary-interface-1085913196.png">
     </head>
     <body>
 
@@ -89,12 +89,12 @@
 
           <pre
     class="language-java"
-><code>interface Calculator {
+    data-line="5"
+    ><code>interface Calculator {
   int add(int x, int y);
 }
 
 class CalculatorImpl implements Calculator {
-
   @Override
   public int add(int x, int y) {
     return x + y;
@@ -116,7 +116,8 @@ class CalculatorImpl implements Calculator {
 
                 <pre
     class="language-java"
-><code>class Calculator {
+    data-line="1"
+    ><code>class Calculator {
   public int add(int x, int y) {
     return x + y;
   }

@@ -17,7 +17,9 @@ class Crew {
   }
 
   void remove(String name) {
+    // START_HIGHLIGHT
     members.remove(name);
+    // END_HIGHLIGHT
   }
 }
 // AFTER:end

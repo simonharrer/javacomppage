@@ -37,7 +37,9 @@ class SupplyTests {
 
     var actualJson = supply.toJson();
 
+    // START_HIGHLIGHT
     var expectedJson = read("/supply.json");
+    // END_HIGHLIGHT
     assertEquals(expectedJson, actualJson, STRICT);
   }
 

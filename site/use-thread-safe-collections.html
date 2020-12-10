@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Use Thread-Safe Collections | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Use Thread-Safe Collections | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/use-thread-safe-collections-826246228.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/use-thread-safe-collections1598257843.png">
     </head>
     <body>
 
@@ -92,20 +92,17 @@
 
           <pre
     class="language-java"
-><code>class Crew {
+    data-line="6"
+    ><code>class Crew {
 
   private List&lt;String&gt; members;
 
-  private final Object lock = new Object();
-
   Crew() {
-    members = new ArrayList&lt;&gt;();
+    members = Collections.synchronizedList(new ArrayList&lt;&gt;());
   }
 
   void add(String name) {
-    synchronized (lock) {
-      members.add(name);
-    }
+    members.add(name);
   }
 }</code></pre>
 
@@ -120,7 +117,8 @@
 
                 <pre
     class="language-java"
-><code>class Crew {
+    data-line="6"
+    ><code>class Crew {
 
   private List&lt;String&gt; members;
 

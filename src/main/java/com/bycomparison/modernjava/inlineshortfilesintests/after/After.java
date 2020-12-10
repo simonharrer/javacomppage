@@ -30,11 +30,13 @@ class SupplyTests {
 
     var actualJson = supply.toJson();
 
+    // START_HIGHLIGHT
     var expectedJson = """
         {
           "id": "1234", 
           count: 5
         }""";
+    // END_HIGHLIGHT
     assertEquals(expectedJson, actualJson, STRICT);
   }
 

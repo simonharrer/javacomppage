@@ -9,8 +9,9 @@ interface Calculator {
   int add(int x, int y);
 }
 
+// START_HIGHLIGHT
 class CalculatorImpl implements Calculator {
-
+  // END_HIGHLIGHT
   @Override
   public int add(int x, int y) {
     return x + y;
