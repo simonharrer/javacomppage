@@ -1,4 +1,4 @@
-package com.bycomparison.c1.before;
+package com.bycomparison.springboot.favorconstructoroverfieldinjection.before;
 
 public class Before {
 
@@ -14,8 +14,10 @@ interface OxygenMonitor {}
 @Component
 class SpaceSuit {
 
+  // START_HIGHLIGHT
   @Autowired
   private OxygenMonitor oxygenMonitor;
+  // END_HIGHLIGHT
 }
 // BEFORE:end
 

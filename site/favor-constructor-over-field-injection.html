@@ -88,7 +88,7 @@
 
           <pre
     class="language-java"
-    data-line="4"
+    data-line="4,5"
     ><code>@Component
 class SpaceSuit {
 
@@ -123,14 +123,15 @@ Because it prevents Spring to inject the value in the field.</p>
 
                 <pre
     class="language-java"
-    data-line="4-8"
+    data-line="4,5,6,7,8"
     ><code>@Component
 class SpaceSuit {
+
   private final OxygenMonitor oxygenMonitor;
 
   public SpaceSuit(OxygenMonitor oxygenMonitor) {
-        this.oxygenMonitor = oxygenMonitor;
-    }
+    this.oxygenMonitor = oxygenMonitor;
+  }
 }</code></pre>
 
 

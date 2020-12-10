@@ -20,14 +20,24 @@ public record Comparison(String name, String group, String category, List<String
     return new Comparison(name, group, category,
         tags,
         Code.parseBeforeCodePart(codeDirectory).code(),
-        Code.parseBeforeCodePart(codeDirectory).highlightedLines().stream().map(Object::toString)
-            .collect(
-                Collectors.joining(",")), Markdown.toHtml(beforeText),
+        Code.parseBeforeCodePart(codeDirectory).highlight(), Markdown.toHtml(beforeText),
         Code.parseAfterCodePart(codeDirectory).code(),
-        Code.parseAfterCodePart(codeDirectory).highlightedLines().stream().map(Object::toString)
-            .collect(
-                Collectors.joining(",")), Markdown.toHtml(afterText),
+        Code.parseAfterCodePart(codeDirectory).highlight(), Markdown.toHtml(afterText),
         "java", "",
+        true, false, "");
+  }
+
+  public static Comparison propertiesComparison(String name, String group, List<String> tags,
+     String beforeCode, String beforeText, String afterCode, String afterText,
+      String category) {
+
+    return new Comparison(name, group, category,
+        tags,
+        Code.parseBeforeCode(beforeCode).code(),
+        Code.parseBeforeCode(beforeCode).highlight(), Markdown.toHtml(beforeText),
+        Code.parseAfterCode(afterCode).code(),
+        Code.parseAfterCode(afterCode).highlight(), Markdown.toHtml(afterText),
+        "properties", "",
         true, false, "");
   }
 
