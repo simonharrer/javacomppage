@@ -42,6 +42,5 @@ class SupplyTests {
     // END_HIGHLIGHT
     assertEquals(expectedJson, actualJson, STRICT);
   }
-
 }
 // BEFORE:end
