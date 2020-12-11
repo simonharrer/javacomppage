@@ -11,11 +11,7 @@ public class Before {
 /** not thread-safe */
 class Crew {
 
-  private List<String> members;
-
-  Crew() {
-    members = new ArrayList<>();
-  }
+  private List<String> members = new ArrayList<>();
 
   void add(String name) {
     // START_HIGHLIGHT

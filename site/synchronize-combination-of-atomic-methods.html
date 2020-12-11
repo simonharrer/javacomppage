@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Synchronize Combination of Atomic Methods | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Synchronize Combination of Atomic Methods | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/synchronize-combination-of-atomic-methods1270632828.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/synchronize-combination-of-atomic-methods-610276076.png">
     </head>
     <body>
 
@@ -92,14 +92,10 @@
 
           <pre
     class="language-java"
-    data-line="10,11"
+    data-line="6,7"
     ><code>class Crew {
 
-  private List&lt;String&gt; members;
-
-  Crew() {
-    members = new CopyOnWriteArrayList&lt;&gt;();
-  }
+  private List&lt;String&gt; members = new CopyOnWriteArrayList&lt;&gt;();
 
   void remove(String name) {
     var index = members.indexOf(name);
@@ -121,14 +117,10 @@
 
                 <pre
     class="language-java"
-    data-line="10"
+    data-line="6"
     ><code>class Crew {
 
-  private List&lt;String&gt; members;
-
-  Crew() {
-    members = new CopyOnWriteArrayList&lt;&gt;();
-  }
+  private List&lt;String&gt; members = new CopyOnWriteArrayList&lt;&gt;();
 
   void remove(String name) {
     members.remove(name);

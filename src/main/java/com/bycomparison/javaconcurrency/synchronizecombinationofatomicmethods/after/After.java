@@ -10,11 +10,7 @@ public class After {
 // AFTER:start
 class Crew {
 
-  private List<String> members;
-
-  Crew() {
-    members = new CopyOnWriteArrayList<>();
-  }
+  private List<String> members = new CopyOnWriteArrayList<>();
 
   void remove(String name) {
     // START_HIGHLIGHT

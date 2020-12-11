@@ -1,6 +1,5 @@
 package com.bycomparison.javaconcurrency.synchronizecombinationofatomicmethods.before;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -11,11 +10,7 @@ public class Before {
 // BEFORE:start
 class Crew {
 
-  private List<String> members;
-
-  Crew() {
-    members = new CopyOnWriteArrayList<>();
-  }
+  private List<String> members = new CopyOnWriteArrayList<>();
 
   void remove(String name) {
     // START_HIGHLIGHT

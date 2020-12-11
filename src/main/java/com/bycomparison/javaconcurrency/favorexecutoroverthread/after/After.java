@@ -29,7 +29,7 @@ class Main {
     }
     // START_HIGHLIGHT
     executorService.shutdown();
-    // START_HIGHLIGHT
+    // END_HIGHLIGHT
   }
 }
 // AFTER:end
