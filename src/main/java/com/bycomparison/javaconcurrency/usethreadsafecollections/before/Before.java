@@ -9,15 +9,12 @@ public class Before {
 }
 
 // BEFORE:start
+/** thread-safe */
 class Crew {
 
-  private List<String> members;
-
-  Crew() {
-    // START_HIGHLIGHT
-    members = Collections.synchronizedList(new ArrayList<>());
-    // END_HIGHLIGHT
-  }
+  // START_HIGHLIGHT
+  private List<String> members = Collections.synchronizedList(new ArrayList<>());
+  // END_HIGHLIGHT
 
   void add(String name) {
     members.add(name);

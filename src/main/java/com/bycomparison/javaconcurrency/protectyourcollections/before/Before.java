@@ -8,6 +8,7 @@ public class Before {
 }
 
 // BEFORE:start
+/** not thread-safe */
 class Crew {
 
   private List<String> members;
