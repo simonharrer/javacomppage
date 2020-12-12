@@ -103,7 +103,13 @@
 
 
           <div class="p-3">
-            
+            <ul>
+<li>shared memory, unprotected</li>
+<li>what can happen here when two threads count 100 times: expected 200, but basically any value could happen</li>
+<li>reading and writing 64 bit is not atomic, only 32 bit is</li>
+<li>lost updates</li>
+</ul>
+
           </div>
         </div>
     </div>

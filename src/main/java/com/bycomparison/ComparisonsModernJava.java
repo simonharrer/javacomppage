@@ -35,10 +35,10 @@ public class ComparisonsModernJava {
                     """, """
                     * no naming issue by inlining interface
                     """),
-            Comparison.empty("Keep Related Tests Together", "Modern Java"),
+            modernJava("Group Your Tests", "Testing",List.of("JUnit5"), "", ""),
+            modernJava("Nest Your Tests", "Testing",List.of("JUnit5"), "", ""),
             Comparison.empty("Use assertThat", "Modern Java"),
             Comparison.empty("Document Your Modules", "Java 9", "Modern Java"),
-            Comparison.empty("Close Your IO Streams", "Modern Java"),
             Comparison.empty("Irgendwas mit mocking", "Modern Java"),
             Comparison.empty("Avoid OutOfMemoryErrors", "Know the Gotchas", "Modern Java"),
             Comparison.empty("Avoid Stackoverflows", "Know the Gotchas", "Modern Java"),
