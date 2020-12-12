@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Guard Your Sleep | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Guard Your Sleep | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/guard-your-sleep0.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/guard-your-sleep333151487.png">
     </head>
     <body>
 
@@ -79,6 +79,8 @@
     <div class="container-fluid mt-3">
         <h1>Guard Your Sleep
     <span>
+        <span class="badge badge-info">sleep</span>
+        <span class="badge badge-info">guarded-wait</span>
     </span>
     <span style="float: right;">
       <a class="btn btn-info" href="minimize-your-synchronized-blocks.html">← Minimize Your Synchronized Blocks</a>
@@ -90,7 +92,17 @@
 
           <pre
     class="language-java"
-><code></code></pre>
+    data-line="4,5,6,7"
+    ><code>class MissionControl {
+
+  void initiateLaunch() {
+    try {
+      Thread.sleep(60_000L);
+    } catch (InterruptedException ignored) {
+    }
+    Launch.initiateCountdown();
+  }
+}</code></pre>
 
 
           <div class="p-3">
@@ -103,7 +115,22 @@
 
                 <pre
     class="language-java"
-><code></code></pre>
+    data-line="4,5,6,7,8,9,10,11,12"
+    ><code>class MissionControl {
+
+  void initiateLaunch() {
+    var now = System.currentTimeMillis();
+    var sleepDuration = 60_000L;
+    var wakeupTime = now + sleepDuration;
+    while (wakeupTime &lt; System.currentTimeMillis()) {
+      try {
+        Thread.sleep(wakeupTime - now);
+      } catch (InterruptedException ignored) {
+      }
+    }
+    Launch.initiateCountdown();
+  }
+}</code></pre>
 
 
             <div class="p-3">

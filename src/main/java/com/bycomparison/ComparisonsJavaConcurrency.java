@@ -119,7 +119,7 @@ public class ComparisonsJavaConcurrency {
                     * `wait()` allows the Thread to suspend execution until it is woken up by a `notify()`.
                     * `synchronized` is necessary to prevent putting this Thread to `sleep` multiple times.
                     * `wait()` can be interrupted, but the value of `isReadyToLaunch` determines whether the `while` loop exits. Therefore, the `InterruptedException` can be ignored!                         
-                   
+                                       
                     """,
                 """
                     * Another Thread can modify `isReadyToLaunch`
@@ -127,7 +127,7 @@ public class ComparisonsJavaConcurrency {
                     * Inefficient, since boolean is constantly checked"""
             ),
             Comparison.empty("Minimize Your Synchronized Blocks", "Locking", "Java Concurrency"),
-            Comparison.empty("Guard Your Sleep", "Locking", "Java Concurrency")
+            javaConcurrency("Guard Your Sleep", "Locking", List.of("sleep", "guarded-wait"), "", "")
         );
   }
 
