@@ -7,6 +7,10 @@ public class ComparisonsJavaConcurrency {
   /*
   Free Your Locks (always use finally, for all the resources like locks, executors, semaphore, etc. etc. etc.)
   Volatile
+  https://javarevisited.blogspot.com/2015/05/top-10-java-multithreading-and.html
+  *
+  *
+  *
    */
 
   public static List<Comparison> getComparisons() {

@@ -6,6 +6,7 @@ public class ComparisonsModernJava {
 
   /*
   https://github.com/simonharrer/javacomp/issues/3
+  default implementation in interfaces
    */
 
   public static List<Comparison> getComparisons() {
