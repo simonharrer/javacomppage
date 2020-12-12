@@ -46,6 +46,7 @@ public class Generator {
 
   private static void renderMethod(List<Category> categories, Path site) {
     var beforeCode = """
+        // BEFORE:start
         class Container {
           // bad code
           // START_HIGHLIGHT
@@ -54,8 +55,10 @@ public class Generator {
           // problematic lines are highlighted
           // imports and accessibility modifier left out
         }
+        // BEFORE:end
         """;
     var afterCode = """
+        // AFTER:start
         class SweetsDrawer {
           // better code
           // it's not good or clean code, just cleaner or better code
@@ -64,6 +67,7 @@ public class Generator {
           // END_HIGHLIGHT
           // better lines are highlighted
         }
+        // AFTER:end
         """;
     renderToFile("method.html", views.comparison.template(
         new Comparison("Actionable Name Starting With a Strong Verb", "", "method",
