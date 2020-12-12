@@ -42,8 +42,7 @@
           </div>
         } else {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
-
-          @views.codehighlight.template(comparison.language(), comparison.beforeCode(), comparison.beforeCodeHighlight(), "#efd2d2")
+          @views.codehighlight.template(comparison.language(), comparison.beforeCode(), comparison.beforeCodeHighlight())
 
           <div class="p-3">
             @raw(comparison.beforeText())
@@ -67,12 +66,7 @@
       </div>
       } else {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
-
-            @if(false) {
-                @views.codehighlight.template("diff-java", comparison.diff(),"", "#d2efd2")
-            } else {
-                @views.codehighlight.template(comparison.language(), comparison.afterCode(),comparison.afterCodeHighlight(), "#d2efd2")
-            }
+            @views.codehighlight.template(comparison.language(), comparison.afterCode(),comparison.afterCodeHighlight())
 
             <div class="p-3">
               @raw(comparison.afterText())

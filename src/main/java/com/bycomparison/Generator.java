@@ -45,23 +45,34 @@ public class Generator {
   }
 
   private static void renderMethod(List<Category> categories, Path site) {
-    renderToFile("method.html", views.method.template(categories,
+    var beforeCode = """
+        class Container {
+          // bad code
+          // START_HIGHLIGHT
+          int x = 3;
+          // END_HIGHLIGHT
+          // problematic lines are highlighted
+          // imports and accessibility modifier left out
+        }
+        """;
+    var afterCode = """
+        class SweetsDrawer {
+          // better code
+          // it's not good or clean code, just cleaner or better code
+          // START_HIGHLIGHT
+          int chocolateBars = 3;
+          // END_HIGHLIGHT
+          // better lines are highlighted
+        }
+        """;
+    renderToFile("method.html", views.comparison.template(
         new Comparison("Actionable Name Starting With a Strong Verb", "", "method",
             List.of("example-tag"),
-            """
-                // bad code
-                int x = 3;
-                // problematic lines are highlighted
-                // imports and accessibility modifier left out
-                """, "2", "Why the code above is hard to read",
-            """
-                // better code
-                // it's not good or clean code, just cleaner or better code
-                int remainingChocolateBars = 3;
-                // better lines are highlighted
-                """, "2",
+            Code.parseBeforeCode(beforeCode).code(), Code.parseBeforeCode(beforeCode).highlight(),
+            "Why the code above is hard to read",
+            Code.parseAfterCode(afterCode).code(), Code.parseAfterCode(afterCode).highlight(),
             "Why the code on the green / right-hand side is cleaner and more maintainable",
-            "java", "", true, false, "")), site);
+            "java", "", true, false, ""), Dependencies.NO_DEPENDENCIES, categories), site);
   }
 
   private static void renderIndex(List<Category> categories, Path site) {
@@ -93,7 +104,8 @@ public class Generator {
   }
 
   private static void renderToFile(Comparison comparison,
-      List<Comparison> comparisons, List<Category> categories, GeneratorConfiguration configuration) {
+      List<Comparison> comparisons, List<Category> categories,
+      GeneratorConfiguration configuration) {
     if (configuration.preview()) {
       generatePreviewCard(comparison, configuration.site());
     }
