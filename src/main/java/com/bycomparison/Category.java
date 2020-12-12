@@ -23,10 +23,6 @@ public record Category(String name, String text, List<Comparison> comparisons) {
     return "https://java.by-comparison.com/img/cover.jpg";
   }
 
-  public long numberOfComparisons() {
-    return comparisons.size();
-  }
-
   public String link() {
     return filename();
   }

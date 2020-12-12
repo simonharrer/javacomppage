@@ -13,34 +13,41 @@ import java.util.stream.Collectors;
 
 public class Generator {
 
-  static void deleteWebsite(Path site) throws IOException {
-    Files.createDirectories(site);
+  static void deleteWebsite(GeneratorConfiguration configuration) throws IOException {
+    Files.createDirectories(configuration.site());
 
-    Files.walk(site)
+    Files.walk(configuration.site())
         .sorted(Comparator.reverseOrder())
         .filter(path -> path.endsWith(".html"))
         .map(Path::toFile)
         .forEach(File::delete);
   }
 
-  static void generateWebsite(Path site) throws IOException {
-    Files.createDirectories(site);
+  static void generateWebsite(GeneratorConfiguration configuration) throws IOException {
+    var comparisons = configuration.published() ? getPublishedComparisons() : getComparisons();
+    var categories = getCategories(comparisons);
 
-    var comparisons = getPublishedComparisons();
-    var categories = getPublishedCategories(comparisons);
+    generate(configuration, comparisons, categories);
+  }
 
+  private static void generate(GeneratorConfiguration configuration, List<Comparison> comparisons,
+      List<Category> categories)
+      throws IOException {
+    Files.createDirectories(configuration.site());
     System.out.println("Comparisons: " + comparisons.size());
     System.out.println("Categories: " + categories.size());
 
-    comparisons.forEach(comparison -> renderToFile(comparison, comparisons, categories, site));
-    categories.forEach(category -> renderToFile(category, categories, site));
-    renderMethod(categories, site);
-    renderIndex(categories, site);
+    comparisons
+        .forEach(comparison -> renderToFile(comparison, comparisons, categories, configuration));
+    categories.forEach(category -> renderToFile(category, categories, configuration.site()));
+    renderMethod(categories, configuration.site());
+    renderIndex(categories, configuration.site());
   }
 
   private static void renderMethod(List<Category> categories, Path site) {
     renderToFile("method.html", views.method.template(categories,
-        new Comparison("Actionable Name Starting With a Strong Verb", "", "method", List.of("example-tag"),
+        new Comparison("Actionable Name Starting With a Strong Verb", "", "method",
+            List.of("example-tag"),
             """
                 // bad code
                 int x = 3;
@@ -61,8 +68,8 @@ public class Generator {
     renderToFile("index.html", views.index.template(categories), site);
   }
 
-  private static List<Category> getPublishedCategories(List<Comparison> publishedComparisons) {
-    var categoryNameToComparisons = publishedComparisons.stream()
+  private static List<Category> getCategories(List<Comparison> comparisons) {
+    var categoryNameToComparisons = comparisons.stream()
         .collect(Collectors.groupingBy(Comparison::category));
     return Categories.categories().stream()
         .map(e -> new Category(e.name(), e.text(), categoryNameToComparisons.get(e.name())))
@@ -71,25 +78,30 @@ public class Generator {
   }
 
   private static List<Comparison> getPublishedComparisons() {
+    return getComparisons().stream()
+        .filter(Comparison::published)
+        .collect(Collectors.toList());
+  }
+
+  private static List<Comparison> getComparisons() {
     List<Comparison> comparisons = new ArrayList<>();
     comparisons.addAll(ComparisonsJava.getComparisons());
     comparisons.addAll(ComparisonsModernJava.getComparisons());
     comparisons.addAll(ComparisonsJavaConcurrency.getComparisons());
     comparisons.addAll(ComparisonsSpringBoot.getComparisons());
-
-    return comparisons.stream()
-        .filter(Comparison::published)
-        .collect(Collectors.toList());
+    return comparisons;
   }
 
   private static void renderToFile(Comparison comparison,
-      List<Comparison> comparisons, List<Category> categories, Path site) {
-    generatePreviewCard(comparison, site);
+      List<Comparison> comparisons, List<Category> categories, GeneratorConfiguration configuration) {
+    if (configuration.preview()) {
+      generatePreviewCard(comparison, configuration.site());
+    }
 
     var dependencies = getDependencies(comparison, comparisons);
 
     renderToFile(comparison.filename(),
-        views.comparison.template(comparison, dependencies, categories), site);
+        views.comparison.template(comparison, dependencies, categories), configuration.site());
   }
 
   private static Dependencies getDependencies(Comparison comparison, List<Comparison> comparisons) {
