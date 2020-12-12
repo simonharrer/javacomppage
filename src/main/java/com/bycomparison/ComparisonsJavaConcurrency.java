@@ -17,13 +17,20 @@ public class ComparisonsJavaConcurrency {
             javaConcurrency("Protect Your Shared Memory", groupSharedValue,
                 List.of("synchronized"),
                 """
+                    * shared memory, unprotected
+                    * what can happen here when two threads count 100 times: expected 200, but basically any value could happen
+                    * reading and writing 64 bit is not atomic, only 32 bit is
+                    * lost updates
                     """, """
                     """
             ),
             javaConcurrency("Document for Concurrency", groupSharedValue,
                 List.of("synchronized"),
                 """
+                    * without documentation takes some time to figure out if it really is thread-safe
                     """, """
+                    * multiple variants: thread-safe, immutable, conditionally thread-safe, not thread-safe
+                    * annotations from Java Concurrency in Practice
                     """
             ),
             javaConcurrency("Make Locks Explicit", groupSharedValue,
