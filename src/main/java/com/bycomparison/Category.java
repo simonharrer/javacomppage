@@ -39,4 +39,8 @@ public record Category(String name, String text, List<Comparison> comparisons) {
     return comparisons.stream().filter(c -> c.group().equals(group)).collect(Collectors.toList());
   }
 
+  public Category withComparisons(List<Comparison> comparisons) {
+    return new Category(name, text, comparisons);
+  }
+
 }

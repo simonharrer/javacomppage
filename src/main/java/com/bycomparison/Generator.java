@@ -87,7 +87,7 @@ public class Generator {
     var categoryNameToComparisons = comparisons.stream()
         .collect(Collectors.groupingBy(Comparison::category));
     return Categories.categories().stream()
-        .map(e -> new Category(e.name(), e.text(), categoryNameToComparisons.get(e.name())))
+        .map(e -> e.withComparisons(categoryNameToComparisons.get(e.name())))
         .filter(c -> !c.comparisons().isEmpty())
         .collect(Collectors.toList());
   }

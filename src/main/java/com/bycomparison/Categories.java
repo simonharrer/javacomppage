@@ -15,4 +15,5 @@ public class Categories {
             "A lot of Java developers don't write Java, they write Spring Boot.", List.of())
     );
   }
+
 }
