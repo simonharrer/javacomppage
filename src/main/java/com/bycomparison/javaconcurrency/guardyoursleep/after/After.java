@@ -10,6 +10,11 @@ public class After {
 class MissionControl {
 
   void initiateLaunch() {
+    delay();
+    Launch.initiateCountdown();
+  }
+
+  private void delay() {
     // START_HIGHLIGHT
     var now = System.currentTimeMillis();
     var sleepDuration = 60_000L;
@@ -21,7 +26,6 @@ class MissionControl {
       }
     }
     // END_HIGHLIGHT
-    Launch.initiateCountdown();
   }
 }
 // AFTER:end

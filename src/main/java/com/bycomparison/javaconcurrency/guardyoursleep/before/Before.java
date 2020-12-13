@@ -10,13 +10,17 @@ public class Before {
 class MissionControl {
 
   void initiateLaunch() {
+    delay();
+    Launch.initiateCountdown();
+  }
+
+  private void delay() {
     // START_HIGHLIGHT
     try {
       Thread.sleep(60_000L);
     } catch (InterruptedException ignored) {
     }
     // END_HIGHLIGHT
-    Launch.initiateCountdown();
   }
 }
 // BEFORE:end

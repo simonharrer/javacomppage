@@ -1,23 +1,23 @@
-package com.bycomparison.javaconcurrency.synchronizeyourcollections.after;
+package com.bycomparison.javaconcurrency.useconcurrentcollections.before;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class After {
+public class Before {
 
 }
 
-// AFTER:start
+// BEFORE:start
 /** thread-safe */
 class Crew {
 
-    // START_HIGHLIGHT
+  // START_HIGHLIGHT
   private List<String> members = Collections.synchronizedList(new ArrayList<>());
-    // END_HIGHLIGHT
+  // END_HIGHLIGHT
 
   void add(String name) {
     members.add(name);
   }
 }
-// AFTER:end
+// BEFORE:end

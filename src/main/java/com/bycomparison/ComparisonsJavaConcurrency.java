@@ -25,6 +25,12 @@ public class ComparisonsJavaConcurrency {
                     * what can happen here when two threads count 100 times: expected 200, but basically any value could happen
                     * reading and writing 64 bit is not atomic, only 32 bit is
                     * lost updates
+                    
+                    ```java
+                    var tmp = count; // read
+                    var tmp = tmp + 1; // update
+                    count = tmp; // write
+                    ```
                     """, """
                     """
             ),
@@ -63,6 +69,15 @@ public class ComparisonsJavaConcurrency {
                     * compare-and-set allows lock free
                     * available since Java 5
                     * requires instruction by the CPU to work
+                    
+                    ```java
+                    while(true) {
+                       if(!count.compareAndSet(old, new)) {
+                          old = count.get();
+                          new = old + 1;
+                       }
+                    }
+                    ```
                     """
             ),
             javaConcurrency("Avoid Active Waiting", groupSharedValue,
@@ -74,25 +89,25 @@ public class ComparisonsJavaConcurrency {
                     * Sum is not as exact as it is with the AtomicLong, but much higher performance if multiple threads increment simultaneously"""
             ),
             javaConcurrency("Protect Your Collections", groupSharedList,
-                List.of("synchronized", "List"),
+                List.of("Collection", "List", "synchronized"),
                 """
                     """,
                 """
                     """),
-            javaConcurrency("Synchronize Your Collections", groupSharedList,
-                List.of("Collections.synchronized", "List"),
+            javaConcurrency("Use Synchronized Collections", groupSharedList,
+                List.of("Collection", "List", "Collections.synchronized"),
                 """
                     """,
                 """
                     """),
-            javaConcurrency("Use Thread-Safe Collections", groupSharedList,
-                List.of("CopyOnWriteArrayList"),
+            javaConcurrency("Use Concurrent Collections", groupSharedList,
+                List.of("Collection", "List", "CopyOnWriteArrayList"),
                 """
                     """,
                 """
                     """),
             javaConcurrency("Synchronize Combination of Atomic Methods", groupSharedList,
-                List.of("CopyOnWriteArrayList", "atomicity"),
+                List.of("Collection", "List", "CopyOnWriteArrayList"),
                 """
                     * using atomic methods with a thread-safe data structure may still lead to wrong results
                     """,

@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Synchronize Combination of Atomic Methods | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Synchronize Combination of Atomic Methods | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/synchronize-combination-of-atomic-methods-610276076.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/synchronize-combination-of-atomic-methods71760279.png">
     </head>
     <body>
 
@@ -79,11 +79,12 @@
     <div class="container-fluid mt-3">
         <h1>Synchronize Combination of Atomic Methods
     <span>
+        <span class="badge badge-info">Collection</span>
+        <span class="badge badge-info">List</span>
         <span class="badge badge-info">CopyOnWriteArrayList</span>
-        <span class="badge badge-info">atomicity</span>
     </span>
     <span style="float: right;">
-      <a class="btn btn-info" href="use-thread-safe-collections.html">← Use Thread-Safe Collections</a>
+      <a class="btn btn-info" href="use-concurrent-collections.html">← Use Concurrent Collections</a>
     </span>
 </h1>
 <div class="row row-eq-height">
@@ -91,14 +92,15 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="6,7"
+    data-line="6,7,8"
     ><code>class Crew {
 
   private List&lt;String&gt; members = new CopyOnWriteArrayList&lt;&gt;();
 
-  void remove(String name) {
-    var index = members.indexOf(name);
-    members.remove(index);
+  void add(String name) {
+    if(!members.contains(name)) {
+      members.add(name);
+    }
   }
 }</code></pre>
 
@@ -115,13 +117,13 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="6"
+    data-line="3,6"
     ><code>class Crew {
 
-  private List&lt;String&gt; members = new CopyOnWriteArrayList&lt;&gt;();
+  private CopyOnWriteArrayList&lt;String&gt; members = new CopyOnWriteArrayList&lt;&gt;();
 
   void remove(String name) {
-    members.remove(name);
+    members.addIfAbsent(name);
   }
 }</code></pre>
 

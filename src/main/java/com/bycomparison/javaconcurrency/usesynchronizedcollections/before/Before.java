@@ -1,4 +1,4 @@
-package com.bycomparison.javaconcurrency.synchronizeyourcollections.before;
+package com.bycomparison.javaconcurrency.usesynchronizedcollections.before;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,9 @@ class Crew {
   void add(String name) {
     // START_HIGHLIGHT
     synchronized (lock) {
+    // END_HIGHLIGHT
       members.add(name);
+    // START_HIGHLIGHT
     }
     // END_HIGHLIGHT
   }

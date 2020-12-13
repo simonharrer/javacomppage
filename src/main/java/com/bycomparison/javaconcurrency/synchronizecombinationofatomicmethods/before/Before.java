@@ -12,10 +12,11 @@ class Crew {
 
   private List<String> members = new CopyOnWriteArrayList<>();
 
-  void remove(String name) {
+  void add(String name) {
     // START_HIGHLIGHT
-    var index = members.indexOf(name);
-    members.remove(index);
+    if(!members.contains(name)) {
+      members.add(name);
+    }
     // END_HIGHLIGHT
   }
 }

@@ -140,6 +140,13 @@ class Counter {
 <li>available since Java 5</li>
 <li>requires instruction by the CPU to work</li>
 </ul>
+<pre><code class="language-java">while(true) {
+   if(!count.compareAndSet(old, new)) {
+      old = count.get();
+      new = old + 1;
+   }
+}
+</code></pre>
 
             </div>
 

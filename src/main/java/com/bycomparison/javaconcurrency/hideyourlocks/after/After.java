@@ -26,9 +26,7 @@ class Counter {
     synchronized (lock) {
       // END_HIGHLIGHT
       count++;
-      // START_HIGHLIGHT
     }
-    // END_HIGHLIGHT
   }
 }
 // AFTER:end

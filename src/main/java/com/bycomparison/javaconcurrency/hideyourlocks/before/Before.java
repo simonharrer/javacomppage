@@ -16,7 +16,9 @@ class Counter {
   void increment() {
     // START_HIGHLIGHT
     synchronized (this) {
+    // END_HIGHLIGHT
       count++;
+    // START_HIGHLIGHT
     }
     // END_HIGHLIGHT
   }

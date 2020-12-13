@@ -1,4 +1,4 @@
-package com.bycomparison.javaconcurrency.usethreadsafecollections.after;
+package com.bycomparison.javaconcurrency.useconcurrentcollections.after;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

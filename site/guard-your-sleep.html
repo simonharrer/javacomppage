@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Guard Your Sleep | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Guard Your Sleep | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/guard-your-sleep333151487.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/guard-your-sleep-711788605.png">
     </head>
     <body>
 
@@ -91,15 +91,19 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="4,5,6,7"
+    data-line="9,10,11,12"
     ><code>class MissionControl {
 
   void initiateLaunch() {
+    delay();
+    Launch.initiateCountdown();
+  }
+
+  private void delay() {
     try {
       Thread.sleep(60_000L);
     } catch (InterruptedException ignored) {
     }
-    Launch.initiateCountdown();
   }
 }</code></pre>
 
@@ -113,10 +117,15 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="4,5,6,7,8,9,10,11,12"
+    data-line="9,10,11,12,13,14,15,16,17"
     ><code>class MissionControl {
 
   void initiateLaunch() {
+    delay();
+    Launch.initiateCountdown();
+  }
+
+  private void delay() {
     var now = System.currentTimeMillis();
     var sleepDuration = 60_000L;
     var wakeupTime = now + sleepDuration;
@@ -126,7 +135,6 @@
       } catch (InterruptedException ignored) {
       }
     }
-    Launch.initiateCountdown();
   }
 }</code></pre>
 
