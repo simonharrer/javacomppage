@@ -1,4 +1,4 @@
-package com.bycomparison.javaconcurrency.synchronizecombinationofatomicmethods.after;
+package com.bycomparison.javaconcurrency.useconcurrentcollectionsright.after;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
