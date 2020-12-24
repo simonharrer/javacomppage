@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Use Concurrent Collections | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Use Concurrent Collections | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/use-concurrent-collections136352145.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/use-concurrent-collections1982836278.png">
     </head>
     <body>
 
@@ -85,7 +85,6 @@
     </span>
     <span style="float: right;">
       <a class="btn btn-info" href="use-synchronized-collections.html">← Use Synchronized Collections</a>
-      <a class="btn btn-info" href="use-concurrent-collections-right.html">Use Concurrent Collections Right →</a>
     </span>
 </h1>
 <div class="row row-eq-height">
@@ -93,20 +92,27 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="4"
+    data-line="4,7,8,9,10,11"
     ><code>/** thread-safe */
 class Crew {
 
-  private List&lt;String&gt; members = Collections.synchronizedList(new ArrayList&lt;&gt;());
+  private final List&lt;String&gt; members = Collections.synchronizedList(new ArrayList&lt;&gt;());
 
   void add(String name) {
-    members.add(name);
+    synchronized (members) {
+      if (!members.contains(name)) {
+        members.add(name);
+      }
+    }
   }
 }</code></pre>
 
 
           <div class="p-3">
-            
+            <ul>
+<li>using atomic methods with a thread-safe data structure may still lead to wrong results</li>
+</ul>
+
           </div>
         </div>
     </div>
@@ -114,20 +120,23 @@ class Crew {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="4"
+    data-line="4,7"
     ><code>/** thread-safe */
 class Crew {
 
-  private List&lt;String&gt; members = new CopyOnWriteArrayList&lt;&gt;();
+  private final CopyOnWriteArrayList&lt;String&gt; members = new CopyOnWriteArrayList&lt;&gt;();
 
   void add(String name) {
-    members.add(name);
+    members.addIfAbsent(name);
   }
 }</code></pre>
 
 
             <div class="p-3">
-              
+              <ul>
+<li>make that atomic which should be atomic</li>
+</ul>
+
             </div>
 
         </div>

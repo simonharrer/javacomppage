@@ -11,10 +11,14 @@ public class Before {
 /** not thread-safe */
 class Crew {
 
-  private List<String> members = new ArrayList<>();
+  private final List<String> members = new ArrayList<>();
 
   void add(String name) {
-    members.add(name);
+    // START_HIGHLIGHT
+    if (!members.contains(name)) {
+      members.add(name);
+    }
+    // END_HIGHLIGHT
   }
 }
 // BEFORE:end

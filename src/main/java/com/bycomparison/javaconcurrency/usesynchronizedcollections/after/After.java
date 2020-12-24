@@ -13,11 +13,17 @@ public class After {
 class Crew {
 
     // START_HIGHLIGHT
-  private List<String> members = Collections.synchronizedList(new ArrayList<>());
+  private final List<String> members = Collections.synchronizedList(new ArrayList<>());
     // END_HIGHLIGHT
 
   void add(String name) {
-    members.add(name);
+    // START_HIGHLIGHT
+    synchronized (members) {
+      if (!members.contains(name)) {
+        members.add(name);
+      }
+    }
+    // END_HIGHLIGHT
   }
 }
 // AFTER:end

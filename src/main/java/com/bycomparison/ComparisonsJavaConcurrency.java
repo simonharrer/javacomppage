@@ -112,13 +112,7 @@ public class ComparisonsJavaConcurrency {
             javaConcurrency("Use Concurrent Collections", groupSharedList,
                 List.of("Collection", "List", "CopyOnWriteArrayList"),
                 """
-                    """,
-                """
-                    """),
-            javaConcurrency("Use Concurrent Collections Right", groupSharedList,
-                List.of("Collection", "List", "CopyOnWriteArrayList"),
-                """
-                    * using atomic methods with a thread-safe data structure may still lead to wrong results
+                   * using atomic methods with a thread-safe data structure may still lead to wrong results
                     """,
                 """
                     * make that atomic which should be atomic

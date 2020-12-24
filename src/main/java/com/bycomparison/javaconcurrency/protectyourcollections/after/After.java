@@ -16,7 +16,7 @@ class Crew {
   // START_HIGHLIGHT
   /** guarded by 'lock' */
   // END_HIGHLIGHT
-  private List<String> members = new ArrayList<>();
+  private final List<String> members = new ArrayList<>();
 
   // START_HIGHLIGHT
   private final Object lock = new Object();
@@ -25,9 +25,9 @@ class Crew {
   void add(String name) {
     // START_HIGHLIGHT
     synchronized (lock) {
-    // END_HIGHLIGHT
-      members.add(name);
-    // START_HIGHLIGHT
+      if (!members.contains(name)) {
+        members.add(name);
+      }
     }
     // END_HIGHLIGHT
   }

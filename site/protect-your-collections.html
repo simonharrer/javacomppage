@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Protect Your Collections | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Protect Your Collections | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/protect-your-collections-66562672.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/protect-your-collections492780215.png">
     </head>
     <body>
 
@@ -92,13 +92,16 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-><code>/** not thread-safe */
+    data-line="7,8,9"
+    ><code>/** not thread-safe */
 class Crew {
 
-  private List&lt;String&gt; members = new ArrayList&lt;&gt;();
+  private final List&lt;String&gt; members = new ArrayList&lt;&gt;();
 
   void add(String name) {
-    members.add(name);
+    if (!members.contains(name)) {
+      members.add(name);
+    }
   }
 }</code></pre>
 
@@ -112,18 +115,20 @@ class Crew {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="1,4,7,10,12"
+    data-line="1,4,7,10,11,12,13,14"
     ><code>/** thread-safe */
 class Crew {
 
   /** guarded by &#39;lock&#39; */
-  private List&lt;String&gt; members = new ArrayList&lt;&gt;();
+  private final List&lt;String&gt; members = new ArrayList&lt;&gt;();
 
   private final Object lock = new Object();
 
   void add(String name) {
     synchronized (lock) {
-      members.add(name);
+      if (!members.contains(name)) {
+        members.add(name);
+      }
     }
   }
 }</code></pre>

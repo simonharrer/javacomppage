@@ -12,11 +12,13 @@ public class After {
 class Crew {
 
   // START_HIGHLIGHT
-  private List<String> members = new CopyOnWriteArrayList<>();
+  private final CopyOnWriteArrayList<String> members = new CopyOnWriteArrayList<>();
   // END_HIGHLIGHT
 
   void add(String name) {
-    members.add(name);
+    // START_HIGHLIGHT
+    members.addIfAbsent(name);
+    // END_HIGHLIGHT
   }
 }
 // AFTER:end

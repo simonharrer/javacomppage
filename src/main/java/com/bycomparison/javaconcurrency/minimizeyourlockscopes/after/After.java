@@ -17,10 +17,10 @@ class Counter {
   private long count;
 
   void increment(long increment) {
-    // START_HIGHLIGHT
     if (increment < 1) {
       return;
     }
+    // START_HIGHLIGHT
     synchronized (this) {
       var next = count;
       next = next + increment;
