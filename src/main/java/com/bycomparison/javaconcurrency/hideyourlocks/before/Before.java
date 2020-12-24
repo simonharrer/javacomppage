@@ -23,9 +23,7 @@ class Counter {
       var next = count;
       next = next + increment;
       count = next;
-    // START_HIGHLIGHT
     }
-    // END_HIGHLIGHT
   }
 }
 // BEFORE:end
