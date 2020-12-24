@@ -15,8 +15,9 @@ class Counter {
 
   void increment(long increment) {
     if (increment < 1) {
-      return;
+      throw new IllegalArgumentException();
     }
+
     // START_HIGHLIGHT
     synchronized (this) {
       // END_HIGHLIGHT

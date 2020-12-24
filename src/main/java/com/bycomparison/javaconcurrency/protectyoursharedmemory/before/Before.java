@@ -12,8 +12,9 @@ class Counter {
   // START_HIGHLIGHT
   void increment(long increment) {
     if (increment < 1) {
-      return;
+      throw new IllegalArgumentException();
     }
+
     var next = count;
     next = next + increment;
     count = next;

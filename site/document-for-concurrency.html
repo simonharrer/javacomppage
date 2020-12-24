@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Document for Concurrency | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Document for Concurrency | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/document-for-concurrency1330949744.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/document-for-concurrency-1451664291.png">
     </head>
     <body>
 
@@ -98,8 +98,9 @@
 
   synchronized void increment(long increment) {
     if (increment &lt; 1) {
-      return;
+      throw new IllegalArgumentException();
     }
+
     var next = count;
     next = next + increment;
     count = next;
@@ -128,8 +129,9 @@ class Counter {
 
   synchronized void increment(long increment) {
     if (increment &lt; 1) {
-      return;
+      throw new IllegalArgumentException();
     }
+
     var next = count;
     next = next + increment;
     count = next;

@@ -15,8 +15,9 @@ class Counter {
   synchronized void increment(long increment) {
     // END_HIGHLIGHT
     if (increment < 1) {
-      return;
+      throw new IllegalArgumentException();
     }
+
     var next = count;
     next = next + increment;
     count = next;

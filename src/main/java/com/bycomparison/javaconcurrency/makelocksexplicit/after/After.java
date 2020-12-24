@@ -20,8 +20,9 @@ class Counter {
     synchronized (this) {
     // END_HIGHLIGHT
       if (increment < 1) {
-        return;
+        throw new IllegalArgumentException();
       }
+
       var next = count;
       next = next + increment;
       count = next;

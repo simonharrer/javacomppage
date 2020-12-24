@@ -16,8 +16,9 @@ class Counter {
 
   void increment(long increment) {
     if (increment < 1) {
-      return;
+      throw new IllegalArgumentException();
     }
+
     // START_HIGHLIGHT
     count.addAndGet(increment);
     // END_HIGHLIGHT

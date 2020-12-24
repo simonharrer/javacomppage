@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Minimize Your Lock Scopes | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Minimize Your Lock Scopes | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/minimize-your-lock-scopes301056141.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/minimize-your-lock-scopes1149736870.png">
     </head>
     <body>
 
@@ -91,7 +91,7 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="9,10,11,12,13,14,15,16"
+    data-line="9,10,11,12,13,14,15,16,17"
     ><code>
 /** thread safe */
 class Counter {
@@ -102,8 +102,9 @@ class Counter {
   void increment(long increment) {
     synchronized (this) {
       if (increment &lt; 1) {
-        return;
+        throw new IllegalArgumentException();
       }
+
       var next = count;
       next = next + increment;
       count = next;
@@ -125,7 +126,7 @@ class Counter {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="12,13,14,15,16"
+    data-line="13,14,15,16,17"
     ><code>
 /** thread safe */
 class Counter {
@@ -135,8 +136,9 @@ class Counter {
 
   void increment(long increment) {
     if (increment &lt; 1) {
-      return;
+      throw new IllegalArgumentException();
     }
+
     synchronized (this) {
       var next = count;
       next = next + increment;

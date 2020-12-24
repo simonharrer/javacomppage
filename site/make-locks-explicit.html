@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Make Locks Explicit | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Make Locks Explicit | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/make-locks-explicit926774540.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/make-locks-explicit324977217.png">
     </head>
     <body>
 
@@ -100,8 +100,9 @@ class Counter {
 
   synchronized void increment(long increment) {
     if (increment &lt; 1) {
-      return;
+      throw new IllegalArgumentException();
     }
+
     var next = count;
     next = next + increment;
     count = next;
@@ -122,7 +123,7 @@ class Counter {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="8,15"
+    data-line="8,16"
     ><code>/** thread safe */
 class Counter {
 
@@ -132,8 +133,9 @@ class Counter {
   void increment(long increment) {
     synchronized (this) {
       if (increment &lt; 1) {
-        return;
+        throw new IllegalArgumentException();
       }
+
       var next = count;
       next = next + increment;
       count = next;
