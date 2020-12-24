@@ -13,8 +13,13 @@ class Counter {
   private long count;
   // END_HIGHLIGHT
 
-  synchronized void increment() {
-    count++;
+  synchronized void increment(long increment) {
+    if (increment < 1) {
+      return;
+    }
+    var next = count;
+    next = next + increment;
+    count = next;
   }
 }
 // BEFORE:end

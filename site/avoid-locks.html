@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Avoid Locks | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Avoid Locks | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-locks-726943339.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-locks858619120.png">
     </head>
     <body>
 
@@ -92,7 +92,7 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="4,5,6,7,10,11,12"
+    data-line="4,5,6,7,13,14,15,16,17"
     ><code>/** thread safe */
 class Counter {
 
@@ -101,9 +101,14 @@ class Counter {
 
   private final Object lock = new Object();
 
-  void increment() {
+  void increment(long increment) {
+    if (increment &lt; 1) {
+      return;
+    }
     synchronized (lock) {
-      count++;
+      var next = count;
+      next = next + increment;
+      count = next;
     }
   }
 }</code></pre>
@@ -122,14 +127,17 @@ class Counter {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="4,7"
+    data-line="4,10"
     ><code>/** thread safe */
 class Counter {
 
-  private AtomicLong count = new AtomicLong();
+  private final AtomicLong count = new AtomicLong();
 
-  void increment() {
-    count.incrementAndGet();
+  void increment(long increment) {
+    if (increment &lt; 1) {
+      return;
+    }
+    count.addAndGet(increment);
   }
 }</code></pre>
 

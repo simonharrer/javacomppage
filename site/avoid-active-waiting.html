@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Avoid Active Waiting | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Avoid Active Waiting | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-active-waiting1015530017.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-active-waiting1399845448.png">
     </head>
     <body>
 
@@ -92,14 +92,17 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="4,7"
+    data-line="4,10"
     ><code>/** thread safe */
 class Counter {
 
-  private AtomicLong count = new AtomicLong();
+  private final AtomicLong count = new AtomicLong();
 
-  void increment() {
-    count.incrementAndGet();
+  void increment(long increment) {
+    if (increment &lt; 1) {
+      return;
+    }
+    count.addAndGet(increment);
   }
 }</code></pre>
 
@@ -116,14 +119,17 @@ class Counter {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="4,7"
+    data-line="4,10"
     ><code>/** thread safe */
 class Counter {
 
-  private LongAdder count = new LongAdder();
+  private final LongAdder count = new LongAdder();
 
-  void increment() {
-    count.increment();
+  void increment(long increment) {
+    if (increment &lt; 1) {
+      return;
+    }
+    count.add(increment);
   }
 }</code></pre>
 

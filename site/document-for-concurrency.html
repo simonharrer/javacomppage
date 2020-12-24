@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Document for Concurrency | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Document for Concurrency | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/document-for-concurrency1092806357.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/document-for-concurrency1330949744.png">
     </head>
     <body>
 
@@ -96,8 +96,13 @@
 
   private long count;
 
-  synchronized void increment() {
-    count++;
+  synchronized void increment(long increment) {
+    if (increment &lt; 1) {
+      return;
+    }
+    var next = count;
+    next = next + increment;
+    count = next;
   }
 }</code></pre>
 
@@ -121,8 +126,13 @@ class Counter {
   /** guarded by &#39;this&#39; */
   private long count;
 
-  synchronized void increment() {
-    count++;
+  synchronized void increment(long increment) {
+    if (increment &lt; 1) {
+      return;
+    }
+    var next = count;
+    next = next + increment;
+    count = next;
   }
 }</code></pre>
 

@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Protect Your Shared Memory | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Protect Your Shared Memory | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/protect-your-shared-memory-37243111.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/protect-your-shared-memory1912537004.png">
     </head>
     <body>
 
@@ -90,13 +90,18 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="5,6,7"
+    data-line="5,6,7,8,9,10,11,12"
     ><code>class Counter {
 
   private long count;
 
-  void increment() {
-    count++;
+  void increment(long increment) {
+    if (increment &lt; 1) {
+      return;
+    }
+    var next = count;
+    next = next + increment;
+    count = next;
   }
 }</code></pre>
 
@@ -120,13 +125,18 @@ count = tmp; // write
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="5,6,7"
+    data-line="5,6,7,8,9,10,11,12"
     ><code>class Counter {
 
   private long count;
 
-  synchronized void increment() {
-    count++;
+  synchronized void increment(long increment) {
+    if (increment &lt; 1) {
+      return;
+    }
+    var next = count;
+    next = next + increment;
+    count = next;
   }
 }</code></pre>
 

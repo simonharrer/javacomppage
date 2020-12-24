@@ -10,7 +10,7 @@ public class Main {
   public static void main(String[] args) throws Exception {
     var start = Instant.now();
 
-    generate(new GeneratorConfiguration(Path.of("site"), true, true));
+    generate(new GeneratorConfiguration(Path.of("site"), true, false));
     generate(new GeneratorConfiguration(Path.of("site-private"), false, false));
 
     var end = Instant.now();

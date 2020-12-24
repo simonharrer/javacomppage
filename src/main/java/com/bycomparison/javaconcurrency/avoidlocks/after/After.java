@@ -11,12 +11,15 @@ public class After {
 class Counter {
 
   // START_HIGHLIGHT
-  private AtomicLong count = new AtomicLong();
+  private final AtomicLong count = new AtomicLong();
   // END_HIGHLIGHT
 
-  void increment() {
+  void increment(long increment) {
+    if (increment < 1) {
+      return;
+    }
     // START_HIGHLIGHT
-    count.incrementAndGet();
+    count.addAndGet(increment);
     // END_HIGHLIGHT
   }
 }

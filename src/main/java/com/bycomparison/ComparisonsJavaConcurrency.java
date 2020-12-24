@@ -52,6 +52,15 @@ public class ComparisonsJavaConcurrency {
                     * just make it explicit
                     """
             ),
+            javaConcurrency("Minimize Your Lock Scopes", groupSharedValue,
+                List.of("synchronized"),
+                """
+                    * guard doesn't access shared state
+                    * scope of `synchronized` is too large
+                    """, """
+                    * just make it explicit
+                    """
+            ),
             javaConcurrency("Hide Your Locks", groupSharedValue,
                 List.of("synchronized"),
                 """

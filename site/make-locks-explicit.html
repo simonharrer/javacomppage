@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Make Locks Explicit | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Make Locks Explicit | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/make-locks-explicit-399518218.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/make-locks-explicit926774540.png">
     </head>
     <body>
 
@@ -83,7 +83,7 @@
     </span>
     <span style="float: right;">
       <a class="btn btn-info" href="document-for-concurrency.html">← Document for Concurrency</a>
-      <a class="btn btn-info" href="hide-your-locks.html">Hide Your Locks →</a>
+      <a class="btn btn-info" href="minimize-your-lock-scopes.html">Minimize Your Lock Scopes →</a>
     </span>
 </h1>
 <div class="row row-eq-height">
@@ -96,10 +96,15 @@
 class Counter {
 
   /** guarded by &#39;this&#39; */
-  private int count;
+  private long count;
 
-  synchronized void increment() {
-    count++;
+  synchronized void increment(long increment) {
+    if (increment &lt; 1) {
+      return;
+    }
+    var next = count;
+    next = next + increment;
+    count = next;
   }
 }</code></pre>
 
@@ -117,16 +122,21 @@ class Counter {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="8,10"
+    data-line="8,15"
     ><code>/** thread safe */
 class Counter {
 
   /** guarded by &#39;this&#39; */
-  private int count;
+  private long count;
 
-  void increment() {
+  void increment(long increment) {
     synchronized (this) {
-      count++;
+      if (increment &lt; 1) {
+        return;
+      }
+      var next = count;
+      next = next + increment;
+      count = next;
     }
   }
 }</code></pre>

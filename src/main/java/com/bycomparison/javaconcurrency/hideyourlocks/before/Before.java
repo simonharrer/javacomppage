@@ -13,11 +13,16 @@ class Counter {
   // END_HIGHLIGHT
   private long count;
 
-  void increment() {
+  void increment(long increment) {
+    if (increment < 1) {
+      return;
+    }
     // START_HIGHLIGHT
     synchronized (this) {
-    // END_HIGHLIGHT
-      count++;
+      // END_HIGHLIGHT
+      var next = count;
+      next = next + increment;
+      count = next;
     // START_HIGHLIGHT
     }
     // END_HIGHLIGHT

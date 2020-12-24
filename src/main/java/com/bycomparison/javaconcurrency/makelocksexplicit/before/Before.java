@@ -9,12 +9,17 @@ public class Before {
 class Counter {
 
   /** guarded by 'this' */
-  private int count;
+  private long count;
 
   // START_HIGHLIGHT
-  synchronized void increment() {
+  synchronized void increment(long increment) {
     // END_HIGHLIGHT
-    count++;
+    if (increment < 1) {
+      return;
+    }
+    var next = count;
+    next = next + increment;
+    count = next;
   }
 }
 // BEFORE:end

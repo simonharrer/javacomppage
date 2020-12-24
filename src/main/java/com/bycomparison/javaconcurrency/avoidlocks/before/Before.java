@@ -15,10 +15,15 @@ class Counter {
   private final Object lock = new Object();
   // END_HIGHLIGHT
 
-  void increment() {
+  void increment(long increment) {
+    if (increment < 1) {
+      return;
+    }
     // START_HIGHLIGHT
     synchronized (lock) {
-      count++;
+      var next = count;
+      next = next + increment;
+      count = next;
     }
     // END_HIGHLIGHT
   }

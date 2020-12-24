@@ -11,12 +11,15 @@ public class After {
 class Counter {
 
   // START_HIGHLIGHT
-  private LongAdder count = new LongAdder();
+  private final LongAdder count = new LongAdder();
   // END_HIGHLIGHT
 
-  void increment() {
+  void increment(long increment) {
+    if (increment < 1) {
+      return;
+    }
     // START_HIGHLIGHT
-    count.increment();
+    count.add(increment);
     // END_HIGHLIGHT
   }
 }
