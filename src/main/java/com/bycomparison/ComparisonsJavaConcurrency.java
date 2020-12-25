@@ -68,6 +68,14 @@ public class ComparisonsJavaConcurrency {
                     """, """
                     * with a private lock object, the monitor stays local
                     """
+            ),   javaConcurrency("Be Fair", groupSharedValue,
+                List.of("ReentrantLock","finally"),
+                """
+                    * unfair
+                    """, """
+                    * same behavior as synchronized
+                    * but also fair (see `true` parameter in the constructor), but comes at a cost
+                    """
             ),
             javaConcurrency("Avoid Locks", groupSharedValue,
                 List.of("AtomicLong", "compare-and-set"),

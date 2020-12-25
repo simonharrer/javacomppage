@@ -1,18 +1,21 @@
 package com.bycomparison.javaconcurrency.avoidlocks.before;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Before {
 
 }
 
 // BEFORE:start
-/** thread safe */
 class Counter {
 
-  // START_HIGHLIGHT
-  /** guarded by 'lock' */
+  /**
+   * guarded by 'lock'
+   */
   private long count;
 
-  private final Object lock = new Object();
+  // START_HIGHLIGHT
+  private final ReentrantLock lock = new ReentrantLock(true);
   // END_HIGHLIGHT
 
   void increment(long increment) {
@@ -21,10 +24,13 @@ class Counter {
     }
 
     // START_HIGHLIGHT
-    synchronized (lock) {
+    lock.lock();
+    try {
       var next = count;
       next = next + increment;
       count = next;
+    } finally {
+      lock.unlock();
     }
     // END_HIGHLIGHT
   }

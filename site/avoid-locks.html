@@ -15,7 +15,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Avoid Locks | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Avoid Locks | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-locks672135581.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-locks-1116431403.png">
     </head>
     <body>
 
@@ -83,7 +83,7 @@
         <span class="badge badge-info">compare-and-set</span>
     </span>
     <span style="float: right;">
-      <a class="btn btn-info" href="hide-your-locks.html">← Hide Your Locks</a>
+      <a class="btn btn-info" href="be-fair.html">← Be Fair</a>
       <a class="btn btn-info" href="avoid-active-waiting.html">Avoid Active Waiting →</a>
     </span>
 </h1>
@@ -92,24 +92,28 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="4,5,6,7,14,15,16,17,18"
-    ><code>/** thread safe */
-class Counter {
+    data-line="8,15,16,17,18,19,20,21,22"
+    ><code>class Counter {
 
-  /** guarded by &#39;lock&#39; */
+  /**
+   * guarded by &#39;lock&#39;
+   */
   private long count;
 
-  private final Object lock = new Object();
+  private final ReentrantLock lock = new ReentrantLock(true);
 
   void increment(long increment) {
     if (increment &lt; 1) {
       throw new IllegalArgumentException();
     }
 
-    synchronized (lock) {
+    lock.lock();
+    try {
       var next = count;
       next = next + increment;
       count = next;
+    } finally {
+      lock.unlock();
     }
   }
 }</code></pre>
