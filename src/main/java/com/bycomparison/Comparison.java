@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 public record Comparison(String name, String group, String category, List<String> tags,
                          String beforeCode,
@@ -17,18 +16,21 @@ public record Comparison(String name, String group, String category, List<String
       String beforeText, String afterText,
       String category) {
     var codeDirectory = normalize(category) + "/" + normalize(name);
+
+    var beforeCode = Code.parseBeforeCodePart(codeDirectory);
+    var afterCode = Code.parseAfterCodePart(codeDirectory);
     return new Comparison(name, group, category,
         tags,
-        Code.parseBeforeCodePart(codeDirectory).code(),
-        Code.parseBeforeCodePart(codeDirectory).highlight(), Markdown.toHtml(beforeText),
-        Code.parseAfterCodePart(codeDirectory).code(),
-        Code.parseAfterCodePart(codeDirectory).highlight(), Markdown.toHtml(afterText),
+        beforeCode.code(),
+        beforeCode.highlight(), Markdown.toHtml(beforeText),
+        afterCode.code(),
+        afterCode.highlight(), Markdown.toHtml(afterText),
         "java", "",
         true, false, "");
   }
 
   public static Comparison propertiesComparison(String name, String group, List<String> tags,
-     String beforeCode, String beforeText, String afterCode, String afterText,
+      String beforeCode, String beforeText, String afterCode, String afterText,
       String category) {
 
     return new Comparison(name, group, category,

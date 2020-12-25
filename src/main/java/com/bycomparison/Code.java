@@ -1,14 +1,12 @@
 package com.bycomparison;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import views.codehighlight;
 
 public class Code {
 
@@ -24,7 +22,14 @@ public class Code {
 
   private static ParsedCode parse(String filename, String delimiter) {
     try {
-      return p(delimiter, Files.readAllLines(Path.of(filename), StandardCharsets.UTF_8));
+      var path = Path.of(filename);
+
+      if (!Files.exists(path)) {
+        System.out.println("ERROR: path " + path + " doesn't exist");
+        return new ParsedCode("", List.of());
+      }
+
+      return p(delimiter, Files.readAllLines(path, StandardCharsets.UTF_8));
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -52,7 +57,7 @@ public class Code {
         lineNumberModifier = lineNumber;
       }
 
-      if(line.contains("END_HIGHLIGHT")) {
+      if (line.contains("END_HIGHLIGHT")) {
         highlight = false;
         ignoredLineNumbers++;
       }

@@ -126,6 +126,10 @@ public class ComparisonsJavaConcurrency {
                 """
                     * make that atomic which should be atomic
                     """),
+            javaConcurrency("Design for Concurrency", groupExecution, List.of(),
+                "", ""),
+            javaConcurrency("Parallelize with Threads", groupExecution, List.of(),
+                "", ""),
             javaConcurrency("Separate Runnable From Thread", groupExecution,
                 List.of("Thread", "Runnable"),
                 """
