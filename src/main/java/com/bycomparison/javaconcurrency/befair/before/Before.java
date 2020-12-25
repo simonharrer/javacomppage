@@ -9,9 +9,7 @@ public class Before {
 /** thread safe */
 class Counter {
 
-  // START_HIGHLIGHT
   /** guarded by 'lock' */
-  // END_HIGHLIGHT
   private long count;
 
   // START_HIGHLIGHT
@@ -25,11 +23,11 @@ class Counter {
 
     // START_HIGHLIGHT
     synchronized (lock) {
-      // END_HIGHLIGHT
       var next = count;
       next = next + increment;
       count = next;
     }
+      // END_HIGHLIGHT
   }
 }
 // BEFORE:end

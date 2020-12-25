@@ -22,9 +22,7 @@ public class After {
  */
 class Counter {
 
-  /**
-   * guarded by 'lock'
-   */
+  /** guarded by 'lock'*/
   private long count;
 
   // START_HIGHLIGHT

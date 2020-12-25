@@ -9,9 +9,7 @@ public class Before {
 // BEFORE:start
 class Counter {
 
-  /**
-   * guarded by 'lock'
-   */
+  /** guarded by 'lock' */
   private long count;
 
   // START_HIGHLIGHT
