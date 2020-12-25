@@ -14,8 +14,9 @@ public class ComparisonsJavaConcurrency {
    */
 
   public static List<Comparison> getComparisons() {
-    var groupSharedValue = "Shared Value";
-    var groupSharedList = "Shared List";
+    var groupSharedValue = "Protect Your Shared Memory";
+    var groupSharedList = groupSharedValue;
+    var groupExecution = "Execution";
     return List
         .of(
             javaConcurrency("Protect Your Shared Memory", groupSharedValue,
@@ -25,7 +26,7 @@ public class ComparisonsJavaConcurrency {
                     * what can happen here when two threads count 100 times: expected 200, but basically any value could happen
                     * reading and writing 64 bit is not atomic, only 32 bit is
                     * lost updates
-                    
+                                        
                     ```java
                     var tmp = count; // read
                     var tmp = tmp + 1; // update
@@ -68,8 +69,8 @@ public class ComparisonsJavaConcurrency {
                     """, """
                     * with a private lock object, the monitor stays local
                     """
-            ),   javaConcurrency("Be Fair", groupSharedValue,
-                List.of("ReentrantLock","finally"),
+            ), javaConcurrency("Be Fair", groupSharedValue,
+                List.of("ReentrantLock"),
                 """
                     * unfair
                     """, """
@@ -78,7 +79,7 @@ public class ComparisonsJavaConcurrency {
                     """
             ),
             javaConcurrency("Avoid Locks", groupSharedValue,
-                List.of("AtomicLong", "compare-and-set"),
+                List.of("AtomicLong"),
                 """
                     * locks are bad
                     * may lead to deadlock
@@ -86,7 +87,7 @@ public class ComparisonsJavaConcurrency {
                     * compare-and-set allows lock free
                     * available since Java 5
                     * requires instruction by the CPU to work
-                    
+                                        
                     ```java
                     while(true) {
                        if(!count.compareAndSet(old, new)) {
@@ -98,7 +99,7 @@ public class ComparisonsJavaConcurrency {
                     """
             ),
             javaConcurrency("Avoid Active Waiting", groupSharedValue,
-                List.of("LongAdder", "compare-and-set", "Striped64"),
+                List.of("LongAdder"),
                 """
                     * AtomicLong is nonblocking (lock-free) but may result in lots of active waiting""",
                 """
@@ -106,38 +107,38 @@ public class ComparisonsJavaConcurrency {
                     * Sum is not as exact as it is with the AtomicLong, but much higher performance if multiple threads increment simultaneously"""
             ),
             javaConcurrency("Protect Your Collections", groupSharedList,
-                List.of("Collection", "List", "synchronized"),
+                List.of("synchronized"),
                 """
                     """,
                 """
                     """),
             javaConcurrency("Use Synchronized Collections", groupSharedList,
-                List.of("Collection", "List", "Collections.synchronized"),
+                List.of("Collections.synchronized"),
                 """
                     """,
                 """
                     """),
             javaConcurrency("Use Concurrent Collections", groupSharedList,
-                List.of("Collection", "List", "CopyOnWriteArrayList"),
+                List.of("CopyOnWriteArrayList"),
                 """
-                   * using atomic methods with a thread-safe data structure may still lead to wrong results
-                    """,
+                    * using atomic methods with a thread-safe data structure may still lead to wrong results
+                     """,
                 """
                     * make that atomic which should be atomic
                     """),
-            javaConcurrency("Separate Runnable From Thread", "Execution",
+            javaConcurrency("Separate Runnable From Thread", groupExecution,
                 List.of("Thread", "Runnable"),
                 """
                     """,
                 """
                     """),
-            javaConcurrency("Favor Executor Over Thread", "Execution",
+            javaConcurrency("Favor Executor Over Thread", groupExecution,
                 List.of("Executor", "ExecutorService"),
                 """
                     """,
                 """
                     """),
-            javaConcurrency("Guard your Waits", "Locking",
+            javaConcurrency("Guard your Waits", groupExecution,
                 List.of(),
                 """
                     * `wait()` allows the Thread to suspend execution until it is woken up by a `notify()`.
@@ -150,7 +151,8 @@ public class ComparisonsJavaConcurrency {
                     * Countdown is only initiated when isReadyToLaunch becomes true
                     * Inefficient, since boolean is constantly checked"""
             ),
-            javaConcurrency("Guard Your Sleep", "Locking", List.of("sleep", "guarded-wait"), "", "")
+            javaConcurrency("Guard Your Sleep", groupExecution, List.of("sleep", "guarded-wait"),
+                "", "")
         );
   }
 
