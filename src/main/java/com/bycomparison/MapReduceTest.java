@@ -3,9 +3,10 @@ package com.bycomparison;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.Future;
 import java.util.concurrent.RecursiveTask;
 
 public class MapReduceTest {
@@ -17,9 +18,30 @@ public class MapReduceTest {
 interface Image {
 
   List<ImagePart> splitIntoParts();
+  List<ImageCallable> splitIntoCallables();
+
+  List<ImageThread> splitIntoThreads();
+
+  List<ImageRunnable> splitIntoRunnables();
+}
+
+interface ImageRunnable extends Runnable {
+
+  long getFoundCraters();
+
 }
 
 interface ImagePart {
+
+  long findCraters();
+}
+
+interface ImageCallable extends Callable<Long> {
+
+  Long findCraters();
+}
+
+interface ImageThread {
 
   void start();
 
@@ -34,18 +56,18 @@ interface ImagePart {
 class CraterScanner1 {
 
   long scan(Image image) throws InterruptedException {
-    List<ImagePart> parts = image.splitIntoParts();
+    var threads = image.splitIntoThreads();
 
-    for (var part : parts) {
-      part.start();
+    for (var thread : threads) {
+      thread.start();
     }
-    for (var part : parts) {
-      part.join();
+    for (var thread : threads) {
+      thread.join();
     }
 
     long result = 0L;
-    for (var part : parts) {
-      result += part.getFoundCraters();
+    for (var thread : threads) {
+      result += thread.getFoundCraters();
     }
     return result;
   }
@@ -55,21 +77,76 @@ class CraterScanner1 {
 class CraterScanner2 {
 
   long scan(Image image) {
-    List<ImagePart> parts = image.splitIntoParts();
+    var threads = image.splitIntoThreads();
 
-    for (var part : parts) {
-      part.start();
+    for (var thread : threads) {
+      thread.start();
     }
-    for (var part : parts) {
+    for (var thread : threads) {
       try {
-        part.join();
+        thread.join();
       } catch (InterruptedException ignored) {
       }
     }
 
     long result = 0L;
-    for (var part : parts) {
-      result += part.getFoundCraters();
+    for (var thread : threads) {
+      result += thread.getFoundCraters();
+    }
+    return result;
+  }
+
+}
+
+class CraterScanner3 {
+
+  long scan(Image image) {
+    var runnables = image.splitIntoRunnables();
+
+    List<Thread> threads = new ArrayList<>();
+    for (var runnable : runnables) {
+      var thread = new Thread(runnable);
+      thread.start();
+      threads.add(thread);
+    }
+    for (var thread : threads) {
+      try {
+        thread.join();
+      } catch (InterruptedException ignored) {
+      }
+    }
+
+    long result = 0L;
+    for (var runnable : runnables) {
+      result += runnable.getFoundCraters();
+    }
+    return result;
+  }
+
+}
+
+class CraterScanner4 {
+
+  ExecutorService executorService = ForkJoinPool.commonPool();
+
+  long scan(Image image) {
+    var runnables = image.splitIntoRunnables();
+
+    List<Future<?>> futures = new ArrayList<>();
+    for (var runnable : runnables) {
+      var future = executorService.submit(runnable);
+      futures.add(future);
+    }
+    for (var future : futures) {
+      try {
+        future.get();
+      } catch (InterruptedException | ExecutionException ignored) {
+      }
+    }
+
+    long result = 0L;
+    for (var runnable : runnables) {
+      result += runnable.getFoundCraters();
     }
     return result;
   }
@@ -77,29 +154,25 @@ class CraterScanner2 {
 }
 
 
-class CraterScanner3 {
+class CraterScanner5 {
 
-  ExecutorService executorService;
+  ExecutorService executorService = ForkJoinPool.commonPool();
 
-  long scan(Image image) throws InterruptedException {
+  long scan(Image image) throws InterruptedException, ExecutionException {
     List<ImagePart> parts = image.splitIntoParts();
-
 
     List<Callable<Long>> jobs = new ArrayList<>();
     for (var part : parts) {
       jobs.add(part::findCraters);
     }
-    executorService.invokeAll(jobs);
 
-    long result = reduce(parts);
-    return result;
-  }
+    var futures = executorService.invokeAll(jobs);
 
-  private long reduce(List<ImagePart> parts) {
     long result = 0L;
-    for (var part : parts) {
-      result += part.getFoundCraters();
+    for (var future : futures) {
+      result += future.get();
     }
+
     return result;
   }
 
