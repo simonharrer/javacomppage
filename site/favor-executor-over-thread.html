@@ -84,7 +84,6 @@
     </span>
     <span style="float: right;">
       <a class="btn btn-info" href="separate-runnable-from-thread.html">← Separate Runnable From Thread</a>
-      <a class="btn btn-info" href="make-sure-to-clean-up-your-executor.html">Make Sure to Clean Up Your Executor →</a>
     </span>
 </h1>
 <div class="row row-eq-height">
@@ -112,15 +111,14 @@
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="4,6,8"
+    data-line="4,6"
     ><code>class Main {
 
   static void start(List&lt;Job&gt; jobs) {
-    ExecutorService executorService = Executors.newFixedThreadPool(10);
+    Executor executor = ForkJoinPool.commonPool();
     for (Job job : jobs) {
-      executorService.execute(job::doWork);
+      executor.execute(job::doWork);
     }
-    executorService.shutdown();
   }
 }</code></pre>
 

@@ -1,8 +1,10 @@
 package com.bycomparison.javaconcurrency.favorexecutoroverthread.after;
 
 import java.util.List;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 
 public class After {
 
@@ -20,16 +22,13 @@ class Main {
 
   static void start(List<Job> jobs) {
     // START_HIGHLIGHT
-    ExecutorService executorService = Executors.newFixedThreadPool(10);
+    Executor executor = ForkJoinPool.commonPool();
     // END_HIGHLIGHT
     for (Job job : jobs) {
       // START_HIGHLIGHT
-      executorService.execute(job::doWork);
+      executor.execute(job::doWork);
       // END_HIGHLIGHT
     }
-    // START_HIGHLIGHT
-    executorService.shutdown();
-    // END_HIGHLIGHT
   }
 }
 // AFTER:end

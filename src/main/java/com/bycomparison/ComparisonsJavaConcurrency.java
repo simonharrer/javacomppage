@@ -137,12 +137,6 @@ public class ComparisonsJavaConcurrency {
                     """,
                 """
                     """),
-            javaConcurrency("Make Sure to Clean Up Your Executor", "Execution",
-                List.of("Executor", "ExecutorService", "finally"),
-                """
-                    """,
-                """
-                    """),
             javaConcurrency("Guard your Waits", "Locking",
                 List.of(),
                 """
@@ -156,7 +150,6 @@ public class ComparisonsJavaConcurrency {
                     * Countdown is only initiated when isReadyToLaunch becomes true
                     * Inefficient, since boolean is constantly checked"""
             ),
-            Comparison.empty("Minimize Your Synchronized Blocks", "Locking", "Java Concurrency"),
             javaConcurrency("Guard Your Sleep", "Locking", List.of("sleep", "guarded-wait"), "", "")
         );
   }
