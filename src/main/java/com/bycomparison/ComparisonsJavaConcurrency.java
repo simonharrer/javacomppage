@@ -14,9 +14,9 @@ public class ComparisonsJavaConcurrency {
    */
 
   public static List<Comparison> getComparisons() {
-    var groupSharedValue = "Protect Your Shared Memory";
+    var groupSharedValue = "Protect Your Shared Mutable State";
     var groupSharedList = groupSharedValue;
-    var groupExecution = "Execution";
+    var groupExecution = "Solve Your Problem in Parallel";
     return List
         .of(
             javaConcurrency("Protect Your Shared Memory", groupSharedValue,
