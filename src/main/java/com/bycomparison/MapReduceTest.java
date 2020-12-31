@@ -18,11 +18,19 @@ public class MapReduceTest {
 interface Image {
 
   List<ImagePart> splitIntoParts();
+
   List<ImageCallable> splitIntoCallables();
 
   List<ImageThread> splitIntoThreads();
 
   List<ImageRunnable> splitIntoRunnables();
+
+  List<Image> split();
+
+  boolean isComputable();
+
+  Long findCraters();
+
 }
 
 interface ImageRunnable extends Runnable {
@@ -52,11 +60,37 @@ interface ImageThread {
   long findCraters();
 }
 
+class CraterScanner01 {
+
+  long scan(Image image) {
+    return image.findCraters();
+  }
+
+}
+
+class CraterScanner02 {
+
+  long scan(Image image) {
+    var images = image.split();
+    var result = 0L;
+    for (var i : images) {
+      result += i.findCraters();
+    }
+    return result;
+  }
+
+}
+
 
 class CraterScanner1 {
 
   long scan(Image image) throws InterruptedException {
-    var threads = image.splitIntoThreads();
+    var images = image.split();
+
+    var threads = new ArrayList<CraterScannerThread>();
+    for (Image i : images) {
+      threads.add(new CraterScannerThread(i));
+    }
 
     for (var thread : threads) {
       thread.start();
@@ -67,17 +101,52 @@ class CraterScanner1 {
 
     long result = 0L;
     for (var thread : threads) {
-      result += thread.getFoundCraters();
+      result += thread.foundCraters;
     }
     return result;
   }
 
 }
 
+class CraterScannerThread extends Thread {
+
+  private final Image image;
+  long foundCraters;
+
+  CraterScannerThread(Image image) {
+    this.image = image;
+  }
+
+  @Override
+  public void run() {
+    foundCraters = image.findCraters();
+  }
+}
+
+class CraterScannerRunnable implements Runnable {
+
+  private final Image image;
+  long foundCraters;
+
+  CraterScannerRunnable(Image image) {
+    this.image = image;
+  }
+
+  @Override
+  public void run() {
+    foundCraters = image.findCraters();
+  }
+}
+
 class CraterScanner2 {
 
   long scan(Image image) {
-    var threads = image.splitIntoThreads();
+    var images = image.split();
+
+    var threads = new ArrayList<CraterScannerThread>();
+    for (Image i : images) {
+      threads.add(new CraterScannerThread(i));
+    }
 
     for (var thread : threads) {
       thread.start();
@@ -91,7 +160,7 @@ class CraterScanner2 {
 
     long result = 0L;
     for (var thread : threads) {
-      result += thread.getFoundCraters();
+      result += thread.foundCraters;
     }
     return result;
   }
@@ -101,13 +170,20 @@ class CraterScanner2 {
 class CraterScanner3 {
 
   long scan(Image image) {
-    var runnables = image.splitIntoRunnables();
+    var images = image.split();
 
-    List<Thread> threads = new ArrayList<>();
+    var runnables = new ArrayList<CraterScannerRunnable>();
+    for (Image i : images) {
+      runnables.add(new CraterScannerRunnable(i));
+    }
+
+    var threads = new ArrayList<Thread>();
     for (var runnable : runnables) {
-      var thread = new Thread(runnable);
+      threads.add(new Thread(runnable));
+    }
+
+    for (var thread : threads) {
       thread.start();
-      threads.add(thread);
     }
     for (var thread : threads) {
       try {
@@ -118,7 +194,7 @@ class CraterScanner3 {
 
     long result = 0L;
     for (var runnable : runnables) {
-      result += runnable.getFoundCraters();
+      result += runnable.foundCraters;
     }
     return result;
   }
@@ -130,12 +206,16 @@ class CraterScanner4 {
   ExecutorService executorService = ForkJoinPool.commonPool();
 
   long scan(Image image) {
-    var runnables = image.splitIntoRunnables();
+    var images = image.split();
 
-    List<Future<?>> futures = new ArrayList<>();
+    var runnables = new ArrayList<CraterScannerRunnable>();
+    for (Image i : images) {
+      runnables.add(new CraterScannerRunnable(i));
+    }
+
+    var futures = new ArrayList<Future<?>>();
     for (var runnable : runnables) {
-      var future = executorService.submit(runnable);
-      futures.add(future);
+      futures.add(executorService.submit(runnable));
     }
     for (var future : futures) {
       try {
@@ -146,64 +226,72 @@ class CraterScanner4 {
 
     long result = 0L;
     for (var runnable : runnables) {
-      result += runnable.getFoundCraters();
+      result += runnable.foundCraters;
     }
     return result;
   }
 
 }
 
-
-class CraterScanner5 {
+class CraterScanner41 {
 
   ExecutorService executorService = ForkJoinPool.commonPool();
 
-  long scan(Image image) throws InterruptedException, ExecutionException {
-    List<ImagePart> parts = image.splitIntoParts();
+  long scan(Image image) {
+    var callables = image.splitIntoCallables();
 
-    List<Callable<Long>> jobs = new ArrayList<>();
-    for (var part : parts) {
-      jobs.add(part::findCraters);
+    var futures = new ArrayList<Future<Long>>();
+    for (var callable : callables) {
+      futures.add(executorService.submit(callable));
     }
-
-    var futures = executorService.invokeAll(jobs);
 
     long result = 0L;
     for (var future : futures) {
-      result += future.get();
+      try {
+        result += future.get();
+      } catch (InterruptedException | ExecutionException ignored) {
+      }
     }
-
     return result;
   }
 
 }
 
+// skipped executorService.invokeAll because of interrupted exeception issue
+
 class CraterScanner8 {
 
+  private ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+
   long scan(Image image) {
-    List<ImagePart> parts = image.splitIntoParts();
-
-    return ForkJoinPool.commonPool().invoke(new RecursiveTask<>() {
-      @Override
-      protected Long compute() {
-        List<ImagePart> parts = image.splitIntoParts();
-
-        return null;
-      }
-    });
+    return forkJoinPool.invoke(new Task(image));
   }
 
   static class Task extends RecursiveTask<Long> {
 
-    private final ImagePart imagePart;
+    private final Image image;
 
-    Task(ImagePart imagePart) {
-      this.imagePart = imagePart;
+    Task(Image image) {
+      this.image = image;
     }
 
     @Override
     protected Long compute() {
-      return imagePart.findCraters();
+      if (image.isComputable()) {
+        return image.findCraters();
+      } else {
+        var images = image.split();
+        var tasks = new ArrayList<Task>();
+        for (var image : images) {
+          tasks.add(new Task(image));
+        }
+        invokeAll(tasks);
+        long sum = 0L;
+        for (var task : tasks) {
+          sum += task.getRawResult();
+        }
+        return sum;
+      }
     }
   }
 
@@ -212,9 +300,8 @@ class CraterScanner8 {
 class CraterScanner9 {
 
   long scan(Image image) {
-    List<ImagePart> parts = image.splitIntoParts();
-
-    return parts.parallelStream().map(ImagePart::findCraters).reduce(0L, Long::sum);
+    return image.splitIntoParts().parallelStream().map(ImagePart::findCraters)
+        .reduce(0L, Long::sum);
   }
 
 }
