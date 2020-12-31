@@ -92,15 +92,15 @@ class CraterScanner1 {
       threads.add(new CraterScannerThread(i));
     }
 
-    for (var thread : threads) {
+    for (Thread thread : threads) {
       thread.start();
     }
-    for (var thread : threads) {
+    for (Thread thread : threads) {
       thread.join();
     }
 
     long result = 0L;
-    for (var thread : threads) {
+    for (CraterScannerThread thread : threads) {
       result += thread.foundCraters;
     }
     return result;
@@ -148,10 +148,10 @@ class CraterScanner2 {
       threads.add(new CraterScannerThread(i));
     }
 
-    for (var thread : threads) {
+    for (Thread thread : threads) {
       thread.start();
     }
-    for (var thread : threads) {
+    for (Thread thread : threads) {
       try {
         thread.join();
       } catch (InterruptedException ignored) {
@@ -159,7 +159,7 @@ class CraterScanner2 {
     }
 
     long result = 0L;
-    for (var thread : threads) {
+    for (CraterScannerThread thread : threads) {
       result += thread.foundCraters;
     }
     return result;
@@ -178,14 +178,14 @@ class CraterScanner3 {
     }
 
     var threads = new ArrayList<Thread>();
-    for (var runnable : runnables) {
+    for (Runnable runnable : runnables) {
       threads.add(new Thread(runnable));
     }
 
-    for (var thread : threads) {
+    for (Thread thread : threads) {
       thread.start();
     }
-    for (var thread : threads) {
+    for (Thread thread : threads) {
       try {
         thread.join();
       } catch (InterruptedException ignored) {
@@ -193,7 +193,7 @@ class CraterScanner3 {
     }
 
     long result = 0L;
-    for (var runnable : runnables) {
+    for (CraterScannerRunnable runnable : runnables) {
       result += runnable.foundCraters;
     }
     return result;
@@ -214,10 +214,10 @@ class CraterScanner4 {
     }
 
     var futures = new ArrayList<Future<?>>();
-    for (var runnable : runnables) {
+    for (Runnable runnable : runnables) {
       futures.add(executorService.submit(runnable));
     }
-    for (var future : futures) {
+    for (Future<?> future : futures) {
       try {
         future.get();
       } catch (InterruptedException | ExecutionException ignored) {
@@ -225,7 +225,7 @@ class CraterScanner4 {
     }
 
     long result = 0L;
-    for (var runnable : runnables) {
+    for (CraterScannerRunnable runnable : runnables) {
       result += runnable.foundCraters;
     }
     return result;
@@ -257,7 +257,7 @@ class CraterScanner41 {
 
 }
 
-// skipped executorService.invokeAll because of interrupted exeception issue
+// skipped executorService.invokeAll because of interrupted exception issue
 
 class CraterScanner8 {
 
@@ -300,7 +300,7 @@ class CraterScanner8 {
 class CraterScanner9 {
 
   long scan(Image image) {
-    return image.splitIntoParts().parallelStream().map(ImagePart::findCraters)
+    return image.split().parallelStream().map(Image::findCraters)
         .reduce(0L, Long::sum);
   }
 
