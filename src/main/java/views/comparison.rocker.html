@@ -10,7 +10,7 @@
 
 <div class="row mb-3">
 
-<div class="col text-start">
+<div class="col text-start previous">
   @if(!dependencies.previous().isEmpty()) {
   <a class="btn btn-secondary" href="@dependencies.previous()">← @dependencies.previousName()</a>
   }
@@ -19,7 +19,7 @@
 
 <div class="col text-center"><h5>@comparison.group()</h5></div>
 
-<div class="col text-end">
+<div class="col text-end next">
   @if(!dependencies.next().isEmpty()) {
   <a class="btn btn-secondary" href="@dependencies.next()">@dependencies.nextName() →</a>
   }

@@ -8,7 +8,9 @@ public class Before {
 }
 
 // BEFORE:start
+// START_HIGHLIGHT
 /** not thread-safe */
+// END_HIGHLIGHT
 class Crew {
 
   private final List<String> members = new ArrayList<>();

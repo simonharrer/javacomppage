@@ -4,6 +4,8 @@ import static com.bycomparison.modernjava.inlineshortfilesintests.before.TestHel
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 import static org.skyscreamer.jsonassert.JSONCompareMode.STRICT;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import org.json.JSONException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -42,5 +44,6 @@ class SupplyTests {
     // END_HIGHLIGHT
     assertEquals(expectedJson, actualJson, STRICT);
   }
+
 }
 // BEFORE:end
