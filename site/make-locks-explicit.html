@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Make Locks Explicit | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Make Locks Explicit | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/make-locks-explicit499557725.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/make-locks-explicit1944126805.png">
     </head>
     <body>
 
@@ -98,31 +98,27 @@ Make Locks Explicit
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="12"
+    data-line="8"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    /**
-     * guarded by &#39;this&#39;
-     */
-    private long count;
+  /** guarded by &#39;this&#39; */
+  private long count;
 
-    synchronized void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        this.count += amount;
+  synchronized void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    this.count += amount;
+  }
 }</code></pre>
 
 
           <div class="p-3">
             <ul>
-<li>synchronized in the method may be short, but readers who aren't that familier with synchronized may get the wrong impression</li>
+<li><code>synchronized</code> in the method may be short, but readers who aren't that familiar with <code>synchronized</code> may get the wrong impression</li>
 <li>especially if the documentation is missing...</li>
 </ul>
 
@@ -133,33 +129,29 @@ class Counter {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="13,19"
+    data-line="9,15"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    /**
-     * guarded by &#39;this&#39;
-     */
-    private long count;
+  /** guarded by &#39;this&#39; */
+  private long count;
 
-    void increment(long amount) {
-        synchronized (this) {
-            if (amount &lt; 1) {
-                throw new IllegalArgumentException(&quot;Only increments!&quot;);
-            }
+  void increment(long amount) {
+    synchronized (this) {
+      if (amount &lt; 1) {
+        throw new IllegalArgumentException(&quot;Only increments!&quot;);
+      }
 
-            this.count += amount;
-        }
+      this.count += amount;
     }
+  }
 }</code></pre>
 
 
             <div class="p-3">
               <ul>
-<li>just make it explicit</li>
+<li>You should make the scope of the <code>synchronized</code> block explicit</li>
 </ul>
 
             </div>

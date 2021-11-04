@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Document for Concurrency | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Document for Concurrency | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/document-for-concurrency-168386749.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/document-for-concurrency-394399101.png">
     </head>
     <body>
 
@@ -101,21 +101,22 @@ Document for Concurrency
     data-line="1,3"
     ><code>class Counter {
 
-    private long count;
+  private long count;
 
-    synchronized void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        this.count += amount;
+  synchronized void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    this.count += amount;
+  }
 }</code></pre>
 
 
           <div class="p-3">
             <ul>
-<li>without documentation takes some time to figure out if it really is thread-safe</li>
+<li>Knowing if a method is thread safe is very important!</li>
+<li>Without documentation, it takes some time to figure out if it really is thread-safe</li>
 </ul>
 
           </div>
@@ -125,32 +126,29 @@ Document for Concurrency
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="1,2,3,4,5,7,8,9,10"
+    data-line="1,2,3,5,6"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    /**
-     * guarded by &#39;this&#39;
-     */
-    private long count;
+  /** guarded by &#39;this&#39; */
+  private long count;
 
-    synchronized void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        this.count += amount;
+  synchronized void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    this.count += amount;
+  }
 }</code></pre>
 
 
             <div class="p-3">
               <ul>
-<li>multiple variants: thread-safe, immutable, conditionally thread-safe, not thread-safe</li>
 <li>annotations from Java Concurrency in Practice</li>
+<li>help to safely use the classes</li>
+<li>multiple variants: thread-safe, immutable, conditionally thread-safe, not thread-safe</li>
 </ul>
 
             </div>

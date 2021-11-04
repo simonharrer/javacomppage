@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Avoid Locks | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Avoid Locks | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-locks-130807991.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-locks-1940309125.png">
     </head>
     <body>
 
@@ -98,35 +98,37 @@ Avoid Locks
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="8,15,16,17,18,19,20"
+    data-line="6,13,14,15,16,17,18"
     ><code>class Counter {
 
-    /**
-     * guarded by &#39;lock&#39;
-     */
-    private long count;
+  /** guarded by &#39;lock&#39; */
+  private long count;
 
-    private final ReentrantLock lock = new ReentrantLock(true);
+  private final ReentrantLock lock = new ReentrantLock(true);
 
-    void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        lock.lock();
-        try {
-            this.count += amount;
-        } finally {
-            this.lock.unlock();
-        }
+  void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    lock.lock();
+    try {
+      this.count += amount;
+    } finally {
+      this.lock.unlock();
+    }
+  }
 }</code></pre>
 
 
           <div class="p-3">
             <ul>
-<li>locks are bad</li>
-<li>may lead to deadlock</li>
+<li>locks are undesirable:
+<ul>
+<li>performance issues</li>
+<li>deadlocks</li>
+</ul>
+</li>
 </ul>
 
           </div>
@@ -136,22 +138,20 @@ Avoid Locks
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="7,14"
+    data-line="5,12"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    private final AtomicLong count = new AtomicLong();
+  private final AtomicLong count = new AtomicLong();
 
-    void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        this.count.addAndGet(amount);
+  void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    this.count.addAndGet(amount);
+  }
 }</code></pre>
 
 

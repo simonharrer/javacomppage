@@ -1,22 +1,20 @@
 package com.bycomparison.javaconcurrency.protectyoursharedmemory.after;
 
-public class After {
-
-}
+public class After {}
 
 // AFTER:start
 class Counter {
 
-    private long count;
+  private long count;
 
-    // START_HIGHLIGHT
-    synchronized void increment(long amount) {
-        if (amount < 1) {
-            throw new IllegalArgumentException("Only increments!");
-        }
-
-        this.count += amount;
+  // START_HIGHLIGHT
+  synchronized void increment(long amount) {
+    if (amount < 1) {
+      throw new IllegalArgumentException("Only increments!");
     }
-    // END_HIGHLIGHT
+
+    this.count += amount;
+  }
+  // END_HIGHLIGHT
 }
 // AFTER:end
