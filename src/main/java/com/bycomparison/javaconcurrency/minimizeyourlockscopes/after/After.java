@@ -4,30 +4,35 @@ public class After {
 
 }
 
-@interface ThreadSafe {}
+@interface ThreadSafe {
+}
 
-@interface GuardedBy {String value();}
+@interface GuardedBy {
+    String value();
+}
 
 // AFTER:start
 
-/** thread safe */
+/**
+ * thread safe
+ */
 class Counter {
 
-  /** guarded by 'this' */
-  private long count;
+    /**
+     * guarded by 'this'
+     */
+    private long count;
 
-  void increment(long increment) {
-    if (increment < 1) {
-      throw new IllegalArgumentException();
-    }
+    void increment(long amount) {
+        if (amount < 1) {
+            throw new IllegalArgumentException("Only positive increments!");
+        }
 
-    // START_HIGHLIGHT
-    synchronized (this) {
-      var next = count;
-      next = next + increment;
-      count = next;
+        // START_HIGHLIGHT
+        synchronized (this) {
+            this.count += amount;
+        }
+        // END_HIGHLIGHT
     }
-    // END_HIGHLIGHT
-  }
 }
 // AFTER:end

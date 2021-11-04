@@ -7,20 +7,18 @@ public class Before {
 // BEFORE:start
 // START_HIGHLIGHT
 class Counter {
-  // END_HIGHLIGHT
+    // END_HIGHLIGHT
 
-  // START_HIGHLIGHT
-  private long count;
-  // END_HIGHLIGHT
+    // START_HIGHLIGHT
+    private long count;
+    // END_HIGHLIGHT
 
-  synchronized void increment(long increment) {
-    if (increment < 1) {
-      throw new IllegalArgumentException();
+    synchronized void increment(long amount) {
+        if (amount < 1) {
+            throw new IllegalArgumentException("Only positive increments!");
+        }
+
+        this.count += amount;
     }
-
-    var next = count;
-    next = next + increment;
-    count = next;
-  }
 }
 // BEFORE:end

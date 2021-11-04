@@ -9,28 +9,28 @@ public class Before {
 // BEFORE:start
 class Counter {
 
-  /** guarded by 'lock' */
-  private long count;
-
-  // START_HIGHLIGHT
-  private final ReentrantLock lock = new ReentrantLock(true);
-  // END_HIGHLIGHT
-
-  void increment(long increment) {
-    if (increment < 1) {
-      throw new IllegalArgumentException();
-    }
+    /**
+     * guarded by 'lock'
+     */
+    private long count;
 
     // START_HIGHLIGHT
-    lock.lock();
-    try {
-      var next = count;
-      next = next + increment;
-      count = next;
-    } finally {
-      lock.unlock();
-    }
+    private final ReentrantLock lock = new ReentrantLock(true);
     // END_HIGHLIGHT
-  }
+
+    void increment(long amount) {
+        if (amount < 1) {
+            throw new IllegalArgumentException("Only positive increments!");
+        }
+
+        // START_HIGHLIGHT
+        lock.lock();
+        try {
+            this.count += amount;
+        } finally {
+            this.lock.unlock();
+        }
+        // END_HIGHLIGHT
+    }
 }
 // BEFORE:end

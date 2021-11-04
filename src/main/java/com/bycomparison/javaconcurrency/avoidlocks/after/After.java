@@ -7,21 +7,24 @@ public class After {
 }
 
 // AFTER:start
-/** thread safe */
+
+/**
+ * thread safe
+ */
 class Counter {
 
-  // START_HIGHLIGHT
-  private final AtomicLong count = new AtomicLong();
-  // END_HIGHLIGHT
-
-  void increment(long increment) {
-    if (increment < 1) {
-      throw new IllegalArgumentException();
-    }
-
     // START_HIGHLIGHT
-    count.addAndGet(increment);
+    private final AtomicLong count = new AtomicLong();
     // END_HIGHLIGHT
-  }
+
+    void increment(long amount) {
+        if (amount < 1) {
+            throw new IllegalArgumentException("Only positive increments!");
+        }
+
+        // START_HIGHLIGHT
+        this.count.addAndGet(amount);
+        // END_HIGHLIGHT
+    }
 }
 // AFTER:end

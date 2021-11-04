@@ -6,24 +6,26 @@ public class Before {
 
 // BEFORE:start
 
-/** thread safe */
+/**
+ * thread safe
+ */
 class Counter {
 
-  /** guarded by 'this' */
-  private long count;
+    /**
+     * guarded by 'this'
+     */
+    private long count;
 
-  void increment(long increment) {
-    // START_HIGHLIGHT
-    synchronized (this) {
-      if (increment < 1) {
-        throw new IllegalArgumentException();
-      }
+    void increment(long amount) {
+        // START_HIGHLIGHT
+        synchronized (this) {
+            if (amount < 1) {
+                throw new IllegalArgumentException("Only positive increments!");
+            }
 
-      var next = count;
-      next = next + increment;
-      count = next;
+            this.count += amount;
+        }
+        // END_HIGHLIGHT
     }
-    // END_HIGHLIGHT
-  }
 }
 // BEFORE:end

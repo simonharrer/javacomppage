@@ -7,21 +7,24 @@ public class After {
 }
 
 // AFTER:start
-/** thread safe */
+
+/**
+ * thread safe
+ */
 class Counter {
 
-  // START_HIGHLIGHT
-  private final LongAdder count = new LongAdder();
-  // END_HIGHLIGHT
-
-  void increment(long increment) {
-    if (increment < 1) {
-      throw new IllegalArgumentException();
-    }
-
     // START_HIGHLIGHT
-    count.add(increment);
+    private final LongAdder count = new LongAdder();
     // END_HIGHLIGHT
-  }
+
+    void increment(long amount) {
+        if (amount < 1) {
+            throw new IllegalArgumentException("Only positive increments!");
+        }
+
+        // START_HIGHLIGHT
+        this.count.add(amount);
+        // END_HIGHLIGHT
+    }
 }
 // AFTER:end
