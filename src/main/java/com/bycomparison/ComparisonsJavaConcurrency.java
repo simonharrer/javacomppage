@@ -53,19 +53,30 @@ public class ComparisonsJavaConcurrency {
     return List.of(javaConcurrency("Protect Your Collections", groupSharedList,
             List.of("synchronized"),
             """
+                * unprotected shared memory
+                * documented
+                * collection field is final (but doesn't help here)
+                * read collection and then change collection state based on the read result
                 """,
             """
+                * now thread-safe
+                * synchronized critical section with private lock object (link to other comparisons)
+                * the 'standard' way of protecting any shared state
+                * be aware: critical section encompasses both read and write, as it's atomic
                 """),
         javaConcurrency("Use Synchronized Collections", groupSharedList,
             List.of("Collections.synchronized"),
             """
+                * requires a lot of code, lots of things to get wrong if not being careful
                 """,
             """
+                * still synchronized required for the two-step add, but can simplify the size calculation
                 """),
         javaConcurrency("Use Concurrent Collections", groupSharedList,
             List.of("CopyOnWriteArrayList"),
             """
                 * using atomic methods with a thread-safe data structure may still lead to wrong results
+                * synchronized sometimes still necessary for typical operations on a list (check and modify)
                  """,
             """
                 * make that atomic which should be atomic
@@ -100,7 +111,7 @@ public class ComparisonsJavaConcurrency {
                 * Knowing if a method is thread safe is very important!
                 * Without documentation, it takes some time to figure out if it really is thread-safe
                 """, """
-                    * annotations from Java Concurrency in Practice
+                    * comments similar to the annotations from Java Concurrency in Practice
                     * help to safely use the classes
                     * multiple variants: thread-safe, immutable, conditionally thread-safe, not thread-safe
                     """
@@ -130,15 +141,17 @@ public class ComparisonsJavaConcurrency {
                 * => everybody who has access to that object reference can interfere
                 """, """
                     * with a `private` lock object, the lock monitor stays local
+                    * update documentation!
                     """
         ), javaConcurrency("Use Fair Locks", groupSharedValue,
             List.of("ReentrantLock"),
             """
-                * unfair, first-come first-served
+                * unfair, random
                 """, """
                     * same behavior as `synchronized`
-                    * but also fair (see `true` parameter in the constructor)
+                    * but also fair (see `true` parameter in the constructor), real fcfs
                     * this comes at a slight cost
+                    * close your resources with finally (link to other comparison)
                     """
         ),
         javaConcurrency("Avoid Locks", groupSharedValue,
@@ -168,7 +181,7 @@ public class ComparisonsJavaConcurrency {
                 * AtomicLong is nonblocking (lock-free) but may result in lots of active waiting""",
             """
                 * LongAdder uses multiple atomatic longs (multiple stripes), one per thread. The sum of those stripes is the total. 
-                * Sum is not as exact as it is with the AtomicLong, but much higher performance if multiple threads increment simultaneously"""
+                * Sum is not as exact as it is with the AtomicLong, but much higher performance if multiple threads increment simultaneously, eventually consistent"""
         ));
   }
 
