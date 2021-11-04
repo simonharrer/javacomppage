@@ -16,7 +16,7 @@ public class ComparisonsJavaConcurrency {
    */
 
     public static List<Comparison> getGroupExecutionComparisons() {
-        var groupExecution = "Solve Your Problem in Parallel";
+        var groupExecution = "Chapter 1: Solve Your Problem in Parallel";
     return List.of(javaConcurrency("Design for Concurrency", groupExecution, List.of(),
             "", ""),
         javaConcurrency("Parallelize with Threads", groupExecution, List.of(),
@@ -51,7 +51,7 @@ public class ComparisonsJavaConcurrency {
   }
 
   public static List<Comparison> getGroupSharedListComparisons() {
-    var groupSharedList = "Protect Your Shared Mutable Collection";
+    var groupSharedList = "Chapter 2: Protect Your Shared Mutable Collection";
     return List.of(javaConcurrency("Protect Your Collections", groupSharedList,
             List.of("synchronized"),
             """
