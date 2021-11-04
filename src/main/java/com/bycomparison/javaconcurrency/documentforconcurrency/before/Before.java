@@ -15,7 +15,7 @@ class Counter {
 
     synchronized void increment(long amount) {
         if (amount < 1) {
-            throw new IllegalArgumentException("Only positive increments!");
+            throw new IllegalArgumentException("Only increments!");
         }
 
         this.count += amount;

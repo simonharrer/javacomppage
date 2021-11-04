@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Minimize Your Lock Scopes | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Minimize Your Lock Scopes | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/minimize-your-lock-scopes1693223275.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/minimize-your-lock-scopes-1032365352.png">
     </head>
     <body>
 
@@ -114,7 +114,7 @@ class Counter {
     void increment(long amount) {
         synchronized (this) {
             if (amount &lt; 1) {
-                throw new IllegalArgumentException(&quot;Only positive increments!&quot;);
+                throw new IllegalArgumentException(&quot;Only increments!&quot;);
             }
 
             this.count += amount;
@@ -150,7 +150,7 @@ class Counter {
 
     void increment(long amount) {
         if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only positive increments!&quot;);
+            throw new IllegalArgumentException(&quot;Only increments!&quot;);
         }
 
         synchronized (this) {

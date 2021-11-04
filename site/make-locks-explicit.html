@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Make Locks Explicit | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Make Locks Explicit | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/make-locks-explicit-885483584.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/make-locks-explicit499557725.png">
     </head>
     <body>
 
@@ -113,7 +113,7 @@ class Counter {
 
     synchronized void increment(long amount) {
         if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only positive increments!&quot;);
+            throw new IllegalArgumentException(&quot;Only increments!&quot;);
         }
 
         this.count += amount;
@@ -149,7 +149,7 @@ class Counter {
     void increment(long amount) {
         synchronized (this) {
             if (amount &lt; 1) {
-                throw new IllegalArgumentException(&quot;Only positive increments!&quot;);
+                throw new IllegalArgumentException(&quot;Only increments!&quot;);
             }
 
             this.count += amount;

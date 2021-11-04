@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Avoid Locks | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Avoid Locks | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-locks267878304.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-locks-130807991.png">
     </head>
     <body>
 
@@ -111,7 +111,7 @@ Avoid Locks
 
     void increment(long amount) {
         if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only positive increments!&quot;);
+            throw new IllegalArgumentException(&quot;Only increments!&quot;);
         }
 
         lock.lock();
@@ -148,7 +148,7 @@ class Counter {
 
     void increment(long amount) {
         if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only positive increments!&quot;);
+            throw new IllegalArgumentException(&quot;Only increments!&quot;);
         }
 
         this.count.addAndGet(amount);

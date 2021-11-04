@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Avoid Active Waiting | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Avoid Active Waiting | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-active-waiting-1926306130.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-active-waiting2051208741.png">
     </head>
     <body>
 
@@ -109,7 +109,7 @@ class Counter {
 
     void increment(long amount) {
         if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only positive increments!&quot;);
+            throw new IllegalArgumentException(&quot;Only increments!&quot;);
         }
 
         this.count.addAndGet(amount);
@@ -140,7 +140,7 @@ class Counter {
 
     void increment(long amount) {
         if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only positive increments!&quot;);
+            throw new IllegalArgumentException(&quot;Only increments!&quot;);
         }
 
         this.count.add(amount);

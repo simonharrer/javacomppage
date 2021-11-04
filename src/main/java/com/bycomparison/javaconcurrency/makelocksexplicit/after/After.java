@@ -28,7 +28,7 @@ class Counter {
         synchronized (this) {
             // END_HIGHLIGHT
             if (amount < 1) {
-                throw new IllegalArgumentException("Only positive increments!");
+                throw new IllegalArgumentException("Only increments!");
             }
 
             this.count += amount;
