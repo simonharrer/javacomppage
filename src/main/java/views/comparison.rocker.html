@@ -7,23 +7,37 @@
 
     @views.layoutcard.template(comparison.title(), comparison.category(), categories, comparison.previewCard()) -> {
 
-<h1>@comparison.name()
-    <span>
-        @for(tag : comparison.tags()) {
-        <span class="badge badge-info">@tag</span>
-        }
-    </span>
-  @if(!dependencies.previous().isEmpty() || !dependencies.next().isEmpty()) {
-    <span style="float: right;">
-      @if(!dependencies.previous().isEmpty()) {
-      <a class="btn btn-info" href="@dependencies.previous()">← @dependencies.previousName()</a>
-      }
-      @if(!dependencies.next().isEmpty()) {
-      <a class="btn btn-info" href="@dependencies.next()">@dependencies.nextName() →</a>
-      }
-    </span>
-  }
+
+<div class="row" style="width: 100%">
+
+@if(!dependencies.previous().isEmpty()) {
+<span style="float: left;" class="ml-1">
+<a class="btn btn-secondary" href="@dependencies.previous()">← @dependencies.previousName()</a>
+</span>
+}
+
+@if(!dependencies.next().isEmpty()) {
+<span style="float: right;" class="mr-1">
+<a class="btn btn-secondary" href="@dependencies.next()">@dependencies.nextName() →</a>
+</span>
+}
+</div>
+
+<div class="row text-center">
+<h1 style="width: 100%">
+<span>
+@comparison.name()
+<span>
+    @for(tag : comparison.tags()) {
+    <span class="badge badge-info">@tag</span>
+    }
+</span>
+</span>
 </h1>
+</div>
+
+
+
 <div class="row row-eq-height">
     <div class="col-sm">
         @if(comparison.book()) {

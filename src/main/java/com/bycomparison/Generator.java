@@ -30,22 +30,30 @@ public class Generator {
     generate(configuration, comparisons, categories);
   }
 
-  private static void generate(GeneratorConfiguration configuration, List<Comparison> comparisons,
-      List<Category> categories)
+  private static void generate(
+      GeneratorConfiguration configuration, List<Comparison> comparisons, List<Category> categories)
       throws IOException {
     Files.createDirectories(configuration.site());
     System.out.println("Comparisons: " + comparisons.size());
     System.out.println("Categories: " + categories.size());
 
-    comparisons
-        .forEach(comparison -> renderToFile(comparison, comparisons, categories, configuration));
+    comparisons.forEach(
+        comparison -> renderToFile(comparison, comparisons, categories, configuration));
     categories.forEach(category -> renderToFile(category, categories, configuration.site()));
-    renderMethod(categories, configuration.site());
-    renderIndex(categories, configuration.site());
+    // renderMethod(categories, configuration.site());
+    renderWelcome(categories, configuration.site());
   }
 
   private static void renderMethod(List<Category> categories, Path site) {
-    var beforeCode = """
+    renderToFile(
+        "method.html",
+        views.comparison.template(getExampleComparison(), Dependencies.NO_DEPENDENCIES, categories),
+        site);
+  }
+
+  private static Comparison getExampleComparison() {
+    var beforeCode =
+        """
         // BEFORE:start
         class Container {
           // bad code
@@ -57,7 +65,8 @@ public class Generator {
         }
         // BEFORE:end
         """;
-    var afterCode = """
+    var afterCode =
+        """
         // AFTER:start
         class SweetsDrawer {
           // better code
@@ -69,46 +78,60 @@ public class Generator {
         }
         // AFTER:end
         """;
-    renderToFile("method.html", views.comparison.template(
-        new Comparison("Actionable Name Starting With a Strong Verb", "", "method",
-            List.of("example-tag"),
-            Code.parseBeforeCode(beforeCode).code(), Code.parseBeforeCode(beforeCode).highlight(),
-            "Why the code above is hard to read",
-            Code.parseAfterCode(afterCode).code(), Code.parseAfterCode(afterCode).highlight(),
-            "Why the code on the green / right-hand side is cleaner and more maintainable",
-            "java", "", true, false, ""), Dependencies.NO_DEPENDENCIES, categories), site);
+    return new Comparison(
+        "Actionable Name Starting With a Strong Verb",
+        "",
+        "method",
+        List.of("example-tag"),
+        Code.parseBeforeCode(beforeCode).code(),
+        Code.parseBeforeCode(beforeCode).highlight(),
+        "Why the code above is hard to read",
+        Code.parseAfterCode(afterCode).code(),
+        Code.parseAfterCode(afterCode).highlight(),
+        "Why the code on the green / right-hand side is cleaner and more maintainable",
+        "java",
+        "",
+        true,
+        false,
+        "");
   }
 
-  private static void renderIndex(List<Category> categories, Path site) {
-    renderToFile("index.html", views.index.template(categories), site);
+  private static void renderWelcome(List<Category> categories, Path site) {
+    renderToFile("welcome.html", views.welcome.template(categories), site);
   }
 
   private static List<Category> getCategories(List<Comparison> comparisons) {
-    var categoryNameToComparisons = comparisons.stream()
-        .collect(Collectors.groupingBy(Comparison::category));
+    var categoryNameToComparisons =
+        comparisons.stream().collect(Collectors.groupingBy(Comparison::category));
     return Categories.categories().stream()
         .map(e -> e.withComparisons(categoryNameToComparisons.get(e.name())))
-        .filter(c -> !c.comparisons().isEmpty())
+        .filter(c -> c.comparisons() != null && !c.comparisons().isEmpty())
         .collect(Collectors.toList());
   }
 
   private static List<Comparison> getPublishedComparisons() {
-    return getComparisons().stream()
-        .filter(Comparison::published)
-        .collect(Collectors.toList());
+    return getComparisons().stream().filter(Comparison::published).collect(Collectors.toList());
   }
 
   private static List<Comparison> getComparisons() {
     List<Comparison> comparisons = new ArrayList<>();
     comparisons.addAll(ComparisonsJava.getComparisons());
-    comparisons.addAll(ComparisonsModernJava.getComparisons());
-    comparisons.addAll(ComparisonsJavaConcurrency.getComparisons());
-    comparisons.addAll(ComparisonsSpringBoot.getComparisons());
+    comparisons.addAll(unpublish(ComparisonsModernJava.getComparisons()));
+    comparisons.addAll(ComparisonsJavaConcurrency.getGroupSharedValueComparisons());
+    comparisons.addAll(ComparisonsJavaConcurrency.getGroupSharedListComparisons());
+    comparisons.addAll(unpublish(ComparisonsJavaConcurrency.getGroupExecutionComparisons()));
+    comparisons.addAll(unpublish(ComparisonsSpringBoot.getComparisons()));
     return comparisons;
   }
 
-  private static void renderToFile(Comparison comparison,
-      List<Comparison> comparisons, List<Category> categories,
+  private static List<Comparison> unpublish(List<Comparison> comparisons) {
+    return comparisons.stream().map(Comparison::unpublish).collect(Collectors.toList());
+  }
+
+  private static void renderToFile(
+      Comparison comparison,
+      List<Comparison> comparisons,
+      List<Category> categories,
       GeneratorConfiguration configuration) {
     if (configuration.preview()) {
       generatePreviewCard(comparison, configuration.site());
@@ -116,8 +139,10 @@ public class Generator {
 
     var dependencies = getDependencies(comparison, comparisons);
 
-    renderToFile(comparison.filename(),
-        views.comparison.template(comparison, dependencies, categories), configuration.site());
+    renderToFile(
+        comparison.filename(),
+        views.comparison.template(comparison, dependencies, categories),
+        configuration.site());
   }
 
   private static Dependencies getDependencies(Comparison comparison, List<Comparison> comparisons) {
@@ -125,9 +150,11 @@ public class Generator {
     var nextName = "";
     var previous = "";
     var previousName = "";
-    var comparisonsInSameCategoryAndGroup = comparisons.stream()
-        .filter(c -> c.category().equals(comparison.category()))
-        .filter(c -> c.group().equals(comparison.group())).collect(Collectors.toList());
+    var comparisonsInSameCategoryAndGroup =
+        comparisons.stream()
+            .filter(c -> c.category().equals(comparison.category()))
+            .filter(c -> c.group().equals(comparison.group()))
+            .collect(Collectors.toList());
     if (comparisonsInSameCategoryAndGroup.size() > 1) {
       var index = comparisonsInSameCategoryAndGroup.indexOf(comparison);
       if (index < comparisonsInSameCategoryAndGroup.size() - 1) {
@@ -155,16 +182,12 @@ public class Generator {
   }
 
   private static void renderToFile(Category category, List<Category> categories, Path site) {
-    renderToFile(category.filename(),
-        views.category.template(category, categories), site);
+    renderToFile(category.filename(), views.category.template(category, categories), site);
   }
 
   private static void renderToFile(String filename, RockerModel template, Path site) {
     try {
-      Files.write(site.resolve(filename),
-          template
-              .render()
-              .toString().getBytes());
+      Files.write(site.resolve(filename), template.render().toString().getBytes());
     } catch (IOException e) {
       throw new UncheckedIOException(e);
     }

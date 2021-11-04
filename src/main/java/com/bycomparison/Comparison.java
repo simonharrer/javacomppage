@@ -61,6 +61,11 @@ public record Comparison(String name, String group, String category, List<String
         true, false, "");
   }
 
+  public Comparison unpublish() {
+    return new Comparison(name, group, category,
+        tags, beforeCode, beforeCodeHighlight, beforeText, afterCode, afterCodeHighlight, afterText, language, sources, false, book, sample);
+  }
+
   private static String normalize(String name) {
     return name
         .replaceAll("[^A-Za-z]", "").toLowerCase(
