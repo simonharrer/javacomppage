@@ -14,7 +14,7 @@
 <div class="row">
 @for(group : category.groups()) {
 <h5>@group</h5>
-<ul>
+<ul class="list-unstyled">
 @for(comparison : category.comparisonsForGroup(group)) {
 <li>
 <a href="@comparison.link()">
