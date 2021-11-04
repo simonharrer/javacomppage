@@ -11,7 +11,10 @@ public class Before {
 /** thread-safe */
 class Crew {
 
+  // START_HIGHLIGHT
+  /** guarded by 'lock' */
   private final List<String> members = new ArrayList<>();
+  // END_HIGHLIGHT
 
   // START_HIGHLIGHT
   private final Object lock = new Object();
@@ -19,10 +22,18 @@ class Crew {
 
   void add(String name) {
     // START_HIGHLIGHT
-    synchronized (lock) {
-      if (!members.contains(name)) {
-        members.add(name);
+    synchronized (this.lock) {
+      if (!this.members.contains(name)) {
+        this.members.add(name);
       }
+    }
+    // END_HIGHLIGHT
+  }
+
+  int size() {
+    // START_HIGHLIGHT
+    synchronized (lock) {
+      return this.members.size();
     }
     // END_HIGHLIGHT
   }

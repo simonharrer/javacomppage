@@ -3,9 +3,7 @@ package com.bycomparison.javaconcurrency.protectyourcollections.after;
 import java.util.ArrayList;
 import java.util.List;
 
-public class After {
-
-}
+public class After {}
 
 // AFTER:start
 // START_HIGHLIGHT
@@ -28,6 +26,14 @@ class Crew {
       if (!members.contains(name)) {
         members.add(name);
       }
+    }
+    // END_HIGHLIGHT
+  }
+
+  int size() {
+    // START_HIGHLIGHT
+    synchronized (lock) {
+      return this.members.size();
     }
     // END_HIGHLIGHT
   }

@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Use Synchronized Collections | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Use Synchronized Collections | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/use-synchronized-collections1347638151.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/use-synchronized-collections-1287862416.png">
     </head>
     <body>
 
@@ -98,19 +98,26 @@ Use Synchronized Collections
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="6,9,10,11,12,13"
+    data-line="4,5,7,10,11,12,13,14,18,19,20"
     ><code>/** thread-safe */
 class Crew {
 
+  /** guarded by &#39;lock&#39; */
   private final List&lt;String&gt; members = new ArrayList&lt;&gt;();
 
   private final Object lock = new Object();
 
   void add(String name) {
-    synchronized (lock) {
-      if (!members.contains(name)) {
-        members.add(name);
+    synchronized (this.lock) {
+      if (!this.members.contains(name)) {
+        this.members.add(name);
       }
+    }
+  }
+
+  int size() {
+    synchronized (lock) {
+      return this.members.size();
     }
   }
 }</code></pre>
@@ -125,18 +132,23 @@ class Crew {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="4,7,8,9,10,11"
+    data-line="4,5,8,9,10,11,12,16"
     ><code>/** thread-safe */
 class Crew {
 
+  /** guarded by &#39;members&#39; */
   private final List&lt;String&gt; members = Collections.synchronizedList(new ArrayList&lt;&gt;());
 
   void add(String name) {
-    synchronized (members) {
-      if (!members.contains(name)) {
-        members.add(name);
+    synchronized (this.members) {
+      if (!this.members.contains(name)) {
+        this.members.add(name);
       }
     }
+  }
+
+  int size() {
+    return this.members.size();
   }
 }</code></pre>
 

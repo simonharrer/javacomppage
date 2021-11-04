@@ -20,5 +20,11 @@ class Crew {
     }
     // END_HIGHLIGHT
   }
+
+  int size(){
+    // START_HIGHLIGHT
+    return this.members.size();
+    // END_HIGHLIGHT
+  }
 }
 // BEFORE:end
