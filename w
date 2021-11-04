@@ -1,1 +1,1 @@
-watch -n30 ./build
+watch -n5 ./build

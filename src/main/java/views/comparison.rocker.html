@@ -8,27 +8,30 @@
     @views.layoutcard.template(comparison.title(), comparison.category(), categories, comparison.previewCard()) -> {
 
 
-<div class="row" style="width: 100%">
+<div class="row">
 
-@if(!dependencies.previous().isEmpty()) {
-<span style="float: left;" class="ml-1">
-<a class="btn btn-secondary" href="@dependencies.previous()">← @dependencies.previousName()</a>
-</span>
-}
+<div class="col text-start">
+  @if(!dependencies.previous().isEmpty()) {
+  <a class="btn btn-secondary" href="@dependencies.previous()">← @dependencies.previousName()</a>
+  }
+</div>
 
-@if(!dependencies.next().isEmpty()) {
-<span style="float: right;" class="mr-1">
-<a class="btn btn-secondary" href="@dependencies.next()">@dependencies.nextName() →</a>
-</span>
-}
+
+<div class="col text-center">@comparison.group()</div>
+
+<div class="col text-end">
+  @if(!dependencies.next().isEmpty()) {
+  <a class="btn btn-secondary" href="@dependencies.next()">@dependencies.nextName() →</a>
+  }
+</div>
 </div>
 
 <div class="row text-center">
-<h1 style="width: 100%">
+<h2 style="width: 100%">
 <span>
 @comparison.name()
 </span>
-</h1>
+</h2>
 </div>
 
 
