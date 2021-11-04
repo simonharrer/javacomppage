@@ -11,7 +11,7 @@ public class ComparisonsModernJava {
 
   public static List<Comparison> getComparisons() {
     return List
-        .of(modernJava("Inline Short Files in Tests", "Java 15",
+        .of(modernJava("Inline Short Files in Tests", "New Language Features",
             List.of("Text Blocks", "Testing", "JUnit 5", "JSONAssert"), """
                 * uses JSONAssert
                 * is a JUnit 5 unit test
@@ -21,7 +21,7 @@ public class ComparisonsModernJava {
                 * makes use of text block
                 * templating easy with `formatted` ???
                 """),
-            modernJava("Explain Unexpected Empty Optional", "Java 10",
+            modernJava("Explain Unexpected Empty Optional", "New Language Features",
                 List.of("Optional", "Error Handling"), """
                     * since Java 10 there's orElseThrows() without a parameter
                     * according to docs preferred over get() (which basically does the same)
@@ -39,7 +39,7 @@ public class ComparisonsModernJava {
             modernJava("Group Your Tests", "Testing",List.of("JUnit5"), "", ""),
             modernJava("Nest Your Tests", "Testing",List.of("JUnit5"), "", ""),
             Comparison.empty("Use assertThat", "Modern Java"),
-            Comparison.empty("Document Your Modules", "Java 9", "Modern Java"),
+            Comparison.empty("Document Your Modules", "New Language Features", "Modern Java"),
             Comparison.empty("Irgendwas mit mocking", "Modern Java"),
             Comparison.empty("Avoid OutOfMemoryErrors", "Know the Gotchas", "Modern Java"),
             Comparison.empty("Avoid Stackoverflows", "Know the Gotchas", "Modern Java"),

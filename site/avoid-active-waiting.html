@@ -146,7 +146,7 @@ class Counter {
             <div class="p-3">
               <ul>
 <li>LongAdder uses multiple atomatic longs (multiple stripes), one per thread. The sum of those stripes is the total.</li>
-<li>Sum is not as exact as it is with the AtomicLong, but much higher performance if multiple threads increment simultaneously</li>
+<li>Sum is not as exact as it is with the AtomicLong, but much higher performance if multiple threads increment simultaneously, eventually consistent</li>
 </ul>
 
             </div>
