@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Use Fair Locks | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Use Fair Locks | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/use-fair-locks-1314384949.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/use-fair-locks-1011264947.png">
     </head>
     <body>
 
@@ -80,7 +80,7 @@
 <div class="col text-center">Protect Your Shared Mutable State</div>
 
 <div class="col text-end">
-<a class="btn btn-secondary" href="avoid-locks.html">Avoid Locks →</a>
+  <a class="btn btn-secondary" href="avoid-locks.html">Avoid Locks →</a>
 </div>
 </div>
 
@@ -99,35 +99,31 @@ Use Fair Locks
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="12,19,20,21"
+    data-line="8,15,16,17"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    /**
-     * guarded by &#39;lock&#39;
-     */
-    private long count;
+  /** guarded by &#39;lock&#39; */
+  private long count;
 
-    private final Object lock = new Object();
+  private final Object lock = new Object();
 
-    void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        synchronized (this.lock) {
-            this.count += amount;
-        }
+  void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    synchronized (this.lock) {
+      this.count += amount;
+    }
+  }
 }</code></pre>
 
 
           <div class="p-3">
             <ul>
-<li>unfair</li>
+<li>unfair, first-come first-served</li>
 </ul>
 
           </div>
@@ -137,40 +133,36 @@ class Counter {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="12,13,20,21,22,23,24,25"
+    data-line="8,15,16,17,18,19,20"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    /**
-     * guarded by &#39;lock&#39;
-     */
-    private long count;
+  /** guarded by &#39;lock&#39; */
+  private long count;
 
-    private final ReentrantLock lock =
-            new ReentrantLock(true);
+  private final ReentrantLock lock = new ReentrantLock(true);
 
-    void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        this.lock.lock();
-        try {
-            this.count += amount;
-        } finally {
-            this.lock.unlock();
-        }
+  void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    this.lock.lock();
+    try {
+      this.count += amount;
+    } finally {
+      this.lock.unlock();
+    }
+  }
 }</code></pre>
 
 
             <div class="p-3">
               <ul>
-<li>same behavior as synchronized</li>
-<li>but also fair (see <code>true</code> parameter in the constructor), but comes at a cost</li>
+<li>same behavior as <code>synchronized</code></li>
+<li>but also fair (see <code>true</code> parameter in the constructor)</li>
+<li>this comes at a slight cost</li>
 </ul>
 
             </div>

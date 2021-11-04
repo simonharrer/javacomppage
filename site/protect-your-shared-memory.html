@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Protect Your Shared Memory | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Protect Your Shared Memory | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/protect-your-shared-memory172806143.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/protect-your-shared-memory187188159.png">
     </head>
     <body>
 
@@ -79,7 +79,7 @@
 <div class="col text-center">Protect Your Shared Mutable State</div>
 
 <div class="col text-end">
-<a class="btn btn-secondary" href="document-for-concurrency.html">Document for Concurrency →</a>
+  <a class="btn btn-secondary" href="document-for-concurrency.html">Document for Concurrency →</a>
 </div>
 </div>
 
@@ -101,24 +101,25 @@ Protect Your Shared Memory
     data-line="5,6,7,8,9,10,11"
     ><code>class Counter {
 
-    private long count;
+  private long count;
 
-    void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        this.count += amount;
+  void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    this.count += amount;
+  }
 }</code></pre>
 
 
           <div class="p-3">
             <ul>
 <li>shared memory, unprotected</li>
+<li>Can be read or written by multiple threads</li>
 <li>what can happen here when two threads count 100 times: expected 200, but basically any value could happen</li>
 <li>reading and writing 64 bit is not atomic, only 32 bit is</li>
-<li>lost updates</li>
+<li>lost updates due to critical section:</li>
 </ul>
 <pre><code class="language-java">var tmp = count; // read
 var tmp = tmp + 1; // update
@@ -135,20 +136,25 @@ count = tmp; // write
     data-line="5,6,7,8,9,10,11"
     ><code>class Counter {
 
-    private long count;
+  private long count;
 
-    synchronized void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        this.count += amount;
+  synchronized void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    this.count += amount;
+  }
 }</code></pre>
 
 
             <div class="p-3">
-              
+              <ul>
+<li><code>synchonized</code> ensures that only one thread can access the method at a time.</li>
+<li>lost update can not happen anymore: the code is correct</li>
+<li></li>
+</ul>
+
             </div>
 
         </div>

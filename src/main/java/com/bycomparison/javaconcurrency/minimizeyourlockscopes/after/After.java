@@ -1,38 +1,31 @@
 package com.bycomparison.javaconcurrency.minimizeyourlockscopes.after;
 
-public class After {
+public class After {}
 
-}
-
-@interface ThreadSafe {
-}
+@interface ThreadSafe {}
 
 @interface GuardedBy {
-    String value();
+  String value();
 }
 
 // AFTER:start
 
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    /**
-     * guarded by 'this'
-     */
-    private long count;
+  /** guarded by 'this' */
+  private long count;
 
-    void increment(long amount) {
-        if (amount < 1) {
-            throw new IllegalArgumentException("Only increments!");
-        }
-
-        // START_HIGHLIGHT
-        synchronized (this) {
-            this.count += amount;
-        }
-        // END_HIGHLIGHT
+  void increment(long amount) {
+    if (amount < 1) {
+      throw new IllegalArgumentException("Only increments!");
     }
+
+    // START_HIGHLIGHT
+    synchronized (this) {
+      this.count += amount;
+    }
+    // END_HIGHLIGHT
+  }
 }
 // AFTER:end

@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Minimize Your Lock Scopes | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Minimize Your Lock Scopes | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/minimize-your-lock-scopes-1032365352.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/minimize-your-lock-scopes-1025590048.png">
     </head>
     <body>
 
@@ -80,7 +80,7 @@
 <div class="col text-center">Protect Your Shared Mutable State</div>
 
 <div class="col text-end">
-<a class="btn btn-secondary" href="hide-your-locks.html">Hide Your Locks →</a>
+  <a class="btn btn-secondary" href="hide-your-locks.html">Hide Your Locks →</a>
 </div>
 </div>
 
@@ -99,27 +99,23 @@ Minimize Your Lock Scopes
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="13,14,15,16,17,18,19"
+    data-line="9,10,11,12,13,14,15"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    /**
-     * guarded by &#39;this&#39;
-     */
-    private long count;
+  /** guarded by &#39;this&#39; */
+  private long count;
 
-    void increment(long amount) {
-        synchronized (this) {
-            if (amount &lt; 1) {
-                throw new IllegalArgumentException(&quot;Only increments!&quot;);
-            }
+  void increment(long amount) {
+    synchronized (this) {
+      if (amount &lt; 1) {
+        throw new IllegalArgumentException(&quot;Only increments!&quot;);
+      }
 
-            this.count += amount;
-        }
+      this.count += amount;
     }
+  }
 }</code></pre>
 
 
@@ -136,33 +132,29 @@ class Counter {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="17,18,19"
+    data-line="13,14,15"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    /**
-     * guarded by &#39;this&#39;
-     */
-    private long count;
+  /** guarded by &#39;this&#39; */
+  private long count;
 
-    void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        synchronized (this) {
-            this.count += amount;
-        }
+  void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    synchronized (this) {
+      this.count += amount;
+    }
+  }
 }</code></pre>
 
 
             <div class="p-3">
               <ul>
-<li>just make it explicit</li>
+<li>reduce the lock to the critical section!</li>
 </ul>
 
             </div>

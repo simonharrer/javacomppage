@@ -1,8 +1,6 @@
 package com.bycomparison;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ComparisonsJavaConcurrency {
 
@@ -80,34 +78,40 @@ public class ComparisonsJavaConcurrency {
             List.of("synchronized"),
             """
                 * shared memory, unprotected
+                * Can be read or written by multiple threads
                 * what can happen here when two threads count 100 times: expected 200, but basically any value could happen
                 * reading and writing 64 bit is not atomic, only 32 bit is
-                * lost updates
-                                    
+                * lost updates due to critical section:
+                                         
                 ```java
                 var tmp = count; // read
                 var tmp = tmp + 1; // update
                 count = tmp; // write
                 ```
                 """, """
+                    * `synchonized` ensures that only one thread can access the method at a time.
+                    * lost update can not happen anymore: the code is correct
+                    * 
                     """
         ),
         javaConcurrency("Document for Concurrency", groupSharedValue,
             List.of("synchronized"),
             """
-                * without documentation takes some time to figure out if it really is thread-safe
+                * Knowing if a method is thread safe is very important!
+                * Without documentation, it takes some time to figure out if it really is thread-safe
                 """, """
-                    * multiple variants: thread-safe, immutable, conditionally thread-safe, not thread-safe
                     * annotations from Java Concurrency in Practice
+                    * help to safely use the classes
+                    * multiple variants: thread-safe, immutable, conditionally thread-safe, not thread-safe
                     """
         ),
         javaConcurrency("Make Locks Explicit", groupSharedValue,
             List.of("synchronized"),
             """
-                * synchronized in the method may be short, but readers who aren't that familier with synchronized may get the wrong impression
+                * `synchronized` in the method may be short, but readers who aren't that familiar with `synchronized` may get the wrong impression
                 * especially if the documentation is missing...
                 """, """
-                    * just make it explicit
+                    * You should make the scope of the `synchronized` block explicit
                     """
         ),
         javaConcurrency("Minimize Your Lock Scopes", groupSharedValue,
@@ -116,30 +120,33 @@ public class ComparisonsJavaConcurrency {
                 * guard doesn't access shared state
                 * scope of `synchronized` is too large
                 """, """
-                    * just make it explicit
+                    * reduce the lock to the critical section!
                     """
         ),
         javaConcurrency("Hide Your Locks", groupSharedValue,
             List.of("synchronized"),
             """
-                * if `this` is the lock, everybody who has access to that object reference interfere
+                * as a default, `this` is the reference of the lock
+                * => everybody who has access to that object reference can interfere
                 """, """
-                    * with a private lock object, the monitor stays local
+                    * with a `private` lock object, the lock monitor stays local
                     """
         ), javaConcurrency("Use Fair Locks", groupSharedValue,
             List.of("ReentrantLock"),
             """
-                * unfair
+                * unfair, first-come first-served
                 """, """
-                    * same behavior as synchronized
-                    * but also fair (see `true` parameter in the constructor), but comes at a cost
+                    * same behavior as `synchronized`
+                    * but also fair (see `true` parameter in the constructor)
+                    * this comes at a slight cost
                     """
         ),
         javaConcurrency("Avoid Locks", groupSharedValue,
             List.of("AtomicLong"),
             """
-                * locks are bad
-                * may lead to deadlock
+                * locks are undesirable:
+                  - performance issues
+                  - deadlocks
                 """, """
                     * compare-and-set allows lock free
                     * available since Java 5

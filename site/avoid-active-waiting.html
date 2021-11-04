@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Avoid Active Waiting | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Avoid Active Waiting | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-active-waiting2051208741.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/avoid-active-waiting-517034379.png">
     </head>
     <body>
 
@@ -79,6 +79,8 @@
 
 <div class="col text-center">Protect Your Shared Mutable State</div>
 
+<div class="col text-end">
+</div>
 </div>
 
 <div class="row text-center">
@@ -96,22 +98,20 @@ Avoid Active Waiting
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="7,14"
+    data-line="5,12"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    private final AtomicLong count = new AtomicLong();
+  private final AtomicLong count = new AtomicLong();
 
-    void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        this.count.addAndGet(amount);
+  void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    this.count.addAndGet(amount);
+  }
 }</code></pre>
 
 
@@ -127,22 +127,20 @@ class Counter {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="7,14"
+    data-line="5,12"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    private final LongAdder count = new LongAdder();
+  private final LongAdder count = new LongAdder();
 
-    void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        this.count.add(amount);
+  void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    this.count.add(amount);
+  }
 }</code></pre>
 
 

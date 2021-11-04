@@ -16,7 +16,7 @@
         <meta name="twitter:creator" content="@simonharrer">
         <meta name="twitter:title" content="Hide Your Locks | Java Concurrency by Comparison">
         <meta name="twitter:description" content="Hide Your Locks | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/hide-your-locks1040253272.png">
+        <meta name="twitter:image" content="https://java.by-comparison.com/site/hide-your-locks56380768.png">
     </head>
     <body>
 
@@ -80,7 +80,7 @@
 <div class="col text-center">Protect Your Shared Mutable State</div>
 
 <div class="col text-end">
-<a class="btn btn-secondary" href="use-fair-locks.html">Use Fair Locks →</a>
+  <a class="btn btn-secondary" href="use-fair-locks.html">Use Fair Locks →</a>
 </div>
 </div>
 
@@ -99,33 +99,30 @@ Hide Your Locks
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
     class="language-java"
-    data-line="7,8,9,17"
+    data-line="5,13"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    /**
-     * guarded by &#39;this&#39;
-     */
-    private long count;
+  /** guarded by &#39;this&#39; */
+  private long count;
 
-    void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        synchronized (this) {
-            this.count += amount;
-        }
+  void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    synchronized (this) {
+      this.count += amount;
+    }
+  }
 }</code></pre>
 
 
           <div class="p-3">
             <ul>
-<li>if <code>this</code> is the lock, everybody who has access to that object reference interfere</li>
+<li>as a default, <code>this</code> is the reference of the lock</li>
+<li>=&gt; everybody who has access to that object reference can interfere</li>
 </ul>
 
           </div>
@@ -135,35 +132,31 @@ class Counter {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
     class="language-java"
-    data-line="7,8,9,12,19"
+    data-line="5,8,15"
     ><code>
-/**
- * thread safe
- */
+/** thread safe */
 class Counter {
 
-    /**
-     * guarded by &#39;lock&#39;
-     */
-    private long count;
+  /** guarded by &#39;lock&#39; */
+  private long count;
 
-    private final Object lock = new Object();
+  private final Object lock = new Object();
 
-    void increment(long amount) {
-        if (amount &lt; 1) {
-            throw new IllegalArgumentException(&quot;Only increments!&quot;);
-        }
-
-        synchronized (this.lock) {
-            this.count += amount;
-        }
+  void increment(long amount) {
+    if (amount &lt; 1) {
+      throw new IllegalArgumentException(&quot;Only increments!&quot;);
     }
+
+    synchronized (this.lock) {
+      this.count += amount;
+    }
+  }
 }</code></pre>
 
 
             <div class="p-3">
               <ul>
-<li>with a private lock object, the monitor stays local</li>
+<li>with a <code>private</code> lock object, the lock monitor stays local</li>
 </ul>
 
             </div>
