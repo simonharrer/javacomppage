@@ -117,9 +117,9 @@ public class Generator {
     List<Comparison> comparisons = new ArrayList<>();
     comparisons.addAll(ComparisonsJava.getComparisons());
     comparisons.addAll(unpublish(ComparisonsModernJava.getComparisons()));
-    comparisons.addAll(ComparisonsJavaConcurrency.getGroupSharedValueComparisons());
-    comparisons.addAll(ComparisonsJavaConcurrency.getGroupSharedListComparisons());
-    comparisons.addAll(unpublish(ComparisonsJavaConcurrency.getGroupExecutionComparisons()));
+    comparisons.addAll(ComparisonsJavaConcurrency.chapter1ProtectYourSharedMutableState());
+    comparisons.addAll(ComparisonsJavaConcurrency.chapter2ProtectYourSharedMutableCollection());
+    comparisons.addAll(unpublish(ComparisonsJavaConcurrency.chapter3SolveYourProblemInParallel()));
     comparisons.addAll(unpublish(ComparisonsSpringBoot.getComparisons()));
     return comparisons;
   }
