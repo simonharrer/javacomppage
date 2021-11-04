@@ -1,178 +1,192 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <title>Use Concurrent Collections | Java Concurrency by Comparison</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Use Concurrent Collections | Java Concurrency by Comparison</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
-        <link rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/line-highlight/prism-line-highlight.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/line-highlight/prism-line-highlight.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@simonharrer">
-        <meta name="twitter:creator" content="@simonharrer">
-        <meta name="twitter:title" content="Use Concurrent Collections | Java Concurrency by Comparison">
-        <meta name="twitter:description" content="Use Concurrent Collections | Java Concurrency by Comparison">
-        <meta name="twitter:image" content="https://java.by-comparison.com/site/use-concurrent-collections1982836278.png">
-    </head>
-    <body>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@simonharrer">
+    <meta name="twitter:creator" content="@simonharrer">
+    <meta name="twitter:title" content="Use Concurrent Collections | Java Concurrency by Comparison">
+    <meta name="twitter:description" content="Use Concurrent Collections | Java Concurrency by Comparison">
+    <meta name="twitter:image" content="https://java.by-comparison.com/site/use-concurrent-collections1668057943.png">
+</head>
+<body>
 
-    <style>
-        .token.operator,
-        .token.entity,
-        .token.url,
-        .language-css .token.string,
-        .style .token.string {
-            color: #9a6e3a;
-            background: none;
-        }
+<style>
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+        color: #9a6e3a;
+        background: none;
+    }
 
-        pre[data-line] {
-            padding-left: 1em !important;
-        }
+    pre[data-line] {
+        padding-left: 1em !important;
+    }
 
-        .comparison-before,.comparison-before > pre {
-            background-color: #efd2d2 !important
-        }
-        .comparison-after,.comparison-after > pre {
-            background-color: #d2efd2 !important
-        }
-        .line-highlight[data-end]:after,.line-highlight[data-end]:before,.line-highlight:before,.line-highlight:after {
-            content: unset;
-        }
+    .comparison-before, .comparison-before > pre {
+        background-color: #efd2d2 !important
+    }
 
-    </style>
+    .comparison-after, .comparison-after > pre {
+        background-color: #d2efd2 !important
+    }
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link  " href="welcome.html">Welcome</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  " href="java.html">Java by Comparison</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  active" href="java-concurrency.html">Java Concurrency by Comparison</a>
-                    </li>
-                </ul>
-            </div>
+    .line-highlight[data-end]:after, .line-highlight[data-end]:before, .line-highlight:before, .line-highlight:after {
+        content: unset;
+    }
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link  " href="welcome.html">Welcome</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  " href="java.html">Java by Comparison</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  active" href="java-concurrency.html">Java Concurrency by Comparison</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <div class="container-fluid mt-3">
-        <div class="row mb-3">
+<div class="container-fluid mt-3">
+    <div class="row mb-3">
 
-<div class="col text-start">
-  <a class="btn btn-secondary" href="use-synchronized-collections.html">← Use Synchronized Collections</a>
-</div>
+        <div class="col text-start">
+            <a class="btn btn-secondary" href="use-synchronized-collections.html">← Use Synchronized Collections</a>
+        </div>
 
 
-<div class="col text-center"><h5>Chapter 2: Protect Your Shared Mutable Collection</h5></div>
+        <div class="col text-center"><h5>Chapter 2: Protect Your Shared Mutable Collection</h5></div>
 
-<div class="col text-end">
-</div>
-</div>
+        <div class="col text-end">
+        </div>
+    </div>
 
-<div class="row text-center">
-<h2 style="width: 100%">
+    <div class="row text-center">
+        <h2 style="width: 100%">
 <span>
 Use Concurrent Collections
 </span>
-</h2>
-</div>
+        </h2>
+    </div>
 
 
-
-<div class="row row-eq-height">
-    <div class="col-sm">
-        <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
+    <div class="row row-eq-height">
+        <div class="col-sm">
+            <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           <pre
-    class="language-java"
-    data-line="4,7,8,9,10,11"
-    ><code>/** thread-safe */
+                  class="language-java"
+                  data-line="4,7,8,9,10,11,15"
+          ><code>/** thread-safe */
 class Crew {
 
   private final List&lt;String&gt; members = Collections.synchronizedList(new ArrayList&lt;&gt;());
 
   void add(String name) {
-    synchronized (members) {
+    synchronized (this.members) {
       if (!members.contains(name)) {
-        members.add(name);
+        this.members.add(name);
       }
     }
+  }
+
+  int size() {
+    return this.members.size();
   }
 }</code></pre>
 
 
-          <div class="p-3">
-            <ul>
-<li>using atomic methods with a thread-safe data structure may still lead to wrong results</li>
-<li>synchronized sometimes still necessary for typical operations on a list (check and modify)</li>
-</ul>
+                <div class="p-3">
+                    <ul>
+                        <li>using atomic methods with a thread-safe data structure may still lead to wrong results</li>
+                        <li>synchronized sometimes still necessary for typical operations on a list (check and modify)
+                        </li>
+                    </ul>
 
-          </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-sm">
-        <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
+        <div class="col-sm">
+            <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             <pre
-    class="language-java"
-    data-line="4,7"
-    ><code>/** thread-safe */
+                    class="language-java"
+                    data-line="4,7,11"
+            ><code>/** thread-safe */
 class Crew {
 
   private final CopyOnWriteArrayList&lt;String&gt; members = new CopyOnWriteArrayList&lt;&gt;();
 
   void add(String name) {
-    members.addIfAbsent(name);
+    this.members.addIfAbsent(name);
+  }
+
+  int size() {
+    return this.members.size();
   }
 }</code></pre>
 
 
-            <div class="p-3">
-              <ul>
-<li>make that atomic which should be atomic</li>
-</ul>
+                <div class="p-3">
+                    <ul>
+                        <li>make that atomic which should be atomic</li>
+                    </ul>
+
+                </div>
 
             </div>
-
         </div>
     </div>
-</div>
 
 
-<div class="row">
-</div>
-
-
-        <footer class="text-center mb-5 mt-5">
-            <p>
-            Crafted by
-                <a href="https://twitter.com/simonharrer"><i class="bi bi-twitter"></i> Simon Harrer</a> and
-                <a href="https://twitter.com/Lynyus"><i class="bi bi-twitter"></i> Linus Dietz</a> in 2021 | <a href="/legalnotice">Legal Notice</a> | <a href="/privacy">Privacy</a>
-            </p>
-        </footer>
+    <div class="row">
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <footer class="text-center mb-5 mt-5">
+        <p>
+            Crafted by
+            <a href="https://twitter.com/simonharrer"><i class="bi bi-twitter"></i> Simon Harrer</a> and
+            <a href="https://twitter.com/Lynyus"><i class="bi bi-twitter"></i> Linus Dietz</a> in 2021 | <a
+                href="/legalnotice">Legal Notice</a> | <a href="/privacy">Privacy</a>
+        </p>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-java.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-diff.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/diff-highlight/prism-diff-highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-diff.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/diff-highlight/prism-diff-highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
 
-    <script data-mode="hash" async defer src="https://cdn.simpleanalytics.io/hello.js"></script>
-    <noscript><img src="https://api.simpleanalytics.io/hello.gif" alt=""></noscript>
-    </body>
-    </html>
+<script data-mode="hash" async defer src="https://cdn.simpleanalytics.io/hello.js"></script>
+<noscript><img src="https://api.simpleanalytics.io/hello.gif" alt=""></noscript>
+</body>
+</html>

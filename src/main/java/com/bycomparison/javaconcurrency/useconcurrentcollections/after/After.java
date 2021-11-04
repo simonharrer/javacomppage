@@ -1,11 +1,8 @@
 package com.bycomparison.javaconcurrency.useconcurrentcollections.after;
 
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class After {
-
-}
+public class After {}
 
 // AFTER:start
 /** thread-safe */
@@ -17,7 +14,13 @@ class Crew {
 
   void add(String name) {
     // START_HIGHLIGHT
-    members.addIfAbsent(name);
+    this.members.addIfAbsent(name);
+    // END_HIGHLIGHT
+  }
+
+  int size() {
+    // START_HIGHLIGHT
+    return this.members.size();
     // END_HIGHLIGHT
   }
 }

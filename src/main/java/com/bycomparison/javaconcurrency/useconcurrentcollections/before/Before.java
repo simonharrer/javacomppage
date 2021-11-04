@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Before {
-
-}
+public class Before {}
 
 // BEFORE:start
 /** thread-safe */
@@ -18,11 +16,17 @@ class Crew {
 
   void add(String name) {
     // START_HIGHLIGHT
-    synchronized (members) {
+    synchronized (this.members) {
       if (!members.contains(name)) {
-        members.add(name);
+        this.members.add(name);
       }
     }
+    // END_HIGHLIGHT
+  }
+
+  int size() {
+    // START_HIGHLIGHT
+    return this.members.size();
     // END_HIGHLIGHT
   }
 }

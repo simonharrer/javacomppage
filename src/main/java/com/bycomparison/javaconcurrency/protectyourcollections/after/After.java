@@ -12,19 +12,15 @@ public class After {}
 class Crew {
 
   // START_HIGHLIGHT
-  /** guarded by 'lock' */
+  /** guarded by 'members' */
   // END_HIGHLIGHT
   private final List<String> members = new ArrayList<>();
 
-  // START_HIGHLIGHT
-  private final Object lock = new Object();
-  // END_HIGHLIGHT
-
   void add(String name) {
     // START_HIGHLIGHT
-    synchronized (lock) {
-      if (!members.contains(name)) {
-        members.add(name);
+    synchronized (this.members) {
+      if (!this.members.contains(name)) {
+        this.members.add(name);
       }
     }
     // END_HIGHLIGHT
@@ -32,7 +28,7 @@ class Crew {
 
   int size() {
     // START_HIGHLIGHT
-    synchronized (lock) {
+    synchronized (this.members) {
       return this.members.size();
     }
     // END_HIGHLIGHT
