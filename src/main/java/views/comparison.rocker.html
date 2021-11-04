@@ -8,7 +8,7 @@
     @views.layoutcard.template(comparison.title(), comparison.category(), categories, comparison.previewCard()) -> {
 
 
-<div class="row">
+<div class="row mb-3">
 
 <div class="col text-start">
   @if(!dependencies.previous().isEmpty()) {
@@ -17,7 +17,7 @@
 </div>
 
 
-<div class="col text-center">@comparison.group()</div>
+<div class="col text-center"><h5>@comparison.group()</h5></div>
 
 <div class="col text-end">
   @if(!dependencies.next().isEmpty()) {
