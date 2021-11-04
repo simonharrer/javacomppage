@@ -60,12 +60,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item @if ("welcome".equals(category)) {active}">
-                        <a class="nav-link" href="welcome.html">Welcome</a>
+                    <li class="nav-item">
+                        <a class="nav-link  @if ("welcome".equals(category)) {active}" href="welcome.html">Welcome</a>
                     </li>
                     @for(c : categories) {
-                    <li class="nav-item @if (c.name().equals(category)) {active}">
-                        <a class="nav-link" href="@c.link()">@c.title()</a>
+                    <li class="nav-item">
+                        <a class="nav-link  @if (c.name().equals(category)) {active}" href="@c.link()">@c.title()</a>
                     </li>
                     }
                 </ul>
