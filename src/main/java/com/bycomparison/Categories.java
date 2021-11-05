@@ -13,7 +13,7 @@ public class Categories {
             """, List.of()),
         new Category("Java Concurrency", "Concurrency is hard, especially protecting shared memory. In the comparisons below, we show an evolution of making unprotected and undocumented data structures (a counter and a collection) safe to use in a concurrent environment. The world of concurrency certainly encompasses much more, but in practice, protecting such shared data structures typically suffices.", List.of()),
         new Category("Modern Java",
-            "Describes the new Java language features, starting from Java 9 and following",
+            "Although Java is believed dead over and over again, it's interesting to see that Java is reinventing itself, one step at a time. Here, we're showing new and modern Java features after Java 8.",
             List.of()),
         new Category("Spring Boot",
             "A lot of Java developers don't write Java, they write Spring Boot.", List.of())

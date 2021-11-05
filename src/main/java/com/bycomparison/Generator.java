@@ -116,6 +116,7 @@ public class Generator {
   private static List<Comparison> getComparisons() {
     List<Comparison> comparisons = new ArrayList<>();
     comparisons.addAll(ComparisonsJava.getComparisons());
+    comparisons.addAll(ComparisonsModernJava.chapter1NewLanguageFeatures());
     comparisons.addAll(unpublish(ComparisonsModernJava.getComparisons()));
     comparisons.addAll(ComparisonsJavaConcurrency.chapter1ProtectYourSharedMutableState());
     comparisons.addAll(ComparisonsJavaConcurrency.chapter2ProtectYourSharedMutableCollection());
