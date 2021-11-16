@@ -116,7 +116,43 @@ Protect Your Shared Memory
 
 
           <div class="p-3">
-            <ul>
+            <p>Welcome to this series of comparisons about different strategies of how to deal with reading and writing shared memory using multiple threads.</p>
+<p>Look at this <code>Counter</code> class:
+It has a <code>private</code> variable <code>count</code>, which can only be increased by a specific amount using the <code>increment()</code> method.
+If the <code>amount</code> by which the <code>count</code> should be increased is at least <code>1</code>, the method goes ahead and adds it to the previous value of <code>count</code>.
+So far so good... this is perfectly fine Java code in a single threaded world!</p>
+<p>Issues arise as soon as two or more threads access the <code>increment()</code> method at the same time.
+Imagine, two threads calling <code>increment(1)</code> 100 times on the same counter object with an initial <code>count = 0</code>.
+We would expect 200, however, the value of <code>count</code> can basically become any value up to 200.
+Looking back at the code, one might ask how this can happen?</p>
+<p>The fundamental problem is hidden behind <code>this.count += amount;</code>.
+Although this is a single line update of the variable, there is more going on in the background:</p>
+<pre><code class="language-java">var tmp = count; // read
+var tmp = tmp + amount; // update
+count = tmp; // write
+</code></pre>
+<p>As you can see, the <code>+=</code> operator actually expands to three steps:
+first, <em>reading</em> the current value of <code>count</code> and storing it into a temporary variable <code>tmp</code>.
+Second, <em>updating</em> <code>tmp</code> with <code>amount</code>, and
+third, <em>writing</em> the result of the operation into the actual <code>count</code> variable.
+The terminology for this three-step operation is &quot;critical section&quot;, since during each instruction, it is essential that all steps are run without interference of other threads.
+If two threads run at the same time something like this could happen:</p>
+<pre><code class="language-java">var tmp1 = count; // T1 read
+var tmp1 = tmp1 + amount; // T1 update
+var tmp2 = count; // T2 read
+var tmp2 = tmp2 + amount; // T2 update
+count = tmp1; // T1 write
+count = tmp2; // T2 write
+</code></pre>
+<p>First, T1 reads and updates the temporary variable, but before it can write the result into <code>count</code>, the schedulder decides that it is T2's turn.
+Now T2 perform the read and update before the scheduler gives T1 the permission to write the result.
+This is entirely possible, since Java's &quot;Program Order Rule&quot; only applies to single threads.
+<a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-17.html"><em>&quot;However, compilers are allowed to reorder the instructions in either thread, when this does not affect the execution of that thread in isolation&quot;</em></a>
+Finally, also T2 writes the result of the addition into <code>count</code>.
+Thus, we have a <strong>lost update</strong>, since the value of <code>count</code> is only incremented by T2, while the amount T1 had added to <code>count</code> is simply overwritten.</p>
+<p>Would you have thought that such innocent looking code can lead to severely incorrect programs?
+Read on on the right side how we can protect the shared memory from such lost updates by ensuring that the critical section can only be accessed by one thread at a time.</p>
+<ul>
 <li>shared memory, unprotected</li>
 <li>Can be read or written by multiple threads</li>
 <li>what can happen here when two threads count 100 times: expected 200, but basically any value could happen</li>

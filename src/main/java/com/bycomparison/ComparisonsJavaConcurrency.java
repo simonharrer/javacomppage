@@ -18,6 +18,50 @@ public class ComparisonsJavaConcurrency {
     return List.of(javaConcurrency("Protect Your Shared Memory", group,
             List.of("synchronized"),
             """
+                Welcome to this series of comparisons about different strategies of how to deal with reading and writing shared memory using multiple threads.
+                
+                Look at this `Counter` class:
+                It has a `private` variable `count`, which can only be increased by a specific amount using the `increment()` method.
+                If the `amount` by which the `count` should be increased is at least `1`, the method goes ahead and adds it to the previous value of `count`.
+                So far so good... this is perfectly fine Java code in a single threaded world!
+                
+                Issues arise as soon as two or more threads access the `increment()` method at the same time.
+                Imagine, two threads calling `increment(1)` 100 times on the same counter object with an initial `count = 0`.
+                We would expect 200, however, the value of `count` can basically become any value up to 200.
+                Looking back at the code, one might ask how this can happen?
+                
+                The fundamental problem is hidden behind `this.count += amount;`.
+                Although this is a single line update of the variable, there is more going on in the background:
+                ```java
+                var tmp = count; // read
+                var tmp = tmp + amount; // update
+                count = tmp; // write
+                ```
+                As you can see, the `+=` operator actually expands to three steps:
+                first, *reading* the current value of `count` and storing it into a temporary variable `tmp`.
+                Second, *updating* `tmp` with `amount`, and
+                third, *writing* the result of the operation into the actual `count` variable.  
+                The terminology for this three-step operation is "critical section", since during each instruction, it is essential that all steps are run without interference of other threads.
+                If two threads run at the same time something like this could happen:
+                ```java
+                var tmp1 = count; // T1 read
+                var tmp1 = tmp1 + amount; // T1 update
+                var tmp2 = count; // T2 read
+                var tmp2 = tmp2 + amount; // T2 update
+                count = tmp1; // T1 write
+                count = tmp2; // T2 write
+                ```
+                
+                First, T1 reads and updates the temporary variable, but before it can write the result into `count`, the schedulder decides that it is T2's turn.
+                Now T2 perform the read and update before the scheduler gives T1 the permission to write the result.
+                This is entirely possible, since Java's "Program Order Rule" only applies to single threads.
+                [*"However, compilers are allowed to reorder the instructions in either thread, when this does not affect the execution of that thread in isolation"*](https://docs.oracle.com/javase/specs/jls/se17/html/jls-17.html)
+                Finally, also T2 writes the result of the addition into `count`.
+                Thus, we have a **lost update**, since the value of `count` is only incremented by T2, while the amount T1 had added to `count` is simply overwritten.
+                
+                Would you have thought that such innocent looking code can lead to severely incorrect programs?
+                Read on on the right side how we can protect the shared memory from such lost updates by ensuring that the critical section can only be accessed by one thread at a time.              
+                             
                 * shared memory, unprotected
                 * Can be read or written by multiple threads
                 * what can happen here when two threads count 100 times: expected 200, but basically any value could happen
