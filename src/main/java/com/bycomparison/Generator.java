@@ -90,6 +90,7 @@ public class Generator {
     comparisons.addAll(unpublish(ComparisonsModernJava.getComparisons()));
     comparisons.addAll(ComparisonsJavaConcurrency.chapter1ProtectYourSharedMutableState());
     comparisons.addAll(ComparisonsJavaConcurrency.chapter2ProtectYourSharedMutableCollection());
+    comparisons.addAll(ComparisonsJavaConcurrency.chapter3VirtualThreads());
     comparisons.addAll(unpublish(ComparisonsJavaConcurrency.chapter3SolveYourProblemInParallel()));
     comparisons.addAll(unpublish(ComparisonsSpringBoot.getComparisons()));
     return comparisons;

@@ -29,8 +29,8 @@ class SupplyTests {
         // START_HIGHLIGHT
         var expectedJson = """
                 {
-                  "id": "1234", 
-                  count: 5
+                  "id": "1234",
+                  "count": 5
                 }""";
         // END_HIGHLIGHT
         assertEquals(expectedJson, actualJson, STRICT);

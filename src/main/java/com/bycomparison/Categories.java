@@ -16,15 +16,16 @@ public class Categories {
 
             In the comparisons below, we take two everyday data structures, a counter and a collection, that are neither protected nor documented, and make them safe to use in a concurrent environment, one small step at a time. Each step shows the code before and after, and explains what the change protects against and what it costs:
 
-            * **Chapter 1** starts with `synchronized`, documents the thread-safety guarantees, and moves on to explicit, well-scoped, hidden, and fair locks. It ends with `AtomicLong`, which avoids locks altogether, and `LongAdder`, which avoids the busy retrying of compare-and-set when many threads count at once.
+            * **Chapter 1** starts with `synchronized`, documents the thread-safety guarantees, and moves on to explicit, well-scoped, hidden, and fair locks. It ends with `AtomicLong`, which avoids locks altogether, and `LongAdder`, which spreads the updates when many threads count at once.
             * **Chapter 2** does the same for collections: from guarding a plain `ArrayList` yourself, to synchronized wrappers, to the concurrent collections of `java.util.concurrent`.
+            * **Chapter 3** shows how virtual threads, available since Java 21, run thousands of blocking tasks without a carefully sized thread pool.
 
-            The world of concurrency certainly encompasses much more, from executors and parallel streams to virtual threads. But in practice, protecting such shared data structures correctly is what most everyday Java code needs. The comparisons follow the same before/after format as the book [Java by Comparison](https://java.by-comparison.com) and are free to read.
+            The world of concurrency certainly encompasses much more, from executors and parallel streams to structured concurrency. But in practice, protecting such shared data structures correctly is what most everyday Java code needs. The comparisons follow the same before/after format as the book [Java by Comparison](https://java.by-comparison.com) and are free to read.
             """, List.of()),
         new Category("Modern Java", """
             Although Java is believed dead over and over again, it keeps reinventing itself, one step at a time. Since Java 8, a new release ships every six months, and each one brings features that make everyday code shorter, clearer, and safer. Many teams still write Java as if it were 2014, simply because nobody showed them the newer way.
 
-            The comparisons below each take a typical piece of pre-Java-8-style code and refine it with a feature from a later release, such as text blocks, the improved `Optional` API, switch expressions, records, and doc comments in Markdown. Like in the book [Java by Comparison](https://java.by-comparison.com), every comparison shows the code before and after, and explains why the newer version is better and what to watch out for when you adopt it in an existing code base.
+            The comparisons below each take a typical piece of pre-Java-8-style code and refine it with a feature from a later release, such as text blocks, the improved `Optional` API, switch expressions, records, sealed interfaces, and doc comments in Markdown. Like in the book [Java by Comparison](https://java.by-comparison.com), every comparison shows the code before and after, and explains why the newer version is better and what to watch out for when you adopt it in an existing code base.
 
             The examples are deliberately small, so you can try them right away in your own project. All you need is a current JDK.
             """, List.of()),
