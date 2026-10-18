@@ -53,31 +53,25 @@ a, a:hover, a:active{ outline:0px !important}
 }
 
 @font-face {
-    font-family: 'LatoRegular';
-    src: url('../fonts/lato-regular.eot');
-    src: url('../fonts/lato-regular.eot') format('embedded-opentype'),
-         url('../fonts/lato-regular.woff2') format('woff2'),
-         url('../fonts/lato-regular.woff') format('woff'),
-         url('../fonts/lato-regular.ttf') format('truetype'),
-         url('../fonts/lato-regular.svg#LatoRegular') format('svg');
+    font-family: 'Lato';
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/lato-regular.woff2') format('woff2'),
+         url('../fonts/lato-regular.woff') format('woff');
 }
 @font-face {
-    font-family: 'LatoBoldBold';
-    src: url('../fonts/lato-bold.eot');
-    src: url('../fonts/lato-bold.eot') format('embedded-opentype'),
-         url('../fonts/lato-bold.woff2') format('woff2'),
-         url('../fonts/lato-bold.woff') format('woff'),
-         url('../fonts/lato-bold.ttf') format('truetype'),
-         url('../fonts/lato-bold.svg#LatoBoldBold') format('svg');
+    font-family: 'Lato';
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/lato-bold.woff2') format('woff2'),
+         url('../fonts/lato-bold.woff') format('woff');
 }
 @font-face {
-    font-family: 'DosisBold';
-    src: url('../fonts/dosis-bold.eot');
-    src: url('../fonts/dosis-bold.eot') format('embedded-opentype'),
-         url('../fonts/dosis-bold.woff2') format('woff2'),
-         url('../fonts/dosis-bold.woff') format('woff'),
-         url('../fonts/dosis-bold.ttf') format('truetype'),
-         url('../fonts/dosis-bold.svg#DosisBold') format('svg');
+    font-family: 'Dosis';
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/dosis-bold.woff2') format('woff2'),
+         url('../fonts/dosis-bold.woff') format('woff');
 }
 
 /* Primary Styles
@@ -274,7 +268,7 @@ a.learn_more2{
 	line-height:46px;
 	border-radius:3px;
 	text-align:center;
-	font-family:''Dosis'';
+	font-family:'Dosis';
 	text-transform:uppercase;
 	font-weight: 600;
 	transition:all 0.2s ease-in-out;
@@ -533,7 +527,7 @@ a.contact_btn:hover{
 	color:#222222;
 	border-radius:4px;
 	text-transform:uppercase;
-	font-family: 'LatoRegular', sans-serif;
+	font-family: 'Lato', sans-serif;
 	background:#f7f7f7;
 	margin-bottom:5px;
 	transition:all 0.3s ease-in-out;
@@ -1261,7 +1255,7 @@ img {
     border-radius: 4px;
     color: #222222;
     display: inline-block;
-    font-family: 'LatoRegular',sans-serif;
+    font-family: 'Lato',sans-serif;
     font-size: 12px;
     line-height: 20px;
     margin-bottom: 5px;
@@ -1278,7 +1272,7 @@ img {
 	
 .section-title h2{
 	color: #222222;
-    font-family: DosisBold;
+    font-family: 'Dosis';
     font-size: 34px;
     font-weight: normal;
     letter-spacing: -1px;
@@ -1378,7 +1372,7 @@ img {
 		color:#222222;
 		text-transform:uppercase;
 		margin-top:25px;
-		font-family:DosisBold;
+		font-family:'Dosis';
 		opacity:0;
 		font-size:18px;
 		transition:all 0.2s ease 0s;
