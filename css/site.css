@@ -74,6 +74,7 @@ h2 { font-size: 26px; margin: 0 0 20px; line-height: 1.2; }
 .talk-list li { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; text-align: left; }
 .talk-list time { flex: 0 0 92px; color: #888; font-variant-numeric: tabular-nums; }
 .talk-list .where { color: var(--ink); }
+.talk-list .meta { color: #888; font-size: 14px; }
 
 /* Press: highlights as cards, the long tail collapsible and compact */
 .press-more { margin-top: 24px; }
