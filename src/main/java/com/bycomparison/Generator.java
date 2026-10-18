@@ -18,7 +18,7 @@ public class Generator {
 
     Files.walk(configuration.site())
         .sorted(Comparator.reverseOrder())
-        .filter(path -> path.endsWith(".html"))
+        .filter(path -> path.toString().endsWith(".html"))
         .map(Path::toFile)
         .forEach(File::delete);
   }

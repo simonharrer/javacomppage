@@ -19,6 +19,25 @@ public record Category(String name, String text, List<Comparison> comparisons) {
     return name + " by Comparison";
   }
 
+  public String pageTitle() {
+    if ("Java".equals(name)) {
+      return "All 70 Comparisons of the Book Java by Comparison | Clean Java Code";
+    }
+    return title() + ": Before/After Code Examples";
+  }
+
+  public String description() {
+    if ("Java".equals(name)) {
+      return "Table of contents of Java by Comparison: all 70 before/after comparisons for clean Java code, from booleans and naming to exceptions, JUnit 5, and streams.";
+    }
+    return "%s: %d comparisons of code before and after the refinement, with explanations, by the authors of Java by Comparison."
+        .formatted(title(), comparisons.size());
+  }
+
+  public String canonical() {
+    return "https://java.by-comparison.com/site/" + filename();
+  }
+
   public String previewCard() {
     return "https://java.by-comparison.com/img/cover.jpg";
   }

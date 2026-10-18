@@ -4,7 +4,9 @@
 
 @args (List<Category> categories)
 
-@views.layoutcard.template("Welcome", "welcome", categories, "") -> {
+@views.layoutcard.template("Clean Code by Comparison: Before/After Code Examples | Java by Comparison",
+  "Learn clean code by comparing code before and after a refinement: browse all comparisons from the book Java by Comparison and on Java concurrency and modern Java.",
+  "https://java.by-comparison.com/site/welcome.html", "welcome", categories, "https://java.by-comparison.com/img/cover.jpg") -> {
 <div class="container">
 <h1>Welcome to the World of Comparisons</h1>
 
@@ -12,6 +14,13 @@
 By comparing code before and after the refinement, the difference becomes clear...
 </p>
 
-<img src="../img/comparison-concept.png" width="100%"/>
+<img src="../img/comparison-concept.png" class="img-fluid" alt="Anatomy of a comparison: bad code and problem description on the left, better code and solution description on the right"/>
+
+<h2 class="h4 mt-4">Browse the comparisons</h2>
+<ul>
+@for(c : categories) {
+<li><a href="@c.link()">@c.title()</a> (@c.comparisons().size())</li>
+}
+</ul>
 </div>
 }

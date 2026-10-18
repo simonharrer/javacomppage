@@ -5,54 +5,64 @@
 
 @args (Comparison comparison, Dependencies dependencies, List<Category> categories)
 
-    @views.layoutcard.template(comparison.title(), comparison.category(), categories, comparison.previewCard()) -> {
+    @views.layoutcard.template(comparison.title(), comparison.description(), comparison.canonical(), comparison.category(), categories, comparison.previewCard()) -> {
 
 
-<div class="row mb-3">
+<div class="row mb-3 align-items-center">
 
-<div class="col text-start previous">
+<div class="col-12 col-md-4 order-md-2 text-center mb-2 mb-md-0"><h5 class="mb-0">@comparison.group()</h5></div>
+
+<div class="col-6 col-md-4 order-md-1 text-start previous">
   @if(!dependencies.previous().isEmpty()) {
-  <a class="btn btn-secondary" href="@dependencies.previous()">← @dependencies.previousName()</a>
+  <a class="btn btn-secondary btn-sm" href="@dependencies.previous()">← @dependencies.previousName()</a>
   }
 </div>
 
-
-<div class="col text-center"><h5>@comparison.group()</h5></div>
-
-<div class="col text-end next">
+<div class="col-6 col-md-4 order-md-3 text-end next">
   @if(!dependencies.next().isEmpty()) {
-  <a class="btn btn-secondary" href="@dependencies.next()">@dependencies.nextName() →</a>
+  <a class="btn btn-secondary btn-sm" href="@dependencies.next()">@dependencies.nextName() →</a>
   }
 </div>
 </div>
 
 <div class="row text-center">
-<h2 style="width: 100%">
+<h1 class="h2" style="width: 100%">
 <span>
 @comparison.name()
 </span>
-</h2>
+</h1>
 </div>
 
 
 
+@if(comparison.book()) {
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="shadow-lg p-4 mb-5 bg-white rounded">
+      <div class="row align-items-center">
+        <div class="col-sm-4 text-center mb-3 mb-sm-0">
+          <a href="/"><img class="book-cover" src="/img/cover.jpg" alt="Cover of the book Java by Comparison"></a>
+        </div>
+        <div class="col-sm-8">
+          <p class="lead">"@comparison.name()" is one of the 70 comparisons in the book
+            <a href="/">Java by Comparison</a>: @comparison.group(), pages @comparison.beforeText()&ndash;@comparison.afterText().</p>
+          <p>Like every item in the book, it shows a piece of flawed Java code on one page and the improved version
+            on the next, and explains why the improvement is better.</p>
+          @if(!comparison.sample().isEmpty()) {
+          <p><a class="btn btn-success mb-2" href="@comparison.sample()"><i class="bi bi-file-earmark-pdf"></i> Read this item for free (PDF)</a></p>
+          }
+          <p class="mb-0">
+            <a class="btn btn-primary mb-2" href="https://pragprog.com/titles/javacomp/java-by-comparison/">E-book &amp; print at Pragmatic Bookshelf</a>
+            <a class="btn btn-outline-primary mb-2" href="https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/">Amazon</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+} else {
 <div class="row row-eq-height">
     <div class="col-sm">
-        @if(comparison.book()) {
-          <div class="shadow-lg p-3 mb-5 bg-white rounded text-center align-middle" style="background-color: #efd2d2 !important">
-            <a href="https://java.by-comparison.com">
-              <span style="font-size: xx-large">Open page @comparison.beforeText() in</span>
-              <br/>
-              <img src="https://d33wubrfki0l68.cloudfront.net/7fa142df22e7e3ce577dde09126ecd787cbc5c54/d2509/img/cover.jpg" alt="Java by Comparison Book">
-              <br/>
-              <span style="font-size: xx-large">the book "Java by Comparison".</span>
-            </a>
-
-            @if(!comparison.sample().isEmpty()) {
-            <div style="font-size: xx-large" class="mt-2"><a href="@comparison.sample()">Read sample chapter</a></div>
-            }
-          </div>
-        } else {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
           @views.codehighlight.template(comparison.language(), comparison.beforeCode(), comparison.beforeCodeHighlight())
 
@@ -60,23 +70,8 @@
             @raw(comparison.beforeText())
           </div>
         </div>
-         }
     </div>
     <div class="col-sm">
-      @if(comparison.book()) {
-      <div class="shadow-lg p-3 mb-5 bg-white rounded text-center align-middle" style="background-color: #d2efd2 !important">
-        <a href="https://java.by-comparison.com">
-          <span style="font-size: xx-large">Open page @comparison.afterText() in</span>
-          <br/>
-          <img src="https://d33wubrfki0l68.cloudfront.net/7fa142df22e7e3ce577dde09126ecd787cbc5c54/d2509/img/cover.jpg" alt="Java by Comparison Book">
-          <br/>
-          <span style="font-size: xx-large">the book "Java by Comparison".</span>
-        </a>
-        @if(!comparison.sample().isEmpty()) {
-        <div style="font-size: xx-large" class="mt-2"><a href="@comparison.sample()">Read sample chapter</a></div>
-        }
-      </div>
-      } else {
         <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
             @views.codehighlight.template(comparison.language(), comparison.afterCode(),comparison.afterCodeHighlight())
 
@@ -85,9 +80,9 @@
             </div>
 
         </div>
-      }
     </div>
 </div>
+}
 
 @if(!comparison.book()) {
 

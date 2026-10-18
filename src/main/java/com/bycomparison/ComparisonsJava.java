@@ -12,7 +12,7 @@ public class ComparisonsJava {
     result.add(bookComparison("Avoid Unnecessary Comparisons", chapter1, 3, ""));
     result.add(bookComparison("Avoid Negations", chapter1, 5, ""));
     result.add(bookComparison("Return Boolean Expressions Directly", chapter1, 7,
-        "http://media.pragprog.com/titles/javacomp/boolean.pdf"));
+        "https://media.pragprog.com/titles/javacomp/boolean.pdf"));
     result.add(bookComparison("Simplify Boolean Expressions", chapter1, 9, ""));
     result.add(bookComparison("Avoid NullPointerException in Conditional", chapter1, 11, ""));
     result.add(bookComparison("Avoid Switch Fallthrough", chapter1, 13, ""));
@@ -38,7 +38,7 @@ public class ComparisonsJava {
     result
         .add(bookComparison("Document Implementation Decisions", chapter3, 46, ""));
     result.add(bookComparison("Document Using Examples", chapter3, 48,
-        "http://media.pragprog.com/titles/javacomp/examples.pdf"));
+        "https://media.pragprog.com/titles/javacomp/examples.pdf"));
     result.add(bookComparison("Structure JavaDoc of Packages", chapter3, 50, ""));
     result.add(bookComparison("Structure JavaDoc of Classes and Interfaces", chapter3, 52, ""));
     result.add(bookComparison("Structure JavaDoc of Methods", chapter3, 54, ""));
@@ -79,7 +79,7 @@ public class ComparisonsJava {
 
     var chapter7 = "Chapter 7: Design Your Objects";
     result.add(bookComparison("Split Method with Boolean Parameters", chapter7, 114,
-        "http://media.pragprog.com/titles/javacomp/split.pdf"));
+        "https://media.pragprog.com/titles/javacomp/split.pdf"));
     result.add(bookComparison("Split Method with Optional Parameters", chapter7, 116, ""));
     result.add(bookComparison("Favor Abstract Over Concrete Types", chapter7, 118, ""));
     result.add(bookComparison("Favor Immutable Over Mutable State", chapter7, 120, ""));

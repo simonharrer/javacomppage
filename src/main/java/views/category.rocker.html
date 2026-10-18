@@ -4,7 +4,7 @@
 
 @args (Category category, List<Category> categories)
 
-  @views.layoutcard.template(category.title(), category.name(), categories, category.previewCard()) -> {
+  @views.layoutcard.template(category.pageTitle(), category.description(), category.canonical(), category.name(), categories, category.previewCard()) -> {
 
   <div class="container">
 <h1>@category.title()</h1>

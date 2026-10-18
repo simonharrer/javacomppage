@@ -89,8 +89,23 @@ public record Comparison(String name, String group, String category, List<String
   }
 
   public String previewCard() {
-    // TODO preview for java by comparison items
+    if (book) {
+      return "https://java.by-comparison.com/img/cover.jpg";
+    }
     return "https://java.by-comparison.com/site/" + previewPngFilename();
+  }
+
+  public String description() {
+    if (book) {
+      return "%s: a before/after comparison from the book Java by Comparison, %s, pages %s-%s. Learn to write clean Java code in 70 examples."
+          .formatted(name, group, beforeText, afterText);
+    }
+    return "%s: Java code before and after the refinement, with an explanation why the improved version is better. Part of %s."
+        .formatted(name, categoryTitle(category));
+  }
+
+  public String canonical() {
+    return "https://java.by-comparison.com/site/" + filename();
   }
 
   public String diff() {
