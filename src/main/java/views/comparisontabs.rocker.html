@@ -1,0 +1,11 @@
+@import com.bycomparison.Category
+@import java.util.List
+
+@args (List<Category> categories, String active)
+
+<nav class="cmp-tabs" aria-label="Comparison categories">
+  <a href="welcome.html" @if ("welcome".equals(active)) {class="active"}>How it works</a>
+  @for (c : categories) {
+  <a href="@c.link()" @if (c.name().equals(active)) {class="active"}>@c.title()</a>
+  }
+</nav>

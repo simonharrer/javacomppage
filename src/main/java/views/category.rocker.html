@@ -1,31 +1,26 @@
-@import java.util.List
-@import com.bycomparison.Comparison
 @import com.bycomparison.Category
+@import java.util.List
 
 @args (Category category, List<Category> categories)
 
-  @views.layoutcard.template(category.pageTitle(), category.description(), category.canonical(), category.name(), categories, category.previewCard()) -> {
-
+<section class="jbc-section cmp">
   <div class="container">
-<h1>@category.title()</h1>
-
-<div class="row mb-3">@raw(category.htmlText())</div>
-
-<div class="row">
-@for(group : category.groups()) {
-<h5>@group</h5>
-<ul class="list-unstyled">
-@for(comparison : category.comparisonsForGroup(group)) {
-<li>
-<a href="@comparison.link()">
-@comparison.name()
-
-</a>
-</li>
-}
-</ul>
-}
-</div>
-
-</div>
-}
+    @views.comparisontabs.template(categories, category.name())
+    <div class="prose">
+      <h1>@category.title()</h1>
+      @raw(category.htmlText())
+    </div>
+    <div class="cmp-groups">
+      @for (group : category.groups()) {
+      <div class="jbc-card">
+        <h2 class="h3">@group</h2>
+        <ul>
+          @for (comparison : category.comparisonsForGroup(group)) {
+          <li><a href="@comparison.link()">@comparison.name()</a></li>
+          }
+        </ul>
+      </div>
+      }
+    </div>
+  </div>
+</section>

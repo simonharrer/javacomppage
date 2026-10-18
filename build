@@ -1,2 +1,3 @@
-# yarn global add carbon-now-cli
+# Generates the website into target/site (same command as in CI).
+# Add --drafts to also render unpublished comparisons into target/site-drafts.
 ./mvnw clean package exec:java --quiet --no-transfer-progress

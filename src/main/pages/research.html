@@ -1,0 +1,192 @@
+<!--
+title: Research: Teaching Clean Code with Before/After Comparisons | Java by Comparison
+description: The research behind Java by Comparison: a feedback-driven teaching concept for clean Java code from the University of Bamberg, peer-reviewed papers with BibTeX, and how to cite and teach with the book.
+canonical: /research
+og_type: article
+og_title: The Research Behind Java by Comparison: Teaching Clean Code
+og_description: How before/after comparisons became a teaching method for clean Java code, evaluated at the University of Bamberg.
+og_image: https://java.by-comparison.com/img/cover.jpg
+-->
+<!-- head -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ScholarlyArticle",
+        "headline": "Teaching Clean Code",
+        "author": [
+          {"@type": "Person", "name": "Linus W. Dietz"},
+          {"@type": "Person", "name": "Johannes Manner"},
+          {"@type": "Person", "name": "Simon Harrer"},
+          {"@type": "Person", "name": "Jörg Lenhard"}
+        ],
+        "datePublished": "2018",
+        "isPartOf": {"@type": "PublicationVolume", "name": "CEUR Workshop Proceedings", "volumeNumber": "2066"},
+        "pagination": "24-27",
+        "url": "https://ceur-ws.org/Vol-2066/isee2018paper06.pdf"
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "headline": "Code Process Metrics in University Programming Education",
+        "author": [
+          {"@type": "Person", "name": "Linus W. Dietz"},
+          {"@type": "Person", "name": "Robin Lichtenthäler"},
+          {"@type": "Person", "name": "Adam Tornhill"},
+          {"@type": "Person", "name": "Simon Harrer"}
+        ],
+        "datePublished": "2019",
+        "isPartOf": {"@type": "PublicationVolume", "name": "CEUR Workshop Proceedings", "volumeNumber": "2308"},
+        "pagination": "23-26",
+        "url": "https://ceur-ws.org/Vol-2308/isee2019paper05.pdf"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Java by Comparison", "item": "https://java.by-comparison.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Research", "item": "https://java.by-comparison.com/research"}
+        ]
+      }
+    ]
+  }
+  </script>
+<!-- /head -->
+<section class="research-hero">
+  <div class="container">
+    <p class="breadcrumb-nav"><a href="/">Java by Comparison</a> &rsaquo; Research</p>
+    <h1>The Research Behind the Book</h1>
+    <p class="section-lead">Java by Comparison grew out of a teaching concept for clean code that we developed,
+      applied, and evaluated at the University of Bamberg for more than six years.</p>
+  </div>
+</section>
+
+<section class="jbc-section" id="concept">
+  <div class="container prose">
+    <h2>Teaching Clean Code, Not Just Working Code</h2>
+    <p>Programming courses at university usually grade functional correctness. Code that works but is hard to
+      read and maintain passes, although the software industry needs developers who write clean code.
+      Our courses put clean, maintainable code first.</p>
+    <p>The concept, which received the faculty's teaching award, works like this:</p>
+    <ol>
+      <li><strong>Group assignments.</strong> Students in their second and third year solve four programming
+        assignments per semester in teams.</li>
+      <li><strong>Detailed textual code review.</strong> Every submission gets a review that explains what is wrong
+        with the code, how to write it better, and why the better version is really better.</li>
+      <li><strong>A knowledge base of before/after comparisons.</strong> Over the years, we noticed that we told every
+        new generation of students the same things. We collected the typical issues of Java learners as
+        comparisons of flawed and improved code. A reviewer only needs to reference the matching comparison,
+        which makes feedback faster and better: students see the problem and the rationale behind the solution.</li>
+      <li><strong>Curated static analysis checks.</strong> A selected set of static code analysis rules helps
+        reviewers spot violations quickly.</li>
+    </ol>
+    <p>That knowledge base became the book. Its 70 items are based on code we faced when correcting our
+      students' programming assignments.</p>
+  </div>
+</section>
+
+<section class="jbc-section alt" id="publications">
+  <div class="container prose">
+    <h2>Publications</h2>
+    <div class="jbc-card paper">
+      <h3><a href="https://ceur-ws.org/Vol-2066/isee2018paper06.pdf" rel="noopener">Teaching Clean Code</a></h3>
+      <p class="meta">Linus W. Dietz, Johannes Manner, Simon Harrer, Jörg Lenhard.
+        1st Workshop on Innovative Software Engineering Education (ISEE 2018), co-located with SE 2018, Ulm, Germany.
+        CEUR Workshop Proceedings, Vol. 2066, pp. 24&ndash;27, 2018.</p>
+      <p>Presents the feedback-driven teaching concept for clean code and evaluates one semester of student
+        submissions (n=18) with static code analysis tools, which shows steady progress. It identifies the
+        correction of assignments as the bottleneck for scaling the course and proposes the knowledge base of
+        before/after comparisons, plus curated static analysis checks, to shorten the time to feedback.</p>
+      <p><a href="https://www.uni-bamberg.de/dsg/forschung/publikationen/18-02-teaching-clean-code/" rel="noopener">Abstract</a>
+        &middot; <a href="https://ceur-ws.org/Vol-2066/isee2018paper06.pdf" rel="noopener">PDF</a></p>
+      <details>
+        <summary>BibTeX</summary>
+<pre class="bibtex">@inproceedings{dietz2018teaching,
+  author    = {Linus W. Dietz and Johannes Manner and Simon Harrer and J{\"o}rg Lenhard},
+  title     = {Teaching Clean Code},
+  booktitle = {Proceedings of the 1st Workshop on Innovative Software Engineering Education (ISEE 2018)},
+  series    = {CEUR Workshop Proceedings},
+  volume    = {2066},
+  pages     = {24--27},
+  year      = {2018},
+  url       = {https://ceur-ws.org/Vol-2066/isee2018paper06.pdf}
+}</pre>
+      </details>
+    </div>
+
+    <div class="jbc-card paper" style="margin-top:16px">
+      <h3><a href="https://ceur-ws.org/Vol-2308/isee2019paper05.pdf" rel="noopener">Code Process Metrics in University Programming Education</a></h3>
+      <p class="meta">Linus W. Dietz, Robin Lichtenthäler, Adam Tornhill, Simon Harrer.
+        2nd Workshop on Innovative Software Engineering Education (ISEE 2019), co-located with SE 2019, Stuttgart, Germany.
+        CEUR Workshop Proceedings, Vol. 2308, pp. 23&ndash;26, 2019.</p>
+      <p>Mines the Git repositories of 38 student teams in two Bamberg courses, Advanced Java Programming and
+        Introduction to Parallel and Distributed Programming, which use Java by Comparison to point students to
+        issues in code reviews. It analyzes how eight code process metrics relate to students' scores and finds
+        only weak correlations.</p>
+      <p><a href="https://ceur-ws.org/Vol-2308/isee2019paper05.pdf" rel="noopener">PDF</a></p>
+      <details>
+        <summary>BibTeX</summary>
+<pre class="bibtex">@inproceedings{dietz2019codeprocess,
+  author    = {Linus W. Dietz and Robin Lichtenth{\"a}ler and Adam Tornhill and Simon Harrer},
+  title     = {Code Process Metrics in University Programming Education},
+  booktitle = {Proceedings of the 2nd Workshop on Innovative Software Engineering Education (ISEE 2019)},
+  series    = {CEUR Workshop Proceedings},
+  volume    = {2308},
+  pages     = {23--26},
+  year      = {2019},
+  url       = {https://ceur-ws.org/Vol-2308/isee2019paper05.pdf}
+}</pre>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="jbc-section" id="kata">
+  <div class="container prose">
+    <h2>From the Classroom to Industry: The Kata</h2>
+    <p>We turned the method into a two-hour team exercise. Pairs clean up deliberately uglified legacy code and
+      may only apply comparisons from the book. At the first run, at the BMW Group coding dojo on March 25, 2019:</p>
+    <ul class="stats">
+      <li><strong>19</strong>participants</li>
+      <li><strong>39 / 70</strong>comparisons used</li>
+      <li><strong>120</strong>minutes</li>
+    </ul>
+    <p>The teams favored the chapters <em>Name Things Right</em> and <em>Start Cleaning Up</em>. The most used
+      comparisons were Avoid Abbreviations and Avoid Negations: quick fixes with a large effect on readability.
+      <a href="/kata">Run the kata with your team</a>.</p>
+  </div>
+</section>
+
+<section class="jbc-section alt" id="teach">
+  <div class="container prose">
+    <h2>Teaching with the Book</h2>
+    <ul>
+      <li><strong>In code reviews and grading.</strong> Point students to the matching item instead of writing the same
+        explanation again. Each item shows the problem and the solution side by side.</li>
+      <li><strong>Alongside any programming course.</strong> Once students know basic Java syntax, the book can accompany
+        basically any course with programming tasks. A FizzBuzz exercise is a good readiness check.</li>
+      <li><strong>For coaching junior developers.</strong> Senior developers use it the same way in industry.</li>
+      <li><strong>With the free material.</strong> The preface and three items are
+        <a href="/#work_outer">free samples</a>, and the <a href="/kata">kata</a> with code and tests is on GitHub.</li>
+    </ul>
+    <p>Do you teach with Java by Comparison or research code quality in education?
+      <a href="mailto:simon.harrer@gmail.com?subject=Java%20by%20Comparison%20in%20teaching%20or%20research">Get in touch</a>,
+      we are happy to list your course.</p>
+  </div>
+</section>
+
+<section class="jbc-section" id="cite">
+  <div class="container prose">
+    <h2>How to Cite the Book</h2>
+    <p>Simon Harrer, Jörg Lenhard, Linus Dietz. <em>Java by Comparison: Become a Java Craftsman in 70 Examples.</em>
+      The Pragmatic Bookshelf, Raleigh, NC, 2018. ISBN 978-1-68050-287-9.</p>
+<pre class="bibtex">@book{harrer2018javabycomparison,
+  author    = {Simon Harrer and J{\"o}rg Lenhard and Linus Dietz},
+  title     = {Java by Comparison: Become a Java Craftsman in 70 Examples},
+  publisher = {The Pragmatic Bookshelf},
+  address   = {Raleigh, NC},
+  year      = {2018},
+  isbn      = {978-1-68050-287-9},
+  url       = {https://pragprog.com/titles/javacomp/java-by-comparison/}
+}</pre>
+  </div>
+</section>

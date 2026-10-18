@@ -1,0 +1,103 @@
+@import com.bycomparison.Page
+
+@args (Page page)
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>@page.title()</title>
+  <meta name="description" content="@page.description()">
+  @if (!page.robots().isBlank()) {
+  <meta name="robots" content="@page.robots()">
+  }
+  <link rel="canonical" href="@page.canonicalUrl()">
+  <meta property="og:type" content="@page.ogTypeOrWebsite()">
+  <meta property="og:site_name" content="Java by Comparison">
+  <meta property="og:url" content="@page.canonicalUrl()">
+  <meta property="og:title" content="@page.ogTitleOrTitle()">
+  <meta property="og:description" content="@page.ogDescriptionOrDescription()">
+  <meta property="og:image" content="@page.ogImageOrCover()">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@@simonharrer">
+  <meta name="msvalidate.01" content="77B6CD17E134BEED7607700CA43F99EB">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="/css/style.css" rel="stylesheet" type="text/css">
+  <link href="/css/linecons.css" rel="stylesheet" type="text/css">
+  <link href="/css/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="/css/responsive.css" rel="stylesheet" type="text/css">
+  <link href="/css/site.css" rel="stylesheet" type="text/css">
+  @raw(page.head())
+</head>
+
+<body>
+
+<header id="header_outer">
+  <div class="container">
+    <div class="header_section">
+      <div class="logo"><a href="/" title="Java by Comparison: home">Java by Comparison</a></div>
+      <nav class="nav" id="nav">
+        <ul class="toggle">
+          @views.navigation.template()
+          <li><a href="/#buy">Buy the book</a></li>
+        </ul>
+        <ul class="main-nav-list">
+          @views.navigation.template()
+          <li><a href="https://pragprog.com/titles/javacomp/java-by-comparison/" class="learn_more2" rel="noopener">Get the book</a></li>
+        </ul>
+      </nav>
+      <a class="res-nav_click" href="javascript:void(0)" aria-label="Menu"><i class="fa-bars"></i></a>
+    </div>
+  </div>
+</header>
+
+<main>
+@raw(page.body())
+</main>
+
+<nav class="buybar" aria-label="Buy the book">
+  <span class="label">Get the book:</span>
+  <a class="primary" href="https://pragprog.com/titles/javacomp/java-by-comparison/" rel="noopener">E-book<span class="long">&nbsp;&amp; print</span></a>
+  <span class="amz">Amazon</span>
+  <a href="https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/" rel="noopener"><span class="long">Amazon&nbsp;</span>US</a>
+  <a href="https://www.amazon.co.uk/Java-Comparison-Become-Craftsman-Examples/dp/1680502875" rel="noopener"><span class="long">Amazon&nbsp;</span>UK</a>
+  <a href="https://www.amazon.de/Java-Comparison-Simon-Harrer/dp/1680502875" rel="noopener"><span class="long">Amazon&nbsp;</span>DE</a>
+</nav>
+
+<footer class="footer_section" id="contact">
+  <div class="container">
+    <div class="footer_bottom">
+      <p><a href="/story">Story</a> &middot; <a href="/site/welcome.html">Comparisons</a> &middot;
+        <a href="/teaching">Teaching</a> &middot; <a href="/research">Research</a> &middot;
+        <a href="/translations">Translations</a> &middot; <a href="/kata">Kata</a> &middot; <a href="/game">Game</a></p>
+      <p><a href="/legalnotice">Legal Notice / Impressum</a> &middot; <a href="/privacy">Privacy / Datenschutzerklärung</a></p>
+    </div>
+    <div class="footer_bottom">
+      <span>&copy; Simon Harrer, Jörg Lenhard, Linus Dietz &middot; Butterfly Theme</span>
+      <div class="credits">
+        <a href="https://bootstrapmade.com/">Free Bootstrap Templates</a> by BootstrapMade
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script>
+  // Phone menu: open and close with the menu button, close after picking an entry.
+  $('.res-nav_click').on('click', function () {
+    $('ul.toggle').slideToggle(200);
+    return false;
+  });
+  $('ul.toggle a[href*="#"]').on('click', function () {
+    if ($('.res-nav_click').is(':visible')) {
+      $('ul.toggle').slideUp(200);
+    }
+  });
+</script>
+@raw(page.scripts())
+<script data-mode="hash" async defer src="https://cdn.simpleanalytics.io/hello.js"></script>
+<noscript><img src="https://api.simpleanalytics.io/hello.gif" alt=""></noscript>
+</body>
+</html>

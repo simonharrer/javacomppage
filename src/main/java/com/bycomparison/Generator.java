@@ -1,7 +1,5 @@
 package com.bycomparison;
 
-import com.fizzed.rocker.RockerModel;
-import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
@@ -10,94 +8,66 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Generator {
 
-  static void deleteWebsite(GeneratorConfiguration configuration) throws IOException {
-    Files.createDirectories(configuration.site());
+  private static final String PRISM = "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0";
 
-    Files.walk(configuration.site())
-        .sorted(Comparator.reverseOrder())
-        .filter(path -> path.toString().endsWith(".html"))
-        .map(Path::toFile)
-        .forEach(File::delete);
-  }
+  private static final String PRISM_HEAD = """
+      <link rel="stylesheet" href="%1$s/themes/prism.min.css">
+      <link rel="stylesheet" href="%1$s/plugins/line-highlight/prism-line-highlight.min.css">
+      """.formatted(PRISM);
 
+  private static final String PRISM_SCRIPTS = """
+      <script src="%1$s/prism.min.js"></script>
+      <script src="%1$s/components/prism-java.min.js"></script>
+      <script src="%1$s/components/prism-properties.min.js"></script>
+      <script src="%1$s/plugins/line-highlight/prism-line-highlight.min.js"></script>
+      """.formatted(PRISM);
+
+  /** Builds the complete website into the output directory of the configuration. */
   static void generateWebsite(GeneratorConfiguration configuration) throws IOException {
+    var output = configuration.output();
+    deleteDirectory(output);
+    copyDirectory(configuration.staticFiles(), output);
+
+    List<Page> pages = new ArrayList<>(Pages.load(configuration.pages()));
     var comparisons = configuration.published() ? getPublishedComparisons() : getComparisons();
     var categories = getCategories(comparisons);
-
-    generate(configuration, comparisons, categories);
-  }
-
-  private static void generate(
-      GeneratorConfiguration configuration, List<Comparison> comparisons, List<Category> categories)
-      throws IOException {
-    Files.createDirectories(configuration.site());
+    System.out.println("Pages: " + pages.size());
     System.out.println("Comparisons: " + comparisons.size());
     System.out.println("Categories: " + categories.size());
 
-    comparisons.forEach(
-        comparison -> renderToFile(comparison, comparisons, categories, configuration));
-    categories.forEach(category -> renderToFile(category, categories, configuration.site()));
-    // renderMethod(categories, configuration.site());
-    renderWelcome(categories, configuration.site());
+    if (configuration.preview()) {
+      comparisons.forEach(c -> generatePreviewCard(c, configuration.staticFiles().resolve("site")));
+    }
+    comparisons.forEach(c -> pages.add(comparisonPage(c, comparisons, categories)));
+    categories.forEach(c -> pages.add(categoryPage(c, categories)));
+    pages.add(welcomePage(categories));
+
+    pages.forEach(page -> write(output.resolve(page.output()), views.layout.template(page).render().toString()));
+    write(output.resolve("sitemap.xml"), Sitemap.render(pages));
   }
 
-  private static void renderMethod(List<Category> categories, Path site) {
-    renderToFile(
-        "method.html",
-        views.comparison.template(getExampleComparison(), Dependencies.NO_DEPENDENCIES, categories),
-        site);
+  private static Page comparisonPage(Comparison comparison, List<Comparison> comparisons, List<Category> categories) {
+    var body = views.comparison.template(comparison, getDependencies(comparison, comparisons), categories).render().toString();
+    return new Page("site/" + comparison.filename(), comparison.title(), comparison.description(),
+        "/site/" + comparison.filename(), "article", "", "", comparison.previewCard(), "",
+        comparison.book() ? "" : PRISM_HEAD, body, comparison.book() ? "" : PRISM_SCRIPTS);
   }
 
-  private static Comparison getExampleComparison() {
-    var beforeCode =
-        """
-        // BEFORE:start
-        class Container {
-          // bad code
-          // START_HIGHLIGHT
-          int x = 3;
-          // END_HIGHLIGHT
-          // problematic lines are highlighted
-          // imports and accessibility modifier left out
-        }
-        // BEFORE:end
-        """;
-    var afterCode =
-        """
-        // AFTER:start
-        class SweetsDrawer {
-          // better code
-          // it's not good or clean code, just cleaner or better code
-          // START_HIGHLIGHT
-          int chocolateBars = 3;
-          // END_HIGHLIGHT
-          // better lines are highlighted
-        }
-        // AFTER:end
-        """;
-    return new Comparison(
-        "Actionable Name Starting With a Strong Verb",
-        "",
-        "method",
-        List.of("example-tag"),
-        Code.parseBeforeCode(beforeCode).code(),
-        Code.parseBeforeCode(beforeCode).highlight(),
-        "Why the code above is hard to read",
-        Code.parseAfterCode(afterCode).code(),
-        Code.parseAfterCode(afterCode).highlight(),
-        "Why the code on the green / right-hand side is cleaner and more maintainable",
-        "java",
-        "",
-        true,
-        false,
-        "");
+  private static Page categoryPage(Category category, List<Category> categories) {
+    var body = views.category.template(category, categories).render().toString();
+    return new Page("site/" + category.filename(), category.pageTitle(), category.description(),
+        "/site/" + category.filename(), "website", "", "", category.previewCard(), "", "", body, "");
   }
 
-  private static void renderWelcome(List<Category> categories, Path site) {
-    renderToFile("welcome.html", views.welcome.template(categories), site);
+  private static Page welcomePage(List<Category> categories) {
+    var body = views.welcome.template(categories).render().toString();
+    return new Page("site/welcome.html", "Clean Code by Comparison: Before/After Code Examples | Java by Comparison",
+        "Learn clean code by comparing code before and after a refinement: browse all comparisons from the book Java by Comparison and on Java concurrency and modern Java.",
+        "/site/welcome.html", "website", "", "", "", "", "", body, "");
   }
 
   private static List<Category> getCategories(List<Comparison> comparisons) {
@@ -129,23 +99,6 @@ public class Generator {
     return comparisons.stream().map(Comparison::unpublish).collect(Collectors.toList());
   }
 
-  private static void renderToFile(
-      Comparison comparison,
-      List<Comparison> comparisons,
-      List<Category> categories,
-      GeneratorConfiguration configuration) {
-    if (configuration.preview()) {
-      generatePreviewCard(comparison, configuration.site());
-    }
-
-    var dependencies = getDependencies(comparison, comparisons);
-
-    renderToFile(
-        comparison.filename(),
-        views.comparison.template(comparison, dependencies, categories),
-        configuration.site());
-  }
-
   private static Dependencies getDependencies(Comparison comparison, List<Comparison> comparisons) {
     var next = "";
     var nextName = "";
@@ -172,25 +125,50 @@ public class Generator {
     return new Dependencies(next, nextName, previous, previousName);
   }
 
-  private static void generatePreviewCard(Comparison comparison, Path site) {
+  private static void generatePreviewCard(Comparison comparison, Path folder) {
     if (!comparison.beforeCode().isBlank()) {
       try {
-        comparison.generatePreviewCard(site);
+        comparison.generatePreviewCard(folder);
       } catch (IOException ioException) {
         ioException.printStackTrace();
       }
     }
   }
 
-  private static void renderToFile(Category category, List<Category> categories, Path site) {
-    renderToFile(category.filename(), views.category.template(category, categories), site);
-  }
-
-  private static void renderToFile(String filename, RockerModel template, Path site) {
+  private static void write(Path file, String content) {
     try {
-      Files.write(site.resolve(filename), template.render().toString().getBytes());
+      Files.createDirectories(file.getParent());
+      Files.writeString(file, content);
     } catch (IOException e) {
       throw new UncheckedIOException(e);
+    }
+  }
+
+  private static void deleteDirectory(Path directory) throws IOException {
+    if (!Files.exists(directory)) {
+      return;
+    }
+    try (Stream<Path> paths = Files.walk(directory)) {
+      paths.sorted(Comparator.reverseOrder()).forEach(path -> {
+        try {
+          Files.delete(path);
+        } catch (IOException e) {
+          throw new UncheckedIOException(e);
+        }
+      });
+    }
+  }
+
+  private static void copyDirectory(Path source, Path target) throws IOException {
+    try (Stream<Path> paths = Files.walk(source)) {
+      for (var path : paths.toList()) {
+        var destination = target.resolve(source.relativize(path).toString());
+        if (Files.isDirectory(path)) {
+          Files.createDirectories(destination);
+        } else {
+          Files.copy(path, destination);
+        }
+      }
     }
   }
 }

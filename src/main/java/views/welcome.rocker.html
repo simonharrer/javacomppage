@@ -1,26 +1,25 @@
-@import com.bycomparison.Comparison
 @import com.bycomparison.Category
 @import java.util.List
 
 @args (List<Category> categories)
 
-@views.layoutcard.template("Clean Code by Comparison: Before/After Code Examples | Java by Comparison",
-  "Learn clean code by comparing code before and after a refinement: browse all comparisons from the book Java by Comparison and on Java concurrency and modern Java.",
-  "https://java.by-comparison.com/site/welcome.html", "welcome", categories, "https://java.by-comparison.com/img/cover.jpg") -> {
-<div class="container">
-<h1>Welcome to the World of Comparisons</h1>
-
-<p>We believe that one can learn things best when it becomes clear what the problem is and why the solution is better.
-By comparing code before and after the refinement, the difference becomes clear...
-</p>
-
-<img src="../img/comparison-concept.png" class="img-fluid" alt="Anatomy of a comparison: bad code and problem description on the left, better code and solution description on the right"/>
-
-<h2 class="h4 mt-4">Browse the comparisons</h2>
-<ul>
-@for(c : categories) {
-<li><a href="@c.link()">@c.title()</a> (@c.comparisons().size())</li>
-}
-</ul>
-</div>
-}
+<section class="jbc-section cmp">
+  <div class="container">
+    @views.comparisontabs.template(categories, "welcome")
+    <div class="prose">
+      <h1>Clean Code by Comparison</h1>
+      <p>We believe that one learns best when it becomes clear what the problem is and why the solution is better.
+        Comparing code before and after a refinement makes the difference clear.</p>
+      <figure class="figure-wide">
+        <img src="/img/comparison-concept.png" alt="Anatomy of a comparison: bad code and problem description on the left, better code and solution description on the right">
+        <figcaption>The anatomy of a comparison</figcaption>
+      </figure>
+      <h2>Browse the comparisons</h2>
+    </div>
+    <ul class="jbc-grid cols-3">
+      @for (c : categories) {
+      <li class="jbc-card"><h3><a href="@c.link()">@c.title()</a></h3><p>@c.comparisons().size() comparisons</p></li>
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+# Keeps the Java build and the GitHub Actions up to date.
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      # Runtime and Maven plugin must have the same version.
+      rocker:
+        patterns:
+          - "com.fizzed:rocker*"
+      slf4j:
+        patterns:
+          - "org.slf4j:*"
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

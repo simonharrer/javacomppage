@@ -5,94 +5,57 @@
 
 @args (Comparison comparison, Dependencies dependencies, List<Category> categories)
 
-    @views.layoutcard.template(comparison.title(), comparison.description(), comparison.canonical(), comparison.category(), categories, comparison.previewCard()) -> {
+<section class="jbc-section cmp">
+  <div class="container">
+    @views.comparisontabs.template(categories, comparison.category())
 
+    <div class="cmp-pager">
+      <span class="cmp-group">@comparison.group()</span>
+      <span class="cmp-prev">
+        @if (!dependencies.previous().isEmpty()) {
+        <a href="@dependencies.previous()">&larr; @dependencies.previousName()</a>
+        }
+      </span>
+      <span class="cmp-next">
+        @if (!dependencies.next().isEmpty()) {
+        <a href="@dependencies.next()">@dependencies.nextName() &rarr;</a>
+        }
+      </span>
+    </div>
 
-<div class="row mb-3 align-items-center">
+    <h1 class="cmp-title">@comparison.name()</h1>
 
-<div class="col-12 col-md-4 order-md-2 text-center mb-2 mb-md-0"><h5 class="mb-0">@comparison.group()</h5></div>
-
-<div class="col-6 col-md-4 order-md-1 text-start previous">
-  @if(!dependencies.previous().isEmpty()) {
-  <a class="btn btn-secondary btn-sm" href="@dependencies.previous()">← @dependencies.previousName()</a>
-  }
-</div>
-
-<div class="col-6 col-md-4 order-md-3 text-end next">
-  @if(!dependencies.next().isEmpty()) {
-  <a class="btn btn-secondary btn-sm" href="@dependencies.next()">@dependencies.nextName() →</a>
-  }
-</div>
-</div>
-
-<div class="row text-center">
-<h1 class="h2" style="width: 100%">
-<span>
-@comparison.name()
-</span>
-</h1>
-</div>
-
-
-
-@if(comparison.book()) {
-<div class="row justify-content-center">
-  <div class="col-lg-8">
-    <div class="shadow-lg p-4 mb-5 bg-white rounded">
-      <div class="row align-items-center">
-        <div class="col-sm-4 text-center mb-3 mb-sm-0">
-          <a href="/"><img class="book-cover" src="/img/cover.jpg" alt="Cover of the book Java by Comparison"></a>
-        </div>
-        <div class="col-sm-8">
-          <p class="lead">"@comparison.name()" is one of the 70 comparisons in the book
-            <a href="/">Java by Comparison</a>: @comparison.group(), pages @comparison.beforeText()&ndash;@comparison.afterText().</p>
-          <p>Like every item in the book, it shows a piece of flawed Java code on one page and the improved version
-            on the next, and explains why the improvement is better.</p>
-          @if(!comparison.sample().isEmpty()) {
-          <p><a class="btn btn-success mb-2" href="@comparison.sample()"><i class="bi bi-file-earmark-pdf"></i> Read this item for free (PDF)</a></p>
-          }
-          <p class="mb-0">
-            <a class="btn btn-primary mb-2" href="https://pragprog.com/titles/javacomp/java-by-comparison/">E-book &amp; print at Pragmatic Bookshelf</a>
-            <a class="btn btn-outline-primary mb-2" href="https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/">Amazon</a>
-          </p>
-        </div>
+    @if (comparison.book()) {
+    <div class="jbc-card cmp-book">
+      <a href="/"><img class="book-cover" src="/img/cover.jpg" alt="Cover of the book Java by Comparison"></a>
+      <div>
+        <p class="lead">"@comparison.name()" is one of the 70 comparisons in the book
+          <a href="/">Java by Comparison</a>: @comparison.group(), pages @comparison.beforeText()&ndash;@comparison.afterText().</p>
+        <p>Like every item in the book, it shows a piece of flawed Java code on one page and the improved version
+          on the next, and explains why the improvement is better.</p>
+        @if (!comparison.sample().isEmpty()) {
+        <p><a class="learn_more2" href="@comparison.sample()"><i class="fa-file-pdf-o"></i> Read this item for free (PDF)</a></p>
+        }
+        <p class="cmp-buy">
+          <a href="https://pragprog.com/titles/javacomp/java-by-comparison/">E-book &amp; print at Pragmatic Bookshelf</a> &middot;
+          <a href="https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/">Amazon</a>
+        </p>
       </div>
     </div>
-  </div>
-</div>
-} else {
-<div class="row row-eq-height">
-    <div class="col-sm">
-        <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-before">
-          @views.codehighlight.template(comparison.language(), comparison.beforeCode(), comparison.beforeCodeHighlight())
-
-          <div class="p-3">
-            @raw(comparison.beforeText())
-          </div>
-        </div>
+    } else {
+    <div class="cmp-pair">
+      <div class="cmp-side cmp-before">
+        @views.codehighlight.template(comparison.language(), comparison.beforeCode(), comparison.beforeCodeHighlight())
+        <div class="cmp-text">@raw(comparison.beforeText())</div>
+      </div>
+      <div class="cmp-side cmp-after">
+        @views.codehighlight.template(comparison.language(), comparison.afterCode(), comparison.afterCodeHighlight())
+        <div class="cmp-text">@raw(comparison.afterText())</div>
+      </div>
     </div>
-    <div class="col-sm">
-        <div class="shadow-lg mb-5 bg-white rounded comparison-code comparison-after">
-            @views.codehighlight.template(comparison.language(), comparison.afterCode(),comparison.afterCodeHighlight())
-
-            <div class="p-3">
-              @raw(comparison.afterText())
-            </div>
-
-        </div>
-    </div>
-</div>
-}
-
-@if(!comparison.book()) {
-
-<div class="row">
-@if (!comparison.sources().isEmpty()) {
-  <div class="col-sm">
-      <h3>Sources</h3>
-      @comparison.sources()
+    @if (!comparison.sources().isEmpty()) {
+    <div class="prose"><h2>Sources</h2>@comparison.sources()</div>
+    }
+    }
   </div>
-}
-</div>
-}
-}
+</section>

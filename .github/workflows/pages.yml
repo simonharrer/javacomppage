@@ -1,0 +1,53 @@
+# Builds the website from source and deploys it to GitHub Pages.
+# Pull requests only build, so broken pages never reach java.by-comparison.com.
+name: Build and deploy website
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Generate website into target/site
+        run: ./mvnw --batch-mode --no-transfer-progress package exec:java
+      - name: Check that key pages exist
+        run: |
+          for page in index.html story.html teaching.html research.html translations.html kata.html game.html \
+                      legalnotice.html privacy.html sitemap.xml CNAME site/welcome.html site/java.html; do
+            test -s "target/site/$page" || { echo "missing: $page"; exit 1; }
+          done
+      - uses: actions/upload-pages-artifact@v5
+        if: github.event_name != 'pull_request'
+        with:
+          path: target/site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

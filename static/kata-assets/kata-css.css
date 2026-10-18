@@ -1,0 +1,603 @@
+.kata-page * {
+	box-sizing: border-box;
+	text-decoration: none;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+@font-face {
+	font-display: swap;	
+	font-family: 'Open Sans';
+	src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
+		url('open-sans-v16-latin-800.woff2') format('woff2'),
+		url('open-sans-v16-latin-800.woff') format('woff');
+	font-style: normal;
+	font-weight: 800;
+}
+@font-face {
+	font-display: swap;	
+	font-family: 'Roboto';
+	src: local('Roboto'), local('Roboto-Regular'),
+		url('roboto-v19-latin-regular.woff2') format('woff2'),
+		url('roboto-v19-latin-regular.woff') format('woff');
+	font-style: normal;
+	font-weight: 400;
+}
+@font-face {
+	font-display: swap;	
+	font-family: 'Roboto';
+	src: local('Roboto Italic'), local('Roboto-Italic'),
+		url('roboto-v19-latin-italic.woff2') format('woff2'),
+		url('roboto-v19-latin-italic.woff') format('woff');
+	font-style: italic;
+	font-weight: 400;
+}
+@font-face {
+	font-display: swap;	
+	font-family: 'Roboto';
+	src: local('Roboto Bold'), local('Roboto-Bold'),
+		url('roboto-v19-latin-700.woff2') format('woff2'),
+		url('roboto-v19-latin-700.woff') format('woff');
+	font-style: normal;
+	font-weight: 700;
+}
+@font-face {
+	font-display: swap;	
+	font-family: 'Montserrat';
+	src: local('Montserrat ExtraBold'), local('Montserrat-ExtraBold'),
+		url('montserrat-v13-latin-800.woff2') format('woff2'),
+		url('montserrat-v13-latin-800.woff') format('woff');
+	font-style: normal;
+	font-weight: 800;
+}
+.kata-page {
+	color: #1a1a1a;
+	font-size: 100%;
+	font-family: 'Roboto', sans-serif;
+	line-height: 1.75;
+	background-color: #f7f6fb;
+}
+.kata-page .k-nav {
+	position: fixed;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 10vmax;
+	background-color: #fbfbfd;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 0.25vmin solid #ecebf0;
+	padding-top: 0.5vmax;
+	padding-bottom: 0.5vmax;
+}
+.kata-page .k-page {
+	width: 90%;
+	min-height: 100vh;
+	border-top: 0.25vmax solid #304ffe;
+	border-bottom: 0.25vmax solid #304ffe;
+	padding-top: 3vmax;
+	margin: auto;
+}
+.kata-page .k-hero, .kata-page .k-subhero {
+	display: flex;
+	width: 100%;
+	background-color: #05081a;
+}
+.kata-page .k-hero {
+	min-height: 38vh;
+	padding-top: 10vmax;
+}
+.kata-page .k-subhero {
+	min-height: 12vh;
+	justify-content: center;
+	align-items: flex-start;
+}
+.kata-page .k-footer {
+	display: flex;
+	flex-flow: column wrap;
+	width: 100%;
+	background-color: #05081a;
+	justify-content: space-around;
+	align-items: center;
+	padding: 2vmax 0;
+}
+.kata-page h1, .kata-page h2 {
+	color: #05081a;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+	line-height: 1.25;
+	letter-spacing: -0.1vmin;
+	word-spacing: 0.4vmin;
+	margin-bottom: 3vmax;
+}
+.kata-page h1 {
+	font-size: calc(1em + 2vw);
+	text-align: center;
+}
+.kata-page .k-hero h1 {
+	color: #ffffff;
+	margin: auto;
+}
+.kata-page h2 {
+	font-size: calc(1em + 1vw);
+	border-bottom: 0.5vmax solid #05081a;
+	padding-bottom: 1vmax;
+	margin-top: 6vmax;
+}
+.kata-page p {
+	font-size: calc(0.5em + 2vw);
+	font-weight: 400;
+	margin-bottom: 3vmax;
+}
+.kata-page b, .kata-page strong, .kata-page p a {
+	color: #05081a;
+	font-weight: 700;
+}
+.kata-page p a:link, .kata-page p a:visited {
+	font-weight: 700;
+	border-bottom: 0.25vmax solid #304ffe;
+	transition: all 0.3s ease-in-out;
+}
+.kata-page p a:hover, .kata-page p a:active, .kata-page p a:focus {
+	color: #304ffe;
+	border-bottom-color: #05081a;
+}
+.kata-page .k-nav-main:link, .kata-page .k-nav-main:visited {
+	color: #428bca;
+	font-size: calc(0.5em + 2vw);
+	border-radius: 0.125em 0.125em 0 0;
+	transition: color 0.4s ease-in-out;
+}
+.kata-page .k-nav-main:hover, .kata-page .k-nav-main:active, .kata-page .k-nav-main:focus {
+	color: #304ffe;
+}
+.kata-page .k-nav-git {
+	width: 4vmax;
+	min-height: 4vmax;
+}
+.kata-page .k-nav-git img {
+	width: 100%;
+	height: auto;
+	margin-top: 0.5vmax;
+}
+.kata-page .k-nav-git img:hover, .kata-page .k-nav-git img:active, .kata-page .k-nav-git img:focus {
+	-webkit-transform: scale(1.2, 1.2);
+	        transform: scale(1.2, 1.2);
+}
+.kata-page .k-hero-button {
+	display: flex;
+	align-items: center;
+	min-height: calc(1em + 2vmin);
+	font-size: calc(0.75em + 0.5vw);
+	color: #ffffff;
+	font-variant: small-caps;
+	text-transform: lowercase;
+	letter-spacing: 0.2vmax;
+	word-spacing: 0.2vmin;
+	border-radius: 6vmin;
+	box-shadow: 0 0 0 0.5vmin #05081a, 0 0 0 1vmin #304ffe;
+	background-color: #304ffe;
+	padding: 1vmin 4vmin 1vmin 2vmin;
+	transition: color 0.3s ease-in-out, background-color 0.5s, letter-spacing 0.4s;
+}
+.kata-page .k-hero-button img {
+	width: calc(1em + 1vmin);
+	height: auto;
+	margin-right: 2vmin;
+}
+.kata-page .k-hero-button:hover, .kata-page .k-hero-button:active, .kata-page .k-hero-button:focus {
+	color: #000000;
+	letter-spacing: 0.4vmin;
+	background-color: #ffffff;
+	padding-left: 4vmin;
+}
+.kata-page .k-hero-button:hover img, .kata-page .k-hero-button:active img, .kata-page .k-hero-button:focus img {
+	display: none;
+}
+.kata-page .k-nav a:focus, .kata-page .k-hero-button:focus {
+	outline: 1px dotted #428bca;
+}
+.kata-page .k-footer-link:link, .kata-page .k-footer-link:visited {
+	color: #dedde2;
+	font-size: calc(0.5em + 0.5vw);
+	border-bottom: 0.2vmin solid #1a3851;
+	padding: 1em 0.5em;
+	transition: background-color 0.3s ease-in-out;
+}
+.kata-page .k-footer-link:hover, .kata-page .k-footer-link:active, .kata-page .k-footer-link:focus {
+	outline: 1px solid #1a3851;
+	background-color: #1a3851;
+}
+.kata-page .k-footer-link:first-of-type {
+	margin-bottom: 0.25em;
+}
+.kata-page .k-callout {
+	max-width: 90%;
+	font-size: calc(0.5em + 1.75vw);
+	text-align: center;
+	line-height: 1.5;
+	background-color: #ffffff;
+	border-radius: 0.125em;
+	box-shadow: 0 0 0 0.5vmin #f7f6fb, 0 0 0 1vmin #304ffe;
+	padding: 2vmax;
+	margin: 0 auto 3vmax;
+}
+.kata-page .k-jbc, .kata-page .k-callout {
+	color: #000000;
+	font-style: italic;
+}
+.kata-page ::-moz-selection {
+	color: #ffffff;
+	background-color: #304ffe;
+}
+.kata-page ::selection {
+	color: #ffffff;
+	background-color: #304ffe;
+}
+.kata-page .k-box-description {
+	color: #05081a;
+	font-size: calc(0.5em + 0.75vw);
+	text-align: center;
+}
+.kata-page .k-numbers {
+	display: block;
+	font-size: calc(1em + 1vw);
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 800;
+	line-height: 1.25;
+	text-align: center;
+}
+.kata-page .k-numbers-inline {
+	font-size: 88%;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 800;
+	letter-spacing: 0.04vmin;
+}
+.kata-page .k-caption {
+	display: block;
+	color: #313131;
+	font-size: calc(0.5em + 0.75vw);
+	line-height: 0.75;
+	text-align: center;
+}
+.kata-page .k-box-link {
+	font-size: calc(0.5em + 0.25vw);
+	font-variant: small-caps;
+	text-transform: lowercase;
+	letter-spacing: 0.1vmax;
+}
+.kata-page .k-heatmap {
+	font-size: calc(0.5em + 0.5vw);
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+	line-height: 1.25;
+	text-align: center;	
+}
+.kata-page .k-heatmap:nth-child(2) {
+	font-size: calc(1em + 1vw);
+}
+.kata-page .k-heatmap:nth-child(3) {
+	font-size: calc(1em + 0.5vw);
+}
+.kata-page .k-grid {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+.kata-page .k-grid .k-box {
+	background-color: #f1f0f7;
+	border-radius: 0.125em;
+	box-shadow: 0 0 0 0.5vmin #f7f6fb, 0 0 0 1vmin #f1f0f7;
+	padding: 2vmax 0 2vmax;
+	margin: auto;
+}
+.kata-page .k-grid + .k-grid > .k-box {
+	margin-top: 3vmax;
+}
+.kata-page .k-grid p {
+	margin: 0;
+}
+.kata-page .k-grid + p {
+	margin-top: 3vmax;
+}
+.kata-page .k-box {
+	display: -ms-grid;
+	display: grid;
+	grid-gap: 2vh;
+	justify-items: center;
+	align-items: center;
+}
+.kata-page .k-box-closer {
+	grid-gap: 0.5vmin;
+}
+.kata-page .k-box-2 {
+	min-width: 45%;
+	-ms-grid-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+	-ms-grid-rows: 0.5fr 1fr 1vmin 1fr;
+	grid-template-rows: 0.5fr 1fr 1vmin 1fr;
+}
+.kata-page .k-box-3 {
+	min-width: 30%;
+	max-width: 30%;
+	max-height: 30%;
+	-ms-grid-columns: 1fr;
+	grid-template-columns: 1fr;
+	-ms-grid-rows: 1fr 0.25fr 0.5vmin;
+	grid-template-rows: 1fr 0.25fr 0.5vmin;
+}
+.kata-page .k-box-9 {
+	min-width: 10%;
+	-ms-grid-columns: (1fr)[8] 1.5fr;
+	grid-template-columns: repeat(8, 1fr) 1.5fr;
+	-ms-grid-rows: 1fr 0.5fr;
+	grid-template-rows: 1fr 0.5fr;	
+}
+.kata-page .k-box-1 {
+	min-width: 100%;
+	-ms-grid-columns: 1fr;
+	grid-template-columns: 1fr;
+	-ms-grid-rows: 1fr 0.5fr;
+	grid-template-rows: 1fr 0.5fr;
+}
+.kata-page .k-box-heatmap {
+	min-width: 100%;
+	-ms-grid-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	-ms-grid-rows: 0.5fr 1fr 0.5fr 0.5fr;
+	grid-template-rows: 0.5fr 1fr 0.5fr 0.5fr;
+}
+.kata-page .k-box-2 p:first-of-type {
+	-ms-grid-column: 1;
+	-ms-grid-column-span: 2;
+	grid-column: 1 / span 2;
+	-ms-grid-row-align: start;
+	    align-self: start;
+}
+.kata-page .k-box-2 p:nth-of-type(2), .kata-page p:nth-of-type(4) {
+	-ms-grid-column: 1;
+	-ms-grid-column-span: 1;
+	grid-column: 1 / span 1;
+}
+.kata-page .k-box-2 p:nth-of-type(3), .kata-page p:nth-of-type(5) {
+	-ms-grid-column: 2;
+	-ms-grid-column-span: 1;
+	grid-column: 2 / span 1;
+}
+.kata-page .k-box-2 div:first-of-type {
+	-ms-grid-column: 1;
+	-ms-grid-column-span: 2;
+	grid-column: 1 / span 2;
+	-ms-grid-row: 3;
+	-ms-grid-row-span: 1;
+	grid-row: 3 / span 1;
+}
+.kata-page .k-box-3 p {
+	-ms-grid-row: 2;
+	-ms-grid-row-span: 1;
+	grid-row: 2 / span 1;
+}
+.kata-page .k-box-3 .k-box-link {
+	-ms-grid-row: 3;
+	-ms-grid-row-span: 1;
+	grid-row: 3 / span 1;
+}
+.kata-page .k-box-3 img, .kata-page .k-box-9 img, .kata-page .k-box-1 img {
+	max-width: 80%;
+	height: auto;
+	-ms-grid-row: 1;
+	-ms-grid-row-span: 1;
+	grid-row: 1 / span 1;
+}
+.kata-page .k-box-1 img {
+	max-width: 96%;
+}
+.kata-page .k-box-9 p {
+	-ms-grid-column: 1;
+	-ms-grid-column-span: 9;
+	grid-column: 1 / span 9;
+	-ms-grid-row: 2;
+	-ms-grid-row-span: 1;
+	grid-row: 2 / span 1;
+}
+.kata-page .k-box-heatmap p:first-of-type {
+	-ms-grid-column: 1;
+	-ms-grid-column-span: 3;
+	grid-column: 1 / span 3;
+	-ms-grid-row-align: start;
+	    align-self: start;
+}
+.kata-page .k-box-heatmap p:nth-of-type(2) {
+	-ms-grid-column: 1;
+	-ms-grid-column-span: 2;
+	grid-column: 1 / span 2;
+	-ms-grid-row: 2;
+	-ms-grid-row-span: 1;
+	grid-row: 2 / span 1;
+}
+.kata-page .k-visuals-box {
+	display: flex;
+	width: 90%;
+	justify-content: center;
+	align-items: center;
+}
+.kata-page .k-codegraph {
+	display: inline-block;
+	height: 1vmin;
+}
+.kata-page .k-codegraph:first-of-type {
+	border-radius: 0.375em 0 0 0.375em;
+}
+.kata-page .k-codegraph:last-of-type {
+	border-radius: 0 0.375em 0.375em 0;
+}
+.kata-page .k-loc-521 {
+	width: 84.6%;
+	background-color: #2196f3;
+}
+.kata-page .k-loc-24 {
+	width: 3.9%;
+	background-color: #3f51b5;
+}
+.kata-page .k-loc-71 {
+	width: 11.5%;
+	background-color: #6ec6ff;
+}
+.kata-page .k-loc-127 {
+	width: 20.62%;
+	background-color: #ff5722;
+}
+.kata-page .k-loc-19 {
+	width: 3.1%;
+	background-color: #ff8a50;
+}
+.kata-page .k-color-reset {
+	color: #1a1a1a;
+}
+.kata-page .k-color-code {
+	color: #2196f3;
+}
+.kata-page .k-color-comments {
+	color: #3f51b5;
+}
+.kata-page .k-color-code-blank {
+	color: #6ec6ff;
+}
+.kata-page .k-color-tests {
+	color: #ff5722;
+}
+.kata-page .k-color-tests-blank {
+	color: #ff8a50;
+}
+.kata-page .k-color-comparisons {
+	color: #29ccab;
+}
+.kata-page .k-color-comparisons-2nd {
+	color: #4ad9c1;
+}
+.kata-page .k-color-comparisons-3rd {
+	color: #59ccde;
+}
+@media only screen and (min-width: 600px) {
+.kata-page {
+		line-height: 1.5;
+	}
+.kata-page h1, .kata-page h2 {
+		letter-spacing: -0.2vmin;
+	}
+.kata-page .k-nav {
+		height: 8vmax;
+		flex-direction: row;
+		justify-content: space-between;
+		padding-left: 10%;
+		padding-right: 10%
+	}
+.kata-page .k-page {
+		width: 80%;
+	}
+.kata-page .k-hero {
+		padding-top: 8vmax;
+	}
+.kata-page h1 {
+		font-size: calc(1em + 3vw);
+	}
+.kata-page h2 {
+		font-size: calc(1em + 2vw);
+		margin-top: 6vmax;
+	}
+.kata-page p {
+		font-size: calc(0.75em + 1vw);
+	}
+.kata-page .k-nav-main:link, .kata-page .k-nav-main:active, .kata-page .k-nav-main:visited {
+		font-size: calc(0.75em + 0.5vw);
+	}
+.kata-page .k-nav-git {
+		width: 3vmax;
+		min-height: 3vmax;
+	}
+.kata-page .k-hero-button {
+		min-height: calc(2em + 2vmin);
+		border-radius: 4vmin;
+		box-shadow: 0 0 0 0.5vmin #05081a, 0 0 0 0.75vmin #304ffe;
+	}
+.kata-page .k-hero-button img {
+		width: calc(1em + 2vmin);
+	}
+.kata-page .k-footer-link:link, .kata-page .k-footer-link:active, .kata-page .k-footer-link:visited {
+		font-size: calc(0.5em + 0.25vw);
+	}
+.kata-page .k-callout {
+		font-size: calc(0.75em + 0.5vw);
+		box-shadow: 0 0 0 0.5vmin #f7f6fb, 0 0 0 0.75vmin #304ffe;
+	}
+.kata-page .k-caption {
+		font-size: calc(0.5em + 0.5vw);
+	}
+.kata-page .k-grid .k-box {
+		box-shadow: 0 0 0 0.5vmin #f7f6fb, 0 0 0 0.75vmin #f1f0f7;
+	}
+.kata-page .k-heatmap {
+		letter-spacing: -0.1vmin;
+	}
+}
+@media only screen and  (orientation: landscape) {
+.kata-page .k-box-3 {
+		-ms-grid-rows: 1fr 0.25fr 2vmin;
+		grid-template-rows: 1fr 0.25fr 2vmin;
+	}
+}
+@media only screen and (max-height: 520px) and (orientation: landscape), only screen and (max-width: 400px) {
+.kata-page .k-hero-button {
+		min-height: calc(1em + 1vmax);
+		border-radius: 6vmin;
+		box-shadow: 0 0 0 1vmin #05081a, 0 0 0 1.75vmin #304ffe;
+		margin-bottom: 3vmax;
+	}
+}
+@media only screen and (min-width: 1200px) {
+.kata-page .k-nav {
+		height: 5vmax;
+		padding-left: 15%;
+		padding-right: 15%;
+	}
+.kata-page .k-page {
+		width: 70%;
+	}
+.kata-page .k-hero {
+		padding-top: 5vmax;
+	}
+.kata-page h1, .kata-page h2 {
+		margin-bottom: 4vmax;
+	}
+.kata-page p {
+		font-size: calc(0.5em + 1vw);
+	}
+.kata-page .k-nav-main:link, .kata-page .k-nav-main:active, .kata-page .k-nav-main:visited {
+		font-size: calc(0.5em + 0.5vw);
+	}
+.kata-page .k-box-description {
+		font-size: calc(0.5em + 0.5vw);
+	}
+.kata-page .k-callout {
+		font-size: calc(0.5em + 0.75vw);
+	}
+.kata-page .k-caption {
+		font-size: calc(0.25em + 1vw);
+	}
+.kata-page .k-box-link {
+		font-size: calc(0.5em + 0.5vw);
+	}
+}
+@media only screen and (min-width: 1800px) {
+.kata-page .k-nav {
+		padding-left: 20%;
+		padding-right: 20%;
+	}
+.kata-page .k-page {
+		width: 60%;
+	}
+.kata-page .k-caption {
+		font-size: calc(0.25em + 0.5vw);
+	}
+}
