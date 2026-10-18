@@ -24,7 +24,7 @@ public class Categories {
         new Category("Modern Java", """
             Although Java is believed dead over and over again, it keeps reinventing itself, one step at a time. Since Java 8, a new release ships every six months, and each one brings features that make everyday code shorter, clearer, and safer. Many teams still write Java as if it were 2014, simply because nobody showed them the newer way.
 
-            The comparisons below each take a typical piece of pre-Java-8-style code and refine it with a feature from a later release, such as text blocks, the improved `Optional` API, and switch expressions. Like in the book [Java by Comparison](https://java.by-comparison.com), every comparison shows the code before and after, and explains why the newer version is better and what to watch out for when you adopt it in an existing code base.
+            The comparisons below each take a typical piece of pre-Java-8-style code and refine it with a feature from a later release, such as text blocks, the improved `Optional` API, switch expressions, records, and doc comments in Markdown. Like in the book [Java by Comparison](https://java.by-comparison.com), every comparison shows the code before and after, and explains why the newer version is better and what to watch out for when you adopt it in an existing code base.
 
             The examples are deliberately small, so you can try them right away in your own project. All you need is a current JDK.
             """, List.of()),
