@@ -243,3 +243,10 @@ main { flex: 1 0 auto; }
 .cmp-text li { margin-bottom: 4px; }
 .cmp-text p { margin: 0 0 12px; }
 .cmp-text p:last-child { margin-bottom: 0; }
+
+/* Layout fixes: let author bios grow, size buttons to their label, show bullets in reading cards,
+   and keep readable line height on phones (responsive.css sets fixed 18px/20px) */
+.team-leader-box { height: auto; overflow: visible; margin-bottom: 24px; }
+a.learn_more2 { display: inline-block; width: auto; min-width: 178px; padding: 0 24px; }
+.ba-col ul { list-style: disc; padding-left: 20px; }
+.prose p, .cmp-text p, .jbc-card p, .section-lead { line-height: 1.6; }
