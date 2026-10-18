@@ -184,7 +184,35 @@ public class ComparisonsJavaConcurrency {
             The rest of the code stays the same, since virtual threads are ordinary `Thread` objects that work with `Future` as before. And since Java 19, an `ExecutorService` is `AutoCloseable`: closing it waits for all submitted tasks, so try-with-resources replaces the manual `shutdown()`.
 
             Virtual threads speed up tasks that mostly wait, not CPU-heavy computations. Don't pool them, just create a new one per task. If a resource is scarce, such as database connections, limit concurrent access with a `Semaphore` instead of a small thread pool.
-            """));
+            """),
+        javaConcurrency("Structure Your Concurrent Tasks", group,
+            List.of("Structured Concurrency", "Preview", "Java 25"),
+            """
+                The launch check needs two things, the weather and the crew status, so it fetches both in parallel with an executor and combines the results.
+
+                It looks harmless, but the two tasks have no relationship to each other or to the method that started them. If fetching the crew status fails right away, `weather.get()` doesn't notice: it keeps waiting until the weather arrives, and only then does `crew.get()` report the failure. The `catch` block has to cancel both tasks by hand, and forgetting it leaves threads running in the background, doing work that nobody needs anymore. If the thread calling `check()` gets interrupted, the subtasks keep running unless the code cancels them as well. And in a thread dump, nothing shows which method these tasks belong to.
+                """,
+            """
+                Structured concurrency treats a group of related tasks as a single unit of work. `StructuredTaskScope.open()` creates a scope, `fork()` starts each subtask in its own virtual thread, and `join()` waits for all of them. The try-with-resources block guarantees that no subtask outlives the scope.
+
+                By default, the scope fails as soon as one subtask fails: it cancels the other subtasks and `join()` throws a `FailedException` with the original cause. So if fetching the crew status fails, the weather request is cancelled right away. If the thread running `check()` is interrupted, the subtasks are cancelled too. The manual cancellation code is gone, and thread dumps show the subtasks as children of the scope.
+
+                Different policies are available as so-called joiners, for example to return the first successful result and cancel the rest. Note that the structured concurrency API is still a preview in Java 25 (JEP 505) and has changed between releases. To use it, compile and run with `--enable-preview`.
+                """),
+        javaConcurrency("Pass Context with Scoped Values", group,
+            List.of("ScopedValue", "ThreadLocal", "Java 25"),
+            """
+                Mission control needs to know which astronaut sent the command, deep down in the `Dispatcher`, without passing the astronaut through every method in between. A `ThreadLocal` is the classic solution: `handle()` stores the astronaut for the current thread, and the dispatcher reads it.
+
+                But a `ThreadLocal` is a mutable global variable per thread. Any code can call `set()` at any time, so you can't tell where the value came from. It stays set until someone calls `remove()`: forget the `finally` block, and in a thread pool, the next request on the same thread runs as the previous astronaut, a real security bug. And with a million virtual threads, each holding its own copies of thread-local values, the memory adds up quickly.
+                """,
+            """
+                Since Java 25 (JEP 506), a `ScopedValue` passes such context in a safer way. `ScopedValue.where()` binds the astronaut for exactly the duration of `run()`. Within that block, including all the methods it calls, `CURRENT.get()` returns the astronaut. Afterwards, the binding is gone automatically. There's no `remove()` to forget, so the value can never leak into the next request.
+
+                Scoped values are immutable: there is no `set()` method, so code deep down the call stack can't change the context for its callers. A nested `where()` can rebind the value for an inner block, but only for that block. Scoped values are also cheap to read and to inherit: subtasks forked in a `StructuredTaskScope` see the same binding without copying it.
+
+                Note that the dispatcher didn't change at all. Reading `CURRENT.get()` outside a binding throws a `NoSuchElementException`, so a missing context fails fast instead of silently returning `null`.
+                """));
   }
 
   public static List<Comparison> chapter3SolveYourProblemInParallel() {

@@ -18,9 +18,9 @@ public class Categories {
 
             * **Chapter 1** starts with `synchronized`, documents the thread-safety guarantees, and moves on to explicit, well-scoped, hidden, and fair locks. It ends with `AtomicLong`, which avoids locks altogether, and `LongAdder`, which spreads the updates when many threads count at once.
             * **Chapter 2** does the same for collections: from guarding a plain `ArrayList` yourself, to synchronized wrappers, to the concurrent collections of `java.util.concurrent`.
-            * **Chapter 3** shows how virtual threads, available since Java 21, run thousands of blocking tasks without a carefully sized thread pool.
+            * **Chapter 3** turns to newer tools: virtual threads, which run thousands of blocking tasks without a carefully sized thread pool, structured concurrency, which treats related tasks as one unit of work, and scoped values, a safer replacement for `ThreadLocal`.
 
-            The world of concurrency certainly encompasses much more, from executors and parallel streams to structured concurrency. But in practice, protecting such shared data structures correctly is what most everyday Java code needs. The comparisons follow the same before/after format as the book [Java by Comparison](https://java.by-comparison.com) and are free to read.
+            The world of concurrency certainly encompasses much more, from executors and parallel streams to the fork/join framework. But in practice, protecting such shared data structures correctly is what most everyday Java code needs. The comparisons follow the same before/after format as the book [Java by Comparison](https://java.by-comparison.com) and are free to read.
             """, List.of()),
         new Category("Modern Java", """
             Although Java is believed dead over and over again, it keeps reinventing itself, one step at a time. Since Java 8, a new release ships every six months, and each one brings features that make everyday code shorter, clearer, and safer. Many teams still write Java as if it were 2014, simply because nobody showed them the newer way.

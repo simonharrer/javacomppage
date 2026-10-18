@@ -19,6 +19,8 @@ The generator also writes `sitemap.xml` from all pages, so new pages appear ther
 
 ## Build
 
+Needs JDK 25. The structured concurrency example uses a preview API, so it is excluded from compilation in `pom.xml`; check it with `javac --release 25 --enable-preview`.
+
 ```sh
 ./build                      # or: ./mvnw clean package exec:java
 open target/site/index.html

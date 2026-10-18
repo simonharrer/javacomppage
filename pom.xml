@@ -11,7 +11,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>21</java.version>
+    <java.version>25</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
   </properties>
@@ -65,6 +65,10 @@
         <version>3.8.0</version>
         <configuration>
           <release>${java.version}</release>
+          <excludes>
+            <!-- uses a preview API (structured concurrency); shown on the site, not compiled -->
+            <exclude>com/bycomparison/javaconcurrency/structureyourconcurrenttasks/**</exclude>
+          </excludes>
         </configuration>
       </plugin>
       <plugin>
