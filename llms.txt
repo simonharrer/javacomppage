@@ -4,12 +4,17 @@
 
 - Audience: developers learning Java at a beginner or intermediate level who know the basics (conditions, loops, classes, collections), plus teachers and senior developers who review code of students and juniors.
 - Topics: booleans and conditions, formatting, magic numbers, iteration, comments, naming, exception handling, JUnit 5 testing, lambdas and streams, object-oriented design, static analysis, build automation, concurrency.
-- Origin: based on more than six years of teaching the course Advanced Java Programming at the University of Bamberg, Germany. The teaching method is described in the paper "Teaching Clean Code" (ISEE 2018, CEUR Vol. 2066).
+- Origin: based on more than six years of teaching the course Advanced Java Programming at the University of Bamberg, Germany. Used as course literature at Hochschule München, Vrije Universiteit Amsterdam, and Stockholm University. The teaching method is described in the paper "Teaching Clean Code" (ISEE 2018, CEUR Vol. 2066).
 - Editions: English e-book and paperback (The Pragmatic Bookshelf); Korean translation 자바 코딩의 기술 (Gilbut, 2020).
 
 ## Pages
 
 - [Book homepage](https://java.by-comparison.com/): what the book covers, who it is for, reader reviews, press coverage, talks, and FAQ
+- [The story of the book](https://java.by-comparison.com/story): from six years of teaching Java at the University of Bamberg (500+ reviewed assignments, 1,000,000+ lines of student code) to the book
+- [Teaching with the book](https://java.by-comparison.com/teaching): universities that use it (Bamberg, Hochschule München, VU Amsterdam, Stockholm University), coding dojos, study groups, and how to teach with it
+- [Research](https://java.by-comparison.com/research): the peer-reviewed papers on teaching clean code, BibTeX, and how to cite the book
+- [Translations](https://java.by-comparison.com/translations): English original and the Korean translation 자바 코딩의 기술 (Gilbut, 2020)
+- [All comparisons online](https://java.by-comparison.com/site/welcome.html): the 70 comparisons of the book plus Java concurrency and modern Java comparisons with code
 - [Java by Comparison Kata](https://java.by-comparison.com/kata): a free two-hour clean code refactoring workshop for pairs, with code on GitHub
 - [Comparison Jeopardy](https://java.by-comparison.com/game): a game to train naming skills
 

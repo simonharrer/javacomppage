@@ -232,27 +232,75 @@
         Comparison</a></div>
       <nav class="nav" id="nav">
         <ul class="toggle">
-          <li><a href="#audience">For Whom</a></li>
-          <li><a href="#work_outer">Content</a></li>
-          <li><a href="#client_outer">Readers</a></li>
-          <li><a href="#courses">Teaching</a></li>
-          <li><a href="#team">Authors</a></li>
-          <li><a href="#press">Press</a></li>
-          <li><a href="#talks">Talks</a></li>
-          <li><a href="/kata">Kata</a></li>
-          <li><a href="/game">Game</a></li>
-          <li><a href="#buy">Buy</a></li>
+          <li class="has-sub"><a href="/#audience" class="nav-group" aria-haspopup="true">The Book</a>
+            <ul class="sub">
+              <li><a href="/#audience">For Whom</a></li>
+              <li><a href="/#work_outer">Contents</a></li>
+              <li><a href="/#client_outer">Reader Reviews</a></li>
+              <li><a href="/story">The Story</a></li>
+              <li><a href="/translations">Translations</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/#comparisons" class="nav-group" aria-haspopup="true">Comparisons</a>
+            <ul class="sub">
+              <li><a href="/site/java.html">Java: all 70 from the book</a></li>
+              <li><a href="/site/java-concurrency.html">Java Concurrency</a></li>
+              <li><a href="/site/modern-java.html">Modern Java</a></li>
+              <li><a href="/site/welcome.html">How comparisons work</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/teaching" class="nav-group" aria-haspopup="true">Teaching</a>
+            <ul class="sub">
+              <li><a href="/teaching">Teaching with the Book</a></li>
+              <li><a href="/research">Research</a></li>
+              <li><a href="/kata">Kata</a></li>
+              <li><a href="/game">Comparison Jeopardy</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/#team" class="nav-group" aria-haspopup="true">About</a>
+            <ul class="sub">
+              <li><a href="/#team">Authors</a></li>
+              <li><a href="/#press">Press</a></li>
+              <li><a href="/#talks">Talks</a></li>
+              <li><a href="/#faq">FAQ</a></li>
+            </ul>
+          </li>
+          <li><a href="/#buy">Buy the book</a></li>
         </ul>
-        <ul class="">
-          <li><a href="#audience">For Whom</a></li>
-          <li><a href="#work_outer">Content</a></li>
-          <li><a href="#client_outer">Readers</a></li>
-          <li><a href="#courses">Teaching</a></li>
-          <li><a href="#team">Authors</a></li>
-          <li><a href="#press">Press</a></li>
-          <li><a href="#talks">Talks</a></li>
-          <li><a href="/kata">Kata</a></li>
-          <li><a href="/game">Game</a></li>
+        <ul class="main-nav-list">
+          <li class="has-sub"><a href="/#audience" class="nav-group" aria-haspopup="true">The Book</a>
+            <ul class="sub">
+              <li><a href="/#audience">For Whom</a></li>
+              <li><a href="/#work_outer">Contents</a></li>
+              <li><a href="/#client_outer">Reader Reviews</a></li>
+              <li><a href="/story">The Story</a></li>
+              <li><a href="/translations">Translations</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/#comparisons" class="nav-group" aria-haspopup="true">Comparisons</a>
+            <ul class="sub">
+              <li><a href="/site/java.html">Java: all 70 from the book</a></li>
+              <li><a href="/site/java-concurrency.html">Java Concurrency</a></li>
+              <li><a href="/site/modern-java.html">Modern Java</a></li>
+              <li><a href="/site/welcome.html">How comparisons work</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/teaching" class="nav-group" aria-haspopup="true">Teaching</a>
+            <ul class="sub">
+              <li><a href="/teaching">Teaching with the Book</a></li>
+              <li><a href="/research">Research</a></li>
+              <li><a href="/kata">Kata</a></li>
+              <li><a href="/game">Comparison Jeopardy</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/#team" class="nav-group" aria-haspopup="true">About</a>
+            <ul class="sub">
+              <li><a href="/#team">Authors</a></li>
+              <li><a href="/#press">Press</a></li>
+              <li><a href="/#talks">Talks</a></li>
+              <li><a href="/#faq">FAQ</a></li>
+            </ul>
+          </li>
           <li><a href="https://pragprog.com/titles/javacomp/java-by-comparison/" class="learn_more2" rel="noopener">Get the book</a></li>
         </ul>
       </nav>
@@ -499,6 +547,18 @@
 </section>
 <!--main-section-end-->
 
+<section class="jbc-section alt" id="comparisons">
+  <div class="container">
+    <h2>Comparisons Online</h2>
+    <p class="section-lead">Besides the table of contents of the book, we publish further before/after comparisons on the web, with code and explanations.</p>
+    <ul class="jbc-grid cols-3">
+      <li class="jbc-card"><h3><a href="/site/java.html">Java by Comparison</a></h3><p>All 70 comparisons of the book, chapter by chapter, with page numbers and free samples.</p></li>
+      <li class="jbc-card"><h3><a href="/site/java-concurrency.html">Java Concurrency by Comparison</a></h3><p>Protect shared mutable state and collections, step by step from unsafe to thread-safe code.</p></li>
+      <li class="jbc-card"><h3><a href="/site/modern-java.html">Modern Java by Comparison</a></h3><p>New language features after Java 8, such as records, text blocks, and switch expressions.</p></li>
+    </ul>
+  </div>
+</section>
+
 <section class="main-section" id="client_outer">
   <!--main-section client-part-start-->
   <h2>What Happy Readers Say</h2>
@@ -622,27 +682,21 @@
 <section class="jbc-section alt" id="courses">
   <div class="container">
     <h2>Used in University Courses</h2>
-    <p class="section-lead">The book grew out of more than six years of teaching. Its examples are based on
-      code the authors faced when correcting students' programming assignments.</p>
+    <p class="section-lead">The book grew out of more than six years of teaching. Today it is course literature at
+      universities in Germany, the Netherlands, and Sweden, and the kata runs in company coding dojos.</p>
     <ul class="jbc-grid cols-2">
-      <li class="jbc-card">
-        <div class="badge-row"><span class="badge-initials" aria-hidden="true">UB</span>
-          <div><h3>University of Bamberg</h3><span class="meta">Advanced Java Programming (3rd semester)</span></div></div>
-        <p>A course that values clean, maintainable code over mere functional correctness. Student teams
-          solve four group assignments and get detailed textual code reviews that point to the items of the book.</p>
-        <a href="https://www.uni-bamberg.de/en/dsg/" rel="noopener">Distributed Systems Group</a>
-      </li>
-      <li class="jbc-card">
-        <div class="badge-row"><span class="badge-initials" aria-hidden="true">UB</span>
-          <div><h3>University of Bamberg</h3><span class="meta">Introduction to Parallel and Distributed Programming (5th semester)</span></div></div>
-        <p>Concurrency on the JVM with the same feedback concept: four group assignments, graded by code
-          review that refers students to the book's comparisons.</p>
-        <a href="https://www.uni-bamberg.de/en/dsg/" rel="noopener">Distributed Systems Group</a>
-      </li>
+      <li class="jbc-card"><div class="badge-row"><span class="badge-initials" aria-hidden="true">UB</span>
+        <div><h3>University of Bamberg</h3><span class="meta">Advanced Java Programming &middot; Parallel and Distributed Programming</span></div></div></li>
+      <li class="jbc-card"><div class="badge-row"><span class="badge-initials" aria-hidden="true">HM</span>
+        <div><h3>Hochschule München</h3><span class="meta">Softwareentwicklung I &middot; software development lectures</span></div></div></li>
+      <li class="jbc-card"><div class="badge-row"><span class="badge-initials" aria-hidden="true">VU</span>
+        <div><h3>Vrije Universiteit Amsterdam</h3><span class="meta">Software Design</span></div></div></li>
+      <li class="jbc-card"><div class="badge-row"><span class="badge-initials" aria-hidden="true">SU</span>
+        <div><h3>Stockholm University</h3><span class="meta">Programmering 1 &middot; testing of IT systems &middot; course package</span></div></div></li>
     </ul>
-    <p class="section-lead" style="margin-top:24px">Do you teach with Java by Comparison?
-      <a href="mailto:simon.harrer@gmail.com?subject=Java%20by%20Comparison%20in%20my%20course">Tell us about your course</a>
-      and we will list it here.</p>
+    <p class="section-lead" style="margin-top:24px"><a href="/teaching" class="learn_more2">Teaching with the book</a></p>
+    <p class="section-lead">Do you teach with Java by Comparison?
+      <a href="mailto:simon.harrer@gmail.com?subject=Java%20by%20Comparison%20in%20my%20course">Tell us about your course</a>.</p>
   </div>
 </section>
 
@@ -650,7 +704,8 @@
   <div class="container">
     <h2>The Science Behind the Book: Teaching Clean Code</h2>
     <p class="section-lead">The before/after method was developed and evaluated in university teaching
-      and published in peer-reviewed software engineering education workshops.</p>
+      and published in peer-reviewed software engineering education workshops.
+      Read <a href="/story">the story of the book</a> and <a href="/research">the research behind it</a>.</p>
     <ul class="jbc-grid cols-2">
       <li class="jbc-card">
         <h3><a href="https://ceur-ws.org/Vol-2066/isee2018paper06.pdf" rel="noopener">Teaching Clean Code</a></h3>
@@ -827,6 +882,11 @@
       <p class="section-lead" style="margin-top:16px;font-size:14px">Links to pages that no longer exist point to their copy in the Internet Archive.</p>
     </details>
 
+    <p class="section-lead" style="margin-top:24px;font-size:15px">Fun fact: Java by Comparison is one of the books in the
+      <a href="https://www.anthropiccopyrightsettlement.com/" rel="noopener">Bartz v. Anthropic</a> copyright settlement,
+      the class action over books used to train Anthropic's Claude models. In a way, its comparisons live on in
+      Anthropic's frontier models.</p>
+
     <h2 style="margin-top:48px">Awards</h2>
     <ul class="awards">
       <li>
@@ -852,7 +912,7 @@
     <ul class="jbc-grid cols-2">
       <li class="jbc-card"><h3>Korean edition</h3>
         <p>자바 코딩의 기술, published by Gilbut in 2020, translated by 심지현.</p>
-        <a rel="noopener" href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000002950616">View at Kyobo</a></li>
+        <a href="/translations">All editions and translations</a></li>
       <li class="jbc-card"><h3>In university libraries</h3>
         <p>HTW Berlin, HU Berlin, TH Hamburg, TH Köln, TH Nürnberg, TU Darmstadt, TU München, Uni Bamberg, Uni Bayreuth, Uni Dresden, Uni Erlangen, Uni Hamburg, Uni Passau, Uni Stuttgart, Uni Weimar, Uni Würzburg, and more.</p></li>
     </ul>
@@ -866,36 +926,30 @@
     <p class="section-lead">No talks are scheduled right now. Want a talk or the kata workshop at your meetup,
       conference, or company? <a href="mailto:simon.harrer@gmail.com?subject=Java%20by%20Comparison%20talk">Get in touch</a>.</p>
     <h3 style="text-align:center">Past</h3>
+    <p class="section-lead" style="font-size:15px">Most talks were in German; the slides of the OTH Regensburg guest lecture are in English.</p>
     <ul class="talk-list">
+      <li><time datetime="2024-10-21">2024-10-21</time><span class="where">HUK-COBURG coding dojo<br><span class="meta">Workshop: the Java by Comparison kata</span></span></li>
       <li><time datetime="2023-03-20">2023-03-20</time><span class="where"><a rel="noopener" href="https://www.innoq.com/en/talks/2023/03/die-java-by-comparison-kata/">JavaLand 2023</a>, Phantasialand, Brühl<br><span class="meta">Workshop: Die „Java by Comparison“ Kata, with Sebastian Rose and Falk Sippach</span></span></li>
-      <li><time datetime="2021-03-31">2021-03-31</time><span class="where"><a rel="noopener" href="https://www.jug-da.de/2021/03/Java-by-Comparison/">JUG Darmstadt</a> (online)<br><span class="meta">Java by Comparison</span> &middot; <a rel="noopener" href="https://www.youtube.com/watch?v=vVEi73N7iTU">Video</a></span></li>
+      <li><time datetime="2022-05-23">2022-05-23</time><span class="where">OTH Regensburg (Ostbayerische Technische Hochschule)<br><span class="meta">Guest lecture: The Stories of Java by Comparison &middot; <a href="/slides/2022-05-23-oth-regensburg-en.pdf">Slides (PDF, English)</a></span></span></li>
+      <li><time datetime="2021-03-31">2021-03-31</time><span class="where"><a rel="noopener" href="https://www.jug-da.de/2021/03/Java-by-Comparison/">JUG Darmstadt</a> (online)<br><span class="meta">Java by Comparison</span> &middot; <a rel="noopener" href="https://www.youtube.com/watch?v=vVEi73N7iTU">Video</a> &middot; <a href="/slides/2021-03-31-jug-darmstadt.pdf">Slides (PDF)</a></span></li>
       <li><time datetime="2019-11-26">2019-11-26</time><span class="where"><a rel="noopener" href="https://www.meetup.com/jug-hamburg/events/266130543/">JUG Hamburg</a><br><span class="meta">Java by Comparison</span></span></li>
       <li><time datetime="2019-10-29">2019-10-29</time><span class="where"><a rel="noopener" href="https://www.innoq.com/en/talks/2019/10/java-by-comparison-jug-mainz-oktober-2019/">JUG Mainz</a>, Hochschule Mainz<br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches</span></span></li>
-      <li><time datetime="2019-10-23">2019-10-23</time><span class="where"><a rel="noopener" href="https://www.innoq.com/en/talks/2019/10/softwerkskammer-koeln-oktober-2019-java-by-comparison/">Softwerkskammer Köln</a>, at REWE Digital<br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches</span></span></li>
+      <li><time datetime="2019-10-23">2019-10-23</time><span class="where"><a rel="noopener" href="https://www.innoq.com/en/talks/2019/10/softwerkskammer-koeln-oktober-2019-java-by-comparison/">Softwerkskammer Köln</a>, at REWE Digital<br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches &middot; <a href="/slides/2019-10-23-softwerkskammer-koeln.pdf">Slides (PDF)</a></span></span></li>
       <li><time datetime="2019-10-10">2019-10-10</time><span class="where"><a rel="noopener" href="https://web.archive.org/web/20230815065247/https://www.softwerkskammer.org/activities/Treffen_SWK_Nuernberg_okt_2019_java_by_comparison">Softwerkskammer Nürnberg</a><br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches</span></span></li>
-      <li><time datetime="2019-10-09">2019-10-09</time><span class="where"><a rel="noopener" href="https://www.meetup.com/Lightweight-Java-User-Group-Munchen/events/263934160">Lightweight Java User Group München</a><br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches</span></span></li>
-      <li><time datetime="2019-07-08">2019-07-08</time><span class="where"><a rel="noopener" href="https://www.innoq.com/de/talks/2019/07/java-by-comparison-wiai-praxisreport-july-2019/">WIAI PraxisReport</a>, University of Bamberg<br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches</span></span></li>
+      <li><time datetime="2019-10-09">2019-10-09</time><span class="where"><a rel="noopener" href="https://www.meetup.com/Lightweight-Java-User-Group-Munchen/events/263934160">Lightweight Java User Group München</a><br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches &middot; <a href="/slides/2019-10-09-lightweight-jug-muenchen.pdf">Slides (PDF)</a></span></span></li>
+      <li><time datetime="2019-07-08">2019-07-08</time><span class="where"><a rel="noopener" href="https://www.innoq.com/de/talks/2019/07/java-by-comparison-wiai-praxisreport-july-2019/">WIAI PraxisReport</a>, University of Bamberg<br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches &middot; <a href="/slides/2019-07-08-uni-bamberg-wiai.pdf">Slides (PDF)</a></span></span></li>
       <li><time datetime="2019-06-26">2019-06-26</time><span class="where">DWX Developer Week 2019, Messe Nürnberg<br><span class="meta">Related talk: Eine Therapiesitzung zu Namen, on naming in code, the topic of the chapter “Name Things Right”</span></span></li>
-      <li><time datetime="2019-06-04">2019-06-04</time><span class="where"><a rel="noopener" href="https://www.meetup.com/Softwerkskammer-Leipzig/events/258246616/">Softwerkskammer Leipzig</a><br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches</span></span></li>
-      <li><time datetime="2019-04-03">2019-04-03</time><span class="where"><a rel="noopener" href="https://www.meetup.com/Softwerkskammer-Dusseldorf/events/258667971">Softwerkskammer Düsseldorf</a><br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches</span></span></li>
+      <li><time datetime="2019-06-04">2019-06-04</time><span class="where"><a rel="noopener" href="https://www.meetup.com/Softwerkskammer-Leipzig/events/258246616/">Softwerkskammer Leipzig</a><br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches &middot; <a href="/slides/2019-06-04-softwerkskammer-leipzig.pdf">Slides (PDF)</a></span></span></li>
+      <li><time datetime="2019-04-03">2019-04-03</time><span class="where"><a rel="noopener" href="https://www.meetup.com/Softwerkskammer-Dusseldorf/events/258667971">Softwerkskammer Düsseldorf</a><br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches &middot; <a href="/slides/2019-04-03-softwerkskammer-duesseldorf.pdf">Slides (PDF)</a></span></span></li>
       <li><time datetime="2019-04-02">2019-04-02</time><span class="where"><a rel="noopener" href="https://www.meetup.com/Softwerkskammer-Ruhrgebiet/events/258643893/">Softwerkskammer Ruhrgebiet</a><br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches</span> &middot; <a rel="noopener" href="https://www.youtube.com/watch?v=NlJOEpsxY2Q">Video (German)</a></span></li>
-      <li><time datetime="2019-03-25">2019-03-25</time><span class="where">BMW Group coding dojo, München<br><span class="meta">Workshop: <a href="/kata">first run of the Java by Comparison kata</a></span></span></li>
-      <li><time datetime="2018-05-15">2018-05-15</time><span class="where"><a rel="noopener" href="https://www.innoq.com/en/talks/2018/05/java-by-comparison-hackerkegeln-2018/">Hackerkegeln</a> (DATEV SCC), Nürnberg<br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches</span></span></li>
+      <li><time datetime="2019-03-25">2019-03-25</time><span class="where">BMW Group coding dojo, München<br><span class="meta">Workshop: <a href="/kata">first run of the Java by Comparison kata</a> &middot; <a href="/slides/2019-03-25-bmw-coding-dojo-kata.pdf">Slides (PDF)</a></span></span></li>
+      <li><time datetime="2018-05-15">2018-05-15</time><span class="where"><a rel="noopener" href="https://www.innoq.com/en/talks/2018/05/java-by-comparison-hackerkegeln-2018/">Hackerkegeln</a> (DATEV SCC), Nürnberg<br><span class="meta">Java by Comparison: Die Geschichte(n) des Buches &middot; <a href="/slides/2018-05-15-hackerkegeln-nuernberg.pdf">Slides (PDF)</a></span></span></li>
+          <li><time datetime="2018-03">2018-03</time><span class="where">devcamp<br><span class="meta">Java by Comparison, right at the book's release</span></span></li>
     </ul>
   </div>
 </section>
 
-<section class="jbc-section" id="more">
-  <div class="container">
-    <h2>More Comparisons Online</h2>
-    <p class="section-lead">Besides the table of contents of the book, we publish further before/after comparisons on the web, with code and explanations.</p>
-    <ul class="jbc-grid cols-3">
-      <li class="jbc-card"><h3><a href="/site/java.html">Java by Comparison</a></h3><p>All 70 comparisons of the book, chapter by chapter, with page numbers and free samples.</p></li>
-      <li class="jbc-card"><h3><a href="/site/java-concurrency.html">Java Concurrency by Comparison</a></h3><p>Protect shared mutable state and collections, step by step from unsafe to thread-safe code.</p></li>
-      <li class="jbc-card"><h3><a href="/site/modern-java.html">Modern Java by Comparison</a></h3><p>New language features after Java 8, such as records, text blocks, and switch expressions.</p></li>
-    </ul>
-  </div>
-</section>
+
 
 <section class="jbc-section alt faq" id="faq">
   <div class="container">

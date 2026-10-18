@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Story of Java by Comparison: From Six Years of Teaching to a Book</title>
+  <meta name="description"
+        content="How Java by Comparison came to be: six years of teaching Java at the University of Bamberg, 500+ reviewed assignments, a million lines of student code, a teaching award, and 18 months of writing with 300+ beta readers.">
+  <link rel="canonical" href="https://java.by-comparison.com/story">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Java by Comparison">
+  <meta property="og:url" content="https://java.by-comparison.com/story">
+  <meta property="og:title" content="The Story of Java by Comparison">
+  <meta property="og:description" content="Six years of teaching, 500+ reviewed assignments, and the same mistakes thousands of times: how a teaching concept became a book.">
+  <meta property="og:image" content="https://java.by-comparison.com/img/comparison-concept.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@simonharrer">
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="css/responsive.css" rel="stylesheet" type="text/css">
+  <link href="css/site.css" rel="stylesheet" type="text/css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Story of Java by Comparison: From Six Years of Teaching to a Book",
+    "author": [{"@type": "Person", "name": "Simon Harrer", "url": "https://simonharrer.com/"},
+               {"@type": "Person", "name": "Linus Dietz", "url": "https://linusdietz.com/"}],
+    "about": {"@id": "https://java.by-comparison.com/#book"},
+    "image": "https://java.by-comparison.com/img/comparison-concept.png",
+    "mainEntityOfPage": "https://java.by-comparison.com/story"
+  }
+  </script>
+  <style>
+    .research-hero { background: var(--soft); padding: 40px 0 32px; text-align: center; }
+    .research-hero h1 { margin: 0 0 14px; }
+    .research-hero .section-lead { margin-bottom: 0; }
+    .prose { max-width: 760px; margin: 0 auto; font-size: 16px; line-height: 1.7; text-align: left; }
+    .prose h2 { text-align: left; margin-top: 8px; }
+    .prose ol, .prose ul { padding-left: 22px; }
+    .prose li { margin-bottom: 8px; }
+    .bibtex { background: #f4f4f4; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px;
+      font-size: 13px; line-height: 1.5; white-space: pre; overflow-x: auto; color: #333; margin: 10px 0 0; }
+    .paper summary { cursor: pointer; color: var(--accent); font-weight: 700; margin-top: 8px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; padding: 0; list-style: none; }
+    .stats li { flex: 1 1 140px; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px; text-align: center; margin: 0; }
+    .stats strong { display: block; font-size: 28px; color: var(--ink); }
+    .breadcrumb-nav { font-size: 14px; margin-bottom: 10px; }
+    .timeline { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--accent); }
+    .timeline > li { position: relative; padding: 0 0 28px 24px; margin: 0; }
+    .timeline > li::before { content: ""; position: absolute; left: -9px; top: 4px; width: 15px; height: 15px;
+      border-radius: 50%; background: #fff; border: 3px solid var(--accent); }
+    .timeline .year { display: block; font-weight: 700; color: var(--accent); font-size: 15px; letter-spacing: .5px; }
+    .timeline h3 { margin: 2px 0 8px; font-size: 20px; color: var(--ink); text-transform: none; text-align: left; }
+    .figure-wide { margin: 18px 0; text-align: center; }
+    .figure-wide img { max-width: 100%; border: 1px solid var(--line); border-radius: 8px; }
+    .figure-wide figcaption { font-size: 14px; color: #888; margin-top: 6px; }
+  </style>
+</head>
+
+<body>
+
+<header id="header_outer">
+  <div class="container">
+    <div class="header_section">
+      <div class="logo"><a href="/" title="Java by Comparison Book">Java by Comparison</a></div>
+      <nav class="nav" id="nav">
+        <ul class="toggle">
+          <li class="has-sub"><a href="/#audience" class="nav-group" aria-haspopup="true">The Book</a>
+            <ul class="sub">
+              <li><a href="/#audience">For Whom</a></li>
+              <li><a href="/#work_outer">Contents</a></li>
+              <li><a href="/#client_outer">Reader Reviews</a></li>
+              <li><a href="/story">The Story</a></li>
+              <li><a href="/translations">Translations</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/#comparisons" class="nav-group" aria-haspopup="true">Comparisons</a>
+            <ul class="sub">
+              <li><a href="/site/java.html">Java: all 70 from the book</a></li>
+              <li><a href="/site/java-concurrency.html">Java Concurrency</a></li>
+              <li><a href="/site/modern-java.html">Modern Java</a></li>
+              <li><a href="/site/welcome.html">How comparisons work</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/teaching" class="nav-group" aria-haspopup="true">Teaching</a>
+            <ul class="sub">
+              <li><a href="/teaching">Teaching with the Book</a></li>
+              <li><a href="/research">Research</a></li>
+              <li><a href="/kata">Kata</a></li>
+              <li><a href="/game">Comparison Jeopardy</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/#team" class="nav-group" aria-haspopup="true">About</a>
+            <ul class="sub">
+              <li><a href="/#team">Authors</a></li>
+              <li><a href="/#press">Press</a></li>
+              <li><a href="/#talks">Talks</a></li>
+              <li><a href="/#faq">FAQ</a></li>
+            </ul>
+          </li>
+          <li><a href="/#buy">Buy the book</a></li>
+        </ul>
+        <ul class="main-nav-list">
+          <li class="has-sub"><a href="/#audience" class="nav-group" aria-haspopup="true">The Book</a>
+            <ul class="sub">
+              <li><a href="/#audience">For Whom</a></li>
+              <li><a href="/#work_outer">Contents</a></li>
+              <li><a href="/#client_outer">Reader Reviews</a></li>
+              <li><a href="/story">The Story</a></li>
+              <li><a href="/translations">Translations</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/#comparisons" class="nav-group" aria-haspopup="true">Comparisons</a>
+            <ul class="sub">
+              <li><a href="/site/java.html">Java: all 70 from the book</a></li>
+              <li><a href="/site/java-concurrency.html">Java Concurrency</a></li>
+              <li><a href="/site/modern-java.html">Modern Java</a></li>
+              <li><a href="/site/welcome.html">How comparisons work</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/teaching" class="nav-group" aria-haspopup="true">Teaching</a>
+            <ul class="sub">
+              <li><a href="/teaching">Teaching with the Book</a></li>
+              <li><a href="/research">Research</a></li>
+              <li><a href="/kata">Kata</a></li>
+              <li><a href="/game">Comparison Jeopardy</a></li>
+            </ul>
+          </li>
+          <li class="has-sub"><a href="/#team" class="nav-group" aria-haspopup="true">About</a>
+            <ul class="sub">
+              <li><a href="/#team">Authors</a></li>
+              <li><a href="/#press">Press</a></li>
+              <li><a href="/#talks">Talks</a></li>
+              <li><a href="/#faq">FAQ</a></li>
+            </ul>
+          </li>
+          <li><a href="https://pragprog.com/titles/javacomp/java-by-comparison/" class="learn_more2" rel="noopener">Get the book</a></li>
+        </ul>
+      </nav>
+      <a class="res-nav_click" href="javascript:void(0)" aria-label="Menu"><i class="fa-bars"></i></a></div>
+  </div>
+</header>
+
+<section class="research-hero">
+  <div class="container">
+    <p class="breadcrumb-nav"><a href="/">Java by Comparison</a> &rsaquo; The Story</p>
+    <h1>The Story of the Book</h1>
+    <p class="section-lead">Java by Comparison did not start as a book. It started in a classroom, with a simple
+      question: how do you teach others to write clean code?</p>
+  </div>
+</section>
+
+<section class="jbc-section" id="story">
+  <div class="container prose">
+    <ol class="timeline">
+      <li>
+        <span class="year">2011</span>
+        <h3>Two new Java courses</h3>
+        <p>At the University of Bamberg, Simon Harrer and Jörg Lenhard designed two courses:
+          <em>Advanced Java Programming</em> and <em>Programming Complex Interactive Systems</em>, a course on
+          concurrency on the JVM.</p>
+        <p>A typical university course has a theoretical lecture, a plenary exercise, homework, and a written exam.
+          Students hand in a solution and get a grade. That teaches them to make code work. It does not teach them to
+          write code that others can read and change.</p>
+      </li>
+      <li>
+        <span class="year">The question</span>
+        <h3>How do you teach clean code?</h3>
+        <p>Our answer was code review, in three steps:</p>
+        <ol>
+          <li><strong>Experience</strong> code reviews interactively, in class.</li>
+          <li><strong>Receive</strong> detailed written code reviews on every assignment.</li>
+          <li><strong>Perform</strong> code reviews yourself.</li>
+        </ol>
+        <p>Students worked in groups on real programming assignments, and every submission came back with a
+          detailed review of what was wrong, how to do it better, and why the better way is really better.</p>
+      </li>
+      <li>
+        <span class="year">2011&ndash;2016</span>
+        <h3>The same mistakes, again and again</h3>
+        <p>In six years, we</p>
+        <ul class="stats">
+          <li><strong>500+</strong>assignments reviewed</li>
+          <li><strong>1,000,000+</strong>lines of Java read</li>
+          <li><strong>1000s</strong>of times flagged the same issues</li>
+        </ul>
+        <p>Every new generation of students made the same mistakes, and we wrote the same explanations. So we started
+          a collection of typical errors, each as a comparison of flawed and improved code, to point students to
+          instead of writing it all again.</p>
+      </li>
+      <li>
+        <span class="year">2016</span>
+        <h3>A teaching award, and 80 out of 80 points</h3>
+        <p>The course concept received the faculty's teaching award. For the first time, a student group scored
+          80 out of 80 points. Simon and Jörg handed the course over into competent hands, and it was
+          time to look for new challenges.</p>
+      </li>
+      <li>
+        <span class="year">The idea</span>
+        <h3>"Can we make something great out of it?"</h3>
+        <p>Six years of reviews had produced a format that worked: every comparison has an actionable name, the
+          bad code with a problem description, and the better code with a solution description.</p>
+        <figure class="figure-wide">
+          <img src="img/comparison-concept.png" alt="The anatomy of a comparison: actionable name, bad code with problem description, better code with solution description" loading="lazy">
+          <figcaption>The anatomy of a comparison</figcaption>
+        </figure>
+        <p>We proposed the book to The Pragmatic Bookshelf. Three days later, we had the contract.</p>
+      </li>
+      <li>
+        <span class="year">2016&ndash;2018</span>
+        <h3>18 months of writing</h3>
+        <ul class="stats">
+          <li><strong>3</strong>authors</li>
+          <li><strong>18</strong>months</li>
+          <li><strong>16</strong>technical reviewers</li>
+          <li><strong>300+</strong>beta readers</li>
+        </ul>
+        <p>Together with an editor, a copy editor, a layouter, and a foreword, we turned the collection into 70
+          comparisons in nine chapters, from cleaning up booleans to preparing code for the real world.</p>
+      </li>
+      <li>
+        <span class="year">March 21, 2018</span>
+        <h3>Java by Comparison is released</h3>
+        <p>Enthusiastic reviewers and happy readers followed: reviews in <a href="/#press">magazines, blogs, and
+          podcasts</a> in five languages, and the authors told the story in <a href="/#talks">talks at meetups and
+          conferences</a>, always ending with a round of <a href="/game">Comparison Jeopardy</a>, a game where the
+          audience finds the name of a comparison.</p>
+      </li>
+      <li>
+        <span class="year">2019 and later</span>
+        <h3>Beyond the book</h3>
+        <ul>
+          <li><strong>2019:</strong> <a href="/kata">The Java by Comparison kata</a>, first run at the BMW Group coding dojo.</li>
+          <li><strong>2020:</strong> <a href="/translations">The Korean translation</a> 자바 코딩의 기술 by Gilbut.</li>
+          <li><strong>2021:</strong> New comparisons online, on <a href="/site/java-concurrency.html">Java concurrency</a>
+            and <a href="/site/modern-java.html">modern Java</a>.</li>
+        </ul>
+        <p><strong>2025:</strong> Java by Comparison is one of the books in the
+          <a href="https://www.anthropiccopyrightsettlement.com/" rel="noopener">Bartz v. Anthropic</a> copyright settlement,
+          the class action over books used to train Anthropic's Claude models. So, in a way, its 70 comparisons
+          live on in Anthropic's frontier models.</p>
+        <p>The research behind the teaching concept is published in peer-reviewed papers:
+          see <a href="/research">the research page</a>.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<nav class="buybar" aria-label="Buy the book">
+  <span class="label">Get the book:</span>
+  <a class="primary" href="https://pragprog.com/titles/javacomp/java-by-comparison/" rel="noopener">E-book<span class="long">&nbsp;&amp; print</span></a>
+  <span class="amz">Amazon</span>
+  <a href="https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/" rel="noopener"><span class="long">Amazon&nbsp;</span>US</a>
+  <a href="https://www.amazon.co.uk/Java-Comparison-Become-Craftsman-Examples/dp/1680502875" rel="noopener"><span class="long">Amazon&nbsp;</span>UK</a>
+  <a href="https://www.amazon.de/Java-Comparison-Simon-Harrer/dp/1680502875" rel="noopener"><span class="long">Amazon&nbsp;</span>DE</a>
+</nav>
+
+<footer class="footer_section" id="contact">
+  <div class="container">
+    <div class="footer_bottom">
+      <p><a href="/story">Story</a> &middot; <a href="/teaching">Teaching</a> &middot; <a href="/research">Research</a> &middot;
+        <a href="/translations">Translations</a> &middot; <a href="/site/welcome.html">All comparisons</a></p>
+      <p><a href="legalnotice.html">Legal Notice / Impressum</a></p>
+      <p><a href="privacy.html">Privacy / Datenschutzerklärung</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  $('.res-nav_click').click(function () {
+    $('ul.toggle').slideToggle(200);
+    return false;
+  });
+</script>
+<script data-mode="hash" async defer src="https://cdn.simpleanalytics.io/hello.js"></script>
+<noscript><img src="https://api.simpleanalytics.io/hello.gif" alt=""></noscript>
+</body>
+</html>
