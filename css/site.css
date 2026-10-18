@@ -1,0 +1,151 @@
+/* Site-specific overrides on top of the Butterfly theme.
+   Mobile first: the base rules target phones, min-width queries widen them. */
+
+:root {
+  --accent: #2c8ff2;
+  --ink: #222;
+  --muted: #666;
+  --line: #e6e6e6;
+  --soft: #f6f8fb;
+  --buybar-h: 56px;
+}
+
+html { scroll-behavior: smooth; }
+body { color: var(--muted); padding-bottom: var(--buybar-h); }
+section[id], header + section { scroll-margin-top: 72px; }
+img { max-width: 100%; height: auto; }
+
+/* Headings: smaller on phones, theme sizes from tablet up */
+h1 { font-size: 30px; margin: 10px 0 20px; }
+h2 { font-size: 26px; margin: 0 0 20px; line-height: 1.2; }
+.section-lead { text-align: center; font-size: 17px; max-width: 720px; margin: 0 auto 30px; line-height: 1.6; }
+
+/* Header: one line on phones, short and sticky */
+#header_outer { padding: 12px 0; }
+.logo { font-size: 1.25em; padding-top: 0.15em; white-space: nowrap; }
+.logo a { color: var(--accent); }
+.res-nav_click { margin-top: 0; }
+
+/* Hero */
+.top_content { padding-top: 20px; }
+.top_left_cont p { font-size: 16px; line-height: 1.6; }
+.hero-meta { margin: 18px 0 0; font-size: 14px; color: var(--muted); }
+
+/* Generic section rhythm */
+#service, #work_outer, .main-section.team, .jbc-section { padding: 48px 0; }
+.service_area { padding: 10px 0; }
+.c-logo-part { margin-top: 0; padding: 30px 0; }
+.c-logo-part ul li.text-info { display: inline-block; margin: 6px 12px; }
+.text-info strong { font-size: 2em; }
+
+/* Alternating background for the new sections */
+.jbc-section.alt { background: var(--soft); }
+.jbc-section h2 { text-align: center; }
+
+/* Card grid used by audience, courses, science, talks and press */
+.jbc-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.jbc-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  padding: 18px 20px; text-align: left; font-size: 15px; line-height: 1.55;
+}
+.jbc-card h3 { font-size: 17px; margin: 0 0 6px; color: var(--ink); text-transform: none; font-family: 'Lato', sans-serif; font-weight: 700; }
+.jbc-card p { margin: 0 0 6px; }
+.jbc-card .meta { font-size: 13px; color: #888; }
+.jbc-card a { word-break: break-word; }
+.jbc-card ul { padding-left: 18px; margin: 6px 0 0; }
+.jbc-card li { margin-bottom: 4px; }
+
+/* University / organizer badge: logo when available, initials otherwise */
+.badge-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.badge-row img { width: 44px; height: 44px; object-fit: contain; }
+.badge-initials {
+  flex: 0 0 44px; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-weight: 700; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Before / after comparison */
+.ba-col h3 { display: flex; align-items: center; gap: 8px; }
+.ba-col.before { border-top: 4px solid #e74c3c; }
+.ba-col.after { border-top: 4px solid #27ae60; }
+
+/* Talks timeline */
+.talk-list { list-style: none; padding: 0; margin: 0; }
+.talk-list li { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; text-align: left; }
+.talk-list time { flex: 0 0 92px; color: #888; font-variant-numeric: tabular-nums; }
+.talk-list .where { color: var(--ink); }
+
+/* Press: highlights as cards, the long tail collapsible and compact */
+.press-more { margin-top: 24px; }
+.press-more summary { cursor: pointer; text-align: center; color: var(--accent); font-weight: 700; font-size: 16px; padding: 10px; }
+.press-list { columns: 1; column-gap: 32px; padding: 0; margin: 16px 0 0; list-style: none; text-align: left; font-size: 15px; }
+.press-list li { break-inside: avoid; padding: 6px 0; }
+.press-list .lang { font-weight: 700; color: var(--ink); margin-top: 12px; }
+
+/* Store logos: wrap cleanly instead of overflowing */
+.stores { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; list-style: none; padding: 0; margin: 0; }
+.stores a.store { display: inline-flex; align-items: center; justify-content: center; min-width: 140px; min-height: 64px; margin: 0; }
+
+/* Awards side by side, not full width */
+.awards { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; list-style: none; padding: 0; }
+.awards img { display: block; width: 180px; margin: 8px auto 0; }
+
+/* Sticky buy bar */
+.buybar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 1000;
+  height: var(--buybar-h); background: rgba(255,255,255,.97);
+  border-top: 1px solid var(--line); box-shadow: 0 -2px 12px rgba(0,0,0,.06);
+  display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 10px;
+}
+.buybar .label { display: none; color: var(--ink); font-weight: 700; margin-right: 6px; }
+.buybar a {
+  display: inline-flex; align-items: center; height: 38px; padding: 0 12px; border-radius: 19px;
+  border: 1px solid var(--accent); color: var(--accent); font-weight: 700; font-size: 13px; white-space: nowrap; text-decoration: none;
+}
+.buybar a.primary { background: var(--accent); color: #fff; }
+.buybar a:hover, .buybar a:focus { background: var(--accent); color: #fff; text-decoration: none; }
+.buybar .long { display: none; }
+
+/* FAQ */
+.faq details { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; text-align: left; }
+.faq summary { cursor: pointer; font-weight: 700; color: var(--ink); font-size: 16px; }
+.faq details p { margin: 10px 0 0; font-size: 15px; line-height: 1.6; }
+
+/* Phones: title left, hamburger right, menu drops below the header */
+@media (max-width: 767px) {
+  .header_section { position: relative; min-height: 32px; }
+  .logo { float: left; margin: 0; }
+  .res-nav_click { position: absolute; right: 0; left: auto; top: -2px; bottom: auto; font-size: 26px; }
+  .nav { top: 44px; }
+  .nav ul.toggle { box-shadow: 0 8px 16px rgba(0,0,0,.08); padding: 0; }
+  .nav ul.toggle li { padding: 0; margin: 0; }
+  .nav ul.toggle li a { display: block; padding: 10px 0; }
+  .client_area { width: auto; padding: 0 16px; }
+  .quote_section { width: auto; margin: 16px 0 0; float: none; }
+  .quote_section p { width: auto; }
+  .quote_arrow2, .quote_arrow { display: none; }
+}
+.c-logo-part { background-size: cover; }
+
+.buybar .amz { color: var(--ink); font-size: 13px; font-weight: 700; margin-left: 4px; }
+
+/* Footer */
+.footer_section { padding-bottom: 20px; }
+
+@media (min-width: 600px) {
+  .jbc-grid.cols-2, .jbc-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .press-list { columns: 2; }
+  .buybar .label { display: inline; }
+  .buybar .long { display: inline; }
+  .buybar .amz { display: none; }
+}
+
+@media (min-width: 992px) {
+  h1 { font-size: 38px; }
+  h2 { font-size: 34px; margin-bottom: 25px; }
+  #header_outer { padding: 20px 0; }
+  .logo { font-size: 1.5em; }
+  #service, #work_outer, .main-section.team, .jbc-section { padding: 72px 0; }
+  .jbc-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .press-list { columns: 3; }
+}

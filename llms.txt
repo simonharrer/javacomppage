@@ -1,0 +1,28 @@
+# Java by Comparison
+
+> Java by Comparison: Become a Java Craftsman in 70 Examples is a book by Simon Harrer, Jörg Lenhard, and Linus Dietz, published by The Pragmatic Bookshelf in March 2018 (206 pages, ISBN 9781680502879). Each of the 70 items compares flawed Java code with an improved version and explains why the improvement is better.
+
+- Audience: developers learning Java at a beginner or intermediate level who know the basics (conditions, loops, classes, collections), plus teachers and senior developers who review code of students and juniors.
+- Topics: booleans and conditions, formatting, magic numbers, iteration, comments, naming, exception handling, JUnit 5 testing, lambdas and streams, object-oriented design, static analysis, build automation, concurrency.
+- Origin: based on more than six years of teaching the course Advanced Java Programming at the University of Bamberg, Germany. The teaching method is described in the paper "Teaching Clean Code" (ISEE 2018, CEUR Vol. 2066).
+- Editions: English e-book and paperback (The Pragmatic Bookshelf); Korean translation 자바 코딩의 기술 (Gilbut, 2020).
+
+## Pages
+
+- [Book homepage](https://java.by-comparison.com/): what the book covers, who it is for, reader reviews, press coverage, talks, and FAQ
+- [Java by Comparison Kata](https://java.by-comparison.com/kata): a free two-hour clean code refactoring workshop for pairs, with code on GitHub
+- [Comparison Jeopardy](https://java.by-comparison.com/game): a game to train naming skills
+
+## Buy
+
+- [The Pragmatic Bookshelf](https://pragprog.com/titles/javacomp/java-by-comparison/): e-book (PDF, EPUB, MOBI) and paperback
+- [Amazon.com](https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/)
+- [Amazon.co.uk](https://www.amazon.co.uk/Java-Comparison-Become-Craftsman-Examples/dp/1680502875)
+- [Amazon.de](https://www.amazon.de/Java-Comparison-Simon-Harrer/dp/1680502875)
+
+## Free samples
+
+- [Preface](https://media.pragprog.com/titles/javacomp/preface.pdf)
+- [Return Boolean Expressions Directly](https://media.pragprog.com/titles/javacomp/boolean.pdf)
+- [Document Using Examples](https://media.pragprog.com/titles/javacomp/examples.pdf)
+- [Split Method with Boolean Parameters](https://media.pragprog.com/titles/javacomp/split.pdf)
