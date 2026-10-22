@@ -296,3 +296,15 @@ a.learn_more2 { display: inline-block; width: auto; min-width: 178px; padding: 0
   .cmp-side pre[class*="language-"] { font-size: 14px; }
 }
 .buybar a { white-space: nowrap; }
+
+/* Fourth service block: gold gavel with a soft glow, links to the Bartz v. Anthropic fair-use order */
+.service_icon.icon4 { border-color: #f0b429; animation: gavel-glow 2.4s ease-in-out infinite; }
+.service_icon.icon4 span { background: linear-gradient(135deg, #ffd166, #f0b429); }
+.service_icon.icon4 i { color: #2b2b2b; }
+.service_block--claude p a { color: var(--accent); font-weight: 700; }
+@keyframes gavel-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(240,180,41,0); }
+  50%      { box-shadow: 0 0 0 10px rgba(240,180,41,.18); }
+}
+@media (prefers-reduced-motion: reduce) { .service_icon.icon4 { animation: none; } }
+@media (min-width: 992px) { .service_block h3 { min-height: 44px; } }
